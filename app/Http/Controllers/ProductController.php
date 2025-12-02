@@ -34,11 +34,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create product');
-
+        
         $request->validate([
             'category_id'       => 'required|exists:categories,id',
             'name'              => 'required|string|max:255',
-            // 'slug'              => 'required|string|max:255|unique:products,slug',
+            'slug'              => 'required|string|max:255|unique:products,slug',
             'sku'               => 'nullable|string|unique:products,sku',
             'short_description' => 'nullable|string',
             'description'       => 'nullable|string',
@@ -62,7 +62,7 @@ class ProductController extends Controller
             $product = new Product();
             $product->category_id = $request->category_id;
             $product->name = $request->name;
-            $product->slug = Str::slug($request->name);
+            $product->slug = Str::slug($request->slug);
             $product->sku = $request->sku;
             $product->short_description = $request->short_description;
             $product->description = $request->description;
@@ -148,7 +148,7 @@ class ProductController extends Controller
         $request->validate([
             'category_id'       => 'required|exists:categories,id',
             'name'              => 'required|string|max:255',
-            'slug'              => 'nullable|string|max:255|unique:products,slug,' . $product->id,
+            'slug'              => 'required|string|max:255|unique:products,slug,' . $product->id,
             'sku'               => 'nullable|string|unique:products,sku,' . $product->id,
             'short_description' => 'nullable|string',
             'description'       => 'nullable|string',
@@ -171,7 +171,7 @@ class ProductController extends Controller
         try {
             $product->category_id = $request->category_id;
             $product->name = $request->name;
-            $product->slug = $request->slug ? Str::slug($request->slug) : Str::slug($request->name);
+            $product->slug = Str::slug($request->slug);
             $product->sku = $request->sku;
             $product->short_description = $request->short_description;
             $product->description = $request->description;

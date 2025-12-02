@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\GeneralSetting;
+use Illuminate\Support\Facades\Cache;
+
 if (!function_exists('theme')) {
     function theme()
     {
@@ -413,7 +416,7 @@ if (!function_exists('image')) {
      */
     function image($path)
     {
-        return asset('assets/media/'.$path);
+        return asset('assets/media/' . $path);
     }
 }
 
@@ -429,5 +432,56 @@ if (!function_exists('getIcon')) {
     function getIcon($name, $class = '', $type = '', $tag = 'span')
     {
         return theme()->getIcon($name, $class, $type, $tag);
+    }
+}
+
+if (!function_exists('split_heading')) {
+    /**
+     * Split heading into two parts based on [bracketed] text
+     *
+     * Example:
+     *  Input:  "Boost Your Success With [Our Expertise]"
+     *  Output: ['first_text' => 'Boost Your Success With', 'second_text' => 'Our Expertise']
+     */
+    function split_heading($text)
+    {
+
+        // Handle null or non-string inputs safely
+        if (empty($text) || !is_string($text)) {
+            return [
+                'first_text'  => '',
+                'second_text' => '',
+            ];
+        }
+
+
+        $pattern = '/(.*?)\[(.*?)\]/';
+
+        if (preg_match($pattern, $text, $matches)) {
+            return [
+                'first_text'  => trim($matches[1]),
+                'second_text' => trim($matches[2]),
+            ];
+        }
+
+        // fallback — if no brackets found
+        return [
+            'first_text'  => $text,
+            'second_text' => '',
+        ];
+    }
+}
+
+
+if (!function_exists('setting')) {
+    function setting($key, $default = null)
+    {
+        $settings = Cache::rememberForever('app_settings', function () {
+            return GeneralSetting::where('is_active', true)
+                ->pluck('value', 'key')
+                ->toArray();
+        });
+
+        return $settings[$key] ?? $default;
     }
 }

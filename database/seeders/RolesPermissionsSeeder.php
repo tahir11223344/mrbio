@@ -24,9 +24,17 @@ class RolesPermissionsSeeder extends Seeder
         $permissions_by_role = [
             'administrator' => [
                 'user management',
+                'landing page',
                 'category',
                 'product',
                 'offer',
+                'oem',
+                'faq',
+                'repair service',
+                'repair service sub page',
+                'blog main page',
+                'blogs',
+
             ]
         ];
 

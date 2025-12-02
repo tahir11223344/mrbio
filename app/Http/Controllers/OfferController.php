@@ -36,8 +36,8 @@ class OfferController extends Controller
         $this->authorize('create offer');
 
         $request->validate([
-            'title'              => 'required|string|max:255',
-            // 'slug'              => 'required|string|max:255|unique:products,slug',
+            'title'             => 'required|string|max:255',
+            'slug'              => 'required|string|max:255|unique:offers,slug',
             'short_description' => 'nullable|string',
             'description'       => 'nullable|string',
             'is_active'         => 'required|in:0,1',
@@ -54,7 +54,7 @@ class OfferController extends Controller
         try {
             $offer = new offer();
             $offer->title = $request->title;
-            $offer->slug = Str::slug($request->title);
+            $offer->slug = Str::slug($request->slug);
 
             $offer->short_description = $request->short_description;
             $offer->description = $request->description;
@@ -128,8 +128,8 @@ class OfferController extends Controller
         $this->authorize('write offer');
 
         $request->validate([
-            'title'              => 'required|string|max:255',
-            // 'slug'              => 'required|string|max:255|unique:products,slug',
+            'title'             => 'required|string|max:255',
+            'slug'              => 'required|string|max:255|unique:offers,slug,' . $offer->id,
             'short_description' => 'nullable|string',
             'description'       => 'nullable|string',
             'is_active'         => 'required|in:0,1',
@@ -146,7 +146,7 @@ class OfferController extends Controller
         try {
 
             $offer->title = $request->title;
-            $offer->slug = Str::slug($request->title);
+            $offer->slug = Str::slug($request->slug);
 
             $offer->short_description = $request->short_description;
             $offer->description = $request->description;

@@ -84,21 +84,6 @@
             toastr.error("{{ session('error') }}");
         </script>
     @endif
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let editors = {};
-            document.querySelectorAll('#product_description, #offer_description')
-                .forEach(el => {
-                    ClassicEditor.create(el)
-                        .then(editor => {
-                            editors[el.id] = editor;
-                            console.log(`CKEditor initialized for #${el.id}`);
-                        })
-                        .catch(error => console.error(error));
-                });
-
-        });
-    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

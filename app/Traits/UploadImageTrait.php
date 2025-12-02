@@ -54,4 +54,26 @@ trait UploadImageTrait
         }
         return $existingImages;
     }
+
+    public function handleCKEditorUpload(Request $request, $directory = 'ckeditor')
+    {
+        if ($request->hasFile('upload')) {
+            $file = $request->file('upload');
+            $filename = $this->uploadImage($file, $directory);
+
+            if ($filename) {
+                $url = asset('storage/' . $directory . '/' . $filename);
+                return response()->json([
+                    'uploaded' => 1,
+                    'fileName' => $filename,
+                    'url' => $url
+                ]);
+            }
+        }
+
+        return response()->json([
+            'uploaded' => 0,
+            'error' => ['message' => 'File upload failed.']
+        ]);
+    }
 }

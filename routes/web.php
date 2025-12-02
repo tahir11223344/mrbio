@@ -4,10 +4,17 @@ use App\Http\Controllers\Apps\PermissionManagementController;
 use App\Http\Controllers\Apps\RoleManagementController;
 use App\Http\Controllers\Apps\UserManagementController;
 use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\GeneralSettingController;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\OemContentController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\RepairServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,12 +34,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // CKEditor
+    Route::post('/ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.upload');
+
+
     Route::name('user-management.')->group(function () {
         Route::resource('/user-management/users', UserManagementController::class);
         Route::resource('/user-management/roles', RoleManagementController::class);
         Route::resource('/user-management/permissions', PermissionManagementController::class);
     });
 
+
+    // ===========================
+    // Landing Page
+    // ===========================
+    Route::controller(LandingPageController::class)->prefix('admin/landing-page')->as('admin-landing-page.')->group(function () {
+        Route::get('/', 'index')->name('list');
+        Route::post('/store', 'storeOrUpdate')->name('storeOrUpdate');
+        Route::post('/remove-slider-image', 'removeSliderImage')->name('remove-slider-image');
+    });
 
     // ===========================
     // Category
@@ -70,7 +90,80 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/remove-gallery-image', 'removeGalleryImage')->name('remove-gallery-image');
     });
 
+    // ===========================
+    // OEMS
+    // ===========================
+    Route::controller(OemContentController::class)->prefix('admin/oems')->as('admin-oems.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{oem}/edit', 'edit')->name('edit');
+        Route::put('/{oem}/update', 'update')->name('update');
+        Route::delete('/{oem}/delete', 'destroy')->name('destroy');
+    });
 
+
+    // ===========================
+    // Repair Servies 
+    // ===========================
+    Route::controller(RepairServiceController::class)->prefix('admin/repair/service')->as('admin-repair-service-page.')->group(function () {
+        Route::get('/', 'index')->name('main-page');
+        Route::post('/store', 'store')->name('store');
+    });
+
+    // ===========================
+    // Repair Servies Sub Pages
+    // ===========================
+    Route::controller(RepairServiceController::class)->prefix('admin/repair/service/sub-pages')->as('admin-repair-service.sub-pages.')->group(function () {
+        Route::get('/', 'subPagesList')->name('list');
+        Route::get('/create', 'subPagesCreate')->name('create');
+        Route::post('/store', 'subPagesStore')->name('store');
+        Route::get('/{id}/edit', 'subPagesEdit')->name('edit');
+        Route::put('/{id}/update', 'subPagesUpdate')->name('update');
+        Route::delete('/{id}/destroy', 'subPagesDestroy')->name('destroy');
+        Route::post('/remove-gallery-image', 'removeGalleryImage')->name('remove-gallery-image');
+    });
+
+    // ===========================
+    // FAQs
+    // ===========================
+    Route::controller(FaqController::class)->prefix('admin/faqs')->as('admin-faqs.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::put('/{id}/update', 'update')->name('update');
+        Route::delete('/{id}/destroy', 'destroy')->name('destroy');
+    });
+
+    // ===========================
+    // Blog main Page
+    // ===========================
+    Route::controller(BlogController::class)->prefix('admin/blog/main-page')->as('admin.blog.main.')->group(function () {
+        Route::get('/', 'mainPage')->name('page');
+        Route::post('/store', 'storeOrUpdate')->name('storeOrUpdate');
+    });
+
+    // ===========================
+    // Blog 
+    // ===========================
+    Route::controller(BlogController::class)->prefix('admin/blogs')->as('admin-blogs.')->group(function () {
+        Route::get('/list', 'list')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/upload', 'upload')->name('upload');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::put('/{id}/update', 'update')->name('update');
+        Route::delete('/{id}/destroy', 'destroy')->name('destroy');
+    });
+
+    // ===========================
+    // General Setting 
+    // ===========================
+    Route::controller(GeneralSettingController::class)->prefix('admin/general-setting')->as('admin-general.')->group(function () {
+        Route::get('/', 'index')->name('settings');
+        Route::post('/settings', 'update')->name('settings.update');
+    });
 });
 
 Route::get('/error', function () {
@@ -81,4 +174,3 @@ Route::get('/auth/redirect/{provider}', [SocialiteController::class, 'redirect']
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/frontend-routes.php';
-

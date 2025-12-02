@@ -29,12 +29,24 @@
 
                             <!-- offer Title -->
                             <div class="col-lg-12 mb-4">
-                                <label for="title" class="form-label fw-semibold">{{ __('Offer Title') }}<sup
-                                        class="text-danger">*</sup></label>
+                                <label for="title"
+                                    class="form-label fw-semibold required">{{ __('Offer Title') }}</label>
                                 <input type="text" id="title" name="title"
                                     class="form-control form-control-lg @error('title') is-invalid @enderror"
                                     value="{{ old('title', $data->title ?? '') }}" required>
                                 @error('title')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- offer Slug -->
+                            <div class="col-lg-12 mb-4">
+                                <label for="slug"
+                                    class="form-label fw-semibold required">{{ __('Offer slug') }}</label>
+                                <input type="text" id="slug" name="slug"
+                                    class="form-control form-control-lg @error('slug') is-invalid @enderror"
+                                    value="{{ old('slug', $data->slug ?? '') }}" required>
+                                @error('slug')
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -177,12 +189,24 @@
 
                         <input type="hidden" name="id" value="{{ $data->id ?? '' }}">
 
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary">
-                                @include('partials/general/_button-indicator', [
-                                    'label' => isset($data->id) ? 'Update' : 'Create',
-                                ])
-                            </button>
+                        <div class="d-flex justify-content-end mt-4">
+                            @if (isset($data->id) && $data->id)
+                                @can('write offer')
+                                    <button type="submit" class="btn btn-primary">
+                                        @include('partials/general/_button-indicator', [
+                                            'label' => 'Update',
+                                        ])
+                                    </button>
+                                @endcan
+                            @else
+                                @can('create offer')
+                                    <button type="submit" class="btn btn-primary">
+                                        @include('partials/general/_button-indicator', [
+                                            'label' => 'Create',
+                                        ])
+                                    </button>
+                                @endcan
+                            @endif
                         </div>
 
                     </form>
@@ -234,6 +258,21 @@
                         }
                     });
                 });
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                ClassicEditor
+                    .create(document.querySelector('#offer_description'), {
+                        ckfinder: {
+                            uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=offers/ckeditor"
+                        }
+                    })
+                    .then(editor => {
+                        console.log(`CKEditor initialized for #offer_description`);
+                    })
+                    .catch(error => console.error(error));
             });
         </script>
     @endpush

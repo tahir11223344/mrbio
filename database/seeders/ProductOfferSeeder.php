@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Helpers\PageHelper;
 use App\Models\Category;
+use App\Models\Faq;
 use App\Models\Offer;
 use App\Models\Product;
 use App\Models\User;
@@ -29,6 +31,7 @@ class ProductOfferSeeder extends Seeder
         Category::truncate();
         Product::truncate();
         Offer::truncate();
+        Faq::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         // 2️⃣ Create 200 categories
@@ -91,6 +94,22 @@ class ProductOfferSeeder extends Seeder
                 'meta_title' => 'Offer ' . $i,
                 'meta_keywords' => 'offer, fake, seed',
                 'meta_description' => 'Meta description for Offer ' . $i,
+                'created_by' => $userIds[array_rand($userIds)],
+                'updated_by' => $userIds[array_rand($userIds)],
+            ]);
+        }
+
+        // ----------------------
+        // Seed FAQs
+        // ----------------------
+        $pages = PageHelper::labels(); // ✅ get labels from helper
+
+        for ($i = 1; $i <= 50; $i++) { // create 50 FAQs
+            $pageKey = array_rand($pages); // pick a random key from the helper array
+            Faq::create([
+                'page_name'  => $pageKey,
+                'question'   => 'Sample Question ' . $i . '?',
+                'answer'     => 'This is a sample answer for FAQ ' . $i . ' related to ' . $pages[$pageKey] . '.',
                 'created_by' => $userIds[array_rand($userIds)],
                 'updated_by' => $userIds[array_rand($userIds)],
             ]);

@@ -33,7 +33,9 @@
         <a href="#" class="menu-link px-5">My Profile</a>
     </div>
     <!--end::Menu item-->
-    
+     <div class="menu-item px-5">
+        <a href="{{ route('change-password') }}" class="menu-link px-5">{{ __('Change Password') }}</a>
+    </div>
     <!--begin::Menu item-->
     <div class="menu-item px-5">
         <a class="button-ajax menu-link px-5" href="#" data-action="{{ route('logout') }}" data-method="post" data-csrf="{{ csrf_token() }}" data-reload="true">

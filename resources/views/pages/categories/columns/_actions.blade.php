@@ -10,7 +10,7 @@
     @can('write category')
         <div class="menu-item px-3">
             <a href="#" class="menu-link px-3 edit-category-btn" data-id="{{ $c->id }}"
-                data-name="{{ $c->name }}" data-status="{{ $c->status }}" data-bs-toggle="modal"
+                data-name="{{ $c->name }}" data-slug="{{ $c->slug }}" data-status="{{ $c->status }}" data-bs-toggle="modal"
                 data-bs-target="#kt_modal_edit_category">
                 {{ __('Edit') }}
             </a>

@@ -34,8 +34,7 @@
 
                             <!-- Category -->
                             <div class="col-lg-6 mb-4">
-                                <label for="category_id" class="form-label fw-semibold">{{ __('Category') }}<sup
-                                        class="text-danger">*</sup></label>
+                                <label for="category_id" class="form-label fw-semibold required">{{ __('Category') }}</label>
                                 <select name="category_id" id="category_id" data-control="select2"
                                     class="form-select form-select-lg @error('category_id') is-invalid @enderror"
                                     required>
@@ -66,12 +65,22 @@
 
                             <!-- Product Name -->
                             <div class="col-lg-12 mb-4">
-                                <label for="name" class="form-label fw-semibold">{{ __('Product Name') }}<sup
-                                        class="text-danger">*</sup></label>
+                                <label for="name" class="form-label fw-semibold required">{{ __('Product Name') }}</label>
                                 <input type="text" id="name" name="name"
                                     class="form-control form-control-lg @error('name') is-invalid @enderror"
                                     value="{{ old('name', $data->name ?? '') }}" required>
                                 @error('name')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Product Slug -->
+                            <div class="col-lg-12 mb-4">
+                                <label for="slug" class="form-label fw-semibold required">{{ __('Product Slug') }}</label>
+                                <input type="text" id="slug" name="slug"
+                                    class="form-control form-control-lg @error('slug') is-invalid @enderror"
+                                    value="{{ old('slug', $data->slug ?? '') }}" required>
+                                @error('slug')
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -100,8 +109,7 @@
 
                             <!-- Price -->
                             <div class="col-lg-4 mb-4">
-                                <label for="price" class="form-label fw-semibold">{{ __('Price ($)') }}<sup
-                                        class="text-danger">*</sup></label>
+                                <label for="price" class="form-label fw-semibold required">{{ __('Price ($)') }}</label>
                                 <input type="number" step="0.01" min="0" id="price" name="price"
                                     class="form-control form-control-lg @error('price') is-invalid @enderror"
                                     value="{{ old('price', $data->price ?? 0) }}" required>
@@ -397,6 +405,21 @@
                         }
                     });
                 });
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                ClassicEditor
+                    .create(document.querySelector('#product_description'), {
+                        ckfinder: {
+                            uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=products/ckeditor"
+                        }
+                    })
+                    .then(editor => {
+                        console.log(`CKEditor initialized for #product_description`);
+                    })
+                    .catch(error => console.error(error));
             });
         </script>
     @endpush

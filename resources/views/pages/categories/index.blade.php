@@ -75,6 +75,13 @@
                         </div>
 
                         <div class="mb-3">
+                            <label class="form-label required">{{ __('Slug') }}</label>
+                            <input type="text" name="slug" class="form-control"
+                                placeholder="{{ __('Enter Category slug') }}">
+                            <div class="text-danger mt-1 error-message" data-error-for="slug"></div>
+                        </div>
+
+                        <div class="mb-3">
                             <label class="form-label required">{{ __('Status') }}</label>
                             <select name="status" class="form-control">
                                 <option value="1">{{ __('Active') }}</option>
@@ -122,6 +129,13 @@
                             <div class="text-danger mt-1 error-message" data-error-for="edit_name"></div>
                         </div>
 
+                        <div class="mb-3">
+                            <label class="form-label required">{{ __('Slug') }}</label>
+                            <input type="text" name="slug" id="edit_slug" class="form-control"
+                                placeholder="{{ __('Enter Category slug') }}">
+                            <div class="text-danger mt-1 error-message" data-error-for="edit_slug"></div>
+                        </div>
+
                         <!-- Status -->
                         <div class="mb-3">
                             <label class="form-label required">{{ __('Status') }}</label>
@@ -162,6 +176,9 @@
         </script>
 
         <script>
+            const updateUrlTemplate = "{{ route('admin-category.update', ['category' => ':id']) }}";
+            const deleteUrlTemplate = "{{ route('admin-category.destroy', ['category' => ':id']) }}";
+
             document.addEventListener("DOMContentLoaded", function() {
                 // Utility: CSRF token
                 function getCsrfToken() {
@@ -317,6 +334,7 @@
                     // read values from button dataset (many naming variants supported)
                     const id = btn.dataset.id || btn.dataset.categoryId || btn.dataset.ktCategoryId;
                     const name = (btn.dataset.name || btn.dataset.categoryName || '').trim();
+                    const slug = (btn.dataset.slug || '').trim();
                     const status = (typeof btn.dataset.status !== 'undefined') ? btn.dataset.status : btn
                         .dataset.categoryStatus;
 
@@ -332,11 +350,15 @@
                         '#edit_category_id');
                     const nameInput = editForm.querySelector('input[name="name"]') || editForm.querySelector(
                         '#edit_name');
+                    const slugInput = editForm.querySelector('input[name="slug"]') || editForm.querySelector(
+                        '#edit_slug');
+
                     const statusSelect = editForm.querySelector('select[name="status"]') || editForm
                         .querySelector('#edit_status');
 
                     if (idInput) idInput.value = id || '';
                     if (nameInput) nameInput.value = name || '';
+                    if (slugInput) slugInput.value = slug || '';
                     if (statusSelect) {
                         if (typeof status !== 'undefined' && status !== null) {
                             statusSelect.value = String(status);
@@ -372,7 +394,7 @@
                         }
 
                         const fd = new FormData(editForm);
-                        const updateUrl = baseUrl.replace(/\/$/, '') + '/' + encodeURIComponent(id);
+                        const updateUrl = updateUrlTemplate.replace(':id', id);
 
                         fetch(updateUrl, {
                                 method: 'POST', // Laravel: method override
@@ -420,7 +442,7 @@
                         toastr.error('Category ID missing. Cannot delete.');
                         return;
                     }
-                    const deleteUrl = baseUrl.replace(/\/$/, '') + '/' + encodeURIComponent(id);
+                    const deleteUrl = deleteUrlTemplate.replace(':id', id);
 
                     Swal.fire({
                         title: 'Are you sure?',

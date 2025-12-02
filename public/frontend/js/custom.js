@@ -1,52 +1,73 @@
 (function () {
     const slider = document.getElementById("reviewSlider");
+    if (!slider) return;
 
-    let originalSlides = Array.from(slider.children);
+    const visible = 5; // Figma ke hisaab se jitne thumbnails dikhane hain (odd number rakhna)
 
-    const visible = 7;
-    const slideWidth = 180;
-    let index = 0;
+    // Original slides ko store karo
+    const originalSlides = Array.from(slider.children);
+    const originalCount = originalSlides.length;
 
+    // Infinite loop ke liye original slides ko duplicate karke end pe add kar do
     originalSlides.forEach(slide => slider.appendChild(slide.cloneNode(true)));
-    let slides = Array.from(document.querySelectorAll(".tooltip-slide"));
 
-    const totalOriginalSlides = originalSlides.length;
+    // Ab saare slides (original + clones)
+    const slides = Array.from(slider.querySelectorAll(".tooltip-slide"));
 
-    function updateSlider() {
+    // Slide width ko dynamically nikaal lo
+    const slideWidth = slides[0].getBoundingClientRect().width;
 
+    // Basic styling JS se bhi enforce kar dete hain
+    slider.style.display = "flex";
+    slider.style.transition = "transform 0.6s ease";
+
+    let index = 0; // left-most visible slide index
+    const offset = (visible * slideWidth) / 2 - (slideWidth / 2);
+
+    function setActive() {
+        // Sab slides se active hatao
         slides.forEach(s => s.classList.remove("active"));
 
-        const centerIndexInSlidesArray = index + Math.floor(visible / 2);
+        // Center slide ka index nikaalo (mod use kiya taake range ke bahar na jaye)
+        const centerIndex = (index + Math.floor(visible / 2)) % slides.length;
 
-        if (slides[centerIndexInSlidesArray]) slides[centerIndexInSlidesArray].classList.add("active");
-
-        const offset = (visible * slideWidth) / 2 - (slideWidth / 2);
-        const moveX = index * slideWidth;
-
-        slider.style.transform = `translateX(-${moveX - offset}px)`;
-
-        index++;
-
-        if (index >= totalOriginalSlides) {
-
-            setTimeout(() => {
-                slider.style.transition = "none";
-
-
-                index = index - totalOriginalSlides;
-
-                const newMoveX = index * slideWidth;
-                slider.style.transform = `translateX(-${newMoveX - offset}px)`;
-
-                setTimeout(() => slider.style.transition = "0.6s ease", 50);
-            }, 600);
+        if (slides[centerIndex]) {
+            slides[centerIndex].classList.add("active");
         }
     }
 
-    updateSlider();
+    function applyTransform() {
+        const moveX = index * slideWidth;
+        slider.style.transform = `translateX(-${moveX - offset}px)`;
+        setActive();
+    }
 
-    setInterval(updateSlider, 2000);
+    function nextSlide() {
+        index++;
 
+        applyTransform();
+
+        // Jab hum cloned part me pohanch jate hain, toh quietly wapas originals pe jump karo
+        if (index >= originalCount) {
+            setTimeout(() => {
+                // animation off karke jump
+                slider.style.transition = "none";
+                index = index - originalCount;
+                applyTransform();
+
+                // thoda delay dekar transition dubara on karo
+                setTimeout(() => {
+                    slider.style.transition = "transform 0.6s ease";
+                }, 50);
+            }, 600); // yahi tumhari transition duration hai
+        }
+    }
+
+    // Initial position + active tooltip
+    applyTransform();
+
+    // Auto-play
+    setInterval(nextSlide, 2000);
 })();
 
 

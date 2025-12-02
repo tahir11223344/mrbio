@@ -24,6 +24,7 @@ class CategoryController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name'   => 'required|string|max:255',
+            'slug'   => 'required|string|max:255|unique:categories,slug',
             'status' => 'required|in:0,1',
         ]);
 
@@ -35,7 +36,7 @@ class CategoryController extends Controller
 
         Category::create([
             'name'       => $request->name,
-            'slug'       => Str::slug($request->name),
+            'slug'       => Str::slug($request->slug),
             'status'     => $request->status,
             'created_by' => auth()->id(),
         ]);
@@ -60,10 +61,10 @@ class CategoryController extends Controller
                 ], 403);
             }
 
-
             // ---------- Validation ----------
             $validator = Validator::make($request->all(), [
                 'name'   => 'required|string|max:255',
+                'slug'   => 'required|string|max:255|unique:categories,slug,' . $category->id,
                 'status' => 'required|in:0,1',
             ]);
 
@@ -77,7 +78,7 @@ class CategoryController extends Controller
             // ---------- Update ----------
             $category->update([
                 'name'       => $request->name,
-                'slug'       => Str::slug($request->name),
+                'slug'       => Str::slug($request->slug),
                 'status'     => $request->status,
                 'updated_by' => auth()->id(),
             ]);
