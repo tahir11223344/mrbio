@@ -3,26 +3,32 @@
 @section('title', 'Home')
 
 @push('frontend-styles')
-<style>
-    .image-dots .dot {
-    width: 12px;
-    height: 12px;
-    background: #888;
-    border-radius: 50%;
-    display: inline-block;
-    margin: 0 6px;
-    cursor: pointer;
-    transition: 0.3s;
-}
+    <style>
+        .image-dots .dot {
+            width: 12px;
+            height: 12px;
+            background: #888;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-.image-dots .dot.active {
-    background: #006A9E;
-    transform: scale(1.2);
-}
-
-</style>
+        .image-dots .dot.active {
+            background: #006A9E;
+            transform: scale(1.2);
+        }
+    </style>
 @endpush
 
+@php
+    $heading = split_heading($data->hero_heading);
+    $c = split_heading($data->content_heading);
+    $x_ray = split_heading($repairServiceData->x_ray_heading);
+    $c_arm = split_heading($repairServiceData->c_arm_heading);
+
+@endphp
 @section('frontend-content')
 
 
@@ -35,13 +41,12 @@
 
                     <!-- Heading -->
                     <h1 class="hero-heading fade-left">
-                        Your Trusted Medical <span> Equipment Store</span>
+                        {{ $heading['first_text'] }} <span> {{ $heading['second_text'] }}</span>
                     </h1>
 
                     <!-- Paragraph -->
                     <p class="hero-para mt-3 fade-right">
-                        We provide top-notch medical services, trusted by thousands of happy and satisfied clients
-                        across the country.
+                        {{ $data->hero_sd ?? '' }}
                     </p>
 
                     <!-- Images + Customer Count -->
@@ -97,28 +102,33 @@
                     <div class="slider-container">
                         <div class="slider-track">
 
-                            <div class="slide"><img src="{{ asset('frontend/images/hero-main-img.png') }}"
-                                    alt="hero-main-img" class="slider-img">
-                            </div>
-                            <div class="slide"><img src="{{ asset('frontend/images/hero-main-img.png') }}"
-                                    alt="hero-main-img" class="slider-img">
-                            </div>
+                            {{-- Clone last slide at start --}}
+                            @if (!empty($data->hero_slider_images))
+                                <div class="slide">
+                                    <img src="{{ asset('storage/landing-page/hero-slider/' . collect($data->hero_slider_images)->last()) }}"
+                                        class="slider-img">
+                                </div>
+                            @endif
 
-                            <div class="slide"><img src="{{ asset('frontend/images/hero-main-img.png') }}"
-                                    alt="hero-main-img" class="slider-img">
-                            </div>
-                            <div class="slide"><img src="{{ asset('frontend/images/hero-main-img.png') }}"
-                                    alt="hero-main-img" class="slider-img">
-                            </div>
+                            {{-- Actual Slides --}}
+                            @foreach ($data->hero_slider_images as $img)
+                                <div class="slide">
+                                    <img src="{{ asset('storage/landing-page/hero-slider/' . $img) }}" class="slider-img">
+                                </div>
+                            @endforeach
 
-                            <!-- DUPLICATE FIRST SLIDE (for perfect loop) -->
-                            <div class="slide"><img src="{{ asset('frontend/images/hero-main-img.png') }}"
-                                    alt="hero-main-img" class="slider-img">
-                            </div>
+                            {{-- Clone first slide at end --}}
+                            @if (!empty($data->hero_slider_images))
+                                <div class="slide">
+                                    <img src="{{ asset('storage/landing-page/hero-slider/' . collect($data->hero_slider_images)->first()) }}"
+                                        class="slider-img">
+                                </div>
+                            @endif
+
                         </div>
+
+
                     </div>
-
-
                 </div>
 
             </div>
@@ -128,32 +138,12 @@
     <section class="info-section py-5">
         <div class="container">
             <div class="row align-items-stretch">
-
                 <!-- LEFT COLUMN -->
                 <div class="col-lg-6 col-md-6 ">
-                    <h2 class="info-heading">MEDICAL EQUIPMENT AND FURNITURE, <span>SINCE 2002</span> </h2>
+                    <h2 class="info-heading">{{ $c['first_text'] }} <span>{{ $c['second_text'] }}</span> </h2>
 
                     <p class="info-para">
-                        We ensure top-quality medical assistance and modern healthcare
-                        solutions designed especially to meet your needs.
-                    </p>
-
-                    <p class="info-para">
-                        Our team works day and night to provide the best medical support,
-                        ensuring your complete satisfaction and care.
-                    </p>
-                    <p class="info-para">
-                        We ensure top-quality medical assistance and modern healthcare
-                        solutions designed especially to meet your needs.
-                    </p>
-
-                    <p class="info-para">
-                        Our team works day and night to provide the best medical support,
-                        ensuring your complete satisfaction and care.
-                    </p>
-                    <p class="info-para">
-                        We ensure top-quality medical assistance and modern healthcare
-                        solutions designed especially to meet your needs.
+                        {!! $data->content_description !!}
                     </p>
 
 
@@ -164,38 +154,43 @@
                 <div class="col-lg-6 col-md-6 mt-4 mt-lg-0 text-center">
 
                     <div class="image-slider-wrapper">
-                            <div class="image-slide-track">
+                        <div class="image-slide-track">
 
-                                <div class="image-slide-item">
-                                    <img src="{{ asset('frontend/images/medical-img.jpg') }}" class="info-img img-fluid">
-                                </div>
+                            @if (!empty($data->content_slider_images))
+                                @foreach ($data->content_slider_images as $img)
+                                    <div class="image-slide-item">
+                                        <img src="{{ asset('storage/landing-page/content-slider/' . $img) }}"
+                                            alt="{{ $data->content_image_alt }}" class="info-img img-fluid">
+                                    </div>
+                                @endforeach
+                            @endif
 
-                                <div class="image-slide-item">
-                                    <img src="{{ asset('frontend/images/medical-img.jpg') }}" class="info-img img-fluid">
-                                </div>
-
-                                <div class="image-slide-item">
-                                    <img src="{{ asset('frontend/images/medical-img.jpg') }}" class="info-img img-fluid">
-                                </div>
-
-                                <div class="image-slide-item">
-                                    <img src="{{ asset('frontend/images/medical-img.jpg') }}" class="info-img img-fluid">
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- Dots -->
-                            <div class="image-dots text-center mt-3">
-                                <span class="dot active" data-index="0"></span>
-                                <span class="dot" data-index="1"></span>
-                                <span class="dot" data-index="2"></span>
-                                <span class="dot" data-index="3"></span>
+                            {{-- <div class="image-slide-item">
+                                <img src="{{ asset('frontend/images/medical-img.jpg') }}" class="info-img img-fluid">
                             </div>
 
-                        </div>
+                            <div class="image-slide-item">
+                                <img src="{{ asset('frontend/images/medical-img.jpg') }}" class="info-img img-fluid">
+                            </div>
 
+                            <div class="image-slide-item">
+                                <img src="{{ asset('frontend/images/medical-img.jpg') }}" class="info-img img-fluid">
+                            </div> --}}
+
+                        </div>
                     </div>
+
+                    <!-- Dots -->
+                    <div class="image-dots text-center mt-3">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                        <span class="dot" data-index="3"></span>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
     </section>
     <section class="features-section
@@ -266,30 +261,11 @@
 
             <!-- Buttons -->
             <div class="row g-4 justify-content-center">
-                <div class="col-auto">
-                    <button class="cat-btn">Hospital Bed</button>
-                </div>
-                <div class="col-auto">
-                    <button class="cat-btn">Surgical</button>
-                </div>
-                <div class="col-auto">
-                    <button class="cat-btn">Operation Table</button>
-                </div>
-                <div class="col-auto">
-                    <button class="cat-btn">Carts</button>
-                </div>
-                <div class="col-auto">
-                    <button class="cat-btn">Hospital Bed</button>
-                </div>
-                <div class="col-auto">
-                    <button class="cat-btn">BP Monitor</button>
-                </div>
-                <div class="col-auto">
-                    <button class="cat-btn">Pulse Oximeter</button>
-                </div>
-                <div class="col-auto">
-                    <button class="cat-btn">Stethoscope</button>
-                </div>
+                @foreach ($categories as $category)
+                    <div class="col-auto">
+                        <button class="cat-btn">{{ $category->name ?? '' }}</button>
+                    </div>
+                @endforeach
             </div>
 
         </div>
@@ -297,315 +273,36 @@
         <section class="best-products  mt-5">
             <div class="container">
                 <div class="row g-4 justify-content-center">
+                    @foreach ($products as $product)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="product-card position-relative">
 
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-card position-relative">
+                                <!-- Discount Badge -->
+                                <span class="discount-badge">{{ $product->discount_percent }}% OFF</span>
+                                <img src="{{ asset('storage/products/thumbnails/' . $product->thumbnail) }}"
+                                    alt="{{ $product->image_alt ?? '' }}" class="product-img img-fluid">
 
-                            <!-- Discount Badge -->
-                            <span class="discount-badge">10% OFF</span>
+                                <!-- Stars -->
+                                <div class="stars">
+                                    <i class="bi bi-star-fill gold"></i>
+                                    <i class="bi bi-star-fill gold"></i>
+                                    <i class="bi bi-star-fill gold"></i>
+                                    <i class="bi bi-star-fill gold"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
 
-                            <img src="{{ asset('frontend/images/product-img-1.jpg') }}" alt="product image"
-                                class="product-img img-fluid">
+                                <h4 class="product-title">{{ $product->name ?? '' }}</h4>
+                                <p class="product-desc">{{ $product->short_description ?? '' }}</p>
 
-                            <!-- Stars -->
-                            <div class="stars">
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
+                                <div class="d-flex justify-content-between align-items-center price-box">
+                                    <span class="old-price">${{ number_format($product->price, 0, '.', ',') }}</span>
+                                    <span class="new-price">${{ number_format($product->sale_price, 0, '.', ',') }}</span>
 
-                            <h4 class="product-title">Acetaminophen Pills</h4>
-                            <p class="product-desc">Short product description goes here.</p>
-
-                            <div class="d-flex justify-content-between align-items-center price-box">
-                                <span class="old-price">$18</span>
-                                <span class="new-price">$12</span>
-                                <button class="buy-btn">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-card position-relative">
-                            <span class="discount-badge">10% OFF</span>
-
-                            <img src="{{ asset('frontend/images/product-img-1.jpg') }}" alt="product image"
-                                class="product-img img-fluid">
-                            <div class="stars">
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-
-                            <h4 class="product-title">Acetaminophen Pills</h4>
-                            <p class="product-desc">Short product description goes here.</p>
-
-                            <div class="d-flex justify-content-between align-items-center price-box">
-                                <span class="old-price">$18</span>
-                                <span class="new-price">$12</span>
-                                <button class="buy-btn">Buy Now</button>
+                                    <button class="buy-btn">Buy Now</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-card position-relative">
-                            <span class="discount-badge">10% OFF</span>
-                            <img src="{{ asset('frontend/images/product-img-1.jpg') }}" alt="product image"
-                                class="product-img img-fluid">
-                            <div class="stars">
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-
-                            <h4 class="product-title">Acetaminophen Pills</h4>
-                            <p class="product-desc">Short product description goes here.</p>
-
-                            <div class="d-flex justify-content-between align-items-center price-box">
-                                <span class="old-price">$18</span>
-                                <span class="new-price">$12</span>
-                                <button class="buy-btn">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-card position-relative">
-                            <span class="discount-badge">10% OFF</span>
-
-                            <img src="{{ asset('frontend/images/product-img-1.jpg') }}" alt="product image"
-                                class="product-img img-fluid">
-                            <div class="stars">
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-
-                            <h4 class="product-title">Acetaminophen Pills</h4>
-                            <p class="product-desc">Short product description goes here.</p>
-
-                            <div class="d-flex justify-content-between align-items-center price-box">
-                                <span class="old-price">$18</span>
-                                <span class="new-price">$12</span>
-                                <button class="buy-btn">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-card position-relative">
-
-                            <!-- Discount Badge -->
-                            <span class="discount-badge">10% OFF</span>
-
-                            <img src="{{ asset('frontend/images/product-img-1.jpg') }}" alt="product image"
-                                class="product-img img-fluid">
-                            <!-- Stars -->
-                            <div class="stars">
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-
-                            <h4 class="product-title">Acetaminophen Pills</h4>
-                            <p class="product-desc">Short product description goes here.</p>
-
-                            <div class="d-flex justify-content-between align-items-center price-box">
-                                <span class="old-price">$18</span>
-                                <span class="new-price">$12</span>
-                                <button class="buy-btn">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-card position-relative">
-                            <span class="discount-badge">10% OFF</span>
-
-                            <img src="{{ asset('frontend/images/product-img-1.jpg') }}" alt="product image"
-                                class="product-img img-fluid">
-                            <div class="stars">
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-
-                            <h4 class="product-title">Acetaminophen Pills</h4>
-                            <p class="product-desc">Short product description goes here.</p>
-
-                            <div class="d-flex justify-content-between align-items-center price-box">
-                                <span class="old-price">$18</span>
-                                <span class="new-price">$12</span>
-                                <button class="buy-btn">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-card position-relative">
-                            <span class="discount-badge">10% OFF</span>
-
-                            <img src="{{ asset('frontend/images/product-img-1.jpg') }}" alt="product image"
-                                class="product-img img-fluid">
-                            <div class="stars">
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-
-                            <h4 class="product-title">Acetaminophen Pills</h4>
-                            <p class="product-desc">Short product description goes here.</p>
-
-                            <div class="d-flex justify-content-between align-items-center price-box">
-                                <span class="old-price">$18</span>
-                                <span class="new-price">$12</span>
-                                <button class="buy-btn">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-card position-relative">
-                            <span class="discount-badge">10% OFF</span>
-
-                            <img src="{{ asset('frontend/images/product-img-1.jpg') }}" alt="product image"
-                                class="product-img img-fluid">
-                            <div class="stars">
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-
-                            <h4 class="product-title">Acetaminophen Pills</h4>
-                            <p class="product-desc">Short product description goes here.</p>
-
-                            <div class="d-flex justify-content-between align-items-center price-box">
-                                <span class="old-price">$18</span>
-                                <span class="new-price">$12</span>
-                                <button class="buy-btn">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-card position-relative">
-
-                            <!-- Discount Badge -->
-                            <span class="discount-badge">10% OFF</span>
-
-                            <img src="{{ asset('frontend/images/product-img-1.jpg') }}" alt="product image"
-                                class="product-img img-fluid">
-                            <!-- Stars -->
-                            <div class="stars">
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-
-                            <h4 class="product-title">Acetaminophen Pills</h4>
-                            <p class="product-desc">Short product description goes here.</p>
-
-                            <div class="d-flex justify-content-between align-items-center price-box">
-                                <span class="old-price">$18</span>
-                                <span class="new-price">$12</span>
-                                <button class="buy-btn">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-card position-relative">
-                            <span class="discount-badge">10% OFF</span>
-
-                            <img src="{{ asset('frontend/images/product-img-1.jpg') }}" alt="product image"
-                                class="product-img img-fluid">
-                            <div class="stars">
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-
-                            <h4 class="product-title">Acetaminophen Pills</h4>
-                            <p class="product-desc">Short product description goes here.</p>
-
-                            <div class="d-flex justify-content-between align-items-center price-box">
-                                <span class="old-price">$18</span>
-                                <span class="new-price">$12</span>
-                                <button class="buy-btn">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-card position-relative">
-                            <span class="discount-badge">10% OFF</span>
-
-                            <img src="{{ asset('frontend/images/product-img-1.jpg') }}" alt="product image"
-                                class="product-img img-fluid">
-                            <div class="stars">
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-
-                            <h4 class="product-title">Acetaminophen Pills</h4>
-                            <p class="product-desc">Short product description goes here.</p>
-
-                            <div class="d-flex justify-content-between align-items-center price-box">
-                                <span class="old-price">$18</span>
-                                <span class="new-price">$12</span>
-                                <button class="buy-btn">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-card position-relative">
-                            <span class="discount-badge">10% OFF</span>
-
-                            <img src="{{ asset('frontend/images/product-img-1.jpg') }}" alt="product image"
-                                class="product-img img-fluid">
-                            <div class="stars">
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill gold"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-
-                            <h4 class="product-title">Acetaminophen Pills</h4>
-                            <p class="product-desc">Short product description goes here.</p>
-
-                            <div class="d-flex justify-content-between align-items-center price-box">
-                                <span class="old-price">$18</span>
-                                <span class="new-price">$12</span>
-                                <button class="buy-btn">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
-
+                    @endforeach
                 </div>
 
                 <div class="text-center mt-5">
@@ -633,81 +330,17 @@
                 <!-- Slider Container -->
                 <div class="offer-slider-container">
                     <div class="offer-slider-track">
-
-                        <!-- CARD 1 -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">Repairing Services</h4>
-                            <hr>
-                            <p class="card-desc">High quality ECG machines for accurate monitoring.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-
-                        <!-- CARD 2 -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">Surgical Equipment </h4>
-                            <hr>
-                            <p class="card-desc">Advanced imaging technology for clear results.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-
-                        <!-- CARD 3 -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">Disposition Services</h4>
-                            <hr>
-                            <p class="card-desc">Portable ultrasound for quick examinations.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-
-                        <!-- CARD 4 -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">ICU Monitor</h4>
-                            <hr>
-                            <p class="card-desc">Real-time monitoring for critical patients.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-
-                        <!-- Duplicate first 4 cards for infinite loop -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">Medical Equipment </h4>
-                            <hr>
-                            <p class="card-desc">High quality ECG machines.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">X-ray Machine</h4>
-                            <hr>
-                            <p class="card-desc">Advanced imaging results.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">Ultrasound</h4>
-                            <hr>
-                            <p class="card-desc">Portable & fast.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">ICU Monitor</h4>
-                            <hr>
-                            <p class="card-desc">Critical monitoring.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-
+                        <!-- CARD -->
+                        @foreach ($offers as $offer)
+                            <div class="offer-card">
+                                <img src="{{ asset('storage/offers/thumbnails/' . $offer->thumbnail) }}"
+                                    alt="{{ $offer->image_alt ?? '' }}" class="card-img img-fluid">
+                                <h4 class="card-title">{{ $offer->title ?? '' }}</h4>
+                                <hr>
+                                <p class="card-desc">{{ $offer->short_description ?? '' }}</p>
+                                <button class="read-btn">Read More</button>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
 
@@ -724,86 +357,35 @@
 
         <div class="container-fluid xray-box p-4 mt-5">
             <div class="container text-center mb-5">
-             <div class="row">
-                <div class="col-md-8 mx-auto">
-   <h2 class="main-heading">X-Ray <span>Rent, Sales & Repairing Services</span> </h2>
-                  <p class=" xray-desc">   centers.quipment available for hospitals and emergency healthcare centers.
-                 centers.quipment available for hospitals and emergency healthcare centersemergency healthcare centers.
-                 centers.quipment available for hospitals and emergency healthcare centers</p>
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <h2 class="main-heading">{{ $x_ray['first_text'] }} <span>{{ $x_ray['second_text'] }}</span>
+                        </h2>
+                        {{-- <p class=" xray-desc"> centers.quipment available for hospitals and emergency healthcare centers.
+                            centers.quipment available for hospitals and emergency healthcare centersemergency healthcare
+                            centers.
+                            centers.quipment available for hospitals and emergency healthcare centers</p> --}}
+                    </div>
                 </div>
-             </div>
             </div>
             <div class="container">
                 <div class="row g-4">
+                    <!-- Card -->
+                    @foreach ($xrays as $item)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="xray-card p-3">
+                                <h3 class="xray-title ">
+                                    {{ $item->title ?? '' }}
+                                </h3>
 
-                    <!-- Card 1 -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="xray-card p-3">
-                            <h3 class="xray-title ">
-                                X-Ray Rent, Sales & Repair Services in Austin TX
-                            </h3>
+                                <p class="xray-desc ">
+                                    {{ $item->short_description ?? '' }}
+                                </p>
 
-                            <p class="xray-desc ">
-                                Affordable X-Ray equipment suitable for clinics, hospitals and home-based centers.
-                                Quality X-Ray equipment available for hospitals and emergency healthcare
-                                centers.quipment available for hospitals and emergency healthcare centers.
-                                centers.quipment available for hospitals and emergency healthcare centers
-                            </p>
-
-                            <button class="xray-btn">Read More</button>
+                                <button class="xray-btn">Read More</button>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="xray-card p-3">
-                            <h3 class="xray-title">X-Ray Rent, Sales & Repair Services in Austin TX</h3>
-                            <p class="xray-desc">
-                                Affordable X-Ray equipment suitable for clinics, hospitals, and home-based healthcare
-                                centers.Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit
-                                nulla. Nullam vitae sit tempus diam. Quality X-Ray equipment available for hospitals and
-                                emergency healthcare centers.Libero
-
-
-                            </p>
-                            <button class="xray-btn">Read More</button>
-                        </div>
-                    </div>
-
-
-                    <!-- Card 3 -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="xray-card p-3">
-                            <h3 class="xray-title color-animate">
-                                <span> X-Ray Rent, Sales & Repair Services </span>
-                                <span> in Austin TX </span>
-                                <span> (Best Healthcare Solutions) </span>
-                            </h3>
-
-                            <p class="xray-desc color-animate">
-                                <span>Affordable X-Ray equipment suitable for clinics, hospitals, and home-based
-                                    healthcare centers.</span>
-                                <span>Quality X-Ray equipment available for hospitals and emergency centers.</span>
-                                <span>Reliable & fast services with professional support.</span>
-                            </p>
-
-                            <button class="xray-btn">Read More</button>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="xray-card p-3">
-                            <h3 class="xray-title">X-Ray Rent, Sales & Repair Services in Austin TX</h3>
-                            <p class="xray-desc">
-                                Affordable X-Ray equipment suitable for clinics, hospitals, and home-based healthcare
-                                centers.Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit
-                                nulla. Nullam vitae sit tempus diam. Quality X-Ray equipment available for hospitals and
-                                emergency healthcare centers.Libero
-                            </p>
-                            <button class="xray-btn">Read More</button>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
             </div>
@@ -813,101 +395,35 @@
 
         <div class="container-fluid xray-box p-4 mt-5">
             <div class="container text-center mb-5">
-              <div class="row">
-                <div class="col-md-8 mx-auto">
-                      <h2 class="main-heading">C-Arm <span>Rent, Sales, and Repairing Services</span> </h2>
-                <p class="xray-desc">   centers.quipment available for hospitals and emergency healthcare centers.
-                 centers.quipment available for hospitals and emergency healthcare centersemergency healthcare centers.
-                 centers.quipment available for hospitals and emergency healthcare centers</p>
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <h2 class="main-heading">{{ $c_arm['first_text'] }} <span>{{ $c_arm['second_text'] }}</span>
+                        </h2>
+                        {{-- <p class="xray-desc"> centers.quipment available for hospitals and emergency healthcare centers.
+                            centers.quipment available for hospitals and emergency healthcare centersemergency healthcare
+                            centers.
+                            centers.quipment available for hospitals and emergency healthcare centers</p> --}}
+                    </div>
                 </div>
-              </div>
             </div>
             <div class="container">
                 <div class="row g-4 justify-content-center">
+                    <!-- Card -->
+                    @foreach ($carms as $item)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="xray-card p-3">
+                                <h3 class="xray-title reveal-lines">
+                                    {{ $item->title ?? '' }}
+                                </h3>
 
-                    <!-- Card 1 -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="xray-card p-3">
-                            <h3 class="xray-title reveal-lines">
-                                X-Ray Rent, Sales & Repair Services in Austin TX
-                            </h3>
+                                <p class="xray-desc ">
+                                    {{ $item->short_description ?? '' }}
+                                </p>
 
-                            <p class="xray-desc ">
-                                Affordable X-Ray equipment suitable for clinics, hospitals and home-based centers.
-                                Quality X-Ray equipment available for hospitals and emergency healthcare
-                                centers.quipment available for hospitals and emergency healthcare centers.
-                                centers.quipment available for hospitals and emergency healthcare centers
-                            </p>
-
-                            <button class="xray-btn">Read More</button>
+                                <button class="xray-btn">Read More</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="xray-card p-3">
-                            <h3 class="xray-title ">
-                                X-Ray Rent, Sales & Repair Services in Austin TX
-                            </h3>
-
-                            <p class="xray-desc ">
-                                Affordable X-Ray equipment suitable for clinics, hospitals and home-based centers.
-                                Quality X-Ray equipment available for hospitals and emergency healthcare
-                                centers.quipment available for hospitals and emergency healthcare centers.
-                                centers.quipment available for hospitals and emergency healthcare centers
-                            </p>
-
-                            <button class="xray-btn">Read More</button>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="xray-card p-3">
-                            <h3 class="xray-title">X-Ray Rent, Sales & Repair Services in Austin TX</h3>
-                            <p class="xray-desc">
-                                Affordable X-Ray equipment suitable for clinics, hospitals, and home-based healthcare
-                                centers.Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit
-                                nulla. Nullam vitae sit tempus diam. Quality X-Ray equipment available for hospitals and
-                                emergency healthcare centers.Libero
-
-
-                            </p>
-                            <button class="xray-btn">Read More</button>
-                        </div>
-                    </div>
-
-
-                    <!-- Card 3 -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="xray-card p-3">
-                            <h3 class="xray-title color-animate">
-                                <span> X-Ray Rent, Sales & Repair Services </span>
-                                <span> in Austin TX </span>
-                                <span> (Best Healthcare Solutions) </span>
-                            </h3>
-
-                            <p class="xray-desc color-animate">
-                                <span>Affordable X-Ray equipment suitable for clinics, hospitals, and home-based
-                                    healthcare centers.</span>
-                                <span>Quality X-Ray equipment available for hospitals and emergency centers.</span>
-                                <span>Reliable & fast services with professional support.</span>
-                            </p>
-
-                            <button class="xray-btn">Read More</button>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="xray-card p-3">
-                            <h3 class="xray-title">X-Ray Rent, Sales & Repair Services in Austin TX</h3>
-                            <p class="xray-desc">
-                                Affordable X-Ray equipment suitable for clinics, hospitals, and home-based healthcare
-                                centers.Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit
-                                nulla. Nullam vitae sit tempus diam. Quality X-Ray equipment available for hospitals and
-                                emergency healthcare centers.Libero
-                            </p>
-                            <button class="xray-btn">Read More</button>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
             </div>
@@ -1043,70 +559,30 @@
             <h2 class="text-center mb-5 section-title">Why OEMs Trust <span>Mr Biomed Tech</span> </h2>
 
             <div class="row g- justify-content-center mx-5">
+                <!-- CARD-->
+                @foreach ($oems as $item)
+                    <div class="col-lg-4 col-md-6 justify-content-center">
+                        <div class="oem-card">
+                            <div class="oem-img-box">
+                                <img src="{{ asset('storage/oem_contents/' . $item->image) }}"
+                                    alt="{{ $item->image_alt ?? '' }}" class="oem-img img-fluid">
+                                <h4 class="oem-card-title">{{ $item->title ?? '' }}</h4>
+                            </div>
 
-                <!-- CARD 1 -->
-                <div class="col-lg-4 col-md-6 justify-content-center">
-                    <div class="oem-card">
-                        <div class="oem-img-box">
-                            <img src="{{ asset('frontend/images/chief-img.jpg') }}" alt="oem-img"
-                                class="oem-img img-fluid">
-                            <h4 class="oem-card-title">High Quality Equipment</h4>
+                            <p class="oem-desc">{!! $item->description !!}</p>
+                            {{-- <p class="oem-desc">
+                                We provide top-notch medical equipment that meets international standards.
+                            </p>
+
+                            <ul class="oem-list">
+                                <li>ISO certified products</li>
+                                <li>Durability guaranteed</li>
+                                <li>Trusted by hospitals</li>
+                            </ul> --}}
                         </div>
-
-                        <p class="oem-desc">
-                            We provide top-notch medical equipment that meets international standards.
-                        </p>
-
-                        <ul class="oem-list">
-                            <li>ISO certified products</li>
-                            <li>Durability guaranteed</li>
-                            <li>Trusted by hospitals</li>
-                        </ul>
                     </div>
-                </div>
+                @endforeach
 
-                <!-- CARD 2 -->
-                <div class="col-lg-4 col-md-6 justify-content-center">
-                    <div class="oem-card">
-                        <div class="oem-img-box">
-                            <img src="{{ asset('frontend/images/chief-img.jpg') }}" alt="oem-img"
-                                class="oem-img img-fluid">
-
-                            <h4 class="oem-card-title">Expert Technicians</h4>
-                        </div>
-
-                        <p class="oem-desc">
-                            Our skilled technicians ensure proper installation and maintenance.
-                        </p>
-
-                        <ul class="oem-list">
-                            <li>Certified professionals</li>
-                            <li>24/7 support</li>
-                            <li>Industry trained staff</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- CARD 3 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="oem-card">
-                        <div class="oem-img-box">
-                            <img src="{{ asset('frontend/images/chief-img.jpg') }}" alt="oem-img"
-                                class="oem-img img-fluid">
-                            <h4 class="oem-card-title">Affordable Solutions</h4>
-                        </div>
-
-                        <p class="oem-desc">
-                            We offer cost-effective medical equipment without compromising on quality.
-                        </p>
-
-                        <ul class="oem-list">
-                            <li>Budget friendly pricing</li>
-                            <li>Flexible rental options</li>
-                            <li>Long-term partnerships</li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="text-center mt-5">
                     <button class=" btn-lgg">
                         Talk to Expert
@@ -1273,7 +749,7 @@
                             <i class="bi bi-check choose-icon"></i>
 
                             <!-- <div class="choose-icon">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div> -->
                             <h4 class="choose-heading">20 Years Experience</h4>
                         </div>
                         <p class="choose-desc">
@@ -1427,68 +903,17 @@
 
                     <div class="faqs-list">
                         <!-- Sample FAQs -->
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                What services does Mr Biomed Tech offer?
-                                <i class="bi bi-chevron-down faq-icon"></i>
+                        @foreach ($faqs as $item)
+                            <div class="faq-item">
+                                <div class="faq-title">
+                                    {{ $item->question ?? '' }}
+                                    <i class="bi bi-chevron-down faq-icon"></i>
+                                </div>
+                                <div class="faq-content">
+                                    {{ $item->answer ?? '' }}
+                                </div>
                             </div>
-                            <div class="faq-content">
-                                We provide sales, rental, and repair services for medical equipment with ISO certified
-                                products and 24/7 support.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                How can I request a service?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                You can contact us via our website form, email, or call our support team to request any
-                                service.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                Are your products guaranteed?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                Yes, all our equipment comes with manufacturer warranty and quality assurance for
-                                reliability.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                What is the delivery time?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                Delivery depends on product availability, usually 3-7 business days.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                Can I return a product?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                Yes, returns are possible within 14 days under our return policy.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                Do you offer installation services?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                Yes, our team provides installation and training for all equipment.
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                     <button class="btn-see-more">See More</button>
@@ -1754,83 +1179,31 @@
 
         <div class="container">
             <div class="row g-4">
+                @foreach ($blogs as $item)
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="news-card bg-white   ">
+                            <img src="{{ asset('storage/blog/images/' . $item->image) }}" class="img-fluid w-100"
+                                alt="{{ $item->image_alt_text ?? '' }}">
+                            <div class="p-3">
+                                <h5 class="news-title fw-bold mt-2 mb-2">{{ $item->title ?? '' }}</h5>
+                                <p class="news-desc small text-muted mb-3">
+                                    {{ $item->short_description ?? '' }}
+                                </p>
 
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">The Future of Technology Solutions: Innovations
-                                Driving Business Success</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
+                                {{-- <p class="news-desc small text-muted mb-3">
+                                    Understand the critical importance of robust cybersecurity measures in modern
+                                    healthcare.
+                                    Understand the critical importance of robust cybersecurity measures in modern
+                                    healthcare.
+                                </p> --}}
+                                <a href="#"
+                                    class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
+                                    Read More <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">Advancements in Biomedical Devices: A Game Changer for
-                                Healthcare</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">Enhancing Efficiency: The Role of AI in Medical
-                                Equipment Maintenance</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">Cybersecurity in Healthcare: Protecting Patient Data
-                                in a Digital Age</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>
@@ -1840,85 +1213,32 @@
 @endsection
 
 @push('frontend-scripts')
-    {{-- <script>
-        (function() {
+    <script>
+        const track = document.querySelector(".slider-track");
+        const slides = document.querySelectorAll(".slide");
+        let index = 1; // start from real first slide
+        const total = slides.length;
 
+        // Initial position
+        track.style.transform = `translateX(-${index * 100}%)`;
 
-            const slider = document.getElementById("reviewSlider");
+        function autoSlide() {
+            index++;
+            track.style.transition = "transform 0.7s ease-in-out";
+            track.style.transform = `translateX(-${index * 100}%)`;
 
-            let slides = Array.from(slider.children);
-            const visible = 5;
-            const slideWidth = 180; // 140 + 40 gap
-            let index = 0;
-
-            // Duplicate slides for infinite scroll
-            slides.forEach(slide => slider.appendChild(slide.cloneNode(true)));
-            slides = Array.from(document.querySelectorAll(".tooltip-slide"));
-
-            function updateSlider() {
-
-                // remove all actives
-                slides.forEach(s => s.classList.remove("active"));
-
-                // center slide index
-                const center = index + Math.floor(visible / 2);
-
-                if (slides[center]) slides[center].classList.add("active");
-
-                // Always center the middle image
-                const offset = (visible * slideWidth) / 2 - (slideWidth / 2);
-                const moveX = index * slideWidth;
-
-                slider.style.transform = `translateX(-${moveX - offset}px)`;
-
-                index++;
-
-                // infinite loop reset
-                if (index >= slides.length - visible) {
-                    setTimeout(() => {
-                        slider.style.transition = "none";
-                        index = 0;
-                        slider.style.transform = `translateX(-${-offset}px)`;
-
-                        setTimeout(() => slider.style.transition = "0.6s ease", 50);
-                    }, 600);
-                }
+            // Reset when reach the last clone
+            if (index === total - 1) {
+                setTimeout(() => {
+                    track.style.transition = "none";
+                    index = 1; // back to real first slide
+                    track.style.transform = `translateX(-100%)`;
+                }, 700);
             }
+        }
 
-            setInterval(updateSlider, 2000);
-            updateSlider();
-
-        })();
-    </script> --}}
-
-
-
-
-
-   <script>
-let mainIndex = 0;
-const mainTrack = document.querySelector(".slider-track");
-const mainSlides = document.querySelectorAll(".slide");
-const mainTotal = mainSlides.length;
-
-function mainAutoSlide() {
-    mainIndex++;
-    mainTrack.style.transition = "transform 0.8s ease-in-out";
-    mainTrack.style.transform = `translateX(-${mainIndex * 100}%)`;
-
-    if (mainIndex === mainTotal - 1) {
-        setTimeout(() => {
-            mainTrack.style.transition = "none";
-            mainIndex = 0;
-            mainTrack.style.transform = `translateX(0%)`;
-        }, 800);
-    }
-}
-
-setInterval(mainAutoSlide, 4000);
-</script>
-
-
+        setInterval(autoSlide, 4000);
+    </script>
 
 
     <script>
@@ -1952,69 +1272,68 @@ setInterval(mainAutoSlide, 4000);
         });
     </script>
 
-<script>
-let currentImageIndex = 0;
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let currentImageIndex = 0;
 
-const imageTrack = document.querySelector(".image-slide-track");
-const slides = document.querySelectorAll(".image-slide-item");
-const totalSlides = slides.length;
+            const imageTrack = document.querySelector(".image-slide-track");
+            const slides = document.querySelectorAll(".image-slide-item");
+            const totalSlides = slides.length;
 
-const dots = document.querySelectorAll(".image-dots .dot");
+            const dots = document.querySelectorAll(".image-dots .dot");
 
-const slideDuration = 3000;
-let slider;
+            const slideDuration = 3000;
+            let slider;
 
-// Update dots
-function updateDots() {
-    dots.forEach(dot => dot.classList.remove("active"));
-    dots[currentImageIndex].classList.add("active");
-}
+            // Update dots
+            function updateDots() {
+                dots.forEach(dot => dot.classList.remove("active"));
+                dots[currentImageIndex].classList.add("active");
+            }
 
-// Jump to slide
-function goToSlide(index, withTransition = true) {
+            // Jump to slide
+            function goToSlide(index, withTransition = true) {
 
-    if (withTransition) {
-        imageTrack.style.transition = "transform 0.8s ease-in-out";
-    } else {
-        imageTrack.style.transition = "none";  // no jerk when jumping
-    }
+                if (withTransition) {
+                    imageTrack.style.transition = "transform 0.8s ease-in-out";
+                } else {
+                    imageTrack.style.transition = "none"; // no jerk when jumping
+                }
 
-    imageTrack.style.transform = `translateX(-${index * 25}%)`;
-    updateDots();
-}
+                imageTrack.style.transform = `translateX(-${index * 25}%)`;
+                updateDots();
+            }
 
-// Auto slide
-function autoSlide() {
-    slider = setInterval(() => {
+            // Auto slide
+            function autoSlide() {
+                slider = setInterval(() => {
 
-        currentImageIndex++;
+                    currentImageIndex++;
 
-        if (currentImageIndex < totalSlides) {
-            goToSlide(currentImageIndex, true);
-        } else {
-            // Last slide se pehle slide pr jump WITHOUT TRANSITION
-            currentImageIndex = 0;
-            goToSlide(currentImageIndex, false);
-        }
+                    if (currentImageIndex < totalSlides) {
+                        goToSlide(currentImageIndex, true);
+                    } else {
+                        // Last slide se pehle slide pr jump WITHOUT TRANSITION
+                        currentImageIndex = 0;
+                        goToSlide(currentImageIndex, false);
+                    }
 
-    }, slideDuration);
-}
+                }, slideDuration);
+            }
 
-// Click dots
-dots.forEach(dot => {
-    dot.addEventListener("click", function () {
-        clearInterval(slider);
-        currentImageIndex = parseInt(this.dataset.index);
-        goToSlide(currentImageIndex, true);
-        autoSlide();
-    });
-});
+            // Click dots
+            dots.forEach(dot => {
+                dot.addEventListener("click", function() {
+                    clearInterval(slider);
+                    currentImageIndex = parseInt(this.dataset.index);
+                    goToSlide(currentImageIndex, true);
+                    autoSlide();
+                });
+            });
 
-// Initialize
-goToSlide(0, false);
-autoSlide();
-</script>
-
-
-
+            // Initialize
+            goToSlide(0, false);
+            autoSlide();
+        });
+    </script>
 @endpush

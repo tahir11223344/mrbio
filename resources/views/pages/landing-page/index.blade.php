@@ -248,6 +248,17 @@
                     });
                 }
 
+                ClassicEditor
+                    .create(document.querySelector('#content_description'), {
+                        ckfinder: {
+                            uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=landing-page/ckeditor"
+                        }
+                    })
+                    .then(editor => {
+                        console.log(`CKEditor initialized for #content_description`);
+                    })
+                    .catch(error => console.error(error));
+
             });
         </script>
 

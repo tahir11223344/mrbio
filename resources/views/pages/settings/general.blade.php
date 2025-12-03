@@ -152,11 +152,13 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-lg">Save All Settings</button>
-
-            {{-- <div class="d-flex justify-content-end mt-4">
-                @if (isset($data->id) && $data->id)
-                    @can('write offer')
+            <div class="d-flex justify-content-end mt-4">
+                @php
+                    // Check karo kya koi setting already exist karti hai?
+                    $hasSettings = \App\Models\GeneralSetting::count() > 0;
+                @endphp
+                @if($hasSettings)
+                    @can('write general settings')
                         <button type="submit" class="btn btn-primary">
                             @include('partials/general/_button-indicator', [
                                 'label' => 'Update',
@@ -164,7 +166,7 @@
                         </button>
                     @endcan
                 @else
-                    @can('create offer')
+                    @can('create general settings')
                         <button type="submit" class="btn btn-primary">
                             @include('partials/general/_button-indicator', [
                                 'label' => 'Create',
@@ -172,7 +174,7 @@
                         </button>
                     @endcan
                 @endif
-            </div> --}}
+            </div>
         </form>
     </div>
 

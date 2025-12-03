@@ -2,9 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Models\Category;
+use App\Models\Faq;
 use App\Models\LandingPage;
+use App\Models\OemContent;
+use App\Models\Offer;
+use App\Models\Product;
+use App\Models\RepairService;
+use App\Models\RepairServiceSubPage;
 use App\Traits\UploadImageTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -174,5 +183,129 @@ class LandingPageController extends Controller
                 'message' => 'Something went wrong while removing the image.'
             ]);
         }
+    }
+
+    public function landingPage()
+    {
+        // Landing page data
+
+        // Cache landing page data for 1 hour
+        $data = Cache::remember('landing_page_data', 3600, function () {
+            return LandingPage::select([
+                'hero_heading',
+                'hero_sd',
+                'hero_slider_images',
+                'hero_image_alt',
+                'content_heading',
+                'content_description',
+                'content_slider_images',
+                'content_image_alt',
+                'meta_title',
+                'meta_keywords',
+                'meta_description',
+            ])->first();
+        });
+
+        $categories = Cache::remember('landing_page_categories', 3600, function () {
+            return Category::where('status', true)->select(['name', 'slug'])->get();
+        });
+
+
+        // $data = LandingPage::select([
+        //     'hero_heading',
+        //     'hero_sd',
+        //     'hero_slider_images',
+        //     'hero_image_alt',
+        //     'content_heading',
+        //     'content_description',
+        //     'content_slider_images',
+        //     'content_image_alt',
+        //     'meta_title',
+        //     'meta_keywords',
+        //     'meta_description',
+        // ])->first();
+
+        // Active categories
+        // $categories = Category::where('status', true)
+        //     ->select(['name', 'slug'])
+        //     ->get();
+
+        // Latest 16 active products
+        $products = Product::where('is_active', true)
+            ->latest()        // order by created_at desc
+            ->take(16)
+            ->select([
+                'name',
+                'slug',
+                'short_description',
+                'price',
+                'discount_percent',
+                'sale_price',
+                'thumbnail',
+                'image_alt',
+            ])
+            ->get();
+
+        // Active offers
+        $offers = Offer::where('is_active', true)
+            ->select([
+                'title',
+                'slug',
+                'short_description',
+                'thumbnail',
+                'image_alt',
+            ])
+            ->get();
+
+        // Repair Service (selected columns)
+        $repairServiceData = RepairService::select([
+            'repair_service_heading',
+            'x_ray_heading',
+            'c_arm_heading',
+        ])->first();
+
+        // Single query for x-rays and c-arms
+        $repairSubPages = RepairServiceSubPage::whereIn('page_category', ['x-ray', 'c-arm'])
+            ->where('is_active', true)
+            ->select(['page_category', 'title', 'slug', 'short_description'])
+            ->get()
+            ->groupBy('page_category');
+
+        $xrays = $repairSubPages->get('x-ray', collect());
+        $carms = $repairSubPages->get('c-arm', collect());
+
+        $oems = OemContent::select([
+            'title',
+            'slug',
+            'image',
+            'image_alt',
+            'description',
+        ])->orderBy('order', 'asc')->get();
+
+        $faqs = Faq::where('page_name', 'landing')
+            ->select(['question', 'answer'])
+            ->latest()
+            ->take(4)
+            ->get();
+
+        $blogs = Blog::where('is_active', true)
+            ->select(['title', 'slug', 'image', 'image_alt_text', 'short_description'])
+            ->latest()
+            ->take(4)
+            ->get();
+
+
+        return view('frontend.pages.home', compact(
+            'data',
+            'categories',
+            'products',
+            'offers',
+            'repairServiceData',
+            'xrays',
+            'carms',
+            'oems',
+            'faqs',
+            'blogs'
+        ));
     }
 }

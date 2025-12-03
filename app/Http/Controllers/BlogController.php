@@ -158,6 +158,7 @@ class BlogController extends Controller
                 'is_active'        => 'nullable|in:0,1',
                 'image'            => 'nullable|image|mimes:png,jpg,jpeg,webp|max:300',
                 'image_alt_text'   => 'nullable|string|max:255',
+                'short_description' => 'nullable|string',
                 'description'      => 'nullable|string',
 
                 'meta_title'       => 'nullable|string|max:255',
@@ -256,6 +257,7 @@ class BlogController extends Controller
                 'is_active'        => 'nullable|in:0,1',
                 'image'            => 'nullable|image|mimes:png,jpg,jpeg,webp|max:300',
                 'image_alt_text'   => 'nullable|string|max:255',
+                'short_description' => 'nullable|string',
                 'description'      => 'nullable|string',
 
                 'meta_title'       => 'nullable|string|max:255',
