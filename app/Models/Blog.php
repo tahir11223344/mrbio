@@ -18,6 +18,7 @@ class Blog extends Model
         'is_active',
         'image',
         'image_alt_text',
+        'short_description',
         'description',
 
         // SEO fields

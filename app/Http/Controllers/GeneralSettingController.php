@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GeneralSetting;
 use App\Traits\UploadImageTrait;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -17,7 +18,35 @@ class GeneralSettingController extends Controller
 
     public function index()
     {
-        return view('pages.settings.general');
+        try {
+            $this->authorize('read general settings');
+
+            return view('pages.settings.general');
+        } catch (AuthorizationException $e) {
+            // Custom logging (optional - bohot helpful hota hai production mein)
+            Log::warning('Unauthorized access attempt to General Settings', [
+                'user_id' => auth()->id(),
+                'user_name' => auth()->user()?->name,
+                'ip' => request()->ip(),
+                'user_agent' => request()->userAgent(),
+            ]);
+
+            // Option 1: Custom message + redirect back
+            return redirect()
+                ->back()
+                ->with('error', 'You do not have permission to view General Settings.');
+                
+        } catch (\Exception $e) {
+            // Koi unexpected error (just in case)
+            Log::error('Unexpected error in General Settings index', [
+                'error' => $e->getMessage(),
+                'user_id' => auth()->id(),
+            ]);
+
+            return redirect()
+                ->back()
+                ->with('error', 'Something went wrong. Please try again later.');
+        }
     }
 
     public function update(Request $request)

@@ -485,3 +485,13 @@ if (!function_exists('setting')) {
         return $settings[$key] ?? $default;
     }
 }
+
+
+if (!function_exists('cleanPhone')) {
+    function cleanPhone($number)
+    {
+        if (!$number) return '';
+        // Remove everything except digits and +
+        return preg_replace('/[^0-9+]/', '', $number);
+    }
+}

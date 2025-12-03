@@ -113,6 +113,16 @@
                                 @enderror
                             </div>
 
+                            <!-- Short Description -->
+                            <div class="col-lg-12 mb-4">
+                                <label for="description" class="form-label fw-semibold">{{ __('Short Description') }}</label>
+                                <textarea id="short_description" name="short_description"
+                                    class="ckeditor form-control form-control-lg @error('short_description') is-invalid @enderror" rows="5">{{ old('short_description', $data->short_description ?? '') }}</textarea>
+                                @error('short_description')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <!-- Description -->
                             <div class="col-lg-12 mb-4">
                                 <label for="description" class="form-label fw-semibold">{{ __('Description') }}</label>

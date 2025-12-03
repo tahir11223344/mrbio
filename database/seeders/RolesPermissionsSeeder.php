@@ -34,6 +34,7 @@ class RolesPermissionsSeeder extends Seeder
                 'repair service sub page',
                 'blog main page',
                 'blogs',
+                'general settings'
 
             ]
         ];

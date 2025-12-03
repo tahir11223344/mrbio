@@ -213,14 +213,16 @@
         <!--end:Menu sub-->
     </div>
 
-    <div class="menu-item">
-        <!--begin:Menu link-->
-        <a class="menu-link" href="{{ route('admin-general.settings') }}">
-            <span class="menu-icon"><i class="ki-outline ki-gear fs-2x"></i></span>
-            <span class="menu-title">General Setting</span>
-        </a>
-        <!--end:Menu link-->
-    </div>
+    @can('read general settings')
+        <div class="menu-item">
+            <!--begin:Menu link-->
+            <a class="menu-link" href="{{ route('admin-general.settings') }}">
+                <span class="menu-icon"><i class="ki-outline ki-gear fs-2x"></i></span>
+                <span class="menu-title">General Setting</span>
+            </a>
+            <!--end:Menu link-->
+        </div>
+    @endcan
 
     <!--end:Menu item-->
     <!--begin:Menu item-->

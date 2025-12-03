@@ -431,18 +431,60 @@
     <div class="container footer-main-content">
         <div class="row pt- pb-4">
             <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <div class="logo-placeholder text-white fw-bold fs-4 mb-3"> <img
-                        src="{{ asset('frontend/images/logo.png') }}" height="" alt="logo" class="footer-logo">
+                <div class="logo-placeholder text-white fw-bold fs-4 mb-3">
+
+                    @if (setting('site_logo'))
+                        <img src="{{ asset('storage/' . setting('site_logo')) }}" alt="{{ setting('site_name') }}"
+                            class="footer-logo">
+                    @else
+                        <img src="{{ asset('frontend/images/logo.png') }}" height="" alt="Mr. Biomed Tech Services"
+                            class="footer-logo">
+                    @endif
+
                 </div>
+                {{-- Social Icons - Only show if link exists --}}
+
                 <div class="social-icons mb-3">
-                    <a href="#"><i class="fab fa-facebook-f me-3 fa-lg"></i></a>
-                    <a href="#"><i class="fab fa-instagram me-3 fa-lg"></i></a>
-                    <a href="#"><i class="fab fa-twitter me-3 fa-lg"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    @if (setting('facebook'))
+                        <a href="{{ setting('facebook') }}" target="_blank"><i
+                                class="fab fa-facebook-f me-3 fa-lg"></i></a>
+                    @endif
+                    @if (setting('instagram'))
+                        <a href="{{ setting('instagram') }}" target="_blank"><i
+                                class="fab fa-instagram me-3 fa-lg"></i></a>
+                    @endif
+
+                    @if (setting('twitter'))
+                        <a href="{{ setting('twitter') }}" target="_blank"><i class="fab fa-twitter me-3 fa-lg"></i></a>
+                    @endif
+
+                    @if (setting('linkedin'))
+                        <a href="{{ setting('linkedin') }}" target="_blank"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    @endif
                 </div>
-                <p class="footer-p"><i class="fas fa-map-marker-alt me-2 text-white"></i> USA</p>
-                <p class="footer-p"><i class="fas fa-phone-alt me-2 text-white"></i> +1 123 456 7890</p>
-                <p class="footer-p"><i class="fas fa-envelope me-2 text-white"></i> info@mrbioservices.com</p>
+                {{-- Address --}}
+                @if (setting('address'))
+                    <p class="footer-p"><i class="fas fa-map-marker-alt me-2 text-white"></i> {{ setting('address') }}
+                    </p>
+                @endif
+                {{-- Phone --}}
+                @if (setting('phone'))
+                    <p class="footer-p"><i class="fas fa-phone-alt me-2 text-white"></i> <a
+                            href="tel:{{ cleanPhone(setting('phone')) }}"
+                            class="text-white text-decoration-none hover-primary">
+                            {{ setting('phone') }}
+                        </a>
+                    </p>
+                @endif
+
+                {{-- Email --}}
+                @if (setting('email'))
+                    <p class="footer-p"><i class="fas fa-envelope me-2 text-white"></i> <a
+                            href="mailto:{{ setting('email') }}" class="text-white text-decoration-none hover-primary">
+                            {{ setting('email') }}
+                        </a>
+                    </p>
+                @endif
             </div>
 
             <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
@@ -513,7 +555,8 @@
                     <a href="#" class="text-decoration-none mx-2">Locations</a><span class="separator">|</span>
                     <a href="#" class="text-decoration-none mx-2">Product Store</a><span
                         class="separator">|</span>
-                    <a href="#" class="text-decoration-none mx-2">About Mbmts</a><span class="separator">|</span>
+                    <a href="#" class="text-decoration-none mx-2">About Mbmts</a><span
+                        class="separator">|</span>
                     <a href="#" class="text-decoration-none mx-2">Blog</a><span class="separator">|</span>
                     <a href="#" class="text-decoration-none mx-2">Career</a><span class="separator">|</span>
                     <a href="#" class="text-decoration-none mx-2">Terms & Conditions</a><span
@@ -524,7 +567,7 @@
                 </div>
             </div>
             <p class="copyright mb-0 t">
-                Copyright © 2025 | Mr Biomed Tech Services ® | All right reserved
+                Copyright © {{ date('Y') }} | {{ setting('site_name', 'Mr Biomed Tech Services') }} ® | All right reserved
             </p>
         </div>
     </div>

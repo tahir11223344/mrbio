@@ -17,13 +17,14 @@
 
     <meta name="author" content="" />
 
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('storage/' . setting('favicon')) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('storage/' . setting('favicon')) }}">
+    <link rel="shortcut icon" href="{{ asset('storage/' . setting('favicon')) }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('storage/' . setting('favicon')) }}">
 
+    {{-- <link rel="manifest" href="{{ asset('favicon/site.webmanifest') }}"> --}}
 
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="">
-    <link rel="icon" type="image/png" sizes="32x32" href="">
-    <link rel="icon" type="image/png" sizes="16x16" href="">
-    <link rel="shortcut icon" href="" type="image/x-icon">
 
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" />
