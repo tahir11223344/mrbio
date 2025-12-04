@@ -15,4 +15,6 @@ Route::middleware('guest')->group(function () {
     Route::view('/repairesubservice', 'frontend.pages.repairesubservice')->name('repairesubservice');
     Route::view('/location', 'frontend.pages.location')->name('location');
     Route::view('/locationdetail', 'frontend.pages.locationdetail')->name('locationdetail');
+    Route::view('/contact-us', 'frontend.pages.contact-us')->name('contact-us');
+
 });

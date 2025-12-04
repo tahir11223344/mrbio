@@ -704,6 +704,7 @@
      /* border-radius: 12px; */
      border-top-left-radius: 12px;
      border-top-right-radius: 12px;
+     height: 196px;
 
  }
 
@@ -738,13 +739,13 @@
      text-decoration: line-through;
      color: #d8a036;
 
-     font-size: 18px;
+     font-size: 20px;
      font-weight: 500;
      font-family: Inter, sans-serif;
  }
 
  .new-price {
-     font-size: 18px;
+     font-size: 20px;
      font-weight: 500;
      font-family: Inter, sans-serif;
  }
@@ -892,7 +893,6 @@
      background: #fff;
      border-radius: 30px;
      padding: 10px;
-     /* box-shadow: 0 4px 10px #00000030; */
      text-align: center;
      border: 3px solid #076FA1;
      height: 436px;
@@ -1008,18 +1008,38 @@
          right: -32px;
      }
 
+     .navbar {
+         height: 200px !important;
+
+     }
+
      /* .offer-card {
                 min-width: 23.6%;
             } */
+     .hero-detail-section .hero-title {
+         font-family: Arial, sans-serif;
+         font-size: 45px !important;
+
+     }
+
+     .hero-detail-section {
+
+         height: 440px !important;
+     }
  }
 
  @media(max-width:575px) {
      .offer-card {
-         min-width: 91%;
+         min-width: 96% !important;
+     }
+
+     .navbar {
+         height: 198px !important;
+
      }
 
      .offer-prev {
-         left: 2px;
+         left: -4px;
      }
 
      .offer-prev,
@@ -1047,9 +1067,15 @@
 
      }
 
-     .offer-slider-container {
-         /* overflow: hidden; */
+     /* .offer-slider-container {
+         overflow: hidden;
          padding: 27px;
+     } */
+
+     .offer-slider-container {
+         overflow: hidden !important;
+         padding: 8px !important;
+         /* Extra optional – taake sides se gap hide ho jaye */
      }
 
      .offer-next {
@@ -1057,7 +1083,7 @@
      }
 
      .offer-slider-track {
-         gap: 30px;
+         gap: 24px;
      }
 
      .offer-prev i,
@@ -1066,7 +1092,7 @@
      }
 
      .offer-slider-wrapper {
-         padding: 35px;
+         padding: 44px;
      }
 
      .hero-heading {
@@ -1090,11 +1116,11 @@
 
      .hero-detail-section {
 
-         height: 420px !important;
+         height: 480px !important;
      }
 
      .offer-card .read-btn {
-         left: 19% !important;
+         left: 13% !important;
      }
  }
 
@@ -1723,10 +1749,7 @@
 
      }
 
-     .bg-section {
 
-         height: 26vh !important;
-     }
 
      .equipment-title {
          font-size: 16px !important;
@@ -1761,7 +1784,7 @@
          border-radius: 12px;
          /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); */
          /* margin-top: 70px; */
-         height: a;
+         height: auto;
          width: 100%;
      }
 
@@ -1800,7 +1823,14 @@
             } */
      .bg-section {
 
-         height: 46vh !important;
+         height: 60vh !important;
+     }
+ }
+
+ @media(max-width:767px) {
+     .bg-section {
+
+         height: 31vh !important;
      }
  }
 
@@ -2936,7 +2966,7 @@
 
      .cta-contact-heading {
 
-         font-size: 33px !important;
+         font-size: 27px !important;
 
      }
  }
@@ -3092,28 +3122,59 @@
      margin-top: 23px;
  }
 
- /* Prev / Next Buttons */
- /* .prev-btn,
-                                        .next-btn {
-                                            position: absolute;
-                                            top: 50%;
-                                            transform: translateY(-50%);
-                                            background: #004A6D;
-                                            color: #fff;
-                                            border: none;
-                                            padding: 6px 15px;
-                                            font-size: 20px;
-                                            cursor: pointer;
-                                            border-radius: 50%;
-                                        }
+ /* @media(max-width:400px) {
+     .main-img {
+         max-width: 330px !important;
 
-                                        .prev-btn {
-                                            left: -53px;
-                                        }
+     }
+ } */
+ @media(max-width:768px) {
+     .main-img {
+         margin-left: 16%;
+     }
 
-                                        .next-btn {
-                                            right: -53px;
-                                        } */
+     .thumb-slider-container {
+
+         margin-left: 18% !important;
+     }
+
+     .pagination-wrapper {
+
+         margin-left: 23% !important;
+     }
+ }
+
+ @media(max-width:767px) {
+     .main-img {
+         max-width: 340px !important;
+         margin-left: 0% !important;
+     }
+
+     .austin-heading {
+         font-size: 20px !important;
+     }
+
+     .thumb-slider-container {
+
+         margin-left: 0% !important;
+     }
+
+     .pagination-wrapper {
+
+         margin-left: 8% !important;
+     }
+
+     .austin-desc {
+
+         font-size: 14px !important;
+     }
+
+     .austin-li {
+
+         font-size: 14px !important;
+
+     }
+ }
 
  .thumbs {
      margin-top: 15px;
@@ -3257,4 +3318,190 @@
 
  .pg-segment.active {
      background: #015e8c;
+ }
+
+
+
+ /*=============== form section ==========================*/
+
+ /* Section Background */
+ .contact-section {
+     background: #ffffff;
+ }
+
+ /* Left Column */
+ .contact-heading {
+     font-size: 32px;
+     font-weight: 700;
+     color: #0071A8;
+     font-family: Saira;
+     line-height: 137%;
+
+ }
+
+ .contact-desc {
+     font-size: 16px;
+     color: #00000080;
+     font-weight: 700;
+     font-family: Arial;
+     line-height: 160%;
+
+ }
+
+ .contact-info {
+     display: flex;
+     align-items: center;
+ }
+
+ .contact-icon {
+     font-size: 20px;
+     color: #FE0000;
+     /* red icon color */
+     margin-right: 10px;
+ }
+
+ .contact-text {
+     font-size: 22px;
+     font-weight: 300;
+     font-family: Inter;
+     line-height: 100%;
+     color: #000000B2;
+ }
+
+ .contact-textt {
+     font-size: 20px;
+     font-weight: 400;
+     font-family: Arial;
+     line-height: 100%;
+     color: #026B9F;
+ }
+
+ .tech-heading {
+     font-weight: 700;
+     color: #0071A8;
+     font-size: 20px;
+     line-height: 160%;
+     font-family: Arial;
+ }
+
+ /* Form Column */
+ .form-wrapper {
+     background: #006A9E1A;
+     /* light blue transparent */
+     border-radius: 10px;
+     width: 100%;
+
+     max-width: 538px;
+     /* height: 660px; */
+     padding-bottom: 20px;
+
+ }
+
+ .form-heading {
+     font-size: 32px;
+     font-weight: 700;
+     color: #0071A8;
+     font-family: Saira;
+     line-height: 137%;
+ }
+
+ .form-desc {
+     font-size: 16px;
+     color: #00000080;
+     font-weight: 400;
+     font-family: Poppins;
+     line-height: 30px;
+
+ }
+
+ .submit-btn {
+     background: #066EA1;
+     color: #fff;
+     font-weight: 700;
+     border-radius: 10px;
+     width: 100%;
+
+     max-width: 427px !important;
+     height: 32px;
+     font-size: 20px;
+     line-height: 137%;
+     font-family: 'Saira';
+     margin-top: 40px;
+
+     transition: all 0.4s ease-in-out;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .submit-btn:hover {
+     background: #015077;
+     color: #fff;
+     transform: scale(1.03)
+ }
+
+ .formm-input {
+     width: 100%;
+
+     max-width: 427px;
+     height: 28px;
+     border-radius: 10px;
+     font-size: 14px;
+     color: #8B8B8B;
+     line-height: 137%;
+     font-weight: 400;
+     font-family: Inter;
+
+ }
+
+ .formm-select {
+     width: 100%;
+
+     max-width: 205px;
+     height: 28px;
+     border-radius: 10px;
+     font-size: 14px;
+     color: #8B8B8B;
+     line-height: 137%;
+     font-weight: 400;
+     font-family: Inter;
+
+ }
+
+ .formm-select::placeholder {
+     color: #8B8B8B;
+ }
+
+ .formmm-select {
+     width: 100%;
+     max-width: 152px;
+
+     height: 28px;
+     border-radius: 10px;
+     font-size: 14px;
+     color: #8B8B8B;
+     line-height: 137%;
+     font-weight: 400;
+     font-family: Inter;
+ }
+
+ .formm-text {
+     width: 100%;
+     max-width: 427px;
+
+     height: 84px;
+     color: #8B8B8B;
+     line-height: 137%;
+     font-weight: 400;
+     font-family: Inter;
+ }
+
+ .form-control:focus,
+ .form-select:focus,
+ textarea.form-control:focus {
+     box-shadow: none !important;
+     outline: none !important;
+     border: 2px solid #026B9F !important;
+     color: #8B8B8B;
+
  }

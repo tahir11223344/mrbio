@@ -387,6 +387,11 @@
 
             }
 
+            .co-small {
+                font-size: 13px !important;
+
+            }
+
             .info-card {
                 width: 340px;
                 height: 238px;
@@ -879,7 +884,7 @@
                             <i class="bi bi-check choose-icon"></i>
 
                             <!-- <div class="choose-icon">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
                             <h4 class="choose-heading">20 Years Experience</h4>
                         </div>
                         <p class="choose-desc">

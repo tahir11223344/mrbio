@@ -26,26 +26,26 @@
 
         /* Prev / Next Buttons */
         /* .prev-btn,
-                                            .next-btn {
-                                                position: absolute;
-                                                top: 50%;
-                                                transform: translateY(-50%);
-                                                background: #004A6D;
-                                                color: #fff;
-                                                border: none;
-                                                padding: 6px 15px;
-                                                font-size: 20px;
-                                                cursor: pointer;
-                                                border-radius: 50%;
-                                            }
+                                                                                                    .next-btn {
+                                                                                                        position: absolute;
+                                                                                                        top: 50%;
+                                                                                                        transform: translateY(-50%);
+                                                                                                        background: #004A6D;
+                                                                                                        color: #fff;
+                                                                                                        border: none;
+                                                                                                        padding: 6px 15px;
+                                                                                                        font-size: 20px;
+                                                                                                        cursor: pointer;
+                                                                                                        border-radius: 50%;
+                                                                                                    }
 
-                                            .prev-btn {
-                                                left: -53px;
-                                            }
+                                                                                                    .prev-btn {
+                                                                                                        left: -53px;
+                                                                                                    }
 
-                                            .next-btn {
-                                                right: -53px;
-                                            } */
+                                                                                                    .next-btn {
+                                                                                                        right: -53px;
+                                                                                                    } */
 
         .thumbs {
             margin-top: 15px;
@@ -370,6 +370,32 @@
                 width: 100%;
                 height: auto;
                 margin-bottom: 20px;
+            }
+        }
+
+        @media(max-width: 767px) {
+            .common-title {
+
+                font-size: 26px !important;
+
+            }
+
+            .pro-subtitle {
+
+                font-size: 20px !important;
+
+            }
+
+            .section-text {
+
+                font-size: 15px !important;
+
+            }
+
+            .problem-list li {
+
+                font-size: 16px !important;
+
             }
         }
     </style>

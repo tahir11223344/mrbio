@@ -1,315 +1,214 @@
 @extends('frontend.layouts.frontend')
 
-@section('title', 'Location Page')
+@section('title', 'Contact Us')
 
 @push('frontend-styles')
     <style>
-        .areas-section {
-            padding: 70px 0;
+        .team-section {
             background: #ffffff;
-            /* Light clean background */
         }
 
-        .areas-section .areas-title {
-            font-size: 48px;
+        /* Box Styling */
+        .team-box {
+            padding: 30px 20px;
+        }
+
+        /* Middle Column Borders */
+        .middle-box {
+            border-left: 2px solid #000000;
+            border-right: 2px solid #000000;
+            /* border-top: 2px solid #0071A8; */
+            /* border-bottom: 2px solid #0071A8; */
+        }
+
+        /* Titles */
+        .team-title {
+            font-size: 28px;
             font-weight: 700;
-            color: #000000;
-            margin-bottom: 18px;
-            font-family: Arial;
+            color: #0168A4;
+            font-family: Inter;
             line-height: 100%;
-
+            margin-bottom: 5px;
         }
 
-        .areas-section .areas-title span {
-            color: #066EA1;
+        /* Sub Text */
+        .team-sub {
+            font-size: 28px;
+            font-weight: 300;
+            font-family: Inter;
+            line-height: 100%;
+            color: #000000;
         }
 
-        .areas-desc {
-            font-size: 16px;
-            color: #00000080;
-            max-width: 831px;
-            margin: 0 auto;
-            font-family: Arial;
-            line-height: 160%;
-            font-weight: 700;
-
+        /* Responsive Fix */
+        @media(max-width: 767px) {
+            .middle-box {
+                border: none;
+                border-top: 2px solid #0071A8;
+                border-bottom: 2px solid #0071A8;
+                margin: 20px 0;
+                padding: 20px 0;
+            }
         }
 
-        /* main cities section */
 
-        /* Full-width heading bar */
-        .cities-heading-bar {
-            background: #066EA1;
-            text-align: center;
-            width: 100%;
-            height: 93px;
+        .premium-section {
+            background: #ffffff;
+        }
+
+        .premium-title {
+            font-size: 28px;
+            font-weight: 300;
+            font-family: Inter;
+            color: #0A70A2;
+            line-height: 100%;
+            text-align: left;
+            /* Left aligned */
+        }
+
+        /* Parent column ko center control ke liye */
+        .logo-box {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .cities-heading {
-            color: #ffffff;
-            font-size: 48px;
-            font-weight: 700;
-            font-family: Arial;
-            line-height: 100%;
+        /* Logo 1 */
+        .premium-logo {
+            width: 230.588px;
+            height: 109.309px;
+            max-width: 100%;
+            /* screen small ho to scale down */
+            object-fit: contain;
+            transition: all 0.4s ease;
+        }
+
+        /* Logo 2 */
+        .premium-logo1 {
+            width: 156.155px;
+            height: 156.155px;
+            max-width: 100%;
+            object-fit: contain;
+            transition: all 0.4s ease;
+        }
+
+        /* Logo 3 */
+        .premium-logo2 {
+            width: 520.519px;
+            height: 55.522px;
+            max-width: 100%;
+            object-fit: contain;
+            transition: all 0.4s ease;
+        }
+
+        /* Mobile responsive fix */
+        @media(max-width: 576px) {
+
+            .premium-logo,
+            .premium-logo1,
+            .premium-logo2 {
+                /* width: 100% !important; */
+                /* full width but maintain aspect fit */
+                height: auto !important;
+                /* proportionally adjust */
+            }
+        }
+
+
+        /* Hover effect (optional) */
+        .premium-logo:hover,
+        .premium-logo1:hover,
+        .premium-logo2:hover {
+            transform: scale(1.08);
+        }
+
+
+        /* Responsive */
+        @media(max-width: 768px) {
+            .premium-title {
+                text-align: center;
+                /* Mobile center */
+            }
+        }
+
+        /* =============== map ================== */
+        .map-section {
+            width: 100%;
+            padding: 0;
             margin: 0;
         }
 
-        /* Image styling */
-        .city-img {
-            width: 256px;
-            height: 214px;
-            object-fit: cover;
-            border: 2px solid #066EA1;
-            border-radius: 6px;
-            box-shadow: 0px 0px 20px #026B9F;
-        }
-
-        /* Title styling */
-        .city-title {
-            font-size: 25px;
-            font-weight: 700;
-            color: #026B9F;
-            text-align: start;
-            padding-left: 78px;
-            font-family: Arial, ;
-            line-height: 100%;
-        }
-
-
-        /*======================= form section css =======================*/
-
-        /* Section Background */
-        .contact-section {
-            background: #ffffff;
-        }
-
-        /* Left Column */
-        .contact-heading {
-            font-size: 32px;
-            font-weight: 700;
-            color: #0071A8;
-            font-family: Saira;
-            line-height: 137%;
-
-        }
-
-        .contact-desc {
-            font-size: 16px;
-            color: #00000080;
-            font-weight: 700;
-            font-family: Arial;
-            line-height: 160%;
-
-        }
-
-        .contact-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .contact-icon {
-            font-size: 20px;
-            color: #FE0000;
-            /* red icon color */
-            margin-right: 10px;
-        }
-
-        .contact-text {
-            font-size: 22px;
-            font-weight: 300;
-            font-family: Inter;
-            line-height: 100%;
-            color: #000000B2;
-        }
-
-        .contact-textt {
-            font-size: 20px;
-            font-weight: 400;
-            font-family: Arial;
-            line-height: 100%;
-            color: #026B9F;
-        }
-
-        .tech-heading {
-            font-weight: 700;
-            color: #0071A8;
-            font-size: 20px;
-            line-height: 160%;
-            font-family: Arial;
-        }
-
-        /* Form Column */
-        .form-wrapper {
-            background: #006A9E1A;
-            /* light blue transparent */
-            border-radius: 10px;
+        .map-container {
             width: 100%;
-
-            max-width: 538px;
-            /* height: 660px; */
-            padding-bottom: 20px;
-
+            height: 453.2987976074219px;
+            /* aap isko change kar sakte ho */
         }
 
-        .form-heading {
-            font-size: 32px;
-            font-weight: 700;
-            color: #0071A8;
-            font-family: Saira;
-            line-height: 137%;
-        }
-
-        .form-desc {
-            font-size: 16px;
-            color: #00000080;
-            font-weight: 400;
-            font-family: Poppins;
-            line-height: 30px;
-
-        }
-
-        .submit-btn {
-            background: #066EA1;
-            color: #fff;
-            font-weight: 700;
-            border-radius: 10px;
+        .map-container iframe {
             width: 100%;
-
-            max-width: 427px !important;
-            height: 32px;
-            font-size: 20px;
-            line-height: 137%;
-            font-family: 'Saira';
-            margin-top: 40px;
-
-            transition: all 0.4s ease-in-out;
+            height: 100%;
+            border: none;
         }
 
-        .submit-btn:hover {
-            background: #015077;
-            color: #fff;
-            transform: scale(1.03)
-        }
-
-        .formm-input {
-            width: 100%;
-
-            max-width: 427px;
-            height: 28px;
-            border-radius: 10px;
-            font-size: 14px;
-            color: #8B8B8B;
-            line-height: 137%;
-            font-weight: 400;
-            font-family: Inter;
-
-        }
-
-        .formm-select {
-            width: 100%;
-
-            max-width: 205px;
-            height: 28px;
-            border-radius: 10px;
-            font-size: 14px;
-            color: #8B8B8B;
-            line-height: 137%;
-            font-weight: 400;
-            font-family: Inter;
-
-        }
-
-        .formm-select::placeholder {
-            color: #8B8B8B;
-        }
-
-        .formmm-select {
-            width: 100%;
-            max-width: 152px;
-
-            height: 28px;
-            border-radius: 10px;
-            font-size: 14px;
-            color: #8B8B8B;
-            line-height: 137%;
-            font-weight: 400;
-            font-family: Inter;
-        }
-
-        .formm-text {
-            width: 100%;
-            max-width: 427px;
-
-            height: 84px;
-            color: #8B8B8B;
-            line-height: 137%;
-            font-weight: 400;
-            font-family: Inter;
-        }
-
-        .form-control:focus,
-        .form-select:focus,
-        textarea.form-control:focus {
-            box-shadow: none !important;
-            outline: none !important;
-            border: 2px solid #026B9F !important;
-            color: #8B8B8B;
-
-        }
-
-        /* Mobile Responsive Fix */
         @media (max-width: 767px) {
 
-            .contact-section .row {
-                display: block !important;
-                /* FORCE stacking */
-            }
 
-            .col-lg-6 {
-                width: 100% !important;
-                /* left + right column full width */
-                max-width: 100% !important;
-                margin-bottom: 20px;
-            }
 
-            .form-wrapper {
-                max-width: 100% !important;
-                width: 100% !important;
-                height: auto !important;
-            }
-
-            .d-flex.gap-3 {
-                flex-direction: column !important;
-                /* City & State column-wise */
-                gap: 12px !important;
-            }
-
-            /* All form elements full width */
-            .formm-input,
-            .formm-select,
-            .formmm-select,
-            .formm-text,
-            .submit-btn {
-                max-width: 100% !important;
-                width: 100% !important;
-            }
-
-            .faqs-section {
+            .map-section {
                 margin-top: 166% !important;
             }
         }
+
+
+        /* ========== brand slider ==================== */
+
+        .brand-slider {
+            padding: 30px 0;
+            background: #fff;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        /* 👉 Flip container horizontally */
+        .swiper {
+            /* transform: scaleX(-1); */
+        }
+
+        /* 👉 Flip slides back to normal */
+        .swiper-slide {
+            /* transform: scaleX(-1); */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .brand-slider img {
+            width: 100%;
+            height: 120px;
+            /* filter: grayscale(100%); */
+            /* opacity: 0.8; */
+            transition: 0.3s;
+        }
+
+        .brand-slider img:hover {
+            /* filter: grayscale(0); */
+            opacity: 1;
+            transform: scale(1.1);
+
+        }
     </style>
 @endpush
+
+
 
 @section('frontend-content')
     <section class="hero-detail-section">
         <div class="container py-5 text-center text-white">
 
-            <h1 class="hero-title mb-3 fade-right"> <span>Title main</span> location page </h1>
-            <p class="hero-description mx-auto mb-4 fade-left">
+            <h1 class="hero-title mb-3"><span>Title About </span>Contact Page </h1>
+
+            <p class="hero-description mx-auto mb-4">
                 Discover the comprehensive range of specialized biomedical services we offer, designed to support your
                 operational needs and technological advancement.
             </p>
@@ -322,7 +221,7 @@
 
                         <span class="breadcrumb-separator">|</span>
 
-                        <span class="breadcrumb-active">location Main page</span>
+                        <span class="breadcrumb-active">Contact Us</span>
                     </div>
                 </div>
 
@@ -330,103 +229,54 @@
 
         </div>
     </section>
-    {{-- ============ areas section ================ --}}
-    <section class="areas-section">
-        <div class="container text-center">
-
-            <h2 class="areas-title">Areas We Serve In <span> Texas, US</span></h2>
-
-            <p class="areas-desc">
-                We proudly serve multiple regions across Texas, delivering reliable,
-                fast, and professional imaging & biomedical services right to your facility. fast, and professional imaging
-                & biomedical services right to your facility.
-
-            </p>
-
-        </div>
-    </section>
-    {{-- ============ city section ==================== --}}
-    <section class="major-cities-section">
-
-        <!-- Full Width Heading -->
-        <div class="cities-heading-bar">
-            <h2 class="cities-heading">Major Cities And Metro Areas</h2>
-        </div>
-
-        <div class="container py-5">
-            <div class="row justify-content-center">
+    <section class="team-section py-5">
+        <div class="container">
+            <div class="row text-center">
 
                 <!-- Column 1 -->
-                <div class="col-lg-4 col-md-6 text-center mb-4">
-                    <img src="{{ asset('frontend/images/location/6.png') }}" class="city-img" alt="City 3">
-                    <h4 class="city-title mt-3">Dallas, TX</h4>
+                <div class="col-md-4 team-box">
+                    <h2 class="team-title">Team Member</h2>
+                    <p class="team-sub">Expert</p>
                 </div>
 
-                <!-- Column 2 -->
-                <div class="col-lg-4 col-md-6 text-center mb-4">
-                    <img src="{{ asset('frontend/images/location/5.png') }}" class="city-img" alt="City 3">
-                    <h4 class="city-title mt-3">Houston, TX</h4>
-                </div>
-
-                <!-- Column 3 -->
-                <div class="col-lg-4 col-md-6 text-center mb-4">
-                    <img src="{{ asset('frontend/images/location/4.png') }}" class="city-img" alt="City 3">
-                    <h4 class="city-title mt-3">Austin, TX</h4>
-                </div>
-
-                <div class="col-lg-4 col-md-6 text-center mb-4">
-                    <img src="{{ asset('frontend/images/location/3.png') }}" class="city-img" alt="City 3">
-                    <h4 class="city-title mt-3">Dallas, TX</h4>
-                </div>
-
-                <!-- Column 2 -->
-                <div class="col-lg-4 col-md-6 text-center mb-4">
-                    <img src="{{ asset('frontend/images/location/2.png') }}" class="city-img" alt="City 3">
-                    <h4 class="city-title mt-3">Houston, TX</h4>
+                <!-- Column 2 (with borders left & right + top-bottom) -->
+                <div class="col-md-4 team-box middle-box">
+                    <h2 class="team-title">Result-Driven</h2>
+                    <p class="team-sub">Approach</p>
                 </div>
 
                 <!-- Column 3 -->
-                <div class="col-lg-4 col-md-6 text-center mb-4">
-                    <img src="{{ asset('frontend/images/location/1.png') }}" class="city-img" alt="City 3">
-                    <h4 class="city-title mt-3">Austin, TX</h4>
+                <div class="col-md-4 team-box">
+                    <h2 class="team-title">Streamlined</h2>
+                    <p class="team-sub">Execution</p>
                 </div>
 
             </div>
         </div>
-
     </section>
 
-    <section class="austin">
-        <div class="container-fluid">
 
-            <div class="row">
-                <div class="col-md-12  mx-auto">
-                    <h2 class="austin-heading">
-                        How We serve in <span>Austin</span>
-                    </h2>
-                    <p class="austin-desc">
-                        nec Praesent libero, placerat nec non dignissim, viverra Lorem tempor vitae elit. viverra turpis
-                        faucibus non. sit fringilla risus Nam ex nisl. fringilla Donec sit nisi nec Quisque Vestibulum
-                        maximus Nunc ex non. volutpat vitae at, tempor</p>
+    <section class="brand-s">
+        <div class="brand-slider containe">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
 
-                    <p class="austin-desc"> ac amet, viverra tincidunt facilisis Sed orci luctus Nam odio tincidunt urna.
-                        tincidunt
-                        sollicitudin. vel at orci elit tincidunt varius Donec orci dui in at, sapien orci tincidunt Morbi
-                        eget eu non. facilisis odio luctus Nullam Morbi non</p>
-                    <p class="austin-desc">
-                        faucibus viverra ipsum viverra facilisis ex ipsum sapien elit porta ex faucibus odio orci diam
-                        Quisque turpis felis, placerat viverra Donec sollicitudin. facilisis elit vitae maximus non urna
-                        varius amet, eget quis ipsum eu enim. sit elit
-                        Nunc lacus, urna. faucibus vitae lacus dui. dui. eget lacus In faucibus non lobortis, odio sit
-                        efficitur. malesuada ex vitae eu placerat. faucibus quam massa sodales. viverra lobortis,
-                    </p>
-
+                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo1.png') }}"></div>
+                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo2.png') }}"></div>
+                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo3.png') }}"></div>
+                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo4.png') }}"></div>
+                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo5.jpg') }}"></div>
+                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo6.jpg') }}"></div>
+                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo7.png') }}"></div>
+                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo8.png') }}"></div>
+                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo9.png') }}"></div>
+                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo10.png') }}"></div>
 
                 </div>
             </div>
         </div>
     </section>
-    {{-- ============= form section  ===================== --}}
+
     <section class="contact-section py-5">
         <div class="container">
             <div class="row g-2">
@@ -520,6 +370,119 @@
 
                     </div>
                 </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="map-section">
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22272.355104565694!2d-96.800451!3d32.776664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e991a57fbcb6f%3A0xbe0b2982a9e8cad8!2sDallas%2C%20TX%2C%20USA!5e0!3m2!1sen!2sus!4v1700000000000"
+                allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </section>
+    {{-- ======================== offer slider ======================== --}}
+    <section class="offer-section mt-5">
+        <div class="container">
+
+            <!-- Heading -->
+            <h2 class="text-center offer-title">What We <span>Offer</span> </h2>
+            <p class="text-center offer-desc mb-5">
+                We provide top-quality medical equipment & services to meet all your healthcare needs.
+            </p>
+
+            <!-- Slider Wrapper -->
+            <div class="offer-slider-wrapper position-relative">
+
+                <!-- Prev Button -->
+                <button class="offer-prev"><i class="bi bi-chevron-left"></i></button>
+
+                <!-- Slider Container -->
+                <div class="offer-slider-container">
+                    <div class="offer-slider-track">
+
+                        <!-- CARD 1 -->
+                        <div class="offer-card">
+                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
+                                class="card-img img-fluid">
+                            <h4 class="card-title">Repairing Services</h4>
+                            <hr>
+                            <p class="card-desc">High quality ECG machines for accurate monitoring.</p>
+                            <button class="read-btn">Read More</button>
+                        </div>
+
+                        <!-- CARD 2 -->
+                        <div class="offer-card">
+                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
+                                class="card-img img-fluid">
+                            <h4 class="card-title">Surgical Equipment </h4>
+                            <hr>
+                            <p class="card-desc">Advanced imaging technology for clear results.</p>
+                            <button class="read-btn">Read More</button>
+                        </div>
+
+                        <!-- CARD 3 -->
+                        <div class="offer-card">
+                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
+                                class="card-img img-fluid">
+                            <h4 class="card-title">Disposition Services</h4>
+                            <hr>
+                            <p class="card-desc">Portable ultrasound for quick examinations.</p>
+                            <button class="read-btn">Read More</button>
+                        </div>
+
+                        <!-- CARD 4 -->
+                        <div class="offer-card">
+                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
+                                class="card-img img-fluid">
+                            <h4 class="card-title">ICU Monitor</h4>
+                            <hr>
+                            <p class="card-desc">Real-time monitoring for critical patients.</p>
+                            <button class="read-btn">Read More</button>
+                        </div>
+
+                        <!-- Duplicate first 4 cards for infinite loop -->
+                        <div class="offer-card">
+                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
+                                class="card-img img-fluid">
+                            <h4 class="card-title">Medical Equipment </h4>
+                            <hr>
+                            <p class="card-desc">High quality ECG machines.</p>
+                            <button class="read-btn">Read More</button>
+                        </div>
+                        <div class="offer-card">
+                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
+                                class="card-img img-fluid">
+                            <h4 class="card-title">X-ray Machine</h4>
+                            <hr>
+                            <p class="card-desc">Advanced imaging results.</p>
+                            <button class="read-btn">Read More</button>
+                        </div>
+                        <div class="offer-card">
+                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
+                                class="card-img img-fluid">
+                            <h4 class="card-title">Ultrasound</h4>
+                            <hr>
+                            <p class="card-desc">Portable & fast.</p>
+                            <button class="read-btn">Read More</button>
+                        </div>
+                        <div class="offer-card">
+                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
+                                class="card-img img-fluid">
+                            <h4 class="card-title">ICU Monitor</h4>
+                            <hr>
+                            <p class="card-desc">Critical monitoring.</p>
+                            <button class="read-btn">Read More</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Next Button -->
+                <button class="offer-next"><i class="bi bi-chevron-right"></i></button>
+                <!-- PAGINATION DOTS -->
+                <div class="offer-pagination"></div>
 
             </div>
         </div>
@@ -951,5 +914,41 @@
         </div>
     </section>
 @endsection
+
 @push('frontend-scripts')
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 6,
+            spaceBetween: 50,
+            loop: true,
+            speed: 3000, // continuous smooth speed
+            autoplay: {
+                delay: 0, // no pause
+                disableOnInteraction: false
+            },
+            allowTouchMove: true,
+
+            breakpoints: {
+                320: {
+                    slidesPerView: 2
+                },
+                480: {
+                    slidesPerView: 3
+                },
+                768: {
+                    slidesPerView: 4
+                },
+                1024: {
+                    slidesPerView: 6
+                }
+            }
+        });
+
+        // Hover Pause
+        const swiperEl = document.querySelector(".mySwiper");
+        swiperEl.addEventListener("mouseenter", () => swiper.autoplay.stop());
+        swiperEl.addEventListener("mouseleave", () => swiper.autoplay.start());
+    </script>
 @endpush

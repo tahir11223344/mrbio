@@ -10,7 +10,7 @@
             height: 583px;
             overflow: hidden;
             /* display: flex;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            align-items: center; */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                align-items: center; */
             /* padding-left: 60px;  */
             color: #fff;
         }
@@ -76,6 +76,11 @@
             font-weight: bold;
             transition: 0.3s;
             margin-top: 30px;
+        }
+
+        .service-btn:hover {
+            background: #00527b;
+            transform: translateY(-3px) scale(1.03);
         }
 
         .service-btn:hover {
@@ -664,7 +669,7 @@
                             <i class="bi bi-check choose-icon"></i>
 
                             <!-- <div class="choose-icon">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
                             <h4 class="choose-heading">20 Years Experience</h4>
                         </div>
                         <p class="choose-desc">

@@ -50,7 +50,7 @@
                     </p>
 
                     <!-- Images + Customer Count -->
-                    <div class="d-flex align-items-center mt-4">
+                    <div class="d-flex align-items-center mt-">
                         <!-- Stacked Images -->
                         <div class="stack-images position-relative" style="width: 160px; height: 70px;">
                             <!-- Image Containers -->
@@ -353,7 +353,7 @@
         </div>
     </section>
 
-    <section class="xray-section py-5">
+    <section class="xray-section py-">
 
         <div class="container-fluid xray-box p-4 mt-5">
             <div class="container text-center mb-5">
@@ -391,7 +391,7 @@
             </div>
         </div>
     </section>
-    <section class="xray-section py-5">
+    <section class="xray-section py-">
 
         <div class="container-fluid xray-box p-4 mt-5">
             <div class="container text-center mb-5">
@@ -749,7 +749,7 @@
                             <i class="bi bi-check choose-icon"></i>
 
                             <!-- <div class="choose-icon">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
                             <h4 class="choose-heading">20 Years Experience</h4>
                         </div>
                         <p class="choose-desc">
@@ -1154,6 +1154,7 @@
                             <p>Affordable prices.</p>
                         </div>
                     </div>
+
 
                 </div>
             </div>

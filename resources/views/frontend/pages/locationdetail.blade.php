@@ -5,7 +5,7 @@
 @push('frontend-styles')
     <style>
         .query-section {
-            background: #f7f9fb;
+            /* background: #f7f9fb; */
         }
 
         .query-box {
@@ -15,17 +15,117 @@
             border-radius: 12px;
         }
 
+        .query-heading {
+            font-weight: 700;
+            font-family: Inter;
+            font-size: 36px;
+            line-height: 100%;
+            color: #026B9F;
+        }
+
+        .query-box .form-label {
+            font-weight: 600;
+            font-family: Inter;
+            font-size: 24px;
+            line-height: 140%;
+            color: #000000B2;
+        }
+
         /* Input width 1016px (centered) */
         .custom-input {
             max-width: 1016px;
             width: 100%;
             height: 71px;
             border-radius: 15px;
+            font-weight: 400;
+            font-family: Inter;
+            font-size: 24px;
+            line-height: 140%;
+            color: #8B8B8B;
+        }
+
+        .custom-select {
+            max-width: 388px;
+            width: 100%;
+            height: 71px;
+            border-radius: 15px;
+            font-weight: 400;
+            font-family: Inter;
+            font-size: 24px;
+            line-height: 140%;
+            color: #8B8B8B;
+        }
+
+        .custom-text {
+            max-width: 1016px;
+            width: 100%;
+            height: 256px;
+            border-radius: 15px;
+            font-weight: 400;
+            font-family: Inter;
+            font-size: 24px;
+            line-height: 140%;
+            color: #8B8B8B;
         }
 
         /* Make textarea same width */
         textarea.custom-input {
             resize: none;
+        }
+
+        .form-control:focus,
+        .form-select:focus,
+        textarea.form-control:focus {
+            box-shadow: none !important;
+            outline: none !important;
+            border: 2px solid #026B9F !important;
+            color: #8B8B8B;
+
+        }
+
+        .query-btn {
+            width: 145px;
+            height: 45px;
+            border-radius: 10px;
+            background: #0071A8;
+            color: #ffffff;
+            font-weight: 600;
+            font-family: Inter;
+            font-size: 20px;
+            line-height: 100%;
+            border: none;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .query-btn:hover {
+            background: #015883;
+            transform: scale(1.03);
+        }
+
+        .subb-heading {
+            color: #046DA0;
+            font-weight: 600;
+            font-family: Inter;
+            font-size: 24px;
+            line-height: 40px;
+            margin-top: 10px;
+        }
+
+        .subb-headingg {
+            color: #000000;
+            font-weight: 600;
+            font-family: Inter;
+            font-size: 18px;
+            line-height: 40px;
+            max-width: 541px;
+        }
+
+        .subb-para {
+            color: #00000080;
+            font-weight: 700;
+            font-family: Arial;
+            font-size: 16px;
+            line-height: 160%;
         }
     </style>
 @endpush
@@ -58,7 +158,7 @@
     </section>
     <section class="biomed-section">
         <div class="container">
-            <div class="row justify-content-cente">
+            <div class="row justify-content-cente mt-2">
 
                 <!-- Left Column -->
                 <div class="col-lg-6">
@@ -107,24 +207,24 @@
 
                 <!-- Right Column -->
                 <div class="col-lg-6">
-                    <h2 class="detail-heading">Cost-Effective & Friendly Biomed <span>Repair Services</span> </h2>
+                    <h2 class="subb-heading">Medical & Lab Equipment Repair and Preventative Maintenance in Virginia and
+                        the Mid Atlantic Region </h2>
+                    <h2 class="subb-headingg">Medical & Lab Equipment Repair and Preventative Maintenance in Virginia and
+                        the Mid Atlantic Region </h2>
 
-                    <ul class="service-list">
-                        <li>Fast and reliable biomedical repair Fast and reliable biomedical repair
-                            biomedical repair </li>
-                        <li>Affordable pricing for clinics & hospitalsFast and
-                            biomedical repair</li>
-                        <li>Certified and experienced technicians Fast and
-                            biomedical repair</li>
-                        <li>Premium quality parts usedFast and reliablel
-                            repairFast and reliable biomedical repair</li>
-                        <li>24/7 customer support availableFast and reliable
-                            repair</li>
-                        <li>24/7 customer support availableFast and reliable
-                            repair</li>
-                        <li>24/7 customer support availableFast and reliable
-                            repair</li>
-                    </ul>
+                    <p class="subb-para">
+                        Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit
+                        tempus diam.Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam
+                        vitae sit tempus diam.Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit
+                        nulla. Nullam vitae sit tempus diam.Libero diam auctor tristique hendrerit in eu vel id. Nec leo
+                        amet suscipit nulla. Nullam vitae sit tempus diam.Libero diam auctor tristique hendrerit in eu vel
+                        id. Nec leo amet suscipit nulla. Nullam vitae sit tempus diam.Libero diam auctor tristique hendrerit
+                        in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit tempus diam.Libero diam auctor tristique
+                        hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit tempus diam.Libero diam auctor
+                        tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit tempus diam.Libero
+                        diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit tempus
+                        diam.
+                    </p>
 
                     <button class="quote-btn">Request A Quote</button>
                 </div>
@@ -137,7 +237,7 @@
     <section class="query-section py-5 d-flex justify-content-center">
         <div class="query-box p-4 p-md-5">
 
-            <h2 class="text-center mb-4 fw-bold">Submit Your Query Here</h2>
+            <h2 class=" mb-4 query-heading">Submit Your Query Here</h2>
 
             <form>
 
@@ -164,40 +264,67 @@
                     <label class="form-label">Company / Hospital Name</label>
                     <input type="text" class="form-control custom-input" placeholder="Enter company / hospital name">
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Select Your Service Needs</label>
+                    <select class="form-select custom-select">
+                        <option value=""> Select Service</option>
+                        <option value="medical">Medical Service</option>
+                        <option value="cleaning">Cleaning Service</option>
+                        <option value="security">Security Service</option>
+                        <option value="it-support">IT Support</option>
+                    </select>
+                </div>
 
                 <!-- Service Needs -->
                 <div class="mb-3">
-                    <label class="form-label fw-bold">Select Your Service Needs</label>
+                    <label class="form-label fw-bold">Equipment Category</label>
 
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox">
-                        <label class="form-check-label">Consultation</label>
-                    </div>
+                    <div class="d-flex gap-4 flex-wrap w-50">
 
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox">
-                        <label class="form-check-label">Medical Assistance</label>
-                    </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">Consultation</label>
+                        </div>
 
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox">
-                        <label class="form-check-label">Emergency Support</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">Medical Assistance</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">Emergency Support</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">Consultation</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">Medical Assistance</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">Emergency Support</label>
+                        </div>
+
                     </div>
                 </div>
+
 
                 <!-- Message -->
                 <div class="mb-3">
                     <label class="form-label">Message</label>
-                    <textarea rows="4" class="form-control custom-input" placeholder="Write your message..."></textarea>
+                    <textarea rows="4" class="form-control custom-text" placeholder="Write your message..."></textarea>
                 </div>
 
                 <!-- Preferred Contact -->
                 <div class="mb-3">
                     <label class="form-label fw-bold">Preferred Contact Method</label>
 
-                    <div class="d-flex justify-content-between flex-wrap"
-                        style="width:100%;             max-width: 1016px;
- ">
+                    <div class="d-flex justify-content-between flex-wrap" style="width:100%; max-width: 1016px;">
                         <div class="d-flex gap-4 flex-wrap">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="contact">
@@ -210,7 +337,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary ">Submit</button>
+                        <button type="submit" class="query-btn">Submit</button>
                     </div>
                 </div>
 
@@ -222,7 +349,36 @@
         </div>
     </section>
     <!-- ===== SECTION END ===== -->
+    <section class="austin">
+        <div class="container-fluid">
 
+            <div class="row">
+                <div class="col-md-12  mx-auto">
+                    <h2 class="austin-heading">
+                        How We serve in <span>Austin</span>
+                    </h2>
+                    <p class="austin-desc">
+                        nec Praesent libero, placerat nec non dignissim, viverra Lorem tempor vitae elit. viverra turpis
+                        faucibus non. sit fringilla risus Nam ex nisl. fringilla Donec sit nisi nec Quisque Vestibulum
+                        maximus Nunc ex non. volutpat vitae at, tempor</p>
+
+                    <p class="austin-desc"> ac amet, viverra tincidunt facilisis Sed orci luctus Nam odio tincidunt urna.
+                        tincidunt
+                        sollicitudin. vel at orci elit tincidunt varius Donec orci dui in at, sapien orci tincidunt Morbi
+                        eget eu non. facilisis odio luctus Nullam Morbi non</p>
+                    <p class="austin-desc">
+                        faucibus viverra ipsum viverra facilisis ex ipsum sapien elit porta ex faucibus odio orci diam
+                        Quisque turpis felis, placerat viverra Donec sollicitudin. facilisis elit vitae maximus non urna
+                        varius amet, eget quis ipsum eu enim. sit elit
+                        Nunc lacus, urna. faucibus vitae lacus dui. dui. eget lacus In faucibus non lobortis, odio sit
+                        efficitur. malesuada ex vitae eu placerat. faucibus quam massa sodales. viverra lobortis,
+                    </p>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
     {{-- ================faqs section ================ --}}
 
     <section class="faqs-section py-5">

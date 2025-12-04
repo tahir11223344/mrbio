@@ -1,3 +1,55 @@
+<<<<<<< HEAD
+// (function () {
+//     const slider = document.getElementById("reviewSlider");
+
+//     let originalSlides = Array.from(slider.children);
+
+//     const visible = 8;
+//     const slideWidth = 10;
+//     let index = 0;
+
+//     originalSlides.forEach(slide => slider.appendChild(slide.cloneNode(true)));
+//     let slides = Array.from(document.querySelectorAll(".tooltip-slide"));
+
+//     const totalOriginalSlides = originalSlides.length;
+
+//     function updateSlider() {
+
+//         slides.forEach(s => s.classList.remove("active"));
+
+//         const centerIndexInSlidesArray = index + Math.floor(visible / 2);
+
+//         if (slides[centerIndexInSlidesArray]) slides[centerIndexInSlidesArray].classList.add("active");
+
+//         const offset = (visible * slideWidth) / 2 - (slideWidth / 2);
+//         const moveX = index * slideWidth;
+
+//         slider.style.transform = `translateX(-${moveX - offset}px)`;
+
+//         index++;
+
+//         if (index >= totalOriginalSlides) {
+
+//             setTimeout(() => {
+//                 slider.style.transition = "none";
+
+
+//                 index = index - totalOriginalSlides;
+
+//                 const newMoveX = index * slideWidth;
+//                 slider.style.transform = `translateX(-${newMoveX - offset}px)`;
+
+//                 setTimeout(() => slider.style.transition = "0.6s ease", 50);
+//             }, 600);
+//         }
+//     }
+
+//     updateSlider();
+
+//     setInterval(updateSlider, 2000);
+
+// })();
+=======
 (function () {
     const slider = document.getElementById("reviewSlider");
     if (!slider) return;
@@ -69,6 +121,7 @@
     // Auto-play
     setInterval(nextSlide, 2000);
 })();
+>>>>>>> ce3f3e7f236aad89b8b72c22b8ba8ad289de8cf5
 
 
 // const faqItems = document.querySelectorAll('.faq-item');
@@ -89,8 +142,130 @@
 // =========== show more faqs js ============
 
 
+// (function () {
+//     const slider = document.getElementById("reviewSlider");
+
+//     let originalSlides = Array.from(slider.children);
+
+//     const visible = 8;       // Visible slides
+//     const slideWidth = 106;  // Width of each slide
+//     let index = 0;
+
+//     // Duplicate slides for infinite effect
+//     originalSlides.forEach(slide => slider.appendChild(slide.cloneNode(true)));
+//     let slides = Array.from(document.querySelectorAll(".tooltip-slide"));
+
+//     const totalOriginalSlides = originalSlides.length;
+
+//     // Update slider: center current index
+//     function updateSlider() {
+//         slides.forEach(s => s.classList.remove("active", "show-tooltip"));
+
+//         const centerIndex = index + Math.floor(visible / 2);
+//         if (slides[centerIndex]) {
+//             slides[centerIndex].classList.add("active");
+//             slides[centerIndex].classList.add("show-tooltip");
+//         }
+
+//         const offset = (visible * slideWidth) / 2 - slideWidth / 2;
+//         const moveX = index * slideWidth;
+
+//         slider.style.transition = "0.6s ease";
+//         slider.style.transform = `translateX(-${moveX - offset}px)`;
+
+//         index++;
+
+//         // Infinite loop
+//         if (index >= totalOriginalSlides) {
+//             setTimeout(() => {
+//                 slider.style.transition = "none";
+//                 index = index - totalOriginalSlides;
+//                 const newMoveX = index * slideWidth;
+//                 slider.style.transform = `translateX(-${newMoveX - offset}px)`;
+//                 setTimeout(() => slider.style.transition = "0.6s ease", 50);
+//             }, 600);
+//         }
+//     }
+
+//     // 🔥 Click on any slide to move to center
+//     slides.forEach((slide, i) => {
+//         slide.addEventListener("click", () => {
+//             index = i;
+//             updateSlider();
+//         });
+//     });
+
+//     updateSlider();
+//     setInterval(updateSlider, 2000); // Auto-slide every 2 sec
+
+// })();
 
 
+(function () {
+    const slider = document.getElementById("reviewSlider");
+
+    let originalSlides = Array.from(slider.children);
+
+    const visible = 8;       // Visible slides in container
+    const slideWidth = 106;  // Width of each slide
+    let index = 0;           // Current index of leftmost visible slide
+
+    // Duplicate slides for infinite effect
+    originalSlides.forEach(slide => slider.appendChild(slide.cloneNode(true)));
+    let slides = Array.from(document.querySelectorAll(".tooltip-slide"));
+    const totalOriginalSlides = originalSlides.length;
+
+    function updateSlider() {
+        slides.forEach(s => s.classList.remove("active", "show-tooltip"));
+
+        // Calculate center slide index
+        const centerIndex = index + Math.floor(visible / 2);
+
+        // Only center slide gets tooltip
+        if (slides[centerIndex]) {
+            slides[centerIndex].classList.add("active");
+            slides[centerIndex].classList.add("show-tooltip");
+        }
+
+        const offset = (visible * slideWidth) / 2 - slideWidth / 2;
+        const moveX = index * slideWidth;
+
+        slider.style.transition = "0.6s ease";
+        slider.style.transform = `translateX(-${moveX - offset}px)`;
+
+        index++;
+
+        // Loop when reaching end
+        if (index >= totalOriginalSlides) {
+            setTimeout(() => {
+                slider.style.transition = "none";
+                index = index - totalOriginalSlides;
+                const newMoveX = index * slideWidth;
+                slider.style.transform = `translateX(-${newMoveX - offset}px)`;
+                setTimeout(() => slider.style.transition = "0.6s ease", 50);
+            }, 600);
+        }
+    }
+
+    // Click: move clicked slide to center
+    slides.forEach((slide, i) => {
+        slide.addEventListener("click", () => {
+            index = i - Math.floor(visible / 2);
+            if (index < 0) index = 0;
+            updateSlider();
+        });
+    });
+
+    updateSlider();
+
+    // Auto-slide every 2 seconds
+    setInterval(updateSlider, 2000);
+
+})();
+
+
+
+// ============= faqs ==================
 
 
 document.addEventListener("DOMContentLoaded", function () {

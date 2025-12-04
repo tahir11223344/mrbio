@@ -34,9 +34,16 @@
         z-index: 10;
         border: 1px solid #000000;
         border-radius: 21px;
-        box-shadow: 0 5px 14px #E9A426;
+        /* box-shadow: 0 5px 14px #E9A426; */
         height: 112px;
+        border: 1px solid #0071A8;
+        transition: all 0.5s ease-in-out;
     }
+
+    .contact-container:hover {
+        transform: translateX(-50%) scale(1.03);
+    }
+
 
     .contact-left h3 {
         font-size: 32px;
@@ -409,7 +416,7 @@
 
 
 <footer class="custom-footer">
-    <div class="contact-container shadow-custom border-0">
+    <div class="contact-container shadow-custom ">
         <div class="d-flex justify-content-between align-items-center w-100 flex-column flex-md-row">
             <div class="contact-left mb-3 mb-md-0 text-center text-md-start">
                 <h3 class=" mb-1">GET IN TOUCH</h3>
