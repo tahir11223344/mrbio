@@ -23,5 +23,8 @@ class RepairService extends Model
         'meta_description',
         'created_by',
         'updated_by',
+        'repair_service_short_description',
+        'x_ray_short_description',
+        'c_arm_short_description',
     ];
 }

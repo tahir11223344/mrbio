@@ -48,9 +48,16 @@ class RepairServiceController extends Controller
             'banner_short_description' => 'nullable|string',
             'banner_image' => 'nullable|file|max:10240', // any file up to 10MB
             'banner_image_alt' => 'nullable|string|max:255',
+            
             'repair_service_heading' => 'nullable|string|max:255',
+            'repair_service_short_description' => 'nullable|string',   // NEW
+
             'x_ray_heading' => 'nullable|string|max:255',
+            'x_ray_short_description' => 'nullable|string',            //  NEW
+
             'c_arm_heading' => 'nullable|string|max:255',
+            'c_arm_short_description' => 'nullable|string',            // NEW
+
             'meta_title' => 'nullable|string|max:255',
             'meta_keywords' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string',

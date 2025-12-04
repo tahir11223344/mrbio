@@ -24,9 +24,9 @@
 
 @php
     $heading = split_heading($data?->hero_heading ?? '');
-    $c       = split_heading($data?->content_heading ?? '');
-    $x_ray   = split_heading($repairServiceData?->x_ray_heading ?? '');
-    $c_arm   = split_heading($repairServiceData?->c_arm_heading ?? '');
+    $c = split_heading($data?->content_heading ?? '');
+    $x_ray = split_heading($repairServiceData?->x_ray_heading ?? '');
+    $c_arm = split_heading($repairServiceData?->c_arm_heading ?? '');
 @endphp
 
 @section('frontend-content')
@@ -361,10 +361,7 @@
                     <div class="col-md-8 mx-auto">
                         <h2 class="main-heading">{{ $x_ray['first_text'] }} <span>{{ $x_ray['second_text'] }}</span>
                         </h2>
-                        {{-- <p class=" xray-desc"> centers.quipment available for hospitals and emergency healthcare centers.
-                            centers.quipment available for hospitals and emergency healthcare centersemergency healthcare
-                            centers.
-                            centers.quipment available for hospitals and emergency healthcare centers</p> --}}
+                        <p class=" xray-desc">{{ $repairServiceData->x_ray_short_description ?? '' }}</p>
                     </div>
                 </div>
             </div>
@@ -399,10 +396,7 @@
                     <div class="col-md-8 mx-auto">
                         <h2 class="main-heading">{{ $c_arm['first_text'] }} <span>{{ $c_arm['second_text'] }}</span>
                         </h2>
-                        {{-- <p class="xray-desc"> centers.quipment available for hospitals and emergency healthcare centers.
-                            centers.quipment available for hospitals and emergency healthcare centersemergency healthcare
-                            centers.
-                            centers.quipment available for hospitals and emergency healthcare centers</p> --}}
+                        <p class="xray-desc">{{ $repairServiceData->c_arm_short_description ?? '' }}</p>
                     </div>
                 </div>
             </div>
@@ -749,7 +743,7 @@
                             <i class="bi bi-check choose-icon"></i>
 
                             <!-- <div class="choose-icon">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div> -->
                             <h4 class="choose-heading">20 Years Experience</h4>
                         </div>
                         <p class="choose-desc">

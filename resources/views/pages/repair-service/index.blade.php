@@ -102,6 +102,16 @@
                                 @enderror
                             </div>
 
+                            <div class="col-lg-12">
+                                <label for="repair_service_short_description"
+                                    class="form-label fw-semibold">{{ __('Repair Short Description') }}</label>
+                                <textarea name="repair_service_short_description" id="repair_service_short_description" rows="3"
+                                    class="form-control form-control-lg @error('repair_service_short_description') is-invalid @enderror">{{ old('repair_service_short_description', $data->repair_service_short_description ?? '') }}</textarea>
+                                @error('repair_service_short_description')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <!-- X Ray Heading -->
                             <div class="col-lg-12">
                                 <label for="x_ray_heading"
@@ -114,6 +124,16 @@
                                 @enderror
                             </div>
 
+                            <div class="col-lg-12">
+                                <label for="x_ray_short_description"
+                                    class="form-label fw-semibold">{{ __('X-Ray Short Description') }}</label>
+                                <textarea name="x_ray_short_description" id="x_ray_short_description" rows="3"
+                                    class="form-control form-control-lg @error('x_ray_short_description') is-invalid @enderror">{{ old('x_ray_short_description', $data->x_ray_short_description ?? '') }}</textarea>
+                                @error('x_ray_short_description')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <!-- C-Arm Heading -->
                             <div class="col-lg-12">
                                 <label for="c_arm_heading"
@@ -122,6 +142,16 @@
                                     class="form-control form-control-lg @error('c_arm_heading') is-invalid @enderror"
                                     value="{{ old('c_arm_heading', $data->c_arm_heading ?? '') }}">
                                 @error('c_arm_heading')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-12">
+                                <label for="c_arm_short_description"
+                                    class="form-label fw-semibold">{{ __('C-Arm Short Description') }}</label>
+                                <textarea name="c_arm_short_description" id="c_arm_short_description" rows="3"
+                                    class="form-control form-control-lg @error('c_arm_short_description') is-invalid @enderror">{{ old('c_arm_short_description', $data->c_arm_short_description ?? '') }}</textarea>
+                                @error('c_arm_short_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>

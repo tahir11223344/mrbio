@@ -261,7 +261,9 @@ class LandingPageController extends Controller
         $repairServiceData = RepairService::select([
             'repair_service_heading',
             'x_ray_heading',
+            'x_ray_short_description',
             'c_arm_heading',
+            'c_arm_short_description'
         ])->first();
 
         // Single query for x-rays and c-arms
