@@ -23,12 +23,12 @@
 @endpush
 
 @php
-    $heading = split_heading($data->hero_heading);
-    $c = split_heading($data->content_heading);
-    $x_ray = split_heading($repairServiceData->x_ray_heading);
-    $c_arm = split_heading($repairServiceData->c_arm_heading);
-
+    $heading = split_heading($data?->hero_heading ?? '');
+    $c       = split_heading($data?->content_heading ?? '');
+    $x_ray   = split_heading($repairServiceData?->x_ray_heading ?? '');
+    $c_arm   = split_heading($repairServiceData?->c_arm_heading ?? '');
 @endphp
+
 @section('frontend-content')
 
 
