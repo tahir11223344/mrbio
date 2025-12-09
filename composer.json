@@ -9,6 +9,7 @@
 	"version": "8.3.2",
 	"require": {
 		"php": "^8.0",
+		"bardolf69/laravel11-countries-states-cities": "^1.0",
 		"diglactic/laravel-breadcrumbs": "^9.0",
 		"guzzlehttp/guzzle": "^7.2",
 		"laravel/framework": "^11.0",

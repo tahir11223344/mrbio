@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\City;
 use App\Models\Faq;
 use App\Models\LandingPage;
 use App\Models\OemContent;
@@ -12,6 +13,7 @@ use App\Models\Product;
 use App\Models\RepairService;
 use App\Models\RepairServiceSubPage;
 use App\Traits\UploadImageTrait;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -287,7 +289,7 @@ class LandingPageController extends Controller
         $faqs = Faq::where('page_name', 'landing')
             ->select(['question', 'answer'])
             ->latest()
-            ->take(4)
+            // ->take(4)
             ->get();
 
         $blogs = Blog::where('is_active', true)
@@ -309,5 +311,36 @@ class LandingPageController extends Controller
             'faqs',
             'blogs'
         ));
+    }
+
+    public function getCities($state_id)
+    {
+        try {
+            // Validate state_id is numeric
+            if (!is_numeric($state_id)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invalid state ID.'
+                ], 400);
+            }
+
+            // Only fetch ID and name
+            $cities = City::where('state_id', $state_id)
+                ->orderBy('name', 'asc')
+                ->pluck('name', 'id');
+
+            return response()->json([
+                'status' => true,
+                'data'   => $cities
+            ], 200);
+        } catch (Exception $e) {
+
+            Log::error('Error fetching cities: ' . $e->getMessage());
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong while fetching cities.'
+            ], 500);
+        }
     }
 }

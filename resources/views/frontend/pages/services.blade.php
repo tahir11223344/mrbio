@@ -1,6 +1,9 @@
 @extends('frontend.layouts.frontend')
 
-@section('title', 'services')
+{{-- @section('title', 'services') --}}
+@section('meta_title', $data->meta_title ?? 'Services')
+@section('meta_keywords', $data->meta_keywords ?? '')
+@section('meta_description', $data->meta_description ?? '')
 
 @push('frontend-styles')
     <style>
@@ -242,7 +245,7 @@
         /* ==== biomed-section ==============*/
         .biomed-section {
             /* padding: 80px 0;
-                                                                                                                                                                                                                                                                                            font-family: Arial, sans-serif; */
+                                                                                                                                                                                                                                                                                                                                    font-family: Arial, sans-serif; */
         }
 
         .service-main-heading {
@@ -251,7 +254,7 @@
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
             /* max-width: 750px;
-                                                                                                                                                            margin-left: 240px; */
+                                                                                                                                                                                                    margin-left: 240px; */
 
         }
 
@@ -261,8 +264,8 @@
 
         .main-desc {
             /* text-align: center;
-                                                                                                                                                                                            max-width: 750px;
-                                                                                                                                                                                            margin: 0 auto; */
+                                                                                                                                                                                                                                    max-width: 750px;
+                                                                                                                                                                                                                                    margin: 0 auto; */
             font-size: 18px;
             line-height: 1.6;
         }
@@ -446,10 +449,10 @@
         }
 
         /* .top-bg {
-                                                                                                                                                                                                                                                                                                                                                                        width: 100%;
-                                                                                                                                                                                                                                                                                                                                                                        height: 60px;
-                                                                                                                                                                                                                                                                                                                                                                        background: #ACD5D5;
-                                                                                                                                                                                                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                                                                                                                                                                                                width: 100%;
+                                                                                                                                                                                                                                                                                                                                                                                                                height: 60px;
+                                                                                                                                                                                                                                                                                                                                                                                                                background: #ACD5D5;
+                                                                                                                                                                                                                                                                                                                                                                                                            } */
         .top-bg {
             width: 100%;
             height: 10px;
@@ -498,7 +501,7 @@
         .contact-content {
             max-width: 600px;
             /* display: flex;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            flex-direction: column; */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    flex-direction: column; */
             gap: 20px;
             margin-top: 70px;
             margin-left: 0px !important;
@@ -587,11 +590,10 @@
     <section class="hero-detail-section">
         <div class="container py-5 text-center text-white">
 
-            <h1 class="hero-title mb-3">Mr Biomed <span>Services Detail page</span> </h1>
+            <h1 class="hero-title mb-3">{!! highlightBracketText($data->hero_title ?? '', ['#000000']) !!}</h1>
 
             <p class="hero-description mx-auto mb-4">
-                Discover the comprehensive range of specialized biomedical services we offer, designed to support your
-                operational needs and technological advancement.
+                {{ $data->hero_subtitle ?? '' }}
             </p>
 
             <div class="container py-5 text-center text-white">
@@ -623,55 +625,27 @@
 
                 <div class="col-lg-6 col-md-6 ">
                     <h1 class="hero-main-heading  mb-4">
-                        MR <span> BIOMED</span> - Group Your Trusted BIO-Medical Services Provider
+                        {!! highlightBracketText($data->intro_heading ?? '') !!}
                     </h1>
                     <p class="hero-description ">
-                        Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit
-                        tempus diam.
-
-                    </p>
-                    <p class="hero-description ">
-                        Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit
-                        tempus diam.
-
-                    </p>
-                    <p class="hero-description ">
-                        Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit
-                        tempus diam.
-
-                    </p>
-                    <p class="hero-description ">
-                        Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit
-                        tempus diam.
-
-                    </p>
-                    <p class="hero-description ">
-                        Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit
-                        tempus diam.
-
-                    </p>
-
-                    <p class="hero-description ">
-                        Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit
-                        tempus diam.
-
-                    </p>
-                    <p class="hero-description ">
-                        Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit
-                        tempus diam.
+                        {!! $data->intro_text ?? '' !!}
 
                     </p>
                 </div>
 
 
-                <div class="col-lg-6 col-md-6 text-center ">
+                <div class="col-lg-6 col-md-6 text-center">
                     <div class="image-stack d-inline-block position-relative justify-content-center">
-                        <img src="{{ asset('frontend/images/service/services-img-1.png') }}" alt="Medical Equipment 1"
-                            class="img-fluid hero-image-top ">
-                        <img src="{{ asset('frontend/images/service/services-img-2.jpg') }}" alt="Medical Equipment 2"
-                            class="img-fluid hero-image-bottom ">
+
+                        <img src="{{ $data->intro_image_1 ? asset('storage/biomed_services/' . $data->intro_image_1) : '' }}"
+                            alt="{{ $data->intro_image_1_alt ?? '' }}" class="img-fluid hero-image-top">
+
+                        <img src="{{ $data->intro_image_2 ? asset('storage/biomed_services/' . $data->intro_image_2) : '' }}"
+                            alt="{{ $data->intro_image_2_alt ?? '' }}" class="img-fluid hero-image-bottom">
+
                     </div>
                 </div>
+
 
             </div>
         </div>
@@ -685,54 +659,25 @@
                 <div class="row">
                     <div class="col-8 mx-auto">
                         <h2 class="equipment-heading text-center mb-">
-                            Our Wide Selection of <span>Medical Equipment Includes</span>
+                            {!! highlightBracketText($data->product_heading ?? '') !!}
                         </h2>
                     </div>
                 </div>
                 <!-- 3 Columns -->
                 <div class="row justify-content-center">
 
-                    <!-- Column 1 -->
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <ul class="equipment-list">
-                            <li><i class="bi bi-check yes-icon"></i> Wheelchairs</li>
-                            <li><i class="bi bi-check yes-icon"></i> Hospital Beds</li>
-                            <li><i class="bi bi-check yes-icon"></i> Oxygen Cylinders</li>
-                            <li><i class="bi bi-check yes-icon"></i> Ventilators</li>
-                            <li><i class="bi bi-check yes-icon"></i> Nebulizers</li>
-                            <li><i class="bi bi-check yes-icon"></i> Suction Machines</li>
-                            <li><i class="bi bi-check yes-icon"></i> IV Stands</li>
-                            <li><i class="bi bi-check yes-icon"></i> ECG Machines</li>
-                        </ul>
-                    </div>
-
-                    <!-- Column 2 -->
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <ul class="equipment-list">
-                            <li><i class="bi bi-check yes-icon"></i> Pulse Oximeters</li>
-                            <li><i class="bi bi-check yes-icon"></i> BP Monitors</li>
-                            <li><i class="bi bi-check yes-icon"></i> Glucometers</li>
-                            <li><i class="bi bi-check yes-icon"></i> Wheel Walkers</li>
-                            <li><i class="bi bi-check yes-icon"></i> Air Mattresses</li>
-                            <li><i class="bi bi-check yes-icon"></i> CPAP Machines</li>
-                            <li><i class="bi bi-check yes-icon"></i> Oxygen Concentrators</li>
-                            <li><i class="bi bi-check yes-icon"></i> Defibrillators</li>
-                        </ul>
-                    </div>
-
-                    <!-- Column 3 -->
-                    <div class="col-lg-4 col-md-12 mb-4">
-                        <ul class="equipment-list">
-                            <li><i class="bi bi-check yes-icon"></i> Patient Monitors</li>
-                            <li><i class="bi bi-check yes-icon"></i> Syringe Pumps</li>
-                            <li><i class="bi bi-check yes-icon"></i> Infusion Pumps</li>
-                            <li><i class="bi bi-check yes-icon"></i> Folding Stretchers</li>
-                            <li><i class="bi bi-check yes-icon"></i> Examination Lights</li>
-                            <li><i class="bi bi-check yes-icon"></i> Surgical Instruments</li>
-                            <li><i class="bi bi-check yes-icon"></i> Thermometers</li>
-                            <li><i class="bi bi-check yes-icon"></i> CPAP Masks</li>
-                        </ul>
-                    </div>
+                    @foreach ($categoryColumns as $column)
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <ul class="equipment-list">
+                                @foreach ($column as $item)
+                                    <li>
+                                        <i class="bi bi-check yes-icon"></i>
+                                        {{ $item->name }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endforeach
 
                 </div>
             </div>
@@ -753,11 +698,11 @@
         <div class="container  text-white">
 
             <h2 style="access-heading">
-                In Need of accessorie?
+                {!! highlightBracketText($data->banner_heading ?? '') !!}
             </h2>
 
             <p style="font-size:17px; max-width:750px; ">
-                Add your content here. This section uses inline CSS to set a beautiful background image.
+                {{ $data->banner_text ?? '' }}
             </p>
 
             <button class="access-btn">
@@ -774,183 +719,163 @@
             <div class="row">
                 <div class="row mx-auto">
                     <h2 class="service-main-heading">
-                        MR <span>BIOMED</span> - Group Your Trusted BIO-Medical Services Provider
+                        {!! highlightBracketText($data->service_heading ?? '') !!}
                     </h2>
 
                     <p class="main-desc">
-                        We provide high-quality biomedical services, ensuring accuracy, safety, and efficiency.
-                        Our team is committed to delivering top-tier maintenance, inspection, and rental services
-                        tailored to meet your healthcare facility needs. Your trust is our top priority.
+                        {{ $data->service_sd ?? '' }}
                     </p>
                 </div>
             </div>
 
             <div class="row mt-5">
-
-                <!-- LEFT COLUMN - CARDS -->
-                <div class="col-lg-6 col-md-12">
-                    <div class="service-card">
-                        <h4>Preventive Maintenance</h4>
-                        <p>Regular maintenance to ensure optimal equipment performance.Regular maintenance to ensure optimal
-                            equipment performance.Regular maintenance to ensure optimal equipment performance.</p>
-                    </div>
-
-                    <div class="service-card">
-                        <h4>Preventive Maintenance</h4>
-                        <p>Ensuring equipment longevity and safety.Regular maintenance to ensure optimal equipment
-                            performance.Regular maintenance to ensure optimal equipment performance.</p>
-                    </div>
-
-                    <div class="service-card">
-                        <h4>Preventive Maintenance</h4>
-                        <p>Reduced breakdowns with professional servicing.Regular maintenance to ensure optimal equipment
-                            performance.Regular maintenance to ensure optimal equipment performance.</p>
-                    </div>
-
-                    <div class="service-card">
-                        <h4>Preventive Maintenance</h4>
-                        <p>Accurate diagnostics and calibration.Regular maintenance to ensure optimal equipment
-                            performance.Regular maintenance to ensure optimal equipment performance.</p>
-                    </div>
-
-                    <div class="service-card">
-                        <h4>Preventive Maintenance</h4>
-                        <p>Complete maintenance solutions for all devices.Regular maintenance to ensure optimal equipment
-                            performance.Regular maintenance to ensure optimal equipment performance.</p>
-                    </div>
-                </div>
-
-                <!-- RIGHT COLUMN - IMAGES -->
-                <div class="col-lg-6 col-md-12 text-center">
-                    <img src="{{ asset('frontend/images/service/services-img-1.png') }}" alt="Medical Equipment 1"
-                        class="img-fluid infoo-img">
-
-                    <img src="{{ asset('frontend/images/service/services-img-1.png') }}" alt="Medical Equipment 1"
-                        class="img-fluid infoo-img ">
-                    <img src="{{ asset('frontend/images/service/services-img-1.png') }}" alt="Medical Equipment 1"
-                        class="img-fluid infoo-img ">
-                </div>
-
-            </div>
-
-            <!-- RENTAL EQUIPMENT SECTION -->
-
-
-        </div>
-
-        <div class="row pb-3 pt-0 mt-0">
-            <h3 class="rental-heading">Rental <span>Equipment</span> </h3>
-
-            <div class="product-filter-tabs  d-flex justify-content-center flex-wrap gap-2 mt-4">
-
-                <button class="filter-btn active" data-filter="featured">Featured</button>
-
-                <button class="filter-btn text-dark" data-filter="equipment">Medical Equipment</button>
-                <button class="filter-btn text-dark" data-filter="supplies">Supplies</button>
-                <button class="filter-btn text-dark" data-filter="parts">Parts</button>
-            </div>
-        </div>
-        <section class="rental-section bg-white ">
-
-
-            <div class="container">
                 <div class="row">
-
-                    <!-- LEFT COLUMN -->
-                    <div class="col-lg-6">
-
-                        <div class="rental-card">
-                            <h4 class="rental-h4">Product <span>Name</span> </h4>
-                            <img src="{{ asset('frontend/images/service/service-rental-img.png') }}" class="rental-img"
-                                alt="">
-                            <p>Durable and comfortable wheelchair for patientsDurable and comfortable wheelchair for
-                                patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair for
-                                patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair for
-                                patient.</p>
-
-                            <h4 class="why-heading mt-4">Why Perform an Electrical Safety Inspection?</h4>
-
-                            <ul class="why-list">
-                                <li>Ensures equipment is operating safely</li>
-                                <li>Reduces the risk of electrical hazards</li>
-                                <li>Improves equipment life and reliability</li>
-                                <li>Required for compliance and certification</li>
-                            </ul>
-                            <button class="btn-get">Get Now</button>
-                        </div>
-
-                        <div class="rental-card">
-                            <h4 class="rental-h4">Product <span>Name</span> </h4>
-                            <img src="{{ asset('frontend/images/service/service-rental-img.png') }}" class="rental-img"
-                                alt="">
-                            <p>Durable and comfortable wheelchair for patientsDurable and comfortable wheelchair for
-                                patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair for
-                                patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair for
-                                patient.</p>
-
-                            <h4 class="why-heading mt-4">Why Perform an Electrical Safety Inspection?</h4>
-
-                            <ul class="why-list">
-                                <li>Ensures equipment is operating safely</li>
-                                <li>Reduces the risk of electrical hazards</li>
-                                <li>Improves equipment life and reliability</li>
-                                <li>Required for compliance and certification</li>
-                            </ul>
-                            <button class="btn-get">Get Now</button>
-                        </div>
-
-
+                    <!-- LEFT COLUMN - CARDS -->
+                    <div class="col-lg-6 col-md-12">
+                        @foreach ($data->service_cards ?? [] as $card)
+                            <div class="service-card">
+                                <h4>{{ $card['heading'] ?? '' }}</h4>
+                                <p>{{ $card['description'] ?? '' }}</p>
+                            </div>
+                        @endforeach
                     </div>
 
-                    <!-- RIGHT COLUMN -->
-                    <div class="col-lg-6">
-
-                        <div class="rental-card">
-
-                            <h4 class="rental-h4">Product <span>Name</span> </h4>
-                            <img src="{{ asset('frontend/images/service/service-rental-img.png') }}" class="rental-img"
-                                alt="">
-                            <p>Durable and comfortable wheelchair for patientsDurable and comfortable wheelchair for
-                                patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair for
-                                patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair for
-                                patient.</p>
-
-                            <h4 class="why-heading mt-4">Why Perform an Electrical Safety Inspection?</h4>
-
-                            <ul class="why-list">
-                                <li>Ensures equipment is operating safely</li>
-                                <li>Reduces the risk of electrical hazards</li>
-                                <li>Improves equipment life and reliability</li>
-                                <li>Required for compliance and certification</li>
-                            </ul>
-                            <button class="btn-get">Get Now</button>
-                        </div>
-
-                        <div class="rental-card">
-                            <h4 class="rental-h4">Product <span>Name</span> </h4>
-                            <img src="{{ asset('frontend/images/service/service-rental-img.png') }}" class="rental-img"
-                                alt="">
-                            <p>Durable and comfortable wheelchair for patientsDurable and comfortable wheelchair for
-                                patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair for
-                                patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair for
-                                patient.</p>
-
-                            <h4 class="why-heading mt-4">Why Perform an Electrical Safety Inspection?</h4>
-
-                            <ul class="why-list">
-                                <li>Ensures equipment is operating safely</li>
-                                <li>Reduces the risk of electrical hazards</li>
-                                <li>Improves equipment life and reliability</li>
-                                <li>Required for compliance and certification</li>
-                            </ul>
-                            <button class="btn-get">Get Now</button>
-                        </div>
-
+                    <!-- RIGHT COLUMN - IMAGES -->
+                    <div class="col-lg-6 col-md-12 text-center">
+                        @foreach ($data->service_images ?? [] as $image)
+                            <img src="{{ $image ? asset('storage/biomed_services/' . $image['path']) : '' }}"
+                                alt="{{ $image['alt'] }}" class="img-fluid infoo-img">
+                        @endforeach
                     </div>
 
                 </div>
+
+                <!-- RENTAL EQUIPMENT SECTION -->
+
+
             </div>
-        </section>
+
+            <div class="row pb-3 pt-0 mt-0">
+                <h3 class="rental-heading">Rental <span>Equipment</span> </h3>
+
+                <div class="product-filter-tabs  d-flex justify-content-center flex-wrap gap-2 mt-4">
+
+                    <button class="filter-btn active" data-filter="featured">Featured</button>
+
+                    <button class="filter-btn text-dark" data-filter="equipment">Medical Equipment</button>
+                    <button class="filter-btn text-dark" data-filter="supplies">Supplies</button>
+                    <button class="filter-btn text-dark" data-filter="parts">Parts</button>
+                </div>
+            </div>
+            <section class="rental-section bg-white ">
+
+
+                <div class="container">
+                    <div class="row">
+
+                        <!-- LEFT COLUMN -->
+                        <div class="col-lg-6">
+
+                            <div class="rental-card">
+                                <h4 class="rental-h4">Product <span>Name</span> </h4>
+                                <img src="{{ asset('frontend/images/service/service-rental-img.png') }}" class="rental-img"
+                                    alt="">
+                                <p>Durable and comfortable wheelchair for patientsDurable and comfortable wheelchair for
+                                    patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair
+                                    for
+                                    patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair
+                                    for
+                                    patient.</p>
+
+                                <h4 class="why-heading mt-4">Why Perform an Electrical Safety Inspection?</h4>
+
+                                <ul class="why-list">
+                                    <li>Ensures equipment is operating safely</li>
+                                    <li>Reduces the risk of electrical hazards</li>
+                                    <li>Improves equipment life and reliability</li>
+                                    <li>Required for compliance and certification</li>
+                                </ul>
+                                <button class="btn-get">Get Now</button>
+                            </div>
+
+                            <div class="rental-card">
+                                <h4 class="rental-h4">Product <span>Name</span> </h4>
+                                <img src="{{ asset('frontend/images/service/service-rental-img.png') }}"
+                                    class="rental-img" alt="">
+                                <p>Durable and comfortable wheelchair for patientsDurable and comfortable wheelchair for
+                                    patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair
+                                    for
+                                    patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair
+                                    for
+                                    patient.</p>
+
+                                <h4 class="why-heading mt-4">Why Perform an Electrical Safety Inspection?</h4>
+
+                                <ul class="why-list">
+                                    <li>Ensures equipment is operating safely</li>
+                                    <li>Reduces the risk of electrical hazards</li>
+                                    <li>Improves equipment life and reliability</li>
+                                    <li>Required for compliance and certification</li>
+                                </ul>
+                                <button class="btn-get">Get Now</button>
+                            </div>
+
+
+                        </div>
+
+                        <!-- RIGHT COLUMN -->
+                        <div class="col-lg-6">
+
+                            <div class="rental-card">
+
+                                <h4 class="rental-h4">Product <span>Name</span> </h4>
+                                <img src="{{ asset('frontend/images/service/service-rental-img.png') }}"
+                                    class="rental-img" alt="">
+                                <p>Durable and comfortable wheelchair for patientsDurable and comfortable wheelchair for
+                                    patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair
+                                    for
+                                    patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair
+                                    for
+                                    patient.</p>
+
+                                <h4 class="why-heading mt-4">Why Perform an Electrical Safety Inspection?</h4>
+
+                                <ul class="why-list">
+                                    <li>Ensures equipment is operating safely</li>
+                                    <li>Reduces the risk of electrical hazards</li>
+                                    <li>Improves equipment life and reliability</li>
+                                    <li>Required for compliance and certification</li>
+                                </ul>
+                                <button class="btn-get">Get Now</button>
+                            </div>
+
+                            <div class="rental-card">
+                                <h4 class="rental-h4">Product <span>Name</span> </h4>
+                                <img src="{{ asset('frontend/images/service/service-rental-img.png') }}"
+                                    class="rental-img" alt="">
+                                <p>Durable and comfortable wheelchair for patientsDurable and comfortable wheelchair for
+                                    patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair
+                                    for
+                                    patientDurable and comfortable wheelchair for patientDurable and comfortable wheelchair
+                                    for
+                                    patient.</p>
+
+                                <h4 class="why-heading mt-4">Why Perform an Electrical Safety Inspection?</h4>
+
+                                <ul class="why-list">
+                                    <li>Ensures equipment is operating safely</li>
+                                    <li>Reduces the risk of electrical hazards</li>
+                                    <li>Improves equipment life and reliability</li>
+                                    <li>Required for compliance and certification</li>
+                                </ul>
+                                <button class="btn-get">Get Now</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
     </section>
 
 
@@ -998,318 +923,18 @@
 
 
 
-    <section class="location-section ">
-        <div class="container">
+    {{-- ================= Locations We Serve Section ================= --}}
+    <x-location-we-served />
 
-            <!-- MAIN HEADING -->
-            <h2 class="section-title text-center mt-5">The Location <span>We Served</span> </h2>
-            <p class="section-desc text-center">
-                We cover a full spectrum of medical equipment, ensuring you have access to everything you need.
-                This is the fact that hospitals and healthcare providers trust Mr. Biomed Tech Services for clear,
-                precise agreements and targeted financing solutions.
-            </p>
-
-            <div class="row align-items-center ">
-
-                <!-- LEFT IMAGE -->
-                <div class="col-lg-3 text-center mb-4 mb-lg-0">
-
-                    <img src="{{ asset('frontend/images/location-img.png') }}" alt="Location"
-                        class="location-img img-fluid">
-                </div>
-
-                <!-- RIGHT BOX -->
-                <div class="col-lg-9">
-                    <div class="location-box ">
-
-                        <h3 class="box-title">We Are Regional <span>Service Provider</span> </h3>
-
-                        <h4 class="sub-title">Mr Biomed Tech, Primarily Service The Below States:</h4>
-
-                        <!-- 3 COLUMN LIST -->
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <ul class="primary-list">
-                                    <li>Texas</li>
-                                    <li>Florida</li>
-                                    <li>Arkansas</li>
-                                </ul>
-                            </div>
-
-                            <div class="col-md-4">
-                                <ul class="primary-list">
-                                    <li>Georgia</li>
-                                    <li>Alabama</li>
-                                    <li>Tennessee</li>
-                                </ul>
-                            </div>
-
-                            <div class="col-md-4">
-                                <ul class="primary-list">
-                                    <li>Louisiana</li>
-                                    <li>Mississippi</li>
-                                    <li>Oklahoma</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <h4 class="sub-title mt-4">
-                            Mr Biomed Tech, Also Services These Additional States Through Our Sister Companies
-                            At The Scientific Safety Alliance.
-                        </h4>
-
-                        <!-- 3 COLUMN LIST #2 -->
-                        <div class="row mt-3">
-                            <div class="col-md-4">
-                                <ul class="secondary-list">
-                                    <li>New York</li>
-                                    <li>New Jersey</li>
-                                    <li>Pennsylvania</li>
-                                    <li>New York</li>
-                                    <li>New Jersey</li>
-                                    <li>Pennsylvania</li>
-                                </ul>
-                            </div>
-
-                            <div class="col-md-4">
-                                <ul class="secondary-list">
-                                    <li>California</li>
-                                    <li>Arizona</li>
-                                    <li>Nevada</li>
-                                    <li>New York</li>
-                                    <li>New Jersey</li>
-                                    <li>Pennsylvania</li>
-                                </ul>
-                            </div>
-
-                            <div class="col-md-4">
-                                <ul class="secondary-list">
-                                    <li>Washington</li>
-                                    <li>Oregon</li>
-                                    <li>Colorado</li>
-                                    <li>New York</li>
-                                    <li>New Jersey</li>
-                                    <li>Pennsylvania</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div><!-- right box end -->
-                </div>
-
-            </div>
-        </div>
-    </section>
+    
     {{-- ================faqs section ================ --}}
 
-    <section class="faqs-section py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Left Column: FAQs -->
-                <div class="col-lg-6">
-                    <h2 class="faqs-heading">Frequently Asked Questions</h2>
-                    <div class="mt-4">
-                        <h5 class="faqs-subheading">About Our Profile?</h5>
-                        <p class="faq-para">
-                            We provide sales, rental, and repair services for medical equipment with ISO certified
-
-                        </p>
-                    </div>
-                    <div class="faqs-list">
-                        <!-- FAQ Item 1 -->
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                What services does Mr Biomed Tech offer?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                We provide sales, rental, and repair services for medical equipment with ISO certified
-                                products and 24/7 support.
-                            </div>
-                        </div>
-                        <!-- FAQ Item 2 -->
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                How can I request a service?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                You can contact us via our website form, email, or call our support team to request any
-                                service.
-                            </div>
-                        </div>
-                        <!-- FAQ Item 3 -->
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                Are your products guaranteed?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                Yes, all our equipment comes with manufacturer warranty and quality assurance for
-                                reliability.
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="btn-see-more">See More</button>
-                </div>
-
-                <!-- Right Column: Image -->
-                <div class="col-lg-6 text-center">
-                    <img src="{{ asset('frontend/images/hero-main-img.png') }}" alt="FAQ Image"
-                        class="faq-img img-fluid">
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="About Our Profile?"
+        subtext="We provide sales, rental, and repair services for medical equipment with ISO certified"
+        image="frontend/images/hero-main-img.png" :visible="4" />
 
     {{-- ================= pruduct sectiion ============= --}}
-    <section class="products-series-section py-5">
-
-
-        <div class="container-fluid py-5 product-series-bg">
-            <div class="container text-center">
-                <p class="text-center  product-series-para  mb-3">New From Mr Biomed Tech</p>
-                <h2 class="text-center mb-5  product-section-heading">Our <span>Latest Products</span> </h2>
-
-                <div class="product-filter-tabs mb-5 d-flex justify-content-center flex-wrap gap-">
-
-                    <button class="filter-btn active" data-filter="featured">Featured</button>
-
-                    <button class="filter-btn" data-filter="equipment">Medical Equipment</button>
-                    <button class="filter-btn" data-filter="supplies">Supplies</button>
-                    <button class="filter-btn" data-filter="parts">Parts</button>
-                </div>
-            </div>
-
-            <div class="container mt-4">
-                <div class="row g-4">
-
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="custom-card shadow-sm position-relative">
-                            <span class="discount-badge">10% OFF</span>
-
-                            <div class="card-image-box">
-                                <img src="{{ asset('frontend/images/ourproduct-img.jpg') }}" alt="PRODUCT img"
-                                    class=" img-fluid">
-                            </div>
-
-
-                            <div class="card-content-box p-3 pt-2">
-                                <div class="rating-stars p- pt-2 pb-0">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                </div>
-                                <h5 class="product-title fw-bold">Defibrillator X1</h5>
-                                <p class="card-text small mb-3">High-performance device for cardiac care and monitoring.
-                                </p>
-
-                                <div class="price-action-row d-flex justify-content-between align-items-center">
-
-                                    <span class="old-price text-decoration-line-through text-muted small">$12,000</span>
-                                    <span class="new-price fw-bolder fs-5 text-primary">$10,800</span>
-
-                                    <a href="#" class="btn buy-now-btn btn-sm">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="custom-card shadow-sm position-relative">
-                            <span class="discount-badge">10% OFF</span>
-                            <div class="card-image-box">
-                                <img src="{{ asset('frontend/images/ourproduct-img.jpg') }}" alt="PRODUCT img"
-                                    class=" img-fluid">
-                            </div>
-
-                            <div class="card-content-box p-3 pt-2">
-                                <div class="rating-stars p- pt-2 pb-0">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                </div>
-                                <h5 class="product-title fw-bold">Patient Monitor P5</h5>
-                                <p class="card-text small mb-3">Multi-parameter monitoring solution with touch interface.
-                                </p>
-                                <div class="price-action-row d-flex justify-content-between align-items-center">
-
-                                    <span class="old-price text-decoration-line-through text-muted small">$5,500</span>
-                                    <span class="new-price fw-bolder fs-5 text-primary">$4,950</span>
-
-                                    <a href="#" class="btn buy-now-btn btn-sm">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="custom-card shadow-sm position-relative">
-                            <span class="discount-badge">10% OFF</span>
-                            <div class="card-image-box">
-                                <img src="{{ asset('frontend/images/ourproduct-img.jpg') }}" alt="PRODUCT img"
-                                    class=" img-fluid">
-                            </div>
-
-                            <div class="card-content-box p-3 pt-2">
-                                <div class="rating-stars p- pt-2 pb-0">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                </div>
-                                <h5 class="product-title fw-bold">Infusion Pump D3</h5>
-                                <p class="card-text small mb-3">Precision fluid delivery system with safety alarms.</p>
-                                <div class="price-action-row d-flex justify-content-between align-items-center">
-
-                                    <span class="old-price text-decoration-line-through text-muted small">$1,500</span>
-                                    <span class="new-price fw-bolder fs-5 text-primary">$1,350</span>
-
-                                    <a href="#" class="btn buy-now-btn btn-sm">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="custom-card shadow-sm position-relative">
-                            <span class="discount-badge">10% OFF</span>
-                            <div class="card-image-box">
-                                <img src="{{ asset('frontend/images/ourproduct-img.jpg') }}" alt="PRODUCT img"
-                                    class=" img-fluid">
-                            </div>
-
-                            <div class="card-content-box p-3 pt-2">
-                                <div class="rating-stars p- pt-2 pb-0">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                </div>
-                                <h5 class="product-title fw-bold">ECG Machine M12</h5>
-                                <p class="card-text small mb-3">Compact and reliable 12-lead Electrocardiogram device.</p>
-                                <div class="price-action-row d-flex justify-content-between align-items-center">
-
-                                    <span class="old-price text-decoration-line-through text-muted small">$3,200</span>
-                                    <span class="new-price fw-bolder fs-5 text-primary">$2,880</span>
-
-                                    <a href="#" class="btn buy-now-btn btn-sm">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-our-latest-products />
 
     {{-- ============= reveiw sectiion ================== --}}
 
@@ -1400,101 +1025,9 @@
 
     </section>
 
-    {{-- ============recent news section ============ --}}
+    {{-- ============ Recent News Section ============ --}}
+    <x-recent-blogs :blogs="$blogs" />
 
-
-
-    <section class="recent-news-section py- mb-5">
-        <div class="container text-center">
-            <h2 class="section-title text-white mb-3">Recent News</h2>
-            <p class="section-desc  mb-5">
-                Stay updated with the latest trends and insights in biomedical technology and services.
-            </p>
-        </div>
-
-        <div class="container">
-            <div class="row g-4">
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">The Future of Technology Solutions: Innovations
-                                Driving Business Success</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">Advancements in Biomedical Devices: A Game Changer for
-                                Healthcare</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">Enhancing Efficiency: The Role of AI in Medical
-                                Equipment Maintenance</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">Cybersecurity in Healthcare: Protecting Patient Data
-                                in a Digital Age</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
 
 @endsection
 

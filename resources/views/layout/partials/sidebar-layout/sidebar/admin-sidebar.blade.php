@@ -127,6 +127,48 @@
     </div>
 
     <div data-kt-menu-trigger="click"
+        class="menu-item menu-accordion {{ request()->routeIs('admin-biomed-service-page.*') ? 'here show' : '' }}">
+        <!--begin:Menu link-->
+        <span class="menu-link">
+            <span class="menu-icon"><i class="ki-duotone ki-wrench fs-2x">
+                    <i class="path1"></i>
+                    <i class="path2"></i>
+                </i></span>
+            <span class="menu-title">Services</span>
+            <span class="menu-arrow"></span>
+        </span>
+
+        @can('read biomed service')
+            <div class="menu-sub menu-sub-accordion">
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->routeIs('admin-biomed-service-page.*') ? 'active' : '' }}"
+                        href="{{ route('admin-biomed-service-page.main-page') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Biomed Service</span>
+                    </a>
+                </div>
+            </div>
+        @endcan
+
+        @can('read rental service')
+            <div class="menu-sub menu-sub-accordion">
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->routeIs('admin-rental-service-page.*') ? 'active' : '' }}"
+                        href="{{ route('admin-rental-service-page.main-page') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Rental Service</span>
+                    </a>
+                </div>
+            </div>
+        @endcan
+
+    </div>
+
+    <div data-kt-menu-trigger="click"
         class="menu-item menu-accordion {{ request()->routeIs('admin-repair-service-page.*', 'admin-repair-service.sub-pages.*') ? 'here show' : '' }}">
         <!--begin:Menu link-->
         <span class="menu-link">
@@ -170,11 +212,84 @@
     </div>
 
     <div data-kt-menu-trigger="click"
+        class="menu-item menu-accordion {{ request()->routeIs('admin.about-us.main.*', 'admin.about-us.cards.*', 'admin.brand-we-carry.*', 'admin.what-we-do.*', 'admin.company-certification.*') ? 'here show' : '' }}">
+        <!--begin:Menu link-->
+        <span class="menu-link">
+            <span class="menu-icon"></span>
+            <span class="menu-title">About Us</span>
+            <span class="menu-arrow"></span>
+        </span>
+        <!--end:Menu link-->
+        <!--begin:Menu sub-->
+        <div class="menu-sub menu-sub-accordion">
+            <div class="menu-item">
+                <a class="menu-link {{ request()->routeIs('admin.about-us.main.*') ? 'active' : '' }}"
+                    href="{{ route('admin.about-us.main.page') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">About Us</span>
+                </a>
+            </div>
+        </div>
+        <div class="menu-sub menu-sub-accordion">
+            <div class="menu-item">
+                <a class="menu-link {{ request()->routeIs('admin.about-us.cards.*') ? 'active' : '' }}"
+                    href="{{ route('admin.about-us.cards.list') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Cards</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-sub menu-sub-accordion">
+            <div class="menu-item">
+                <a class="menu-link {{ request()->routeIs('admin.brand-we-carry.*') ? 'active' : '' }}"
+                    href="{{ route('admin.brand-we-carry.list') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Brand We Carry</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-sub menu-sub-accordion">
+            <div class="menu-item">
+                <a class="menu-link {{ request()->routeIs('admin.what-we-do.*') ? 'active' : '' }}"
+                    href="{{ route('admin.what-we-do.list') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">What We Do</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-sub menu-sub-accordion">
+            <div class="menu-item">
+                <a class="menu-link {{ request()->routeIs('admin.company-certification.*') ? 'active' : '' }}"
+                    href="{{ route('admin.company-certification.list') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Certificate</span>
+                </a>
+            </div>
+        </div>
+
+        <!--end:Menu sub-->
+    </div>
+
+    <div data-kt-menu-trigger="click"
         class="menu-item menu-accordion {{ request()->routeIs('admin.blog.main.*', 'admin-blogs.*') ? 'here show' : '' }}">
         <!--begin:Menu link-->
         <span class="menu-link">
-            <span class="menu-icon"><i class="ki-duotone ki-tablet-text-down fs-2tx"><span class="path1"></span><span
-                        class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+            <span class="menu-icon"><i class="ki-duotone ki-tablet-text-down fs-2tx"><span
+                        class="path1"></span><span class="path2"></span><span class="path3"></span><span
+                        class="path4"></span></i>
                 <i class="path1"></i>
                 <i class="path2"></i>
                 </i></span>

@@ -4,8 +4,81 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5973a02dbd1252b4a33a38358bde5666",
+    "content-hash": "69803eed26c6056749c3f6f2f605ac4b",
     "packages": [
+        {
+            "name": "bardolf69/laravel11-countries-states-cities",
+            "version": "V1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bardolf69/laravel-countries-states-cities-main.git",
+                "reference": "9dfbed08f0aee38c095651b2a731104205f5727a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bardolf69/laravel-countries-states-cities-main/zipball/9dfbed08f0aee38c095651b2a731104205f5727a",
+                "reference": "9dfbed08f0aee38c095651b2a731104205f5727a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^11.0",
+                "php": "^8.2",
+                "spatie/laravel-package-tools": "^1.14.0"
+            },
+            "require-dev": {
+                "larastan/larastan": "^2.0.1",
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^8.0",
+                "orchestra/testbench": "^9.1",
+                "pestphp/pest": "^2.20",
+                "pestphp/pest-plugin-arch": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "CountriesStatesCities": "Bardolf69\\CountriesStatesCities\\Facades\\CountriesStatesCities"
+                    },
+                    "providers": [
+                        "Bardolf69\\CountriesStatesCities\\CountriesStatesCitiesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bardolf69\\CountriesStatesCities\\": "src/",
+                    "Bardolf69\\CountriesStatesCities\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bardolf69",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Countries States Cities DB Migration & Seeder",
+            "homepage": "https://github.com/bardolf69/laravel-countries-states-cities",
+            "keywords": [
+                "cities",
+                "countries",
+                "laravel",
+                "states"
+            ],
+            "support": {
+                "issues": "https://github.com/bardolf69/laravel-countries-states-cities-main/issues",
+                "source": "https://github.com/bardolf69/laravel-countries-states-cities-main/tree/V1.0.1"
+            },
+            "time": "2024-07-05T02:54:10+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.12.1",
@@ -4451,6 +4524,67 @@
                 }
             ],
             "time": "2024-04-27T21:32:50+00:00"
+        },
+        {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.92.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "f09a799850b1ed765103a4f0b4355006360c49a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/f09a799850b1ed765103a4f0b4355006360c49a5",
+                "reference": "f09a799850b1ed765103a4f0b4355006360c49a5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.28|^10.0|^11.0|^12.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^7.7|^8.0|^9.0|^10.0",
+                "pestphp/pest": "^1.23|^2.1|^3.1",
+                "phpunit/php-code-coverage": "^9.0|^10.0|^11.0",
+                "phpunit/phpunit": "^9.5.24|^10.5|^11.5",
+                "spatie/pest-plugin-test-time": "^1.1|^2.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.92.7"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-07-17T15:46:43+00:00"
         },
         {
             "name": "spatie/laravel-permission",
@@ -10154,5 +10288,5 @@
         "php": "^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

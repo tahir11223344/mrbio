@@ -1,12 +1,17 @@
 <?php
 
+use App\Http\Controllers\AboutCardController;
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\Apps\PermissionManagementController;
 use App\Http\Controllers\Apps\RoleManagementController;
 use App\Http\Controllers\Apps\UserManagementController;
 use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\BiomedServicesController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BrandWeCarryController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CKEditorController;
+use App\Http\Controllers\CompanyCertificationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FaqController;
@@ -14,7 +19,9 @@ use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\OemContentController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\RentalServiceController;
 use App\Http\Controllers\RepairServiceController;
+use App\Http\Controllers\WhatWeDoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -102,6 +109,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/{oem}/delete', 'destroy')->name('destroy');
     });
 
+    // ===========================
+    // Biomed Servies 
+    // ===========================
+    Route::controller(BiomedServicesController::class)->prefix('admin/biomed/service')->as('admin-biomed-service-page.')->group(function () {
+        Route::get('/', 'index')->name('main-page');
+        Route::post('/store', 'store')->name('store');
+    });
+
+    // ===========================
+    // Rental Servies 
+    // ===========================
+    Route::controller(RentalServiceController::class)->prefix('admin/rental/service')->as('admin-rental-service-page.')->group(function () {
+        Route::get('/', 'index')->name('main-page');
+        Route::post('/store', 'store')->name('store');
+    });
 
     // ===========================
     // Repair Servies 
@@ -156,6 +178,63 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/{id}/update', 'update')->name('update');
         Route::delete('/{id}/destroy', 'destroy')->name('destroy');
     });
+
+    // ===========================
+    // ABout Us Landing Page
+    // ===========================
+    Route::controller(AboutUsController::class)->prefix('admin/about-us')->as('admin.about-us.main.')->group(function () {
+        Route::get('/', 'mainPage')->name('page');
+        Route::post('/store', 'storeOrUpdate')->name('storeOrUpdate');
+    });
+
+    // ===========================
+    // ABout Us Cards
+    // ===========================
+    Route::controller(AboutCardController::class)->prefix('admin/about-us/card')->as('admin.about-us.cards.')->group(function () {
+        Route::get('/', 'list')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::put('/{id}/update', 'update')->name('update');
+        Route::delete('/{id}/delete', 'delete')->name('delete');
+    });
+
+    // ===========================
+    // Branch We Carry Cards
+    // ===========================
+    Route::controller(BrandWeCarryController::class)->prefix('admin/brand-we-carry')->as('admin.brand-we-carry.')->group(function () {
+        Route::get('/', 'list')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::put('/{id}/update', 'update')->name('update');
+        Route::delete('/{id}/delete', 'destroy')->name('delete');
+    });
+
+    // ===========================
+    // What we do
+    // ===========================
+    Route::controller(WhatWeDoController::class)->prefix('admin/what-we-do')->as('admin.what-we-do.')->group(function () {
+        Route::get('/', 'list')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::put('/{id}/update', 'update')->name('update');
+        Route::delete('/{id}/delete', 'destroy')->name('delete');
+    });
+
+    // ===========================
+    // CompanyCertification
+    // ===========================
+    Route::controller(CompanyCertificationController::class)->prefix('admin/company-certification')->as('admin.company-certification.')->group(function () {
+        Route::get('/', 'list')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::put('/{id}/update', 'update')->name('update');
+        Route::delete('/{id}/delete', 'destroy')->name('delete');
+    });
+
 
     // ===========================
     // General Setting 

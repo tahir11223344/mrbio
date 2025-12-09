@@ -495,11 +495,16 @@
                     <input type="text" class="form-control mb-2 footer-input" placeholder="Full Name">
                     <input type="email" class="form-control mb-2 footer-input" placeholder="Email Address">
                     <div class="d-flex gap-2 mb-2">
-                        <select class="form-select  footer-select ">
-                            <option>Select City</option>
+                        <select name="state" id="footer_state" class="form-select footer-select">
+                            <option value="">{{ __('Select State') }}</option>
+                            @foreach ($footerStates ?? [] as $state)
+                                <option value="{{ $state->id }}">
+                                    {{ $state->name }}
+                                </option>
+                            @endforeach
                         </select>
-                        <select class="form-select  footer-select">
-                            <option>Select State</option>
+                        <select class="form-select footer-select" name="city">
+                            <option>Select City</option>
                         </select>
                     </div>
                     <select class="form-select mb-2  footer-select">
@@ -567,7 +572,8 @@
                 </div>
             </div>
             <p class="copyright mb-0 t">
-                Copyright © {{ date('Y') }} | {{ setting('site_name', 'Mr Biomed Tech Services') }} ® | All right reserved
+                Copyright © {{ date('Y') }} | {{ setting('site_name', 'Mr Biomed Tech Services') }} ® | All right
+                reserved
             </p>
         </div>
     </div>

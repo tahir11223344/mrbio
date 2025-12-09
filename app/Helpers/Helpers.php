@@ -495,3 +495,74 @@ if (!function_exists('cleanPhone')) {
         return preg_replace('/[^0-9+]/', '', $number);
     }
 }
+
+if (!function_exists('highlightBracketText')) {
+
+    /**
+     * Highlight each [text] using different colors.
+     *
+     * @param string $text
+     * @param array $colors
+     * @return string
+     */
+    function highlightBracketText($text, $colors = ['#0168a4'])
+    {
+        if (!$text) return '';
+
+        // Escape full text first
+        $escaped = e($text);
+
+        // Color index
+        $i = 0;
+
+        return preg_replace_callback('/\[(.*?)\]/', function ($match) use (&$i, $colors) {
+
+            // If colors array ends, repeat last color
+            $color = $colors[$i] ?? end($colors);
+
+            $i++;
+
+            return "<span style=\"color: {$color};\">{$match[1]}</span>";
+        }, $escaped);
+    }
+}
+
+
+if (!function_exists('merge_images')) {
+
+    /**
+     * Merge thumbnail + gallery images into a single array inside a paginated collection.
+     *
+     * @param  \Illuminate\Pagination\LengthAwarePaginator|\Illuminate\Support\Collection  $items
+     * @param  string  $thumbnailColumn
+     * @param  string  $galleryColumn
+     * @param  string  $finalKey
+     * @return mixed
+     */
+    function merge_images($items, $thumbnailColumn, $galleryColumn, $finalKey = 'all_images')
+    {
+        $items->getCollection()->transform(function ($item) use ($thumbnailColumn, $galleryColumn, $finalKey) {
+
+            $images = [];
+
+            // Add thumbnail
+            if (!empty($item->{$thumbnailColumn})) {
+                $images[] = $item->{$thumbnailColumn};
+            }
+
+            // Add gallery images
+            if (is_array($item->{$galleryColumn})) {
+                foreach ($item->{$galleryColumn} as $img) {
+                    $images[] = $img;
+                }
+            }
+
+            // Attach final merged key
+            $item->{$finalKey} = $images;
+
+            return $item;
+        });
+
+        return $items;
+    }
+}

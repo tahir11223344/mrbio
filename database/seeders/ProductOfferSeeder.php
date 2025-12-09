@@ -36,7 +36,7 @@ class ProductOfferSeeder extends Seeder
 
         // 2️⃣ Create 200 categories
         $categories = [];
-        for ($i = 1; $i <= 200; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             $category = Category::create([
                 'name' => 'Category ' . $i,
                 'slug' => 'category-' . $i,
@@ -48,7 +48,7 @@ class ProductOfferSeeder extends Seeder
         }
 
         // 3️⃣ Create 200 products
-        for ($i = 1; $i <= 200; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             $category = $categories[array_rand($categories)];
             Product::create([
                 'category_id' => $category->id,
@@ -78,7 +78,7 @@ class ProductOfferSeeder extends Seeder
         }
 
         // 4️⃣ Create 200 offers
-        for ($i = 1; $i <= 200; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             Offer::create([
                 'title' => 'Offer ' . $i,
                 'slug' => 'offer-' . $i,

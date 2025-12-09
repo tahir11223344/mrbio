@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             RolesPermissionsSeeder::class,
             GeneralSettingsSeeder::class,
+            CountriesStatesCitiesTableSeeder::class
         ]);
 
         \App\Models\User::factory(20)->create();

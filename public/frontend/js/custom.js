@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // (function () {
 //     const slider = document.getElementById("reviewSlider");
 
@@ -49,79 +48,6 @@
 //     setInterval(updateSlider, 2000);
 
 // })();
-=======
-(function () {
-    const slider = document.getElementById("reviewSlider");
-    if (!slider) return;
-
-    const visible = 5; // Figma ke hisaab se jitne thumbnails dikhane hain (odd number rakhna)
-
-    // Original slides ko store karo
-    const originalSlides = Array.from(slider.children);
-    const originalCount = originalSlides.length;
-
-    // Infinite loop ke liye original slides ko duplicate karke end pe add kar do
-    originalSlides.forEach(slide => slider.appendChild(slide.cloneNode(true)));
-
-    // Ab saare slides (original + clones)
-    const slides = Array.from(slider.querySelectorAll(".tooltip-slide"));
-
-    // Slide width ko dynamically nikaal lo
-    const slideWidth = slides[0].getBoundingClientRect().width;
-
-    // Basic styling JS se bhi enforce kar dete hain
-    slider.style.display = "flex";
-    slider.style.transition = "transform 0.6s ease";
-
-    let index = 0; // left-most visible slide index
-    const offset = (visible * slideWidth) / 2 - (slideWidth / 2);
-
-    function setActive() {
-        // Sab slides se active hatao
-        slides.forEach(s => s.classList.remove("active"));
-
-        // Center slide ka index nikaalo (mod use kiya taake range ke bahar na jaye)
-        const centerIndex = (index + Math.floor(visible / 2)) % slides.length;
-
-        if (slides[centerIndex]) {
-            slides[centerIndex].classList.add("active");
-        }
-    }
-
-    function applyTransform() {
-        const moveX = index * slideWidth;
-        slider.style.transform = `translateX(-${moveX - offset}px)`;
-        setActive();
-    }
-
-    function nextSlide() {
-        index++;
-
-        applyTransform();
-
-        // Jab hum cloned part me pohanch jate hain, toh quietly wapas originals pe jump karo
-        if (index >= originalCount) {
-            setTimeout(() => {
-                // animation off karke jump
-                slider.style.transition = "none";
-                index = index - originalCount;
-                applyTransform();
-
-                // thoda delay dekar transition dubara on karo
-                setTimeout(() => {
-                    slider.style.transition = "transform 0.6s ease";
-                }, 50);
-            }, 600); // yahi tumhari transition duration hai
-        }
-    }
-
-    // Initial position + active tooltip
-    applyTransform();
-
-    // Auto-play
-    setInterval(nextSlide, 2000);
-})();
->>>>>>> ce3f3e7f236aad89b8b72c22b8ba8ad289de8cf5
 
 
 // const faqItems = document.querySelectorAll('.faq-item');
@@ -268,72 +194,168 @@
 // ============= faqs ==================
 
 
+// document.addEventListener("DOMContentLoaded", function () {
+//     const faqItems = Array.from(document.querySelectorAll(".faqs-list .faq-item"));
+//     const seeMoreBtn = document.querySelector(".btn-see-more");
+//     const visibleCount = 4;
+//     const totalFAQs = faqItems.length;
+
+//     const originalBg = "#0071A8";
+//     const lessBg = "red";
+
+//     let currentVisible = visibleCount;
+
+//     // Hide extra FAQs initially
+//     faqItems.forEach((item, index) => {
+//         if (index >= visibleCount) item.style.display = "none";
+//     });
+
+//     // Accordion toggle (one open at a time)
+//     faqItems.forEach(item => {
+//         const title = item.querySelector(".faq-title");
+//         const content = item.querySelector(".faq-content");
+
+//         title.addEventListener("click", () => {
+//             faqItems.forEach(i => {
+//                 if (i !== item) {
+//                     i.classList.remove("active");
+//                     i.querySelector(".faq-content").style.maxHeight = "0px";
+//                 }
+//             });
+
+//             item.classList.toggle("active");
+//             if (item.classList.contains("active")) {
+//                 content.style.maxHeight = content.scrollHeight + "px";
+//             } else {
+//                 content.style.maxHeight = "0px";
+//             }
+//         });
+//     });
+
+//     // ⭐ FINAL UPDATED LOGIC — Show All at Once ⭐
+//     seeMoreBtn.addEventListener("click", () => {
+//         const hiddenItems = faqItems.filter(item => item.style.display === "none");
+
+//         if (hiddenItems.length > 0) {
+//             // 👉 Show ALL hidden FAQs at once
+//             hiddenItems.forEach(item => item.style.display = "block");
+
+//             currentVisible = totalFAQs;
+//             seeMoreBtn.textContent = "Show Less";
+//             seeMoreBtn.style.backgroundColor = lessBg;
+
+//         } else {
+//             // 👉 Hide all except first 4
+//             faqItems.forEach((item, index) => {
+//                 if (index >= visibleCount) {
+//                     item.style.display = "none";
+//                     item.classList.remove("active");
+//                     item.querySelector(".faq-content").style.maxHeight = "0px";
+//                 }
+//             });
+
+//             currentVisible = visibleCount;
+//             seeMoreBtn.textContent = "See More";
+//             seeMoreBtn.style.backgroundColor = originalBg;
+//         }
+//     });
+// });
+
 document.addEventListener("DOMContentLoaded", function () {
-    const faqItems = Array.from(document.querySelectorAll(".faqs-list .faq-item"));
-    const seeMoreBtn = document.querySelector(".btn-see-more");
-    const visibleCount = 4;
-    const totalFAQs = faqItems.length;
 
-    const originalBg = "#0071A8";
-    const lessBg = "red";
+    // Har faqs-section ke liye alag logic
+    document.querySelectorAll(".faqs-section").forEach(function (section) {
+        const faqItems = Array.from(section.querySelectorAll(".faqs-list .faq-item"));
+        const seeMoreBtn = section.querySelector(".btn-see-more");
 
-    let currentVisible = visibleCount;
+        if (!faqItems.length) {
+            return; // is section mein faqs hi nahi
+        }
 
-    // Hide extra FAQs initially
-    faqItems.forEach((item, index) => {
-        if (index >= visibleCount) item.style.display = "none";
-    });
+        const visibleCount = parseInt(section.getAttribute('data-visible') || '4', 10);
+        const totalFAQs = faqItems.length;
 
-    // Accordion toggle (one open at a time)
-    faqItems.forEach(item => {
-        const title = item.querySelector(".faq-title");
-        const content = item.querySelector(".faq-content");
+        const btnMoreText = section.getAttribute('data-btn-more') || 'See More';
+        const btnLessText = section.getAttribute('data-btn-less') || 'Show Less';
 
-        title.addEventListener("click", () => {
-            faqItems.forEach(i => {
-                if (i !== item) {
-                    i.classList.remove("active");
-                    i.querySelector(".faq-content").style.maxHeight = "0px";
-                }
-            });
+        const originalBg = "#0168A4"; // tumhari CSS wali color
+        const lessBg = "#004972";
 
-            item.classList.toggle("active");
-            if (item.classList.contains("active")) {
-                content.style.maxHeight = content.scrollHeight + "px";
-            } else {
-                content.style.maxHeight = "0px";
+        let allVisible = false;
+
+        // --- Initially: sirf first N show karo
+        faqItems.forEach((item, index) => {
+            const content = item.querySelector(".faq-content");
+            content.style.maxHeight = "0px"; // start closed
+
+            if (index >= visibleCount) {
+                item.style.display = "none";
             }
         });
-    });
 
-    // ⭐ FINAL UPDATED LOGIC — Show All at Once ⭐
-    seeMoreBtn.addEventListener("click", () => {
-        const hiddenItems = faqItems.filter(item => item.style.display === "none");
+        // --- Accordion toggle (one open at a time)
+        faqItems.forEach(item => {
+            const title = item.querySelector(".faq-title");
+            const content = item.querySelector(".faq-content");
 
-        if (hiddenItems.length > 0) {
-            // 👉 Show ALL hidden FAQs at once
-            hiddenItems.forEach(item => item.style.display = "block");
+            title.addEventListener("click", () => {
+                // sab close karo except current
+                faqItems.forEach(i => {
+                    const c = i.querySelector(".faq-content");
+                    if (i !== item) {
+                        i.classList.remove("active");
+                        c.style.maxHeight = "0px";
+                    }
+                });
 
-            currentVisible = totalFAQs;
-            seeMoreBtn.textContent = "Show Less";
-            seeMoreBtn.style.backgroundColor = lessBg;
-
-        } else {
-            // 👉 Hide all except first 4
-            faqItems.forEach((item, index) => {
-                if (index >= visibleCount) {
-                    item.style.display = "none";
-                    item.classList.remove("active");
-                    item.querySelector(".faq-content").style.maxHeight = "0px";
+                item.classList.toggle("active");
+                if (item.classList.contains("active")) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = "0px";
                 }
             });
+        });
 
-            currentVisible = visibleCount;
-            seeMoreBtn.textContent = "See More";
+        // --- See More / Show Less (all at once)
+        if (seeMoreBtn && totalFAQs > visibleCount) {
+
+            // initial button state
+            seeMoreBtn.textContent = btnMoreText;
             seeMoreBtn.style.backgroundColor = originalBg;
+
+            seeMoreBtn.addEventListener("click", () => {
+                if (!allVisible) {
+                    // show ALL
+                    faqItems.forEach(item => {
+                        item.style.display = "block";
+                    });
+                    seeMoreBtn.textContent = btnLessText;
+                    seeMoreBtn.style.backgroundColor = lessBg;
+                    allVisible = true;
+                } else {
+                    // hide except first N
+                    faqItems.forEach((item, index) => {
+                        const content = item.querySelector(".faq-content");
+                        if (index >= visibleCount) {
+                            item.style.display = "none";
+                            item.classList.remove("active");
+                            content.style.maxHeight = "0px";
+                        }
+                    });
+                    seeMoreBtn.textContent = btnMoreText;
+                    seeMoreBtn.style.backgroundColor = originalBg;
+                    allVisible = false;
+                }
+            });
+        } else if (seeMoreBtn) {
+            // agar FAQs already <= visibleCount hain to button hide
+            seeMoreBtn.style.display = "none";
         }
+
     });
 });
+
 
 
 
@@ -532,6 +554,75 @@ document.addEventListener("DOMContentLoaded", function () {
         goToPage(0);
     };
 });
+
+
+// ---------------------------------------------------------
+// When user selects a state, load its related cities via AJAX
+// ---------------------------------------------------------
+$('#footer_state').on('change', function () {
+
+    // Selected state ID
+    let stateId = $(this).val();
+
+    // City dropdown reference
+    let cityDropdown = $('select[name="city"]');
+
+    // Show loading before request
+    cityDropdown.html('<option>Loading...</option>');
+
+    // If a valid state is selected
+    if (stateId) {
+
+        $.ajax({
+            url: "/get-cities/" + stateId, // Route to fetch cities
+            type: "GET",
+
+            // -------------------------------------------
+            // On successful response from controller
+            // -------------------------------------------
+            success: function (response) {
+
+                // If API returned status=false
+                if (!response.status) {
+                    cityDropdown.html('<option>' + response.message + '</option>');
+                    return;
+                }
+
+                // Clear & append default option
+                cityDropdown.empty();
+                cityDropdown.append('<option value="">Select City</option>');
+
+                // Add cities to dropdown
+                $.each(response.data, function (id, name) {
+                    cityDropdown.append(
+                        '<option value="' + id + '">' + name + '</option>'
+                    );
+                });
+            },
+
+            // -------------------------------------------
+            // Handle server-side or network errors
+            // -------------------------------------------
+            error: function (xhr) {
+
+                let errorMessage = "Error loading cities";
+
+                // Custom error for bad request
+                if (xhr.status === 400) {
+                    errorMessage = "Invalid state selected";
+                }
+
+                cityDropdown.html('<option>' + errorMessage + '</option>');
+            }
+        });
+
+    } else {
+        // If no state is selected, reset dropdown
+        cityDropdown.html('<option>Select City</option>');
+    }
+
+});
+
 
 
 

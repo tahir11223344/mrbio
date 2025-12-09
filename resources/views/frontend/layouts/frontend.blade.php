@@ -4,15 +4,16 @@
 
 <head>
     <base href="" />
-    <title>@yield('title', '')</title>
+    <title>@yield('meta_title', config('app.name'))</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="@yield('meta_description', '')" />
+    <meta name="keywords" content="@yield('meta_keywords', '')" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="" />
+    <meta property="og:title" content="@yield('meta_title', config('app.name'))" />
+    <meta property="og:description" content="@yield('meta_description', '')" />
     <link rel="canonical" href="{{ url()->current() }}" />
 
     <meta name="author" content="" />

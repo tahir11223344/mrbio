@@ -30,6 +30,8 @@ class RolesPermissionsSeeder extends Seeder
                 'offer',
                 'oem',
                 'faq',
+                'biomed service',
+                'rental service',
                 'repair service',
                 'repair service sub page',
                 'blog main page',
