@@ -29,62 +29,81 @@
                         @endif
                         <div class="row">
 
-                            <div class="col-lg-6 mb-4">
-                                <label for="title"
-                                    class="form-label fw-semibold required">{{ __('Title') }}</label>
-                                <input type="text" id="title" name="title"
-                                    class="form-control form-control-lg @error('title') is-invalid @enderror"
-                                    value="{{ old('title', $data->title ?? '') }}" required>
-                                @error('title')
-                                    <div class="text-danger mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
+                            <!-- =======================
+                                SECTION 1 & 2 for JSON data
+                            ======================== -->
+                            @for ($i = 1; $i <= 2; $i++)
+                                <div class="col-12 mb-4">
+                                    <div class="p-3 border rounded">
+                                        <h5>{{ $i == 1 ? 'Section Top' : 'Section Bottom' }}</h5>
+                                        <div class="row">
+                                            <div class="col-lg-6 mb-4">
+                                                <label class="form-label fw-semibold required">Title</label>
+                                                <input type="text" name="sections[{{ $i }}][title]"
+                                                    class="form-control form-control-lg"
+                                                    value="{{ old('sections.' . $i . '.title', $data->sections[$i]['title'] ?? '') }}"
+                                                    required>
+                                            </div>
 
-                            <div class="col-lg-6 mb-4">
-                                <label for="slug"
-                                    class="form-label fw-semibold required">{{ __('Slug') }}</label>
-                                <input type="text" id="slug" name="slug"
-                                    class="form-control form-control-lg @error('slug') is-invalid @enderror"
-                                    value="{{ old('slug', $data->slug ?? '') }}" required>
-                                @error('slug')
-                                    <div class="text-danger mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
+                                            <div class="col-lg-6 mb-4">
+                                                <label class="form-label fw-semibold required">Slug</label>
+                                                <input type="text" name="sections[{{ $i }}][slug]"
+                                                    class="form-control form-control-lg"
+                                                    value="{{ old('sections.' . $i . '.slug', $data->sections[$i]['slug'] ?? '') }}"
+                                                    required>
+                                            </div>
 
-                            <div class="col-lg-6 mb-4">
-                                <label for="bg_image" class="form-label fw-semibold">{{ __('BG Image') }}</label>
-                                <input type="file" id="bg_image" name="bg_image"
-                                    class="form-control form-control-lg @error('bg_image') is-invalid @enderror">
-                                @if (!empty($data->bg_image))
-                                    <img src="{{ asset('storage/what-we-do/' . $data->bg_image) }}" class="mt-2"
-                                        style="max-height:80px;">
-                                @endif
-                                @error('bg_image')
-                                    <div class="text-danger mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
+                                            <div class="col-12 mb-4">
+                                                <label class="form-label fw-semibold">Description</label>
+                                                <textarea id="description_{{ $i }}" name="sections[{{ $i }}][description]" rows="5"
+                                                    class="form-control form-control-lg">{{ old('sections.' . $i . '.description', $data->sections[$i]['description'] ?? '') }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endfor
 
-                            <div class="col-lg-6 mb-4">
-                                <label for="bg_image_alt" class="form-label fw-semibold">{{ __('Image Alt') }}</label>
-                                <input type="text" id="bg_image_alt" name="bg_image_alt"
-                                    class="form-control form-control-lg @error('bg_image_alt') is-invalid @enderror"
-                                    value="{{ old('bg_image_alt', $data->bg_image_alt ?? '') }}">
-                                @error('bg_image_alt')
-                                    <div class="text-danger mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
+                            <!-- =======================
+                                SECTION 2
+                                Image + Image ALT
+                            ======================== -->
+                            <div class="col-12 mb-4">
+                                <div class="p-3 border rounded">
 
-                            <!-- Description -->
-                            <div class="col-lg-12 mb-4">
-                                <label for="description" class="form-label fw-semibold">{{ __('Description') }}</label>
-                                <textarea id="description" name="description"
-                                    class="form-control form-control-lg @error('description') is-invalid @enderror" rows="5">{{ old('description', $data->description ?? '') }}</textarea>
-                                @error('description')
-                                    <div class="text-danger mt-1">{{ $message }}</div>
-                                @enderror
+                                    <div class="row">
+
+                                        <div class="col-lg-6 mb-4">
+                                            <label for="bg_image"
+                                                class="form-label fw-semibold">{{ __('BG Image') }}</label>
+                                            <input type="file" id="bg_image" name="bg_image"
+                                                class="form-control form-control-lg @error('bg_image') is-invalid @enderror">
+                                            @if (!empty($data->bg_image))
+                                                <img src="{{ asset('storage/what-we-do/' . $data->bg_image) }}"
+                                                    class="mt-2" style="max-height:80px;">
+                                            @endif
+                                            @error('bg_image')
+                                                <div class="text-danger mt-1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-lg-6 mb-4">
+                                            <label for="bg_image_alt"
+                                                class="form-label fw-semibold">{{ __('Image Alt') }}</label>
+                                            <input type="text" id="bg_image_alt" name="bg_image_alt"
+                                                class="form-control form-control-lg @error('bg_image_alt') is-invalid @enderror"
+                                                value="{{ old('bg_image_alt', $data->bg_image_alt ?? '') }}">
+                                            @error('bg_image_alt')
+                                                <div class="text-danger mt-1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                    </div>
+
+                                </div>
                             </div>
 
                         </div>
+
 
                         <input type="hidden" name="id" value="{{ $data->id ?? '' }}">
 
@@ -136,9 +155,14 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const editors = [{
-                        id: 'description',
+                        id: 'description_1',
                         uploadDir: 'what-we-do/ckeditor'
-                    }];
+                    },
+                    {
+                        id: 'description_2',
+                        uploadDir: 'what-we-do/ckeditor'
+                    }
+                ];
 
                 editors.forEach(editorConfig => {
                     const el = document.querySelector(`#${editorConfig.id}`);

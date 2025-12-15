@@ -47,15 +47,14 @@ class WhatWeDoController extends Controller
 
         try {
 
+            // Validation rules
             $rules = [
-                'title' => 'required|string|max:255',
-                'description' => 'nullable|string',
+                'sections.*.title' => 'required|string|max:255',
+                'sections.*.slug' => 'required|string|max:255',
+                'sections.*.description' => 'nullable|string',
                 'bg_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:300',
                 'bg_image_alt' => 'nullable|string|max:255',
             ];
-
-            // Slug Unique (Create + Update)
-            $rules['slug'] = 'required|string|max:255|unique:what_we_dos,slug' . ($id ? ',' . $id : '');
 
             $request->validate($rules);
 
@@ -69,19 +68,28 @@ class WhatWeDoController extends Controller
                 $data->created_by = Auth::id();
             }
 
-            // Fill simple fields
-            $data->title = $request->title;
-            $data->slug = Str::slug($request->slug);
-            $data->description = $request->description;
+            // Prepare JSON content from sections
+            $sections = $request->input('sections', []);
+
+            // Ensure slug is slugified
+            foreach ($sections as &$section) {
+                $section['slug'] = Str::slug($section['slug'] ?? '');
+            }
+
+            $data->content = json_encode($sections);
+
+            // BG Image + Alt
             $data->bg_image_alt = $request->bg_image_alt;
 
             // Image Upload
-            $data->bg_image = $this->updateImage(
-                $request,
-                'bg_image',
-                'what-we-do',
-                $data->bg_image
-            );
+            if ($request->hasFile('bg_image')) {
+                $data->bg_image = $this->updateImage(
+                    $request,
+                    'bg_image',
+                    'what-we-do',
+                    $data->bg_image
+                );
+            }
 
             $data->save();
 
@@ -128,6 +136,12 @@ class WhatWeDoController extends Controller
     {
         try {
             $data = WhatWeDo::findOrFail($id);
+            // Decode JSON content for Blade
+            if (!empty($data->content)) {
+                $data->sections = json_decode($data->content, true);
+            } else {
+                $data->sections = [];
+            }
             return view('pages.what-we-do.create', compact('data'));
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return redirect()->route('admin.what-we-do.list')

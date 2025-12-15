@@ -23,6 +23,17 @@ class WhatWeDoDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+
+            ->addColumn('section_top_title', function ($w) {
+                $content = json_decode($w->content, true);
+                return $content[1]['title'] ?? '-';
+            })
+
+            ->addColumn('section_top_slug', function ($w) {
+                $content = json_decode($w->content, true);
+                return $content[1]['slug'] ?? '-';
+            })
+
             ->addColumn('created_by', fn($w) => optional($w->createdBy)->name ?? '-')
             ->addColumn('updated_by', fn($w) => optional($w->updatedBy)->name ?? '-')
 
@@ -86,8 +97,8 @@ class WhatWeDoDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('title')->title('Title'),
-            Column::make('slug')->title('Slug'),
+            Column::computed('section_top_title')->title('Title'),
+            Column::computed('section_top_slug')->title('Slug'),
 
             Column::make('created_by')->title('Created By'),
             Column::make('created_at')->title('Created At'),

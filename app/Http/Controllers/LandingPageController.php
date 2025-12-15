@@ -37,7 +37,7 @@ class LandingPageController extends Controller
             abort(403, 'You do not have permission to view this page.');
         } catch (\Throwable $e) {
             // Log any other errors
-            Log::error('LandingPage index error: '.$e->getMessage(), [
+            Log::error('LandingPage index error: ' . $e->getMessage(), [
                 'trace' => $e->getTraceAsString(),
             ]);
 
@@ -121,7 +121,7 @@ class LandingPageController extends Controller
         } catch (\Throwable $e) {
             DB::rollBack();
 
-            Log::error('LandingPage storeOrUpdate error: '.$e->getMessage(), [
+            Log::error('LandingPage storeOrUpdate error: ' . $e->getMessage(), [
                 'trace' => $e->getTraceAsString(),
                 'request' => $request->all(),
             ]);
@@ -147,7 +147,7 @@ class LandingPageController extends Controller
             $landingPage = LandingPage::findOrFail($request->landing_page_id);
             $column = $request->column;
             $imageToRemove = $request->image;
-            $path = rtrim($request->path, '/').'/'; // ensure trailing slash
+            $path = rtrim($request->path, '/') . '/'; // ensure trailing slash
 
             // Get existing images as array
             $images = $landingPage->{$column};
@@ -165,8 +165,8 @@ class LandingPageController extends Controller
             $landingPage->save();
 
             // Delete file from storage
-            if (Storage::disk('public')->exists($path.$imageToRemove)) {
-                Storage::disk('public')->delete($path.$imageToRemove);
+            if (Storage::disk('public')->exists($path . $imageToRemove)) {
+                Storage::disk('public')->delete($path . $imageToRemove);
             }
 
             return response()->json([
@@ -174,7 +174,7 @@ class LandingPageController extends Controller
                 'message' => 'Image removed successfully.',
             ]);
         } catch (\Throwable $e) {
-            Log::error('removeSliderImage error: '.$e->getMessage(), [
+            Log::error('removeSliderImage error: ' . $e->getMessage(), [
                 'request' => $request->all(),
                 'trace' => $e->getTraceAsString(),
             ]);
@@ -231,30 +231,20 @@ class LandingPageController extends Controller
         //     ->get();
 
         // Latest 16 active products
-        $products = Product::where('is_active', true)
-            ->latest()        // order by created_at desc
+        $products = Product::select([
+            'name',
+            'slug',
+            'short_description',
+            'price',
+            'discount_percent',
+            'sale_price',
+            'thumbnail',
+            'image_alt',
+        ])
+            ->where('is_active', true)
+            ->whereIn('type', ['for_store', 'both'])
+            ->latest()
             ->take(16)
-            ->select([
-                'name',
-                'slug',
-                'short_description',
-                'price',
-                'discount_percent',
-                'sale_price',
-                'thumbnail',
-                'image_alt',
-            ])
-            ->get();
-
-        // Active offers
-        $offers = Offer::where('is_active', true)
-            ->select([
-                'title',
-                'slug',
-                'short_description',
-                'thumbnail',
-                'image_alt',
-            ])
             ->get();
 
         // Repair Service (selected columns)
@@ -276,37 +266,16 @@ class LandingPageController extends Controller
         $xrays = $repairSubPages->get('x-ray', collect());
         $carms = $repairSubPages->get('c-arm', collect());
 
-        $oems = OemContent::select([
-            'title',
-            'slug',
-            'image',
-            'image_alt',
-            'description',
-        ])->orderBy('order', 'asc')->get();
-
-        $faqs = Faq::where('page_name', 'landing')
-            ->select(['question', 'answer'])
-            ->latest()
-            // ->take(4)
-            ->get();
-
-        $blogs = Blog::where('is_active', true)
-            ->select(['title', 'slug', 'image', 'image_alt_text', 'short_description'])
-            ->latest()
-            ->take(4)
-            ->get();
+        $faqs = getFaqs('landing');
 
         return view('frontend.pages.home', compact(
             'data',
             'categories',
             'products',
-            'offers',
             'repairServiceData',
             'xrays',
             'carms',
-            'oems',
             'faqs',
-            'blogs'
         ));
     }
 

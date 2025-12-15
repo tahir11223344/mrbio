@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Faq;
 use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Cache;
 
@@ -531,38 +532,97 @@ if (!function_exists('highlightBracketText')) {
 if (!function_exists('merge_images')) {
 
     /**
-     * Merge thumbnail + gallery images into a single array inside a paginated collection.
+     * Merge thumbnail + gallery images into a single array (with paths).
      *
-     * @param  \Illuminate\Pagination\LengthAwarePaginator|\Illuminate\Support\Collection  $items
+     * @param  \Illuminate\Pagination\LengthAwarePaginator|\Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Model  $items
      * @param  string  $thumbnailColumn
      * @param  string  $galleryColumn
      * @param  string  $finalKey
+     * @param  string  $thumbnailPath
+     * @param  string  $galleryPath
      * @return mixed
      */
-    function merge_images($items, $thumbnailColumn, $galleryColumn, $finalKey = 'all_images')
+    function merge_images($items, $thumbnailColumn, $galleryColumn, $finalKey = 'all_images', $thumbnailPath = '', $galleryPath = '')
     {
-        $items->getCollection()->transform(function ($item) use ($thumbnailColumn, $galleryColumn, $finalKey) {
+        /**
+         * SMALL INTERNAL FUNCTION TO BUILD IMAGE PATHS
+         */
+        $buildPath = function ($path, $filename) {
+            return rtrim($path, '/') . '/' . ltrim($filename, '/');
+        };
+
+        /**
+         * CASE 1 — SINGLE MODEL INSTANCE
+         */
+        if ($items instanceof \Illuminate\Database\Eloquent\Model) {
 
             $images = [];
 
-            // Add thumbnail
-            if (!empty($item->{$thumbnailColumn})) {
-                $images[] = $item->{$thumbnailColumn};
+            // Add thumbnail + path
+            if (!empty($items->{$thumbnailColumn})) {
+                $images[] = $buildPath($thumbnailPath, $items->{$thumbnailColumn});
             }
 
-            // Add gallery images
-            if (is_array($item->{$galleryColumn})) {
-                foreach ($item->{$galleryColumn} as $img) {
-                    $images[] = $img;
+            // Decode gallery JSON
+            $gallery = $items->{$galleryColumn};
+            $decoded = json_decode($gallery, true);
+
+            if (is_array($decoded)) {
+                foreach ($decoded as $img) {
+                    $images[] = $buildPath($galleryPath, $img);
                 }
             }
 
-            // Attach final merged key
+            $items->{$finalKey} = $images;
+            return $items;
+        }
+
+        /**
+         * CASE 2 — PAGINATOR / COLLECTION
+         */
+        $items->getCollection()->transform(function ($item) use ($thumbnailColumn, $galleryColumn, $finalKey, $thumbnailPath, $galleryPath, $buildPath) {
+
+            $images = [];
+
+            if (!empty($item->{$thumbnailColumn})) {
+                $images[] = $buildPath($thumbnailPath, $item->{$thumbnailColumn});
+            }
+
+            $gallery = $item->{$galleryColumn};
+            $decoded = json_decode($gallery, true);
+
+            if (is_array($decoded)) {
+                foreach ($decoded as $img) {
+                    $images[] = $buildPath($galleryPath, $img);
+                }
+            }
+
             $item->{$finalKey} = $images;
 
             return $item;
         });
 
         return $items;
+    }
+}
+
+
+
+if (!function_exists('getFaqs')) {
+
+    /**
+     * Get FAQs by page name
+     *
+     * @param  string  $pageName
+     * @param  int     $limit
+     * @return \Illuminate\Support\Collection
+     */
+    function getFaqs($pageName, $limit = 4)
+    {
+        return Faq::where('page_name', $pageName)
+            ->select(['question', 'answer'])
+            ->latest()
+            ->take($limit)
+            ->get();
     }
 }

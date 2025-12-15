@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\RepairServicesSubPageDataTable;
+use App\Models\Faq;
 use App\Models\RepairService;
 use App\Models\RepairServiceSubPage;
 use App\Traits\UploadImageTrait;
@@ -48,7 +49,7 @@ class RepairServiceController extends Controller
             'banner_short_description' => 'nullable|string',
             'banner_image' => 'nullable|file|max:10240', // any file up to 10MB
             'banner_image_alt' => 'nullable|string|max:255',
-            
+
             'repair_service_heading' => 'nullable|string|max:255',
             'repair_service_short_description' => 'nullable|string',   // NEW
 
@@ -473,5 +474,54 @@ class RepairServiceController extends Controller
                 ->back()
                 ->withErrors(['error' => 'Unable to delete the page: ' . $e->getMessage()]);
         }
+    }
+
+    public function landingPage()
+    {
+        // Fetch data
+        $data = RepairService::first();
+        $faqs = getFaqs('repair');
+        return view('frontend.pages.repaire', compact('data', 'faqs'));
+    }
+
+    public function repairServiceDetail($category, $slug)
+    {
+        // dd($category, $slug);
+
+        // Mapping: URL segment → Actual DB page_category value
+        $categoryMap = [
+            'repairing-services' => 'repair-service',  // URL: repairing-services → DB: repair-service
+            'x-ray' => 'x-ray',
+            'c-arm' => 'c-arm',
+
+        ];
+
+        // Get the actual DB category from URL segment
+        $dbCategory = $categoryMap[$category] ?? $category;
+
+        // Fetch the sub-page using DB category and slug
+        $data = RepairServiceSubPage::where('page_category', $dbCategory)
+            ->where('slug', $slug)
+            ->where('is_active', true)
+            ->first();
+
+        // Merge images
+        merge_images(
+            $data,
+            'content_thumbnail',
+            'gallery_images',
+            'all_images',
+            'storage/repair-pages',          // thumbnail path
+            'storage/repair-pages/gallery'   // gallery path
+        );
+
+        // If page not found → 404
+        if (!$data) {
+            abort(404, 'The requested service page was not found.');
+        }
+
+        $faqs = getFaqs('repair');
+
+        return view('frontend.pages.repair-service-detail', compact('data', 'faqs'));
     }
 }

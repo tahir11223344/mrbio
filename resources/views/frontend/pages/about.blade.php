@@ -1,6 +1,9 @@
 @extends('frontend.layouts.frontend')
 
-@section('title', 'About Us')
+{{-- @section('title', 'About Us') --}}
+@section('meta_title', $about->meta_title ?? 'About Us')
+@section('meta_keywords', $about->meta_keywords ?? '')
+@section('meta_description', $about->meta_description ?? '')
 
 @push('frontend-styles')
     <style>
@@ -250,7 +253,6 @@
 
         /* Background Section */
         .custom-section {
-            background-image: url('/frontend/images/about/about-banner2.jpg');
             background-size: cover;
             background-position: center;
             height: 567px;
@@ -481,11 +483,10 @@
     <section class="hero-detail-section">
         <div class="container py-5 text-center text-white">
 
-            <h1 class="hero-title mb-3">About Us <span>Detail page </span> </h1>
+            <h1 class="hero-title mb-3">{!! highlightBracketText($about->hero_title ?? '', ['#000000']) !!}</h1>
 
             <p class="hero-description mx-auto mb-4">
-                Discover the comprehensive range of specialized biomedical services we offer, designed to support your
-                operational needs and technological advancement.
+                {{ $about->hero_subtitle ?? '' }}
             </p>
 
             <div class="container py-5 text-center text-white">
@@ -511,28 +512,10 @@
 
                 <!-- LEFT COLUMN -->
                 <div class="col-lg-6 ">
-                    <h2 class="co-heading">Company Overview / <span>Who We Are</span> </h2>
+                    <h2 class="co-heading">{!! highlightBracketText($about->main_heading ?? '') !!}</h2>
 
                     <p class="co-desc">
-                        nec Praesent libero, placerat nec non dignissim, viverra Lorem tempor vitae elit. viverra turpis
-                        faucibus non. sit fringilla risus Nam ex nisl. fringilla Donec sit nisi nec Quisque Vestibulum
-                        maximus Nunc ex non. volutpat vitae at, tempor ac amet, viverra tincidunt facilisis Sed orci
-                        luctus Nam odio tincidunt urna. tincidunt sollicitudin.
-                        maximus Nunc ex non. volutpat vitae at, tempor ac amet, viverra tincidunt facilisis Sed orci
-                        luctus Nam odio tincidunt urna. tincidunt sollicitudin.
-                    </p>
-
-                    <p class="co-desc">
-                        vel at orci elit tincidunt varius Donec orci dui in at, sapien orci tincidunt Morbi eget eu non.
-                        facilisis odio luctus Nullam Morbi non faucibus viverra ipsum viverra facilisis ex ipsum sapien elit
-                        porta ex faucibus odio orci diam Quisque turpis felis, placerat viverra Donec sollicitudin.
-                        maximus Nunc ex non. volutpat vitae at, tempor ac amet, viverra tincidunt facilisis Sed orci
-                        luctus Nam odio tincidunt urna. tincidunt sollicitudin.
-                        luctus Nam odio tincidunt urna. tincidunt sollicitudin. luctus Nam odio tincidunt urna. tincidunt
-                        sollicitudin. luctus Nam odio tincidunt urna. tincidunt sollicitudin.
-
-
-
+                        {!! $about->main_description ?? '' !!}
                     </p>
 
 
@@ -544,33 +527,35 @@
 
                         <div class="w-50">
                             <div class="co-card">
-                                <h3 class="co-number">230+</h3>
+                                <h3 class="co-number">{{ $about->stats ?? '' }}</h3>
 
                                 <p class="co-small">
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elit feugiat. Lorem ipsum dolor sit
-                                    amet consectetur adipiscing elit feugiat.
-
-
-                                </p>
-
-                                <p class="co-small">
-                                    Integer tincidunt arcu non massa tempor, sed pretium eros facilisis.
-                                    Integer tincidunt arcu non massa tempor, sed pretium eros facilisis.
-
-                                    .
-
+                                    {{ $about->stats_description ?? '' }}
                                 </p>
 
                                 <div class="co-divider"></div>
                             </div>
                         </div>
-                        <div class=" d-flex flex-column gap-3">
-                            <img src="{{ asset('frontend/images/about/about-1mg.png') }}" class="img-fluid co-img"
-                                alt="ss">
-                            <img src="{{ asset('frontend/images/about/about-img2.png') }}" class="img-fluid co-img"
-                                alt="aa">
+                        <div class="d-flex flex-column gap-3">
+
+                            {{-- IMAGE 1 --}}
+                            @if (!empty($about->image_1))
+                                <img src="{{ asset('storage/about_us/' . $about->image_1) }}" class="img-fluid co-img"
+                                    alt="{{ $about->image_1_alt ?? '' }}">
+                            @else
+                                <p>{{ $about->image_1_alt ?? '' }}</p>
+                            @endif
+
+                            {{-- IMAGE 2 --}}
+                            @if (!empty($about->image_2))
+                                <img src="{{ asset('storage/about_us/' . $about->image_2) }}" class="img-fluid co-img"
+                                    alt="{{ $about->image_2_alt ?? '' }}">
+                            @else
+                                <p>{{ $about->image_2_alt ?? '' }}</p>
+                            @endif
 
                         </div>
+
                     </div>
 
 
@@ -586,26 +571,21 @@
             </div>
         </div>
     </section>
+    @php
+        $value = split_heading($about->value_section_heading ?? '');
+    @endphp
 
     {{-- =========== value container =============  --}}
     <div class="values-container container">
-        <h2 class="section-title">Our Values</h2>
+        <h2 class="section-title">{{ $value['first_text'] ?? '' }}</h2>
 
         <div class="row g-4">
             <!-- LEFT COLUMN -->
             <div class="col-lg-7 col-md-6">
-                <h3 class="about-sub-title">Seamless Personalized Care by Mr Biomed Tech</h3>
+                <h3 class="about-sub-title">{{ $value['second_text'] ?? '' }}</h3>
 
                 <p class="desc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nunc vitae viverra turpis, nec faucibus sapien. Vestibulum
-                    maximus viverra ex non dapibus. Proin dignissim, justo vitae
-                    tincidunt facilisis, erat orci faucibus nibh, pulvinar
-                    elementum sapien nisl sed lorem.
-                    maximus viverra ex non dapibus. Proin dignissim, justo vitae
-                    tincidunt facilisis, erat orci faucibus nibh, pulvinar
-                    elementum sapien nisl sed lorem.
-                    tincidunt facilisis, erat orci faucibus nibh, pulvinar
+                    {!! $about->value_section_description !!}
 
                 </p>
 
@@ -615,177 +595,60 @@
             </div>
 
             <!-- RIGHT COLUMN (IMAGE) -->
+
+
             <div class="col-lg-5 col-md-6 text-center">
-                <img src="{{ asset('frontend/images/rental/product-img.jpg') }}" class="value-img">
+                @if (!empty($about->value_section_image))
+                    <img src="{{ asset('storage/about_us/' . $about->value_section_image) }}" class="value-img"
+                        alt="{{ $about->value_section_image_alt ?? '' }}">
+                @else
+                    <p>{{ $about->value_section_image_alt ?? '' }}</p>
+                @endif
 
             </div>
         </div>
 
         <!-- BOTTOM 2 COLUMN CARDS -->
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <!-- VISION CARD -->
-                <div class="card-box">
-                    <h3 class="about-card-title">Our Vision</h3>
-                    <p class="about-card-text">
-                        Aenean sit amet nunc vitae justo interdum ultrices. Aliquam
-                        sodales sapien vel quam posuere posuere. Sed maximus, ligula
-                        vitae interdum facilisis, lorem nisl volutpat elit, sed
-                        suscipit lacus orci eu nisi.Lorem ipsum dolor sit amet consectetur adipiscing elit feugiat. Lorem
-                        ipsum dolor sit
-                        .
-                    </p>
-                </div>
-
-                <!-- MISSION CARD -->
-
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="card-box">
-                    <h3 class="about-card-title">Our Mission</h3>
-                    <p class="about-card-text">
-                        Quisque faucibus felis vitae elit consectetur, eget varius
-                        lectus consectetur. Aliquam erat volutpat. Nullam mattis
-                        mauris sed libero consectetur, vitae euismod sapien ultrices.Lorem ipsum dolor sit amet consectetur
-                        adipiscing elit feugiat. Lorem ipsum dolor sit
-
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section class="offer-section mt-5">
-        <div class="container">
-
-            <!-- Heading -->
-            <h2 class="text-center offer-title">What We <span>Offer</span> </h2>
-            <p class="text-center offer-desc mb-5">
-                We provide top-quality medical equipment & services to meet all your healthcare needs.
-            </p>
-
-            <!-- Slider Wrapper -->
-            <div class="offer-slider-wrapper position-relative">
-
-                <!-- Prev Button -->
-                <button class="offer-prev"><i class="bi bi-chevron-left"></i></button>
-
-                <!-- Slider Container -->
-                <div class="offer-slider-container">
-                    <div class="offer-slider-track">
-
-                        <!-- CARD 1 -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">Repairing Services</h4>
-                            <hr>
-                            <p class="card-desc">High quality ECG machines for accurate monitoring.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-
-                        <!-- CARD 2 -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">Surgical Equipment </h4>
-                            <hr>
-                            <p class="card-desc">Advanced imaging technology for clear results.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-
-                        <!-- CARD 3 -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">Disposition Services</h4>
-                            <hr>
-                            <p class="card-desc">Portable ultrasound for quick examinations.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-
-                        <!-- CARD 4 -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">ICU Monitor</h4>
-                            <hr>
-                            <p class="card-desc">Real-time monitoring for critical patients.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-
-                        <!-- Duplicate first 4 cards for infinite loop -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">Medical Equipment </h4>
-                            <hr>
-                            <p class="card-desc">High quality ECG machines.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">X-ray Machine</h4>
-                            <hr>
-                            <p class="card-desc">Advanced imaging results.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">Ultrasound</h4>
-                            <hr>
-                            <p class="card-desc">Portable & fast.</p>
-                            <button class="read-btn">Read More</button>
-                        </div>
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/slider-img-1.png') }}" alt="card-im"
-                                class="card-img img-fluid">
-                            <h4 class="card-title">ICU Monitor</h4>
-                            <hr>
-                            <p class="card-desc">Critical monitoring.</p>
-                            <button class="read-btn">Read More</button>
+        @if (isset($about_cards) && $about_cards->count() > 0)
+            <div class="row">
+                @foreach ($about_cards as $card)
+                    <div class="col-lg-6 col-md-6">
+                        <div class="card-box">
+                            <h3 class="about-card-title">{{ $card->title ?? '' }}</h3>
+                            <p class="about-card-text">
+                                {{ $card->description ?? '' }}
+                            </p>
                         </div>
 
                     </div>
-                </div>
-
-                <!-- Next Button -->
-                <button class="offer-next"><i class="bi bi-chevron-right"></i></button>
-                {{-- pagination dot --}}
-                <div class="offer-pagination"></div>
-
-
+                @endforeach
             </div>
-        </div>
-    </section>
+        @endif
+    </div>
+
+    {{-- Offer Slider Component --}}
+    <x-offers-section />
 
 
 
 
     {{-- ===== about banner ======== --}}
-
-    <section class="brand-s">
-        <div class="brand-slider containe">
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-
-                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo1.png') }}"></div>
-                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo2.png') }}"></div>
-                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo3.png') }}"></div>
-                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo4.png') }}"></div>
-                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo5.jpg') }}"></div>
-                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo6.jpg') }}"></div>
-                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo7.png') }}"></div>
-                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo8.png') }}"></div>
-                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo9.png') }}"></div>
-                    <div class="swiper-slide"><img src="{{ asset('frontend/images/rental/brand-logo10.png') }}"></div>
-
+    @if (isset($brands) && $brands->count() > 0)
+        <section class="brand-s">
+            <div class="brand-slider containe">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($brands as $brand)
+                            <div class="swiper-slide"><a href="{{ $brand->website ?? '#' }}" target="_blank">
+                                    <img src="{{ asset('storage/brands-we-carry/' . $brand->logo) }}"
+                                        alt="{{ $brand->logo_alt ?? '' }}">
+                                </a>
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     {{-- ==== end --}}
     {{-- <section class="about-hero-section mt-3">
@@ -794,289 +657,103 @@
 
 
     {{-- ====== custom card ============= --}}
-    <section>
-        <div class="row">
-            <h2 class="custom-section-heading">What We Do?</h2>
-        </div>
-        <section class="custom-section">
-            <!-- Bottom Left Card -->
-            <div class="info-card card-left">
-                <h2>Repairing Services</h2>
-                <p>
-                    This is the description of the left card. You can write any text here.
-                    This is the description of the left card. You can write any text here.
-                    This is the description of the left card. You can write any text here.
-
-                </p>
+    @if (isset($what_we_do) && $what_we_do->count() > 0)
+        <section>
+            <div class="row">
+                <h2 class="custom-section-heading">What We Do?</h2>
             </div>
+            @foreach ($what_we_do as $item)
+                @php
+                    $top = $item->sections[1] ?? null;
+                    $bottom = $item->sections[2] ?? null;
+                @endphp
+                <section class="custom-section"
+                    style="background-image: url('{{ asset('storage/what-we-do/' . $item->bg_image) }}');">
+                    <!-- Bottom Left Card -->
+                    @if ($bottom)
+                        <div class="info-card card-left">
+                            <h2>{{ $bottom['title'] ?? '' }}</h2>
+                            <p>{!! $bottom['description'] ?? '' !!}</p>
+                        </div>
+                    @endif
 
-            <!-- Top Right Card -->
-            <div class="info-card card-right">
-                <h2>Retired Assets</h2>
-                <p>
-                    This is the description of the right card. Customize it as you want.
-                    This is the description of the left card. You can write any text here.
-                    This is the description of the left card. You can write any text here.
+                    <!-- Top Right Card -->
+                    @if ($top)
+                        <div class="info-card card-right">
+                            <h2>{{ $top['title'] ?? '' }}</h2>
+                            <p>{!! $top['description'] ?? '' !!}</p>
+                        </div>
+                    @endif
+                </section>
+            @endforeach
+        </section>
+    @endif
 
+
+    {{-- ================= Why Choose Biomed Section ================= --}}
+    <x-why-choice-biomed />
+
+
+    @if (isset($certificates) && $certificates->count() > 0)
+        <section class="offer-section my-5">
+            <div class="container">
+
+                <!-- Heading -->
+                <h2 class="text-center offer-title">Company <span>Certifications</span> </h2>
+                <p class="text-center offer-desc mb-5">
+                    We provide top-quality medical equipment & services to meet all your healthcare needs.
                 </p>
+
+                <!-- Slider Wrapper -->
+                <div class="offer-slider-wrapper position-relative">
+
+                    <!-- Prev Button -->
+                    <button class="offer-prev"><i class="bi bi-chevron-left"></i></button>
+
+                    <!-- Slider Container -->
+                    <div class="offer-slider-container">
+                        <div class="offer-slider-track">
+                            @foreach ($certificates as $item)
+                                <!-- CARD -->
+                                <div class="offer-card">
+                                    <img src="{{ asset('storage/company-certifications/' . $item->certificate) }}"
+                                        class="img-fluid about-card-img certificate-click"
+                                        alt="{{ $item->certificate_alt ?? '' }}" data-title="{{ $item->title }}"
+                                        data-image="{{ asset('storage/company-certifications/' . $item->certificate) }}">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <!-- Next Button -->
+                    <button class="offer-next"><i class="bi bi-chevron-right"></i></button>
+                    {{-- pagination dot --}}
+                    <div class="offer-pagination"></div>
+
+
+                </div>
             </div>
         </section>
+    @endif
 
-        <section class="custom-section">
-            <!-- Bottom Left Card -->
-            <div class="info-card card-left">
-                <h2>Medical Equipment Repairing</h2>
-                <p>
-                    This is the description of the left card. You can write any text here.
-                    This is the description of the left card. You can write any text here.
-                    This is the description of the left card. You can write any text here.
+    <!-- Preview Modal -->
+    <div class="modal fade" id="certificateModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
 
-                </p>
-            </div>
-
-            <!-- Top Right Card -->
-            <div class="info-card card-right">
-                <h2>Surgical Equipment Repairing</h2>
-                <p>
-                    This is the description of the right card. Customize it as you want.
-                    This is the description of the left card. You can write any text here.
-                    This is the description of the left card. You can write any text here.
-
-                </p>
-            </div>
-        </section>
-        <section class="custom-section">
-            <!-- Bottom Left Card -->
-            <div class="info-card card-left">
-                <h2>Medical Imaging Repairing</h2>
-                <p>
-                    This is the description of the left card. You can write any text here.
-                    This is the description of the left card. You can write any text here.
-                    This is the description of the left card. You can write any text here.
-
-                </p>
-            </div>
-
-            <!-- Top Right Card -->
-            <div class="info-card card-right">
-                <h2>Surgical Laser Services</h2>
-                <p>
-                    This is the description of the right card. Customize it as you want.
-                    This is the description of the left card. You can write any text here.
-                    This is the description of the left card. You can write any text here.
-
-                </p>
-            </div>
-        </section>
-    </section>
-    <section class="py-5">
-        <div class="container">
-
-            <!-- Section Title -->
-            <h2 class="choose-title">Why Chose <span>Mr Biomed Tech</span> </h2>
-
-            <div class="row g-4 justify-content-center mt-4">
-
-                <!-- CARD 1 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="choose-card">
-                        <div class="choose-top">
-                            <i class="bi bi-check choose-icon"></i>
-
-                            <!-- <div class="choose-icon">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
-                            <h4 class="choose-heading">20 Years Experience</h4>
-                        </div>
-                        <p class="choose-desc">
-                            With two decades of industry expertise, we provide reliable medical equipment solutions.
-                        </p>
-                    </div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="certificateModalTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
-                <!-- CARD 2 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="choose-card">
-                        <div class="choose-top">
-                            <i class="bi bi-check choose-icon"></i>
-
-                            <h4 class="choose-heading">100% Availability</h4>
-                        </div>
-                        <p class="choose-desc">
-                            Our equipment and support services are always available when you need them the most.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- CARD 3 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="choose-card">
-                        <div class="choose-top">
-                            <i class="bi bi-check choose-icon"></i>
-
-                            <h4 class="choose-heading">Up-to-date Catalogue</h4>
-                        </div>
-                        <p class="choose-desc">
-                            We keep our product catalog updated with the latest medical equipment and technologies.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- CARD 4 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="choose-card">
-                        <div class="choose-top">
-                            <i class="bi bi-check choose-icon"></i>
-
-                            <h4 class="choose-heading">Regular Checks</h4>
-                        </div>
-                        <p class="choose-desc">
-                            All rental and purchased devices are regularly inspected for performance & safety.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- CARD 5 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="choose-card">
-                        <div class="choose-top">
-                            <i class="bi bi-check choose-icon"></i>
-
-                            <h4 class="choose-heading">ISO Certification</h4>
-                        </div>
-                        <p class="choose-desc">
-                            We follow ISO standards to ensure top-quality products and safe biomedical practices.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- CARD 6 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="choose-card">
-                        <div class="choose-top">
-                            <i class="bi bi-check choose-icon"></i>
-
-                            <h4 class="choose-heading">24/7 Support</h4>
-                        </div>
-                        <p class="choose-desc">
-                            Our dedicated support team is available around the clock for assistance & troubleshooting.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- CARD 7 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="choose-card">
-                        <div class="choose-top">
-                            <i class="bi bi-check choose-icon"></i>
-
-                            <h4 class="choose-heading">Annual Inspection</h4>
-                        </div>
-                        <p class="choose-desc">
-                            We provide yearly inspections to maintain equipment performance and extend lifespan.
-                        </p>
-                    </div>
+                <div class="modal-body text-center">
+                    <img id="certificateModalImage" src="" class="img-fluid rounded" />
                 </div>
 
             </div>
         </div>
-    </section>
+    </div>
 
-
-
-
-
-
-
-
-    <section class="offer-section my-5">
-        <div class="container">
-
-            <!-- Heading -->
-            <h2 class="text-center offer-title">Company <span>Certifications</span> </h2>
-            <p class="text-center offer-desc mb-5">
-                We provide top-quality medical equipment & services to meet all your healthcare needs.
-            </p>
-
-            <!-- Slider Wrapper -->
-            <div class="offer-slider-wrapper position-relative">
-
-                <!-- Prev Button -->
-                <button class="offer-prev"><i class="bi bi-chevron-left"></i></button>
-
-                <!-- Slider Container -->
-                <div class="offer-slider-container">
-                    <div class="offer-slider-track">
-
-                        <!-- CARD 1 -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/about/about-company.png') }}"
-                                class="img-fluid about-card-img">
-
-
-                        </div>
-
-                        <!-- CARD 2 -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/about/about-company.png') }}"
-                                class="img-fluid about-card-img">
-
-
-                        </div>
-
-                        <!-- CARD 3 -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/about/about-company.png') }}"
-                                class="img-fluid about-card-img">
-
-
-                        </div>
-
-                        <!-- CARD 4 -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/about/about-company.png') }}"
-                                class="img-fluid about-card-img">
-
-
-                        </div>
-
-                        <!-- Duplicate first 4 cards for infinite loop -->
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/about/about-company.png') }}"
-                                class="img-fluid about-card-img">
-
-
-                        </div>
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/about/about-company.png') }}"
-                                class="img-fluid about-card-img">
-
-
-                        </div>
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/about/about-company.png') }}"
-                                class="img-fluid about-card-img">
-
-
-                        </div>
-                        <div class="offer-card">
-                            <img src="{{ asset('frontend/images/about/about-company.png') }}"
-                                class="img-fluid about-card-img">
-
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Next Button -->
-                <button class="offer-next"><i class="bi bi-chevron-right"></i></button>
-                {{-- pagination dot --}}
-                <div class="offer-pagination"></div>
-
-
-            </div>
-        </div>
-    </section>
 
 
 
@@ -1120,246 +797,13 @@
     </section>
 
     {{-- ================faqs section ================ --}}
-
-    <section class="faqs-section py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Left Column: FAQs -->
-                <div class="col-lg-6">
-                    <h2 class="faqs-heading">Frequently Asked Questions</h2>
-                    <div class="mt-4">
-                        <h5 class="faqs-subheading">About Our Profile?</h5>
-                        <p class="faq-para">
-                            We provide sales, rental, and repair services for medical equipment with ISO certified
-                        </p>
-                    </div>
-
-                    <div class="faqs-list">
-                        <!-- Sample FAQs -->
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                What services does Mr Biomed Tech offer?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                We provide sales, rental, and repair services for medical equipment with ISO certified
-                                products and 24/7 support.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                How can I request a service?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                You can contact us via our website form, email, or call our support team to request any
-                                service.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                Are your products guaranteed?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                Yes, all our equipment comes with manufacturer warranty and quality assurance for
-                                reliability.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                What is the delivery time?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                Delivery depends on product availability, usually 3-7 business days.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                Can I return a product?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                Yes, returns are possible within 14 days under our return policy.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                Do you offer installation services?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                Yes, our team provides installation and training for all equipment.
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="btn-see-more">See More</button>
-                </div>
-
-                <!-- Right Column: Image -->
-                <div class="col-lg-6 text-center">
-                    <img src="{{ asset('frontend/images/hero-main-img.png') }}" alt="FAQ Image"
-                        class="faq-img img-fluid">
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="About Our Profile?"
+        subtext="We provide sales, rental, and repair services for medical equipment with ISO certified"
+        image="frontend/images/hero-main-img.png" :visible="4" />
 
 
     {{-- ================= pruduct sectiion ============= --}}
-    <section class="products-series-section py-5">
-
-
-        <div class="container-fluid py-5 product-series-bg">
-            <div class="container text-center">
-                <p class="text-center  product-series-para  mb-3">New From Mr Biomed Tech</p>
-                <h2 class="text-center mb-5  product-section-heading">Our <span>Latest Products</span> </h2>
-
-                <div class="product-filter-tabs mb-5 d-flex justify-content-center flex-wrap gap-">
-
-                    <button class="filter-btn active" data-filter="featured">Featured</button>
-
-                    <button class="filter-btn" data-filter="equipment">Medical Equipment</button>
-                    <button class="filter-btn" data-filter="supplies">Supplies</button>
-                    <button class="filter-btn" data-filter="parts">Parts</button>
-                </div>
-            </div>
-
-            <div class="container mt-4">
-                <div class="row g-4">
-
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="custom-card shadow-sm position-relative">
-                            <span class="discount-badge">10% OFF</span>
-
-                            <div class="card-image-box">
-                                <img src="{{ asset('frontend/images/ourproduct-img.jpg') }}" alt="PRODUCT img"
-                                    class=" img-fluid">
-                            </div>
-
-
-                            <div class="card-content-box p-3 pt-2">
-                                <div class="rating-stars p- pt-2 pb-0">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                </div>
-                                <h5 class="product-title fw-bold">Defibrillator X1</h5>
-                                <p class="card-text small mb-3">High-performance device for cardiac care and monitoring.
-                                </p>
-
-                                <div class="price-action-row d-flex justify-content-between align-items-center">
-
-                                    <span class="old-price text-decoration-line-through text-muted small">$12,000</span>
-                                    <span class="new-price fw-bolder fs-5 text-primary">$10,800</span>
-
-                                    <a href="#" class="btn buy-now-btn btn-sm">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="custom-card shadow-sm position-relative">
-                            <span class="discount-badge">10% OFF</span>
-                            <div class="card-image-box">
-                                <img src="{{ asset('frontend/images/ourproduct-img.jpg') }}" alt="PRODUCT img"
-                                    class=" img-fluid">
-                            </div>
-
-                            <div class="card-content-box p-3 pt-2">
-                                <div class="rating-stars p- pt-2 pb-0">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                </div>
-                                <h5 class="product-title fw-bold">Patient Monitor P5</h5>
-                                <p class="card-text small mb-3">Multi-parameter monitoring solution with touch interface.
-                                </p>
-                                <div class="price-action-row d-flex justify-content-between align-items-center">
-
-                                    <span class="old-price text-decoration-line-through text-muted small">$5,500</span>
-                                    <span class="new-price fw-bolder fs-5 text-primary">$4,950</span>
-
-                                    <a href="#" class="btn buy-now-btn btn-sm">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="custom-card shadow-sm position-relative">
-                            <span class="discount-badge">10% OFF</span>
-                            <div class="card-image-box">
-                                <img src="{{ asset('frontend/images/ourproduct-img.jpg') }}" alt="PRODUCT img"
-                                    class=" img-fluid">
-                            </div>
-
-                            <div class="card-content-box p-3 pt-2">
-                                <div class="rating-stars p- pt-2 pb-0">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                </div>
-                                <h5 class="product-title fw-bold">Infusion Pump D3</h5>
-                                <p class="card-text small mb-3">Precision fluid delivery system with safety alarms.</p>
-                                <div class="price-action-row d-flex justify-content-between align-items-center">
-
-                                    <span class="old-price text-decoration-line-through text-muted small">$1,500</span>
-                                    <span class="new-price fw-bolder fs-5 text-primary">$1,350</span>
-
-                                    <a href="#" class="btn buy-now-btn btn-sm">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="custom-card shadow-sm position-relative">
-                            <span class="discount-badge">10% OFF</span>
-                            <div class="card-image-box">
-                                <img src="{{ asset('frontend/images/ourproduct-img.jpg') }}" alt="PRODUCT img"
-                                    class=" img-fluid">
-                            </div>
-
-                            <div class="card-content-box p-3 pt-2">
-                                <div class="rating-stars p- pt-2 pb-0">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                </div>
-                                <h5 class="product-title fw-bold">ECG Machine M12</h5>
-                                <p class="card-text small mb-3">Compact and reliable 12-lead Electrocardiogram device.</p>
-                                <div class="price-action-row d-flex justify-content-between align-items-center">
-
-                                    <span class="old-price text-decoration-line-through text-muted small">$3,200</span>
-                                    <span class="new-price fw-bolder fs-5 text-primary">$2,880</span>
-
-                                    <a href="#" class="btn buy-now-btn btn-sm">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-our-latest-products />
 
     {{-- ============= reveiw sectiion ================== --}}
 
@@ -1449,101 +893,10 @@
 
     </section>
 
-    {{-- ============recent news section ============ --}}
+    {{-- ============ Recent News Section ============ --}}
+    <!-- Default: 4 blogs -->
+    <x-recent-blogs-section />
 
-
-
-    <section class="recent-news-section py- mb-5">
-        <div class="container text-center">
-            <h2 class="section-title text-white mb-3">Recent News</h2>
-            <p class="section-desc  mb-5">
-                Stay updated with the latest trends and insights in biomedical technology and services.
-            </p>
-        </div>
-
-        <div class="container">
-            <div class="row g-4">
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">The Future of Technology Solutions: Innovations
-                                Driving Business Success</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">Advancements in Biomedical Devices: A Game Changer for
-                                Healthcare</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">Enhancing Efficiency: The Role of AI in Medical
-                                Equipment Maintenance</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">Cybersecurity in Healthcare: Protecting Patient Data
-                                in a Digital Age</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
 @endsection
 
 @push('frontend-scripts')
@@ -1581,5 +934,27 @@
         const swiperEl = document.querySelector(".mySwiper");
         swiperEl.addEventListener("mouseenter", () => swiper.autoplay.stop());
         swiperEl.addEventListener("mouseleave", () => swiper.autoplay.start());
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.certificate-click').forEach(function(img) {
+
+                img.addEventListener('click', function() {
+
+                    // Set title
+                    document.getElementById('certificateModalTitle').innerText = this.dataset.title;
+
+                    // Set image
+                    document.getElementById('certificateModalImage').src = this.dataset.image;
+
+                    // Show modal
+                    let modal = new bootstrap.Modal(document.getElementById('certificateModal'));
+                    modal.show();
+                });
+
+            });
+        });
     </script>
 @endpush

@@ -65,7 +65,7 @@
                             <!-- Banner Image -->
                             <div class="col-lg-6">
                                 <label for="banner_image"
-                                    class="form-label fw-semibold">{{ __('Banner Image') }}</label>
+                                    class="form-label fw-semibold">{{ __('Banner Image/Video') }}</label>
                                 <input type="file" name="banner_image" id="banner_image"
                                     class="form-control form-control-lg @error('banner_image') is-invalid @enderror">
                                 @if (!empty($data->banner_image))

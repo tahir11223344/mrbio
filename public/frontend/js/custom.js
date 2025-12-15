@@ -476,6 +476,85 @@ document.querySelectorAll(".offer-slider-wrapper").forEach(wrapper => {
 // =================repair or location  details pages js ==================
 
 
+// document.addEventListener("DOMContentLoaded", function () {
+
+//     const mainImage = document.getElementById("mainImage");
+//     const thumbTrack = document.getElementById("thumbsTrack");
+//     const paginationBar = document.getElementById("paginationBar");
+//     const prevBtn = document.querySelector(".thumb-prev");
+//     const nextBtn = document.querySelector(".thumb-next");
+
+//     // Agar slider ke elements exist hi nahi karte → EXIT
+//     if (!mainImage || !thumbTrack || !paginationBar) {
+//         console.warn("Slider elements not found on this page.");
+//         return;
+//     }
+
+//     let offset = 0;
+//     const visibleThumbs = 4;
+//     const thumbWidth = 92;
+//     let thumbElements = document.querySelectorAll(".thumb");
+
+//     const totalPages = Math.ceil(thumbElements.length / visibleThumbs);
+
+//     // Create Pagination
+//     for (let i = 0; i < totalPages; i++) {
+//         let seg = document.createElement("div");
+//         seg.classList.add("pg-segment");
+//         seg.dataset.page = i;
+//         paginationBar.appendChild(seg);
+//     }
+
+//     const pgSegments = document.querySelectorAll(".pg-segment");
+
+//     function setActivePage(page) {
+//         pgSegments.forEach(seg => seg.classList.remove("active"));
+//         if (pgSegments[page]) pgSegments[page].classList.add("active");
+//     }
+//     setActivePage(0);
+
+//     function goToPage(page) {
+//         offset = -(page * visibleThumbs * thumbWidth);
+//         thumbTrack.style.transform = `translateX(${offset}px)`;
+//         setActivePage(page);
+//     }
+
+//     // Pagination click
+//     pgSegments.forEach(seg => {
+//         seg.onclick = () => goToPage(parseInt(seg.dataset.page));
+//     });
+
+//     // Left Arrow
+//     if (prevBtn) {
+//         prevBtn.onclick = () => {
+//             let currentPage = Math.abs(offset / (visibleThumbs * thumbWidth));
+//             if (currentPage > 0) goToPage(currentPage - 1);
+//         };
+//     }
+
+//     // Right Arrow
+//     if (nextBtn) {
+//         nextBtn.onclick = () => {
+//             let currentPage = Math.abs(offset / (visibleThumbs * thumbWidth));
+//             if (currentPage < totalPages - 1) goToPage(currentPage + 1);
+//         };
+//     }
+
+//     // Thumbnail click
+//     window.thumbClicked = function (src) {
+//         mainImage.src = src;
+
+//         const clickedThumb = [...thumbElements].find(t => t.src === src);
+
+//         if (clickedThumb) {
+//             thumbTrack.appendChild(clickedThumb);
+//             thumbElements = document.querySelectorAll(".thumb");
+//         }
+
+//         goToPage(0);
+//     };
+// });
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const mainImage = document.getElementById("mainImage");
@@ -484,20 +563,33 @@ document.addEventListener("DOMContentLoaded", function () {
     const prevBtn = document.querySelector(".thumb-prev");
     const nextBtn = document.querySelector(".thumb-next");
 
-    // Agar slider ke elements exist hi nahi karte → EXIT
     if (!mainImage || !thumbTrack || !paginationBar) {
-        console.warn("Slider elements not found on this page.");
+        console.warn("Slider elements not found!");
         return;
     }
 
     let offset = 0;
     const visibleThumbs = 4;
     const thumbWidth = 92;
+
     let thumbElements = document.querySelectorAll(".thumb");
 
+    /** ------------------------------------------
+     *  1: Set DEFAULT MAIN IMAGE + ACTIVE THUMB
+     * ------------------------------------------ */
+
+    if (thumbElements.length > 0) {
+        const firstSrc = thumbElements[0].getAttribute("src");
+        mainImage.src = firstSrc;
+
+        thumbElements[0].classList.add("active-thumb");
+    }
+
+    /** ------------------------------------------
+     *  2: Pagination Setup
+     * ------------------------------------------ */
     const totalPages = Math.ceil(thumbElements.length / visibleThumbs);
 
-    // Create Pagination
     for (let i = 0; i < totalPages; i++) {
         let seg = document.createElement("div");
         seg.classList.add("pg-segment");
@@ -519,12 +611,10 @@ document.addEventListener("DOMContentLoaded", function () {
         setActivePage(page);
     }
 
-    // Pagination click
     pgSegments.forEach(seg => {
         seg.onclick = () => goToPage(parseInt(seg.dataset.page));
     });
 
-    // Left Arrow
     if (prevBtn) {
         prevBtn.onclick = () => {
             let currentPage = Math.abs(offset / (visibleThumbs * thumbWidth));
@@ -532,7 +622,6 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
-    // Right Arrow
     if (nextBtn) {
         nextBtn.onclick = () => {
             let currentPage = Math.abs(offset / (visibleThumbs * thumbWidth));
@@ -540,20 +629,21 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
-    // Thumbnail click
+    /** ------------------------------------------
+     *  3: On Thumbnail Click → update main + active
+     * ------------------------------------------ */
     window.thumbClicked = function (src) {
         mainImage.src = src;
 
+        // Remove previous active thumb
+        thumbElements.forEach(t => t.classList.remove("active-thumb"));
+
+        // Add active class to clicked thumb
         const clickedThumb = [...thumbElements].find(t => t.src === src);
-
-        if (clickedThumb) {
-            thumbTrack.appendChild(clickedThumb);
-            thumbElements = document.querySelectorAll(".thumb");
-        }
-
-        goToPage(0);
+        if (clickedThumb) clickedThumb.classList.add("active-thumb");
     };
 });
+
 
 
 // ---------------------------------------------------------

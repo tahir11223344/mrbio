@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class WhatWeDo extends Model
 {
     protected $fillable = [
-        'title',
-        'slug',
-        'description',
+        'content',
         'bg_image',
         'bg_image_alt',
         'created_by',

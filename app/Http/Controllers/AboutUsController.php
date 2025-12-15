@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutCard;
 use App\Models\AboutUs;
+use App\Models\Blog;
+use App\Models\BrandWeCarry;
+use App\Models\CompanyCertification;
+use App\Models\Faq;
+use App\Models\Offer;
+use App\Models\WhatWeDo;
 use App\Traits\UploadImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -101,7 +108,26 @@ class AboutUsController extends Controller
     }
 
 
-    public function landingPage(){
+    public function landingPage()
+    {
+        $about = AboutUs::first();
+        $about_cards = AboutCard::get();
+        $brands = BrandWeCarry::get();
+        $what_we_do = WhatWeDo::get();
+        // Decode JSON content for all rows
+        foreach ($what_we_do as $item) {
+            $item->sections = json_decode($item->content, true);
+        }
+
+        $certificates = CompanyCertification::get();
+
+        $faqs = Faq::where('page_name', 'about-us')
+            ->select(['question', 'answer'])
+            ->latest()
+            ->get();
+
         
+
+        return view('frontend.pages.about', compact('about', 'about_cards', 'brands', 'what_we_do', 'certificates', 'faqs'));
     }
 }

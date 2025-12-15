@@ -135,17 +135,9 @@ class RentalServiceController extends Controller
             $products = merge_images($products, 'thumbnail', 'gallery_images', 'all_images');
 
             // Fetch FAQs
-            $faqs = Faq::where('page_name', 'rental')
-                ->select(['question', 'answer'])
-                ->latest()
-                ->get();
+            $faqs = getFaqs('rental');
 
-            // Fetch Blogs
-            $blogs = Blog::where('is_active', true)
-                ->select(['title', 'slug', 'image', 'image_alt_text', 'short_description'])
-                ->latest()
-                ->take(4)
-                ->get();
+            
         } catch (\Exception $e) {
 
             // Log the error for debugging
@@ -162,6 +154,6 @@ class RentalServiceController extends Controller
         }
 
         // Return view with safe variables
-        return view('frontend.pages.rental', compact('data', 'products', 'faqs', 'blogs'));
+        return view('frontend.pages.rental', compact('data', 'products', 'faqs'));
     }
 }

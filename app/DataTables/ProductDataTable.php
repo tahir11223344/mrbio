@@ -23,6 +23,17 @@ class ProductDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+
+            ->editColumn('type', function ($product) {
+                if ($product->type == 'for_store') {
+                    return '<span class="badge badge-info">For Store</span>';
+                } elseif ($product->type == 'for_rent') {
+                    return '<span class="badge badge-warning">For Rent</span>';
+                } elseif ($product->type == 'both') {
+                    return '<span class="badge badge-primary">Both</span>';
+                }
+            })
+
             ->addColumn('category_id', fn($product) => optional($product->category)->name ?? '-')
             ->addColumn('created_by', fn($product) => optional($product->createdBy)->name ?? '-')
             ->addColumn('updated_by', fn($product) => optional($product->updatedBy)->name ?? '-')
@@ -34,8 +45,18 @@ class ProductDataTable extends DataTable
             ->orderColumn('created_at', 'products.created_at $1')
             ->orderColumn('updated_at', 'products.updated_at $1')
 
+            ->editColumn('thumbnail', function ($product) {
+                if (!$product->thumbnail) {
+                    return '-';
+                }
+
+                $url = asset('storage/products/thumbnails/' . $product->thumbnail);
+
+                return '<img src="' . $url . '" alt="Image" width="60" height="60" style="object-fit: cover; border-radius: 5px;">';
+            })
+
             ->addColumn('action', fn($product) => view('pages.products._actions', compact('product'))->render())
-            ->rawColumns(['action'])
+            ->rawColumns(['action', 'type', 'thumbnail'])
             ->setRowId('id');
     }
 
@@ -62,7 +83,7 @@ class ProductDataTable extends DataTable
             ->minifiedAjax()
             ->processing(true)
             ->serverSide(true)
-            ->orderBy(4, 'desc')
+            ->orderBy(5, 'desc')
             ->addTableClass('table table-striped table-row-bordered gy-5 gs-7 border rounded text-gray-700 fw-semibold')
             ->setTableHeadClass('text-start text-muted fw-bold fs-7 text-uppercase gs-0')
             ->parameters([
@@ -97,6 +118,10 @@ class ProductDataTable extends DataTable
                 ->data('category_name') // Use alias from join
                 ->name('categories.name'),
 
+            Column::make('type')
+                ->title(__('Type'))
+                ->name('products.type'),
+
             Column::make('created_by')
                 ->title(__('Created By'))
                 ->searchable(false),
@@ -112,6 +137,9 @@ class ProductDataTable extends DataTable
             Column::make('updated_at')
                 ->title(__('Updated At'))
                 ->name('products.updated_at'),
+
+            Column::make('thumbnail')->title('Thumbnail')
+                ->searchable(false)->orderable(false),
 
             Column::computed('action')
                 ->title(__('Actions'))

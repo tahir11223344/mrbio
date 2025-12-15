@@ -45,14 +45,31 @@ class AppServiceProvider extends ServiceProvider
         }
 
         View::composer('frontend.layouts.partials.footer', function ($view) {
-            $footerStates = Cache::rememberForever('footer_states', function () {
+
+            // ---- Custom Required Country List ----
+            $priorityCountries = [
+                ['id' => 39,  'name' => 'Canada'],
+                ['id' => 232, 'name' => 'United Kingdom'],
+                ['id' => 233, 'name' => 'United States'],
+                ['id' => 14,  'name' => 'Australia'],
+            ];
+
+            // Extract IDs for query
+            $countryIds = collect($priorityCountries)->pluck('id')->toArray();
+
+            // ---- Fetch states from DB based on these IDs ----
+            $footerStates = Cache::rememberForever('footer_priority_states', function () use ($countryIds) {
                 return State::query()
+                    ->whereIn('country_id', $countryIds)
                     ->where('is_active', 1)
                     ->orderBy('name')
-                    ->get(['id', 'name']);
+                    ->get(['id', 'name', 'country_id']);
             });
 
-            $view->with('footerStates', $footerStates);
+            // Send both manual country list + states to footer
+            $view->with([
+                'footerStates'      => $footerStates,
+            ]);
         });
     }
 }

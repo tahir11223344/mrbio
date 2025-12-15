@@ -1,9 +1,5 @@
 <x-default-layout>
 
-    @section('title')
-        Manage Products
-    @endsection
-
     <div class="row">
         <div class="col-lg-12">
             <div class="card shadow-sm">
@@ -33,8 +29,9 @@
                         <div class="row">
 
                             <!-- Category -->
-                            <div class="col-lg-6 mb-4">
-                                <label for="category_id" class="form-label fw-semibold required">{{ __('Category') }}</label>
+                            <div class="col-lg-4 mb-4">
+                                <label for="category_id"
+                                    class="form-label fw-semibold required">{{ __('Category') }}</label>
                                 <select name="category_id" id="category_id" data-control="select2"
                                     class="form-select form-select-lg @error('category_id') is-invalid @enderror"
                                     required>
@@ -53,7 +50,7 @@
 
 
                             <!-- SKU -->
-                            <div class="col-lg-6 mb-4">
+                            <div class="col-lg-4 mb-4">
                                 <label for="sku" class="form-label fw-semibold">{{ __('SKU') }}</label>
                                 <input type="text" id="sku" name="sku"
                                     class="form-control form-control-lg @error('sku') is-invalid @enderror"
@@ -63,9 +60,31 @@
                                 @enderror
                             </div>
 
+                            <!-- Type -->
+                            <div class="col-lg-4 mb-4">
+                                <label for="type" class="form-label fw-semibold required">{{ __('Type') }}</label>
+                                <select name="type" id="type"
+                                    class="form-select form-select-lg @error('type') is-invalid @enderror" required>
+                                    <option value="for_store"
+                                        {{ old('type', $data->type ?? 'for_store') == 'for_store' ? 'selected' : '' }}>
+                                        {{ __('For Store') }}</option>
+                                    <option value="for_rent"
+                                        {{ old('type', $data->type ?? 'for_rent') == 'for_rent' ? 'selected' : '' }}>
+                                        {{ __('For Rent') }}</option>
+
+                                    <option value="both"
+                                        {{ old('type', $data->type ?? 'both') == 'both' ? 'selected' : '' }}>
+                                        {{ __('For Both') }}</option>
+                                </select>
+                                @error('type')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <!-- Product Name -->
                             <div class="col-lg-12 mb-4">
-                                <label for="name" class="form-label fw-semibold required">{{ __('Product Name') }}</label>
+                                <label for="name"
+                                    class="form-label fw-semibold required">{{ __('Product Name') }}</label>
                                 <input type="text" id="name" name="name"
                                     class="form-control form-control-lg @error('name') is-invalid @enderror"
                                     value="{{ old('name', $data->name ?? '') }}" required>
@@ -76,7 +95,8 @@
 
                             <!-- Product Slug -->
                             <div class="col-lg-12 mb-4">
-                                <label for="slug" class="form-label fw-semibold required">{{ __('Product Slug') }}</label>
+                                <label for="slug"
+                                    class="form-label fw-semibold required">{{ __('Product Slug') }}</label>
                                 <input type="text" id="slug" name="slug"
                                     class="form-control form-control-lg @error('slug') is-invalid @enderror"
                                     value="{{ old('slug', $data->slug ?? '') }}" required>
@@ -109,10 +129,11 @@
 
                             <!-- Price -->
                             <div class="col-lg-4 mb-4">
-                                <label for="price" class="form-label fw-semibold required">{{ __('Price ($)') }}</label>
+                                <label for="price"
+                                    class="form-label fw-semibold">{{ __('Price ($)') }}</label>
                                 <input type="number" step="0.01" min="0" id="price" name="price"
                                     class="form-control form-control-lg @error('price') is-invalid @enderror"
-                                    value="{{ old('price', $data->price ?? 0) }}" required>
+                                    value="{{ old('price', $data->price ?? 0) }}">
                                 @error('price')
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
@@ -135,7 +156,8 @@
                             <div class="col-lg-4 mb-4">
                                 <label for="sale_price"
                                     class="form-label fw-semibold">{{ __('Sale Price ($)') }}</label>
-                                <input type="number" step="0.01" min="0" id="sale_price" name="sale_price"
+                                <input type="number" step="0.01" min="0" id="sale_price"
+                                    name="sale_price"
                                     class="form-control form-control-lg @error('sale_price') is-invalid @enderror"
                                     value="{{ old('sale_price', $data->sale_price ?? '') }}" readonly>
                                 @error('sale_price')

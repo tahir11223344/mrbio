@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\BiomedServicesController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\RentalServiceController;
+use App\Http\Controllers\RepairServiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -12,10 +15,10 @@ Route::middleware('guest')->group(function () {
 
     // Route::view('/services', 'frontend.pages.services')->name('services');
     Route::get('/rental', [RentalServiceController::class, 'landingPage'])->name('rental-services');
-    Route::view('/about', 'frontend.pages.about')->name('about');
+    Route::get('/about-us', [AboutUsController::class, 'landingPage'])->name('about-us');
 
-    Route::view('/repaire', 'frontend.pages.repaire')->name('repaire');
-    Route::view('/repairesubservice', 'frontend.pages.repairesubservice')->name('repairesubservice');
+    Route::get('/repair', [RepairServiceController::class , 'landingPage'])->name('repair');
+    Route::get('/{category}/{slug}', [RepairServiceController::class , 'repairServiceDetail'])->name('repair.service.detail');
     Route::view('/location', 'frontend.pages.location')->name('location');
     Route::view('/locationdetail', 'frontend.pages.locationdetail')->name('locationdetail');
     Route::view('/contact-us', 'frontend.pages.contact-us')->name('contact-us');
@@ -27,4 +30,7 @@ Route::middleware('guest')->group(function () {
     Route::view('/feedback', 'frontend.pages.feedback')->name('feedback');
 
     Route::get('/get-cities/{state_id}', [LandingPageController::class, 'getCities'])->name('get.cities');
+
+    // web.php
+    Route::get('/rentals/filter', [AjaxController::class, 'filterRentalProducts'])->name('rentals.filter');
 });

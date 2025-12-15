@@ -40,9 +40,10 @@ class ProductController extends Controller
             'name'              => 'required|string|max:255',
             'slug'              => 'required|string|max:255|unique:products,slug',
             'sku'               => 'nullable|string|unique:products,sku',
+            'type'              => 'required|string',
             'short_description' => 'nullable|string',
             'description'       => 'nullable|string',
-            'price'             => 'required|numeric|min:0',
+            'price'             => 'nullable|numeric|min:0',
             'discount_percent'  => 'nullable|integer|min:0|max:100',
             'sale_price'        => 'nullable|numeric|min:0',
             'stock_qty'         => 'nullable|integer|min:0',
@@ -64,6 +65,7 @@ class ProductController extends Controller
             $product->name = $request->name;
             $product->slug = Str::slug($request->slug);
             $product->sku = $request->sku;
+            $product->type = $request->type;
             $product->short_description = $request->short_description;
             $product->description = $request->description;
             $product->price = $request->price;
@@ -150,9 +152,10 @@ class ProductController extends Controller
             'name'              => 'required|string|max:255',
             'slug'              => 'required|string|max:255|unique:products,slug,' . $product->id,
             'sku'               => 'nullable|string|unique:products,sku,' . $product->id,
+            'type'              => 'required|string',
             'short_description' => 'nullable|string',
             'description'       => 'nullable|string',
-            'price'             => 'required|numeric|min:0',
+            'price'             => 'nullable|numeric|min:0',
             'discount_percent'  => 'nullable|integer|min:0|max:100',
             'sale_price'        => 'nullable|numeric|min:0',
             'stock_qty'         => 'nullable|integer|min:0',
@@ -173,6 +176,7 @@ class ProductController extends Controller
             $product->name = $request->name;
             $product->slug = Str::slug($request->slug);
             $product->sku = $request->sku;
+            $product->type = $request->type;
             $product->short_description = $request->short_description;
             $product->description = $request->description;
             $product->price = $request->price;

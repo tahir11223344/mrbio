@@ -39,8 +39,8 @@
                                     required>
 
                                     <option value="">{{ __('Select Page Category') }}</option>
-                                    <option value="repairing_services"
-                                        {{ old('page_category', $data->page_category ?? '') == 'repairing_services' ? 'selected' : '' }}>
+                                    <option value="repair-service"
+                                        {{ old('page_category', $data->page_category ?? '') == 'repair-service' ? 'selected' : '' }}>
                                         {{ __('Repairing Services') }} </option>
                                     <option value="x-ray"
                                         {{ old('page_category', $data->page_category ?? '') == 'x-ray' ? 'selected' : '' }}>

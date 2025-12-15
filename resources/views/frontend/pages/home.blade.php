@@ -278,7 +278,10 @@
                             <div class="product-card position-relative">
 
                                 <!-- Discount Badge -->
-                                <span class="discount-badge">{{ $product->discount_percent }}% OFF</span>
+                                @if (!empty($product->discount_percent) && $product->discount_percent > 0)
+                                    <span class="discount-badge">{{ $product->discount_percent }}% OFF</span>
+                                @endif
+
                                 <img src="{{ asset('storage/products/thumbnails/' . $product->thumbnail) }}"
                                     alt="{{ $product->image_alt ?? '' }}" class="product-img img-fluid">
 
@@ -312,117 +315,14 @@
         </section>
 
     </section>
-    <section class="offer-section mt-5">
-        <div class="container">
 
-            <!-- Heading -->
-            <h2 class="text-center offer-title">What We <span>Offer</span> </h2>
-            <p class="text-center offer-desc mb-5">
-                We provide top-quality medical equipment & services to meet all your healthcare needs.
-            </p>
 
-            <!-- Slider Wrapper -->
-            <div class="offer-slider-wrapper position-relative">
+    {{-- Offer Slider Component --}}
+    <x-offers-section />
 
-                <!-- Prev Button -->
-                <button class="offer-prev"><i class="bi bi-chevron-left"></i></button>
-
-                <!-- Slider Container -->
-                <div class="offer-slider-container">
-                    <div class="offer-slider-track">
-                        <!-- CARD -->
-                        @foreach ($offers as $offer)
-                            <div class="offer-card">
-                                <img src="{{ asset('storage/offers/thumbnails/' . $offer->thumbnail) }}"
-                                    alt="{{ $offer->image_alt ?? '' }}" class="card-img img-fluid">
-                                <h4 class="card-title">{{ $offer->title ?? '' }}</h4>
-                                <hr>
-                                <p class="card-desc">{{ $offer->short_description ?? '' }}</p>
-                                <button class="read-btn">Read More</button>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-
-                <!-- Next Button -->
-                <button class="offer-next"><i class="bi bi-chevron-right"></i></button>
-                <!-- PAGINATION DOTS -->
-                <div class="offer-pagination"></div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="xray-section py-">
-
-        <div class="container-fluid xray-box p-4 mt-5">
-            <div class="container text-center mb-5">
-                <div class="row">
-                    <div class="col-md-8 mx-auto">
-                        <h2 class="main-heading">{{ $x_ray['first_text'] }} <span>{{ $x_ray['second_text'] }}</span>
-                        </h2>
-                        <p class=" xray-desc">{{ $repairServiceData->x_ray_short_description ?? '' }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row g-4">
-                    <!-- Card -->
-                    @foreach ($xrays as $item)
-                        <div class="col-lg-3 col-md-6">
-                            <div class="xray-card p-3">
-                                <h3 class="xray-title ">
-                                    {{ $item->title ?? '' }}
-                                </h3>
-
-                                <p class="xray-desc ">
-                                    {{ $item->short_description ?? '' }}
-                                </p>
-
-                                <button class="xray-btn">Read More</button>
-                            </div>
-                        </div>
-                    @endforeach
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="xray-section py-">
-
-        <div class="container-fluid xray-box p-4 mt-5">
-            <div class="container text-center mb-5">
-                <div class="row">
-                    <div class="col-md-8 mx-auto">
-                        <h2 class="main-heading">{{ $c_arm['first_text'] }} <span>{{ $c_arm['second_text'] }}</span>
-                        </h2>
-                        <p class="xray-desc">{{ $repairServiceData->c_arm_short_description ?? '' }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row g-4 justify-content-center">
-                    <!-- Card -->
-                    @foreach ($carms as $item)
-                        <div class="col-lg-3 col-md-6">
-                            <div class="xray-card p-3">
-                                <h3 class="xray-title reveal-lines">
-                                    {{ $item->title ?? '' }}
-                                </h3>
-
-                                <p class="xray-desc ">
-                                    {{ $item->short_description ?? '' }}
-                                </p>
-
-                                <button class="xray-btn">Read More</button>
-                            </div>
-                        </div>
-                    @endforeach
-
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Example 1: Home Page -->
+    <x-repair-service-section :types="['x-ray', 'c-arm']" />
+    <!-- Output: X-Ray → C-Arm -->
 
     <section class="medical-section py-5">
         <div class="container">
@@ -548,43 +448,8 @@
         </div>
     </section>
 
-    <section class="oem-trust-section py-5">
-        <div class="container">
-            <h2 class="text-center mb-5 section-title">Why OEMs Trust <span>Mr Biomed Tech</span> </h2>
-
-            <div class="row g- justify-content-center mx-5">
-                <!-- CARD-->
-                @foreach ($oems as $item)
-                    <div class="col-lg-4 col-md-6 justify-content-center">
-                        <div class="oem-card">
-                            <div class="oem-img-box">
-                                <img src="{{ asset('storage/oem_contents/' . $item->image) }}"
-                                    alt="{{ $item->image_alt ?? '' }}" class="oem-img img-fluid">
-                                <h4 class="oem-card-title">{{ $item->title ?? '' }}</h4>
-                            </div>
-
-                            <p class="oem-desc">{!! $item->description !!}</p>
-                            {{-- <p class="oem-desc">
-                                We provide top-notch medical equipment that meets international standards.
-                            </p>
-
-                            <ul class="oem-list">
-                                <li>ISO certified products</li>
-                                <li>Durability guaranteed</li>
-                                <li>Trusted by hospitals</li>
-                            </ul> --}}
-                        </div>
-                    </div>
-                @endforeach
-
-                <div class="text-center mt-5">
-                    <button class=" btn-lgg">
-                        Talk to Expert
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{-- ================= OEM Section  ================= --}}
+    <x-oem-section />
 
 
 
@@ -742,7 +607,8 @@
     </section>
 
     {{-- ============ Recent News Section ============ --}}
-    <x-recent-blogs :blogs="$blogs" />
+    <!-- Default: 4 blogs -->
+    <x-recent-blogs-section />
 
 
 

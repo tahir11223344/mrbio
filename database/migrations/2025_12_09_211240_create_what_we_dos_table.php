@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('what_we_dos', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug')->nullable();
-            $table->longText('description')->nullable();
+            $table->json('content');
             $table->string('bg_image')->nullable();
             $table->string('bg_image_alt')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();

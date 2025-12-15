@@ -6,6 +6,7 @@ use App\Models\BiomedServices;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Faq;
+use App\Models\Product;
 use App\Traits\UploadImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -221,27 +222,13 @@ class BiomedServicesController extends Controller
     public function mainPage()
     {
         $data = BiomedServices::first();
-        $faqs = Faq::where('page_name', 'service')
-            ->select(['question', 'answer'])
-            ->latest()
-            // ->take(4)
-            ->get();
+        $faqs = getFaqs('service');
 
-        // Active categories
-        $categories = Category::where('status', true)
-            ->select(['name', 'slug'])
-            ->get();
+        $initialProducts = Product::where('is_active', true)
+        ->whereIn('type', ['for_rent', 'both'])
+        ->latest()
+        ->get();
 
-        $categoryColumns = $categories->chunk(
-            ceil($categories->count() / 3)
-        );
-
-        $blogs = Blog::where('is_active', true)
-            ->select(['title', 'slug', 'image', 'image_alt_text', 'short_description'])
-            ->latest()
-            ->take(4)
-            ->get();
-
-        return view('frontend.pages.services', compact('data', 'faqs', 'categoryColumns', 'blogs'));
+        return view('frontend.pages.services', compact('data', 'faqs','initialProducts'));
     }
 }
