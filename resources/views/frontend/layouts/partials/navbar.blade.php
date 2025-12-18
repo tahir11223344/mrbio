@@ -1,3 +1,10 @@
+<style>
+    /* Hover par icon show */
+    /* .nav-repair-title:hover i {
+        opacity: 1;
+        transform: translateX(0);
+    } */
+</style>
 <section class="sticky-to">
     <nav class="navbar navbar-expand-lg navbar-light bg-white p-0">
         <div class="container-fluid d-flex align-items-center p-0 position-relative">
@@ -23,43 +30,126 @@
                             href="{{ route('home') }}">Home</a>
                     </li>
 
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link" href="#">Mr Biomed Service <i
-                                class="bi bi-chevron-down dropdown-icon"></i></a>
+                    <li class="nav-item dropdown  has-mega">
+                        <a class="nav-link mega-toggle" href="#">
+                            Mr Biomed Service
+                            <i class="bi bi-chevron-down dropdown-icon"></i>
+                        </a>
                         <div class="mega-menu">
                             <div class="container-fluid">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <h6>Category 1</h6>
+                                            <h6 class="nav-repair-title">
+                                                Repair Services
+                                                <i class="fa-solid fa-angle-right"></i>
+                                            </h6>
+                                            <h6 class="nav-title">
+                                                Biomedical Equipment Repair and Maintenance ›
+                                                {{-- <i class="fa-solid fa-angle-right"></i> --}}
+                                            </h6>
+
                                             <ul class="list-unstyled">
-                                                <li><a href="#">Service 1</a></li>
-                                                <li><a href="#">Service 2</a></li>
-                                                <li><a href="#">Service 3</a></li>
+                                                <li><a href="#"> Beds and Surfaces ›</a></li>
+                                                <li><a href="#">Infusion ›</a></li>
+                                                <li><a href="#"> Anesthesia ›</a></li>
+                                                <li><a href="#"> Monitors ›</a></li>
+
+
+
+                                            </ul>
+                                            <h6 class="nav-title">
+                                                Medical Imaging
+                                                Repair and Maintenance › {{-- <i class="fa-solid fa-angle-right"></i> --}}
+                                            </h6>
+
+                                            <ul class="list-unstyled">
+                                                <li><a href="#"> Beds and Surfaces ›</a></li>
+                                                <li><a href="#">Infusion ›</a></li>
+                                                <li><a href="#"> Anesthesia ›</a></li>
+                                                <li><a href="#"> Monitors ›</a></li>
+
+
+
                                             </ul>
                                         </div>
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <h6>Category 2</h6>
+                                            <h6 class="nav-repair-title">
+                                                Surgical Equipment
+                                                <i class="fa-solid fa-angle-right"></i>
+                                            </h6>
+                                            <h6 class="nav-title">
+                                                Surgical Equipment Repair and Maintenance ›
+                                                {{-- <i class="fa-solid fa-angle-right"></i> --}}
+                                            </h6>
+
                                             <ul class="list-unstyled">
-                                                <li><a href="#">Service 4</a></li>
-                                                <li><a href="#">Service 5</a></li>
-                                                <li><a href="#">Service 6</a></li>
+                                                <li><a href="#"> Beds and Surfaces ›</a></li>
+                                                <li><a href="#">Infusion ›</a></li>
+                                                <li><a href="#"> Anesthesia ›</a></li>
+                                                <li><a href="#"> Monitors ›</a></li>
+
+
+
+                                            </ul>
+                                            <h6 class="nav-title">
+                                                Surgical Laser and Technology Services ›
+                                                {{-- <i class="fa-solid fa-angle-right"></i> --}}
+                                            </h6>
+
+                                            <ul class="list-unstyled">
+                                                <li><a href="#"> Beds and Surfaces ›</a></li>
+                                                <li><a href="#">Infusion ›</a></li>
+                                                <li><a href="#"> Anesthesia ›</a></li>
+                                                <li><a href="#"> Monitors ›</a></li>
+
+
+
                                             </ul>
                                         </div>
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <h6>Category 3</h6>
+                                            <h6 class="nav-repair-title">
+                                                Medical Equipment
+                                                <i class="fa-solid fa-angle-right"></i>
+                                            </h6>
+                                            <h6 class="nav-title">
+                                                Onsite Medical Equipment Management ›
+
+                                                {{-- <i class="fa-solid fa-angle-right"></i> --}}
+                                            </h6>
+
                                             <ul class="list-unstyled">
-                                                <li><a href="#">Service 7</a></li>
-                                                <li><a href="#">Service 8</a></li>
-                                                <li><a href="#">Service 9</a></li>
+                                                <li><a href="#"> Beds and Surfaces ›</a></li>
+                                                <li><a href="#">Infusion ›</a></li>
+
+
+
+
                                             </ul>
+
                                         </div>
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <h6>Category 4</h6>
+                                            <h6 class="nav-repair-title">
+                                                Retired assets
+                                                <i class="fa-solid fa-angle-right"></i>
+                                            </h6>
+                                            <div class="nav-div">
+                                                <p>Our reputation is based on integrity, honesty, and reliability for
+                                                    selling new medical equipment, pre-owned medical equipment, and
+                                                    disposition services.</p>
+                                                <button class="nav-mega-btn">Talk To Expert</button>
+                                            </div>
+
+                                            <h6 class="nav-repair-title mt-4">
+                                                Consultancy
+                                                <i class="fa-solid fa-angle-right"></i>
+                                            </h6>
+
                                             <ul class="list-unstyled">
-                                                <li><a href="#">Service 10</a></li>
-                                                <li><a href="#">Service 11</a></li>
-                                                <li><a href="#">Service 12</a></li>
+                                                <li><a href="#"> Beds and Surfaces ›</a></li>
+                                                <li><a href="#">Infusion ›</a></li>
+                                                <li><a href="#"> Anesthesia ›</a></li>
+                                                <li><a href="#"> Monitors ›</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -68,86 +158,140 @@
                         </div>
                     </li>
 
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link" href="#">Locations <i
+                    <li class="nav-item dropdown has-mega">
+                        <a class="nav-link mega-toggle" href="#">Locations <i
                                 class="bi bi-chevron-down dropdown-icon"></i></a>
                         <div class="mega-menu">
                             <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <h6>City 1</h6>
-                                        <ul class="list-unstyled">
-                                            <li><a href="#">Branch 1</a></li>
-                                            <li><a href="#">Branch 2</a></li>
-                                            <li><a href="#">Branch 3</a></li>
-                                        </ul>
+                                <div class="city-grid">
+                                    <div>
+                                        <h6 class="city-repair-title">
+                                            Dallas TX
+                                            <i class="fa-solid fa-angle-right"></i>
+                                        </h6>
+
+                                        <p><a href="#">Rowlett</a></p>
+                                        <p><a href="#">Sachse</a></p>
+                                        <p><a href="#">Mesquite</a></p>
+                                        <p><a href="#">Wylie</a></p>
+                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
+                                        <button class="nav-mega-btn mt-3">Talk To Expert</button>
                                     </div>
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <h6>City 2</h6>
-                                        <ul class="list-unstyled">
-                                            <li><a href="#">Branch 4</a></li>
-                                            <li><a href="#">Branch 5</a></li>
-                                            <li><a href="#">Branch 6</a></li>
-                                        </ul>
+
+                                    <div>
+                                        <h6 class="city-repair-title">
+                                            Garland TX
+                                            <i class="fa-solid fa-angle-right"></i>
+                                        </h6>
+
+                                        <p><a href="#">Rowlett</a></p>
+                                        <p><a href="#">Sachse</a></p>
+                                        <p><a href="#">Mesquite</a></p>
+                                        <p><a href="#">Wylie</a></p>
+                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
+                                        <button class="nav-mega-btn mt-3">Talk To Expert</button>
                                     </div>
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <h6>City 3</h6>
-                                        <ul class="list-unstyled">
-                                            <li><a href="#">Branch 7</a></li>
-                                            <li><a href="#">Branch 8</a></li>
-                                            <li><a href="#">Branch 9</a></li>
-                                        </ul>
+
+                                    <div>
+                                        <h6 class="city-repair-title">
+                                            Houston TX
+                                            <i class="fa-solid fa-angle-right"></i>
+                                        </h6>
+
+                                        <p><a href="#">Rowlett</a></p>
+                                        <p><a href="#">Sachse</a></p>
+                                        <p><a href="#">Mesquite</a></p>
+                                        <p><a href="#">Wylie</a></p>
+                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
+                                        <button class="nav-mega-btn mt-3">Talk To Expert</button>
                                     </div>
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <h6>City 4</h6>
-                                        <ul class="list-unstyled">
-                                            <li><a href="#">Branch 10</a></li>
-                                            <li><a href="#">Branch 11</a></li>
-                                            <li><a href="#">Branch 12</a></li>
-                                        </ul>
+
+                                    <div>
+                                        <h6 class="city-repair-title">
+                                            Austin TX
+                                            <i class="fa-solid fa-angle-right"></i>
+                                        </h6>
+
+                                        <p><a href="#">Rowlett</a></p>
+                                        <p><a href="#">Sachse</a></p>
+                                        <p><a href="#">Mesquite</a></p>
+                                        <p><a href="#">Wylie</a></p>
+                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
+                                        <button class="nav-mega-btn mt-3">Talk To Expert</button>
+                                    </div>
+
+                                    <div>
+                                        <h6 class="city-repair-title">
+                                            San-Antonio TX
+                                            <i class="fa-solid fa-angle-right"></i>
+                                        </h6>
+
+                                        <p><a href="#">Rowlett</a></p>
+                                        <p><a href="#">Sachse</a></p>
+                                        <p><a href="#">Mesquite</a></p>
+                                        <p><a href="#">Wylie</a></p>
+                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
+                                        <button class="nav-mega-btn mt-3">Talk To Expert</button>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </li>
 
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link" href="#">Product Store <i
+                    <li class="nav-item dropdown has-mega">
+                        <a class="nav-link mega-toggle" href="#">Product Store <i
                                 class="bi bi-chevron-down dropdown-icon"></i></a>
                         <div class="mega-menu">
-                            <div class="container-fluid">
+                            <div class="container-fluid nav-product">
                                 <div class="row">
                                     <div class="col-lg-3 col-md-6 mb-3">
-                                        <h6>Category 1</h6>
-                                        <ul class="list-unstyled">
-                                            <li><a href="#">Product 1</a></li>
-                                            <li><a href="#">Product 2</a></li>
-                                            <li><a href="#">Product 3</a></li>
-                                        </ul>
+                                        <h6 class="city-repair-title">
+                                            Products
+                                            <i class="fa-solid fa-angle-right"></i>
+                                        </h6>
+
+                                        <p><a href="#">Rowlett</a></p>
+                                        <p><a href="#">Sachse</a></p>
+                                        <p><a href="#">Mesquite</a></p>
+                                        <p><a href="#">Wylie</a></p>
+                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
                                     </div>
                                     <div class="col-lg-3 col-md-6 mb-3">
-                                        <h6>Category 2</h6>
-                                        <ul class="list-unstyled">
-                                            <li><a href="#">Product 4</a></li>
-                                            <li><a href="#">Product 5</a></li>
-                                            <li><a href="#">Product 6</a></li>
-                                        </ul>
+                                        <h6 class="city-repair-title">
+                                            Products
+                                            <i class="fa-solid fa-angle-right"></i>
+                                        </h6>
+
+                                        <p><a href="#">Rowlett</a></p>
+                                        <p><a href="#">Sachse</a></p>
+                                        <p><a href="#">Mesquite</a></p>
+                                        <p><a href="#">Wylie</a></p>
+                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
                                     </div>
                                     <div class="col-lg-3 col-md-6 mb-3">
-                                        <h6>Category 3</h6>
-                                        <ul class="list-unstyled">
-                                            <li><a href="#">Product 7</a></li>
-                                            <li><a href="#">Product 8</a></li>
-                                            <li><a href="#">Product 9</a></li>
-                                        </ul>
+                                        <h6 class="city-repair-title">
+                                            Products
+                                            <i class="fa-solid fa-angle-right"></i>
+                                        </h6>
+
+                                        <p><a href="#">Rowlett</a></p>
+                                        <p><a href="#">Sachse</a></p>
+                                        <p><a href="#">Mesquite</a></p>
+                                        <p><a href="#">Wylie</a></p>
+                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
                                     </div>
                                     <div class="col-lg-3 col-md-6 mb-3">
-                                        <h6>Category 4</h6>
-                                        <ul class="list-unstyled">
-                                            <li><a href="#">Product 10</a></li>
-                                            <li><a href="#">Product 11</a></li>
-                                            <li><a href="#">Product 12</a></li>
-                                        </ul>
+                                        <h6 class="city-repair-title">
+                                            Products
+                                            <i class="fa-solid fa-angle-right"></i>
+                                        </h6>
+
+                                        <p><a href="#">Rowlett</a></p>
+                                        <p><a href="#">Sachse</a></p>
+                                        <p><a href="#">Mesquite</a></p>
+                                        <p><a href="#">Wylie</a></p>
+                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -192,8 +336,8 @@
 
                             {{-- WhatsApp Icon --}}
                             @if (setting('whatsapp'))
-                                <a href="https://wa.me/{{ cleanPhone(setting('whatsapp')) }}"
-                                    target="_blank" title="Chat on WhatsApp">
+                                <a href="https://wa.me/{{ cleanPhone(setting('whatsapp')) }}" target="_blank"
+                                    title="Chat on WhatsApp">
                                     <img src="{{ asset('frontend/images/nav-icon-img-3.png') }}" alt="WhatsApp"
                                         class="icon-image">
                                 </a>
@@ -209,13 +353,12 @@
         </div>
     </nav>
 </section>
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         const toggler = document.getElementById('customToggler');
         const mainNav = document.getElementById('mainNav');
         const isDesktop = () => window.innerWidth >= 992;
 
-        // Event listener on the Toggler button
         toggler.addEventListener('click', function() {
             if (!isDesktop()) {
                 mainNav.classList.toggle('show');
@@ -224,11 +367,45 @@
             }
         });
 
-        // Desktop resize check:
         window.addEventListener('resize', function() {
             if (isDesktop() && mainNav.classList.contains('show')) {
                 mainNav.classList.remove('show');
                 toggler.setAttribute('aria-expanded', false);
+            }
+        });
+    });
+</script> --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggler = document.getElementById('customToggler');
+        const mainNav = document.getElementById('mainNav');
+        const isDesktop = () => window.innerWidth >= 992;
+
+        // Toggler click → open/close menu
+        toggler.addEventListener('click', function(e) {
+            if (!isDesktop()) {
+                mainNav.classList.toggle('show');
+                const isExpanded = mainNav.classList.contains('show');
+                toggler.setAttribute('aria-expanded', isExpanded);
+            }
+        });
+
+        // Window resize → close menu on desktop
+        window.addEventListener('resize', function() {
+            if (isDesktop() && mainNav.classList.contains('show')) {
+                mainNav.classList.remove('show');
+                toggler.setAttribute('aria-expanded', false);
+            }
+        });
+
+        // Click outside → close menu
+        document.addEventListener('click', function(e) {
+            if (!isDesktop() && mainNav.classList.contains('show')) {
+                // agar click nav ya toggler ke bahar hai
+                if (!mainNav.contains(e.target) && !toggler.contains(e.target)) {
+                    mainNav.classList.remove('show');
+                    toggler.setAttribute('aria-expanded', false);
+                }
             }
         });
     });

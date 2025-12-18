@@ -8,11 +8,11 @@
                 <div class="container text-center mb-5">
                     <div class="row">
                         <div class="col-md-8 mx-auto">
-                            <h2 class="main-heading">
+                            <h2 class="main-heading fade-left">
                                 {{ $section['headingData']['first_text'] ?? '' }}
                                 <span>{{ $section['headingData']['second_text'] ?? '' }}</span>
                             </h2>
-                            <p class="xray-desc">
+                            <p class="xray-desc fade-right">
                                 {{ $section['shortDescription'] }}
                             </p>
                         </div>
@@ -22,7 +22,7 @@
                     <div class="row g-4 justify-content-center">
                         <!-- Card -->
                         @foreach ($section['items'] as $item)
-                            <div class="col-lg-3 col-md-6">
+                            <div class="col-lg-3 col-md-6 animate-card">
                                 <div class="xray-card p-3">
                                     <h3 class="xray-title reveal-lines">
                                         {{ $item->title ?? '' }}
@@ -36,10 +36,10 @@
 
                                     <!-- Dynamic URL based on section type -->
                                     <a href="{{ route('repair.service.detail', [
-                                            'category' => $section['urlSegment'],
-                                            'slug' => $item->slug
-                                        ]) }}" 
-                                       class="xray-btn">
+                                        'category' => $section['urlSegment'],
+                                        'slug' => $item->slug,
+                                    ]) }}"
+                                        class="xray-btn ">
                                         Read More
                                     </a>
                                 </div>
@@ -52,4 +52,3 @@
         </section>
     @endif
 @endforeach
-

@@ -24,30 +24,29 @@
             margin-top: 23px;
         }
 
-        /* Prev / Next Buttons */
-        /* .prev-btn,
-                                                            .next-btn {
-                                                                position: absolute;
-                                                                top: 50%;
-                                                                transform: translateY(-50%);
-                                                                background: #004A6D;
-                                                                color: #fff;
-                                                                border: none;
-                                                                padding: 6px 15px;
-                                                                font-size: 20px;
-                                                                cursor: pointer;
-                                                                border-radius: 50%;
-                                                            }
 
-                                                            .prev-btn {
-                                                                left: -53px;
-                                                            }
+        .next-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #004A6D;
+            color: #fff;
+            border: none;
+            padding: 6px 15px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
 
-                                                            .next-btn {
-                                                                right: -53px;
-                                                            } */
+        .prev-btn {
+            left: -53px;
+        }
 
-        .thumbs {
+        .next-btn {
+            right: -53px;
+        }
+
+        */ .thumbs {
             margin-top: 15px;
             display: flex;
             gap: 10px;
