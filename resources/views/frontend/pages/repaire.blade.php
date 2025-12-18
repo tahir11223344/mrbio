@@ -10,7 +10,7 @@
             height: 583px;
             overflow: hidden;
             /* display: flex;
-            align-items: center; */
+                                                                                                                                            align-items: center; */
             /* padding-left: 60px;  */
             color: #fff;
         }
@@ -134,21 +134,97 @@
             gap: 20px;
         }
 
+        /* .service-card {
+                                                                                                                                            width: 266px;
+                                                                                                                                            height: 117px;
+                                                                                                                                            background-color: #F0F0F0;
+                                                                                                                                            border: 4px solid #FE0000;
+                                                                                                                                            border-radius: 25px;
+                                                                                                                                            padding: 15px;
+                                                                                                                                            display: flex;
+                                                                                                                                            flex-direction: column;
+                                                                                                                                            justify-content: space-between;
+                                                                                                                                            display: flex;
+                                                                                                                                            justify-content: center;
+                                                                                                                                            align-items: center;
+                                                                                                                                            margin-top: 40px;
+                                                                                                                                        } */
+
         .service-card {
+            position: relative;
             width: 266px;
             height: 117px;
-            background-color: #F0F0F0;
-            border: 4px solid #FE0000;
+            background: #F0F0F0;
             border-radius: 25px;
             padding: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            margin: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 40px;
+            border: 4px solid #FE0000;
+            /* static red border */
+            overflow: hidden;
+            transition: transform 0.4s ease;
         }
+
+        /* Moving medical gradient glow */
+        .service-card::before {
+            content: "";
+            position: absolute;
+            inset: -6px;
+            border-radius: 30px;
+
+            background: conic-gradient(#df0000,
+                    #076EA1,
+                    #df0000,
+                    #076EA1);
+
+            animation: glowMove 6s linear infinite;
+        }
+
+        /* Inner mask */
+        .service-card::after {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            background: #F0F0F0;
+            border-radius: 21px;
+        }
+
+        /* Content on top */
+        .service-card>* {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        /* Smooth rotation */
+        @keyframes glowMove {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Hover effects */
+        .service-card:hover::before {
+            animation-duration: 1.9s;
+            /* faster rotation on hover */
+        }
+
+        .service-card:hover {
+            transform: scale(1.08);
+            transition: all 0.4s ease-in-out;
+            /* slight zoom for attention */
+        }
+
+
+
+
+
 
         .service-card h3 {
             margin: 0;
@@ -341,7 +417,7 @@
 
 
 
-     {{-- ================= pruduct sectiion ============= --}}
+    {{-- ================= pruduct sectiion ============= --}}
     <x-our-latest-products />
 
     {{-- ============= reveiw sectiion ================== --}}

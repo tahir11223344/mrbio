@@ -245,7 +245,7 @@
         /* ==== biomed-section ==============*/
         .biomed-section {
             /* padding: 80px 0;
-                                                                                                                                                                                                                                                                                                                                            font-family: Arial, sans-serif; */
+                                                                                                                                                                                                                                                                                                                                                        font-family: Arial, sans-serif; */
         }
 
         .service-main-heading {
@@ -254,7 +254,7 @@
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
             /* max-width: 750px;
-                                                                                                                                                                                                            margin-left: 240px; */
+                                                                                                                                                                                                                        margin-left: 240px; */
 
         }
 
@@ -264,8 +264,8 @@
 
         .main-desc {
             /* text-align: center;
-                                                                                                                                                                                                                                            max-width: 750px;
-                                                                                                                                                                                                                                            margin: 0 auto; */
+                                                                                                                                                                                                                                                        max-width: 750px;
+                                                                                                                                                                                                                                                        margin: 0 auto; */
             font-size: 18px;
             line-height: 1.6;
         }
@@ -449,10 +449,10 @@
         }
 
         /* .top-bg {
-                                                                                                                                                                                                                                                                                                                                                                                                                        width: 100%;
-                                                                                                                                                                                                                                                                                                                                                                                                                        height: 60px;
-                                                                                                                                                                                                                                                                                                                                                                                                                        background: #ACD5D5;
-                                                                                                                                                                                                                                                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                    width: 100%;
+                                                                                                                                                                                                                                                                                                                                                                                                                                    height: 60px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                    background: #ACD5D5;
+                                                                                                                                                                                                                                                                                                                                                                                                                                } */
         .top-bg {
             width: 100%;
             height: 10px;
@@ -501,7 +501,7 @@
         .contact-content {
             max-width: 600px;
             /* display: flex;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            flex-direction: column; */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        flex-direction: column; */
             gap: 20px;
             margin-top: 70px;
             margin-left: 0px !important;

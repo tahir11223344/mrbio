@@ -618,7 +618,7 @@
     ];
 
     const colors = [
-        "#fff", // yellow
+        "#fff", // white
         "#00e5ff", // cyan
         "#ff5e5e", // red
         "#8aff8a", // light green
@@ -635,8 +635,8 @@
             const span = document.createElement("span");
             span.textContent = letter;
             span.classList.add("letter");
-            span.style.animationDelay = (i * 10 0) + "ms";
-            span.style.color = color; // ★ COLOR ADDED ★
+            span.style.animationDelay = (i * 100) + "ms"; // ✅ fix here
+            span.style.color = color;
             rotatingText.appendChild(span);
         });
     }
@@ -646,9 +646,13 @@
         index = (index + 1) % words.length;
     }
 
+    // Initial call
     rotateWord();
+
+    // Rotate every 2.5 seconds
     setInterval(rotateWord, 2500);
 </script>
+
 
 
 {{-- <script>

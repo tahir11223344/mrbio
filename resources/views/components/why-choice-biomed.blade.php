@@ -2,12 +2,12 @@
      <div class="container">
 
          <!-- Section Title -->
-         <h2 class="choose-title">Why Chose <span>Mr Biomed Tech</span> </h2>
+         <h2 class="choose-title fade-left">Why Chose <span>Mr Biomed Tech</span> </h2>
 
          <div class="row g-4 justify-content-center mt-4">
 
              <!-- CARD 1 -->
-             <div class="col-md-6 col-lg-4">
+             <div class="col-md-6 col-lg-4 animate-card">
                  <div class="choose-card">
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
@@ -23,7 +23,7 @@
              </div>
 
              <!-- CARD 2 -->
-             <div class="col-md-6 col-lg-4">
+             <div class="col-md-6 col-lg-4 animate-card">
                  <div class="choose-card">
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
@@ -37,7 +37,7 @@
              </div>
 
              <!-- CARD 3 -->
-             <div class="col-md-6 col-lg-4">
+             <div class="col-md-6 col-lg-4 animate-card">
                  <div class="choose-card">
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
@@ -51,7 +51,7 @@
              </div>
 
              <!-- CARD 4 -->
-             <div class="col-md-6 col-lg-4">
+             <div class="col-md-6 col-lg-4 animate-card">
                  <div class="choose-card">
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
@@ -65,7 +65,7 @@
              </div>
 
              <!-- CARD 5 -->
-             <div class="col-md-6 col-lg-4">
+             <div class="col-md-6 col-lg-4 animate-card">
                  <div class="choose-card">
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
@@ -79,7 +79,7 @@
              </div>
 
              <!-- CARD 6 -->
-             <div class="col-md-6 col-lg-4">
+             <div class="col-md-6 col-lg-4 animate-card">
                  <div class="choose-card">
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
@@ -93,7 +93,7 @@
              </div>
 
              <!-- CARD 7 -->
-             <div class="col-md-6 col-lg-4">
+             <div class="col-md-6 col-lg-4 animate-card">
                  <div class="choose-card">
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>

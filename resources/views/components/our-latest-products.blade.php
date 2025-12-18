@@ -3,8 +3,8 @@
 
     <div class="container-fluid py-5 product-series-bg">
         <div class="container text-center">
-            <p class="text-center  product-series-para  mb-3">New From Mr Biomed Tech</p>
-            <h2 class="text-center mb-5  product-section-heading">Our <span>Latest Products</span> </h2>
+            <p class="text-center  product-series-para  mb-3 fade-left">New From Mr Biomed Tech</p>
+            <h2 class="text-center mb-5  product-section-heading fade-right">Our <span>Latest Products</span> </h2>
 
             <div class="product-filter-tabs mb-5 d-flex justify-content-center flex-wrap gap-">
 
@@ -19,7 +19,7 @@
         <div class="container mt-4">
             <div class="row g-4">
 
-                <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="col-lg-3 col-md-6 col-sm-12 animate-card">
                     <div class="custom-card shadow-sm position-relative">
                         <span class="discount-badge">10% OFF</span>
 
@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="col-lg-3 col-md-6 col-sm-12 animate-card">
                     <div class="custom-card shadow-sm position-relative">
                         <span class="discount-badge">10% OFF</span>
                         <div class="card-image-box">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="col-lg-3 col-md-6 col-sm-12 animate-card">
                     <div class="custom-card shadow-sm position-relative">
                         <span class="discount-badge">10% OFF</span>
                         <div class="card-image-box">
@@ -111,7 +111,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="col-lg-3 col-md-6 col-sm-12 animate-card">
                     <div class="custom-card shadow-sm position-relative">
                         <span class="discount-badge">10% OFF</span>
                         <div class="card-image-box">

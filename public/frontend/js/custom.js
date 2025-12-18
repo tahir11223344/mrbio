@@ -551,9 +551,6 @@ document.addEventListener("DOMContentLoaded", () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate');
-
-                // ❌ agar bar-bar nahi chahiye
-                // observer.unobserve(entry.target);
             }
         });
     }, {
@@ -561,4 +558,92 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     elements.forEach(el => observer.observe(el));
+});
+
+
+// navbar toggler
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    let closeTimer;
+
+    document.querySelectorAll('.has-mega').forEach(item => {
+        const menu = item.querySelector('.mega-menu');
+        const toggleBtn = item.querySelector('.mega-toggle'); // mobile toggle button
+
+        const isDesktop = () => window.innerWidth >= 992;
+
+        // Desktop → hover only
+        if (isDesktop()) {
+            item.addEventListener('mouseenter', () => {
+                clearTimeout(closeTimer);
+                item.classList.add('show');
+            });
+
+            item.addEventListener('mouseleave', () => {
+                closeTimer = setTimeout(() => {
+                    item.classList.remove('show');
+                }, 250);
+            });
+
+            menu.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+            menu.addEventListener('mouseleave', () => {
+                item.classList.remove('show');
+            });
+        }
+
+        // Mobile / MD → click toggle only
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!isDesktop()) {
+                    item.classList.toggle('show');
+                }
+            });
+        }
+    });
+
+    // Click outside → close mobile menu
+    document.addEventListener('click', (e) => {
+        document.querySelectorAll('.has-mega.show').forEach(item => {
+            const toggleBtn = item.querySelector('.mega-toggle');
+            if (!window.innerWidth >= 992 && toggleBtn && !item.contains(e.target)) {
+                item.classList.remove('show');
+            }
+        });
+    });
+
+    // Window resize → remove show on desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 992) {
+            document.querySelectorAll('.has-mega.show').forEach(item => {
+                item.classList.remove('show');
+            });
+        }
+    });
+
+});
+
+
+
+// custom cursor 
+
+const cursor = document.querySelector('.custom-cursor');
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+
+    // 👇 Y-axis offset (10–15px best hota hai)
+    cursor.style.top = (e.clientY - 6) + 'px';
+});
+
+// Hover effect
+document.querySelectorAll('a, button, .hover-target').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+    });
+
+    el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+    });
 });

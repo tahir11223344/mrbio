@@ -3,13 +3,13 @@
         <div class="container">
 
             <!-- Heading -->
-            <h2 class="text-center offer-title">What We <span>Offer</span></h2>
-            <p class="text-center offer-desc mb-5">
+            <h2 class="text-center offer-title fade-left">What We <span>Offer</span></h2>
+            <p class="text-center offer-desc mb-5 fade-right">
                 We provide top-quality medical equipment & services to meet all your healthcare needs.
             </p>
 
             <!-- Slider Wrapper -->
-            <div class="offer-slider-wrapper position-relative">
+            <div class="offer-slider-wrapper position-relative ">
 
                 <!-- Prev Button -->
                 <button class="offer-prev"><i class="bi bi-chevron-left"></i></button>

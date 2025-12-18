@@ -17,8 +17,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/rental', [RentalServiceController::class, 'landingPage'])->name('rental-services');
     Route::get('/about-us', [AboutUsController::class, 'landingPage'])->name('about-us');
 
-    Route::get('/repair', [RepairServiceController::class , 'landingPage'])->name('repair');
-    Route::get('/{category}/{slug}', [RepairServiceController::class , 'repairServiceDetail'])->name('repair.service.detail');
+    Route::get('/repair', [RepairServiceController::class, 'landingPage'])->name('repair');
+    Route::get('/{category}/{slug}', [RepairServiceController::class, 'repairServiceDetail'])->name('repair.service.detail');
     Route::view('/location', 'frontend.pages.location')->name('location');
     Route::view('/locationdetail', 'frontend.pages.locationdetail')->name('locationdetail');
     Route::view('/contact-us', 'frontend.pages.contact-us')->name('contact-us');

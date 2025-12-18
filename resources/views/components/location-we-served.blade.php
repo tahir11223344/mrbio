@@ -2,8 +2,8 @@
     <div class="container">
 
         <!-- MAIN HEADING -->
-        <h2 class="section-title text-center mt-5">The Location <span>We Served</span> </h2>
-        <p class="section-desc text-center">
+        <h2 class="section-title text-center mt-5 fade-left">The Location <span>We Served</span> </h2>
+        <p class="section-desc text-center fade-right">
             We cover a full spectrum of medical equipment, ensuring you have access to everything you need.
             This is the fact that hospitals and healthcare providers trust Mr. Biomed Tech Services for clear,
             precise agreements and targeted financing solutions.
@@ -12,13 +12,13 @@
         <div class="row align-items-center ">
 
             <!-- LEFT IMAGE -->
-            <div class="col-lg-3 text-center mb-4 mb-lg-0">
+            <div class="col-lg-3 text-center mb-4 mb-lg-0 fade-left">
 
                 <img src="{{ asset('frontend/images/location-img.png') }}" alt="Location" class="location-img img-fluid">
             </div>
 
             <!-- RIGHT BOX -->
-            <div class="col-lg-9">
+            <div class="col-lg-9 fade-right">
                 <div class="location-box ">
 
                     <h3 class="box-title">We Are Regional <span>Service Provider</span> </h3>

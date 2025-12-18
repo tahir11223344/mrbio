@@ -19,6 +19,152 @@
             background: #006A9E;
             transform: scale(1.2);
         }
+
+        /* WRAPPER */
+
+        /* SERVICE BUTTON */
+        .services-wrapper {
+            position: fixed;
+            top: 340px;
+            right: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+        }
+
+        /* TOGGLE GROUP */
+        .services-toggle {
+            position: relative;
+            width: 48px;
+            height: 180px;
+        }
+
+        /* SERVICES BUTTON */
+        .services-btn {
+            width: 48px;
+            height: 120px;
+            background: #FFFFFF;
+            border: 1px solid #FE0000;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            cursor: pointer;
+
+            /* 🔥 ROTATE */
+            transform: rotate(180deg);
+            writing-mode: vertical-rl;
+            text-align: center;
+            font-weight: 600;
+            font-family: Inter;
+            font-size: 20px;
+            line-height: 100%;
+            color: #0071A8;
+
+        }
+
+        /* ARROW ICON (BOTTOM RIGHT) */
+        .arrow-icon {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 48px;
+            height: 48px;
+            background: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transform: rotate(89deg);
+            border: 1px solid #FE0000;
+        }
+
+        .arrow-icon img {
+            width: 35px;
+            height: 37px;
+            transform: rotate(271deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        /* SLIDE PANEL */
+        .services-panel {
+            position: absolute;
+            right: 48px;
+            width: 191px;
+            /* height: 207px; */
+            background: #fff;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: none;
+            top: 3px;
+        }
+
+        .services-panel h4 {
+            font-size: 12px;
+            font-weight: 500;
+            font-family: Inter;
+            line-height: 100%;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+
+        .services-panel p {
+            margin-bottom: 10px;
+            font-size: 11px;
+            font-weight: 400;
+            font-family: Inter;
+            line-height: 100%;
+            color: #000000;
+        }
+
+        .explore-btn {
+            margin-top: 10px;
+            width: 109px;
+            height: 24px;
+            /* padding: 8px; */
+            background: #FFFFFF;
+            border-radius: 10px;
+            border: 2px solid #0071A8;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 400;
+            font-family: Inter;
+            line-height: 100%;
+            color: #000000;
+            transition: all 0.4s ease-in-out;
+            clip-path: polygon(0% 0%,
+                    100% 0%,
+                    100% 100%,
+                    0% 100%);
+        }
+
+        .explore-btn:hover {
+            background: #0071A8;
+            border: none;
+            color: #FFFFFF;
+            /* transform: scale(1.05) */
+            clip-path: polygon(12% 0%,
+                    100% 0%,
+                    88% 100%,
+                    0% 100%);
+            border-radius: 0px;
+
+        }
+
+        .services-panel {
+            display: none;
+        }
+
+        .services-panel.active {
+            display: block;
+        }
     </style>
 @endpush
 
@@ -98,7 +244,7 @@
                 </div>
 
                 <!-- RIGHT COLUMN -->
-                <div class="col-lg-6 mt-5 mt-lg-0 text-center fade-right">
+                <div class="col-lg-6  text-center fade-right">
                     <div class="slider-container">
                         <div class="slider-track">
 
@@ -139,10 +285,10 @@
         <div class="container">
             <div class="row align-items-stretch">
                 <!-- LEFT COLUMN -->
-                <div class="col-lg-6 col-md-6 ">
-                    <h2 class="info-heading">{{ $c['first_text'] }} <span>{{ $c['second_text'] }}</span> </h2>
+                <div class="col-lg-6 col-md-6 fade-left">
+                    <h2 class="info-heading fade-left">{{ $c['first_text'] }} <span>{{ $c['second_text'] }}</span> </h2>
 
-                    <p class="info-para">
+                    <p class="info-para fade-right">
                         {!! $data->content_description !!}
                     </p>
 
@@ -151,7 +297,7 @@
                 </div>
 
                 <!-- RIGHT COLUMN (Image) -->
-                <div class="col-lg-6 col-md-6 mt-4 mt-lg-0 text-center">
+                <div class="col-lg-6 col-md-6 mt-4 mt-lg-0 text-center fade-right">
 
                     <div class="image-slider-wrapper">
                         <div class="image-slide-track">
@@ -200,7 +346,7 @@
 
                 <!-- Feature 1 -->
                 <div
-                    class="col-lg-3 col-md-6 col-12 mb-4 d-flex align-items-start justify-content-lg-start justify-content-center text-lg-start text-center">
+                    class="col-lg-3 col-md-6 col-12 mb-4 animate-card d-flex align-items-start justify-content-lg-start justify-content-center text-lg-start text-center">
                     <i class="bi bi-truck feature-icon"></i>
                     <div class="ms-3">
                         <h5 class="fw-bol mt-2">Free Shipping</h5>
@@ -210,7 +356,7 @@
 
                 <!-- Feature 2 -->
                 <div
-                    class="col-lg-3 col-md-6 col-12 mb-4 d-flex align-items-start justify-content-lg-start justify-content-center text-lg-start text-center">
+                    class="col-lg-3 col-md-6 col-12 animate-card mb-4 d-flex align-items-start justify-content-lg-start justify-content-center text-lg-start text-center">
                     <i class="bi bi-credit-card feature-icon"></i>
                     <div class="ms-3">
                         <h5 class="fw-bol mt-2">Quick Payment</h5>
@@ -220,7 +366,7 @@
 
                 <!-- Feature 3 -->
                 <div
-                    class="col-lg-3 col-md-6 col-12 mb-4 d-flex align-items-start justify-content-lg-start justify-content-center text-lg-start text-center">
+                    class="col-lg-3 col-md-6 animate-card col-12 mb-4 d-flex align-items-start justify-content-lg-start justify-content-center text-lg-start text-center">
                     <i class="bi bi-cash-coin feature-icon"></i>
                     <div class="ms-3">
                         <h5 class="fw-bol mt-1">Big Cashback</h5>
@@ -230,7 +376,7 @@
 
                 <!-- Feature 4 -->
                 <div
-                    class="col-lg-3 col-md-6 mb-4 d-flex align-items-start justify-content-lg-start justify-content-center text-lg-start text-center">
+                    class="col-lg-3 col-md-6 animate-card mb-4 d-flex align-items-start justify-content-lg-start justify-content-center text-lg-start text-center">
                     <i class="bi bi-headset feature-icon"></i>
                     <div class="ms-3 mt-2">
                         <h5 class="fw-bold">24/7 Support</h5>
@@ -247,7 +393,7 @@
         <div class="container">
 
             <!-- Heading -->
-            <h2 class="section-title mb-4">Best <span>Selling</span> Medical Equipment Essentials</h2>
+            <h2 class="section-title mb-4 fade-left">Best <span>Selling</span> Medical Equipment Essentials</h2>
 
             <!-- Search Input -->
             <div class="search-wrapper mb-4">
@@ -274,7 +420,7 @@
             <div class="container">
                 <div class="row g-4 justify-content-center">
                     @foreach ($products as $product)
-                        <div class="col-lg-3 col-md-6">
+                        <div class="col-lg-3 col-md-6 animate-card">
                             <div class="product-card position-relative">
 
                                 <!-- Discount Badge -->
@@ -328,18 +474,18 @@
         <div class="container">
 
             <!-- Main Heading -->
-            <h2 class="text-center mb-5 main-heading">
+            <h2 class="text-center mb-5 main-heading fade-left">
                 Our Life-Saving Medical Equipment for Sales,<span>Services</span> & <span>Rentals</span> !
             </h2>
 
             <!-- 2 Columns -->
-            <div class="row">
+            <div class="row ">
 
                 <div class="col-8 mx-auto">
 
-                    <div class="row">
+                    <div class="row g-4">
                         <!-- LEFT COLUMN -->
-                        <div class="col-lg-6 col-md-12 mb-4 mx-auto">
+                        <div class="col-lg-6 col-md-12 mb-4 mx-auto fade-left">
 
                             <div class="equipment-block mb-3">
                                 <h4 class="equipment-title">Anesthesia Machines</h4>
@@ -383,7 +529,7 @@
                         </div>
 
                         <!-- RIGHT COLUMN -->
-                        <div class="col-lg-6 col-md-12 mb-4">
+                        <div class="col-lg-6 col-md-12 mb-4 fade-right">
 
                             <div class="equipment-block mb-3">
                                 <h4 class="equipment-title">Imaging Diagnostic Equipment</h4>
@@ -430,14 +576,14 @@
                 </div>
 
                 <div class="col-8 mx-auto">
-                    <p class="bottom-text">
+                    <p class="bottom-text fade-left">
                         We cover a full spectrum of medical equipment, ensuring you have access to everything you need.
                         Hospitals and healthcare providers trust Mr. Biomed Tech Services for clear, precise agreements and
                         targeted financing solutions.
                     </p>
 
                     <div class="text-start mt-4">
-                        <button class=" get-btn">
+                        <button class=" get-btn fade-right">
                             Get in Touch with Us Today!
                         </button>
                     </div>
@@ -520,7 +666,7 @@
     {{-- ============= reveiw sectiion ================== --}}
 
     <section>
-        <h2 class="review-heading">Our Users Are <span>Happy And Healthy</span></h2>
+        <h2 class="review-heading fade-left">Our Users Are <span>Happy And Healthy</span></h2>
 
         <div class="container">
 
@@ -712,6 +858,36 @@
     <x-recent-blogs-section />
 
 
+    <!-- SERVICES TOGGLE WRAPPER -->
+    <div class="services-wrapper">
+
+        <!-- SLIDE PANEL -->
+        <div class="services-panel">
+            <h4>Choose Your Rental Services</h4>
+
+            <p>Service 1</p>
+            <p>Service 2</p>
+            <p>Service 3</p>
+            <p>Service 4</p>
+            <p>Service 5</p>
+
+            <button class="explore-btn">Explore More</button>
+        </div>
+
+        <!-- BUTTON + ICON GROUP -->
+        <div class="services-toggle">
+
+            <button class="services-btn">Services</button>
+
+            <div class="arrow-icon">
+                <img src="{{ asset('frontend/images/icon-img.png') }}" alt="">
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="custom-cursor"></div>
 
 
 @endsection
@@ -750,6 +926,32 @@
 
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const servicesBtn = document.querySelector('.services-btn');
+            const panel = document.querySelector('.services-panel');
+
+            // Button click → toggle panel
+            servicesBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // 👈 bahir wale click se roko
+                panel.classList.toggle('active');
+            });
+
+            // Panel ke andar click → panel close na ho
+            panel.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+
+            // Bahir kahin bhi click → panel hide
+            document.addEventListener('click', () => {
+                panel.classList.remove('active');
+            });
+
+        });
+    </script>
+
 
 
 
