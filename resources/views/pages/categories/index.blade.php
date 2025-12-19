@@ -83,13 +83,21 @@
 
                         <div class="mb-3">
                             <label class="form-label required">{{ __('Status') }}</label>
-                            <select name="status" class="form-control">
+                            <select name="status" class="form-control form-select">
                                 <option value="1">{{ __('Active') }}</option>
                                 <option value="0">{{ __('Inactive') }}</option>
                             </select>
                             <div class="text-danger mt-1 error-message" data-error-for="status"></div>
                         </div>
 
+                        <div class="mb-3">
+                            <label class="form-label">{{ __('Show on Header') }}</label>
+                            <select name="show_on_header" class="form-control form-select">
+                                <option value="1">{{ __('Yes') }}</option>
+                                <option value="0" selected>{{ __('No') }}</option>
+                            </select>
+                            <div class="text-danger mt-1 error-message" data-error-for="show_on_header"></div>
+                        </div>
 
                         <div class="text-end pt-4">
                             <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">
@@ -139,11 +147,21 @@
                         <!-- Status -->
                         <div class="mb-3">
                             <label class="form-label required">{{ __('Status') }}</label>
-                            <select name="status" id="edit_status" class="form-control">
+                            <select name="status" id="edit_status" class="form-control form-select">
                                 <option value="1">{{ __('Active') }}</option>
                                 <option value="0">{{ __('Inactive') }}</option>
                             </select>
                             <div class="text-danger mt-1 error-message" data-error-for="edit_status"></div>
+                        </div>
+
+                        <!-- Show on Header -->
+                        <div class="mb-3">
+                            <label class="form-label">{{ __('Show on Header') }}</label>
+                            <select name="show_on_header" id="edit_show_on_header" class="form-control form-select">
+                                <option value="1">{{ __('Yes') }}</option>
+                                <option value="0" selected>{{ __('No') }}</option>
+                            </select>
+                            <div class="text-danger mt-1 error-message" data-error-for="edit_show_on_header"></div>
                         </div>
 
                         <div class="text-end pt-4">
@@ -337,6 +355,11 @@
                     const slug = (btn.dataset.slug || '').trim();
                     const status = (typeof btn.dataset.status !== 'undefined') ? btn.dataset.status : btn
                         .dataset.categoryStatus;
+                    const showOnHeader = (typeof btn.dataset.showOnHeader !== 'undefined') ? btn.dataset
+                        .showOnHeader : btn.dataset.showOnHeaderValue;
+                    const showHeaderSelect = editForm.querySelector('select[name="show_on_header"]') || editForm
+                        .querySelector('#edit_show_on_header');
+
 
                     console.log('Edit button dataset:', btn.dataset);
 
@@ -369,6 +392,19 @@
                                         statusSelect.selectedIndex = i;
                                         break;
                                     }
+                                }
+                            }
+                        }
+                    }
+
+                    // populate show_on_header
+                    if (showHeaderSelect && typeof showOnHeader !== 'undefined' && showOnHeader !== null) {
+                        showHeaderSelect.value = String(showOnHeader);
+                        if (String(showHeaderSelect.value) !== String(showOnHeader)) {
+                            for (let i = 0; i < showHeaderSelect.options.length; i++) {
+                                if (showHeaderSelect.options[i].value == showOnHeader) {
+                                    showHeaderSelect.selectedIndex = i;
+                                    break;
                                 }
                             }
                         }

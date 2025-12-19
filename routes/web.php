@@ -12,6 +12,7 @@ use App\Http\Controllers\BrandWeCarryController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\CompanyCertificationController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DisclaimerController;
@@ -19,11 +20,13 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\ImportantLinksController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\LocationPageController;
 use App\Http\Controllers\OemContentController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\RentalServiceController;
 use App\Http\Controllers\RepairServiceController;
+use App\Http\Controllers\ServingCityController;
 use App\Http\Controllers\TermsAndConditionsController;
 use App\Http\Controllers\WhatWeDoController;
 use Illuminate\Support\Facades\Route;
@@ -282,6 +285,36 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/{id}/edit', 'edit')->name('edit');
         Route::put('/{id}/update', 'update')->name('update');
         Route::delete('/{id}/delete', 'destroy')->name('destroy');
+    });
+
+    // ===========================
+    // Location Landing Page
+    // ===========================
+    Route::controller(LocationPageController::class)->prefix('admin/location-page')->as('admin-location-page.')->group(function () {
+        Route::get('/', 'index')->name('page');
+        Route::post('/store', 'storeOrUpdate')->name('store');
+    });
+
+    // ===========================
+    // Serving Cities
+    // ===========================
+    Route::controller(ServingCityController::class)->prefix('admin/serving-city')->as('admin.serving-cities.')->group(function () {
+        Route::get('/', 'list')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::put('/{id}/update', 'update')->name('update');
+        Route::delete('/{id}/delete', 'destroy')->name('destroy');
+        Route::post('/remove-gallery-image', 'removeGalleryImage')->name('remove-gallery-image');
+
+    });
+
+    // ===========================
+    // Contact Us Landing Page
+    // ===========================
+    Route::controller(ContactUsController::class)->prefix('admin/contact-us')->as('admin-contact-us.')->group(function () {
+        Route::get('/', 'index')->name('page');
+        Route::post('/store', 'storeOrUpdate')->name('store');
     });
 });
 

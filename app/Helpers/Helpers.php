@@ -650,3 +650,24 @@ if (!function_exists('getFaqs')) {
             ->get();
     }
 }
+
+
+if (! function_exists('city_labels')) {
+    function city_labels(): array
+    {
+        return [
+            'dallas'       => 'Dallas TX',
+            'garland'      => 'Garland TX',
+            'houston'      => 'Houston TX',
+            'austin'       => 'Austin TX',
+            'san-antonio'  => 'San-Antonio TX',
+        ];
+    }
+}
+
+if (! function_exists('city_label')) {
+    function city_label(?string $key): string
+    {
+        return city_labels()[$key] ?? ucfirst(str_replace('-', ' ', (string) $key));
+    }
+}

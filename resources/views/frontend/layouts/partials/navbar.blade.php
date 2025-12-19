@@ -164,75 +164,29 @@
                         <div class="mega-menu">
                             <div class="container-fluid">
                                 <div class="city-grid">
-                                    <div>
-                                        <h6 class="city-repair-title">
-                                            Dallas TX
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </h6>
+                                    @foreach ($headerCities as $cityKey => $areas)
+                                        <div>
+                                            {{-- <h6 class="city-repair-title">
+                                                {{ $cityLabels[$cityKey] ?? ucfirst(str_replace('-', ' ', $cityKey)) }}
+                                                <i class="fa-solid fa-angle-right"></i>
+                                            </h6> --}}
 
-                                        <p><a href="#">Rowlett</a></p>
-                                        <p><a href="#">Sachse</a></p>
-                                        <p><a href="#">Mesquite</a></p>
-                                        <p><a href="#">Wylie</a></p>
-                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
-                                        <button class="nav-mega-btn mt-3">Talk To Expert</button>
-                                    </div>
+                                            <h6 class="city-repair-title">
+                                                <a href="{{ route('location') }}">
+                                                    {{ $cityLabels[$cityKey] ?? ucfirst(str_replace('-', ' ', $cityKey)) }}
+                                                </a>
+                                                <i class="fa-solid fa-angle-right"></i>
+                                            </h6>
 
-                                    <div>
-                                        <h6 class="city-repair-title">
-                                            Garland TX
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </h6>
-
-                                        <p><a href="#">Rowlett</a></p>
-                                        <p><a href="#">Sachse</a></p>
-                                        <p><a href="#">Mesquite</a></p>
-                                        <p><a href="#">Wylie</a></p>
-                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
-                                        <button class="nav-mega-btn mt-3">Talk To Expert</button>
-                                    </div>
-
-                                    <div>
-                                        <h6 class="city-repair-title">
-                                            Houston TX
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </h6>
-
-                                        <p><a href="#">Rowlett</a></p>
-                                        <p><a href="#">Sachse</a></p>
-                                        <p><a href="#">Mesquite</a></p>
-                                        <p><a href="#">Wylie</a></p>
-                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
-                                        <button class="nav-mega-btn mt-3">Talk To Expert</button>
-                                    </div>
-
-                                    <div>
-                                        <h6 class="city-repair-title">
-                                            Austin TX
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </h6>
-
-                                        <p><a href="#">Rowlett</a></p>
-                                        <p><a href="#">Sachse</a></p>
-                                        <p><a href="#">Mesquite</a></p>
-                                        <p><a href="#">Wylie</a></p>
-                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
-                                        <button class="nav-mega-btn mt-3">Talk To Expert</button>
-                                    </div>
-
-                                    <div>
-                                        <h6 class="city-repair-title">
-                                            San-Antonio TX
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </h6>
-
-                                        <p><a href="#">Rowlett</a></p>
-                                        <p><a href="#">Sachse</a></p>
-                                        <p><a href="#">Mesquite</a></p>
-                                        <p><a href="#">Wylie</a></p>
-                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
-                                        <button class="nav-mega-btn mt-3">Talk To Expert</button>
-                                    </div>
+                                            @foreach ($areas as $area)
+                                                <p><a
+                                                        href="{{ route('location.detail', $area->slug) }}">{{ $area->area_name ?? $area->city_name }}</a>
+                                                </p>
+                                            @endforeach
+                                            <p class="mt-3"><a href="#">Nearby communities</a></p>
+                                            <button class="nav-mega-btn mt-3">Talk To Expert</button>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
 
@@ -245,54 +199,23 @@
                         <div class="mega-menu">
                             <div class="container-fluid nav-product">
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <h6 class="city-repair-title">
-                                            Products
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </h6>
+                                    @foreach ($headerCategories as $category)
+                                        <div class="col-lg-3 col-md-6 mb-3">
+                                            <h6 class="city-repair-title">
+                                                {{ $category->name }}
+                                                <i class="fa-solid fa-angle-right"></i>
+                                            </h6>
 
-                                        <p><a href="#">Rowlett</a></p>
-                                        <p><a href="#">Sachse</a></p>
-                                        <p><a href="#">Mesquite</a></p>
-                                        <p><a href="#">Wylie</a></p>
-                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <h6 class="city-repair-title">
-                                            Products
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </h6>
-
-                                        <p><a href="#">Rowlett</a></p>
-                                        <p><a href="#">Sachse</a></p>
-                                        <p><a href="#">Mesquite</a></p>
-                                        <p><a href="#">Wylie</a></p>
-                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <h6 class="city-repair-title">
-                                            Products
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </h6>
-
-                                        <p><a href="#">Rowlett</a></p>
-                                        <p><a href="#">Sachse</a></p>
-                                        <p><a href="#">Mesquite</a></p>
-                                        <p><a href="#">Wylie</a></p>
-                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <h6 class="city-repair-title">
-                                            Products
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </h6>
-
-                                        <p><a href="#">Rowlett</a></p>
-                                        <p><a href="#">Sachse</a></p>
-                                        <p><a href="#">Mesquite</a></p>
-                                        <p><a href="#">Wylie</a></p>
-                                        <p class="mt-3"><a href="#">Nearby communities</a></p>
-                                    </div>
+                                            @if ($category->products->isNotEmpty())
+                                                @foreach ($category->products as $product)
+                                                    <p>
+                                                        {{ $product->name }}
+                                                    </p>
+                                                @endforeach
+                                            @endif
+                                            <p class="mt-3"><a href="#">Nearby communities</a></p>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

@@ -49,6 +49,7 @@ class ProductController extends Controller
             'stock_qty'         => 'nullable|integer|min:0',
             'in_stock'          => 'required|boolean',
             'is_active'         => 'required|boolean',
+            'show_on_header'    => 'required|boolean',
             'thumbnail'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:300',
             'gallery_images.*'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:300',
             'image_alt'         => 'nullable|string',
@@ -77,6 +78,7 @@ class ProductController extends Controller
             $product->stock_qty = $request->stock_qty ?? 0;
             $product->in_stock = $request->in_stock;
             $product->is_active = $request->is_active;
+            $product->show_on_header = $request->show_on_header;
 
             // Thumbnail
             $product->thumbnail = $this->uploadImage($request->file('thumbnail'), 'products/thumbnails');
@@ -161,6 +163,7 @@ class ProductController extends Controller
             'stock_qty'         => 'nullable|integer|min:0',
             'in_stock'          => 'required|boolean',
             'is_active'         => 'required|boolean',
+            'show_on_header'    => 'required|boolean',
             'thumbnail'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:300', // 300 KB
             'gallery_images.*'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:300', // 300 KB
             'image_alt'         => 'nullable|string',
@@ -188,6 +191,7 @@ class ProductController extends Controller
             $product->stock_qty = $request->stock_qty ?? 0;
             $product->in_stock = $request->in_stock;
             $product->is_active = $request->is_active;
+            $product->show_on_header = $request->show_on_header;
 
             // Thumbnail image update
             $product->thumbnail = $this->updateImage($request, 'thumbnail', 'products/thumbnails', $product->thumbnail);

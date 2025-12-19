@@ -26,6 +26,7 @@ class CategoryController extends Controller
             'name'   => 'required|string|max:255',
             'slug'   => 'required|string|max:255|unique:categories,slug',
             'status' => 'required|in:0,1',
+            'show_on_header' => 'required|in:0,1',
         ]);
 
         if ($validator->fails()) {
@@ -38,6 +39,7 @@ class CategoryController extends Controller
             'name'       => $request->name,
             'slug'       => Str::slug($request->slug),
             'status'     => $request->status,
+            'show_on_header'     => $request->show_on_header,
             'created_by' => auth()->id(),
         ]);
 
@@ -66,6 +68,7 @@ class CategoryController extends Controller
                 'name'   => 'required|string|max:255',
                 'slug'   => 'required|string|max:255|unique:categories,slug,' . $category->id,
                 'status' => 'required|in:0,1',
+                'show_on_header' => 'required|in:0,1',
             ]);
 
             if ($validator->fails()) {
@@ -80,6 +83,7 @@ class CategoryController extends Controller
                 'name'       => $request->name,
                 'slug'       => Str::slug($request->slug),
                 'status'     => $request->status,
+                'show_on_header'     => $request->show_on_header,
                 'updated_by' => auth()->id(),
             ]);
 

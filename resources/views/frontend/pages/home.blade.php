@@ -389,7 +389,9 @@
         </div>
     </section>
 
-    <section class="best-selling-section mt-5 py-3">
+    <x-best-selling-products-section />
+
+    {{-- <section class="best-selling-section mt-5 py-3">
         <div class="container">
 
             <!-- Heading -->
@@ -460,7 +462,7 @@
             </div>
         </section>
 
-    </section>
+    </section> --}}
 
 
     {{-- Offer Slider Component --}}

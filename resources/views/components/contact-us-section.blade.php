@@ -1,0 +1,112 @@
+<section class="contact-section py-5">
+    <div class="container">
+        <div class="row g-2">
+
+            <!-- Left Column -->
+            <div class="col-lg-6 animate-card">
+                <h2 class="contact-heading mb-3">Contact Us</h2>
+
+                <p class="contact-desc mb-4">
+                    Have questions or need support? Our team is ready to assist you with expert imaging services,
+                    maintenance, and repairs across Texas.
+                </p>
+
+                <div class="contact-info mb-3">
+                    <i class="bi bi-telephone-fill contact-icon"></i>
+                    <a href="tel:{{ cleanPhone(setting('phone')) }}" class="contact-text">
+                        {{ setting('phone') }}
+                    </a>
+                </div>
+
+                <div class="contact-info mb-3">
+                    <i class="bi bi-envelope-fill contact-icon"></i>
+                    <a href="mailto:{{ setting('email') }}" class="contact-text">
+                        {{ setting('email') }}
+                    </a>
+                </div>
+
+                <div class="contact-info mb-4">
+                    <i class="bi bi-geo-alt-fill contact-icon"></i>
+                    <span class="contact-text">{{ setting('address') }}</span>
+                </div>
+
+                <h5 class="tech-heading mb-3">
+                    Technicians dispatched from throughout Texas
+                </h5>
+
+                @foreach ($area_names as $item)
+                    <div class="contact-info">
+                        <i class="bi bi-check-lg contact-icon"></i>
+                        <span class="contact-textt">
+                            {{ $item->area_name ?? '' }}
+                        </span>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-lg-6 animate-card">
+                <div class="form-wrapper p-4">
+                    <h3 class="form-heading mb-3">
+                        Do You Want Quick Chat?
+                    </h3>
+
+                    <p class="form-desc mb-4">
+                        Fill out the form below and our team will get back to you shortly. Fill out the form below and
+                        our team will get back to you shortly.
+                    </p>
+
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control formm-input" placeholder="Enter Name">
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="email" class="form-control formm-input" placeholder="Enter Email">
+                        </div>
+
+                        <!-- State & City -->
+                        <div class="d-flex gap-3">
+                            <div class="mb-3">
+                                <select class="form-select formm-select" name="state" id="form_state">
+                                    <option value="">{{ __('Select State') }}</option>
+
+                                    @foreach ($footerStates as $state)
+                                        <option value="{{ $state->id }}">
+                                            {{ $state->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <select class="form-select formm-select" id="form_city" name="city">
+                                    <option>Select City</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <select class="form-select formmm-select">
+                                <option selected>Select Services</option>
+                                <option>X-Ray Machine Repair</option>
+                                <option>Imaging Maintenance</option>
+                                <option>Biomedical Services</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <textarea class="form-control formm-text" rows="4" placeholder="Enter Message"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn submit-btn">
+                            Request Submit
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

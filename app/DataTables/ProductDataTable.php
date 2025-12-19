@@ -45,6 +45,19 @@ class ProductDataTable extends DataTable
             ->orderColumn('created_at', 'products.created_at $1')
             ->orderColumn('updated_at', 'products.updated_at $1')
 
+            ->editColumn('is_active', function ($product) {
+                if ($product->is_active == 1) {
+                    return '<span class="badge badge-success">Active</span>';
+                }
+                return '<span class="badge badge-danger">Inactive</span>';
+            })
+            ->editColumn('show_on_header', function ($product) {
+                if ($product->show_on_header == 1) {
+                    return '<span class="badge badge-success">Yes</span>';
+                }
+                return '<span class="badge badge-danger">No</span>';
+            })
+
             ->editColumn('thumbnail', function ($product) {
                 if (!$product->thumbnail) {
                     return '-';
@@ -56,7 +69,7 @@ class ProductDataTable extends DataTable
             })
 
             ->addColumn('action', fn($product) => view('pages.products._actions', compact('product'))->render())
-            ->rawColumns(['action', 'type', 'thumbnail'])
+            ->rawColumns(['action', 'type', 'thumbnail', 'is_active', 'show_on_header'])
             ->setRowId('id');
     }
 
@@ -83,7 +96,7 @@ class ProductDataTable extends DataTable
             ->minifiedAjax()
             ->processing(true)
             ->serverSide(true)
-            ->orderBy(5, 'desc')
+            ->orderBy(8, 'desc')
             ->addTableClass('table table-striped table-row-bordered gy-5 gs-7 border rounded text-gray-700 fw-semibold')
             ->setTableHeadClass('text-start text-muted fw-bold fs-7 text-uppercase gs-0')
             ->parameters([
@@ -121,6 +134,10 @@ class ProductDataTable extends DataTable
             Column::make('type')
                 ->title(__('Type'))
                 ->name('products.type'),
+
+            Column::make('is_active')->title('Is Active'),
+            Column::make('show_on_header')->title('Show On header'),
+
 
             Column::make('created_by')
                 ->title(__('Created By'))

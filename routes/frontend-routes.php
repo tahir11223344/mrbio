@@ -4,8 +4,10 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\BiomedServicesController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\LocationPageController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\RentalServiceController;
 use App\Http\Controllers\RepairServiceController;
@@ -21,10 +23,10 @@ Route::middleware('guest')->group(function () {
     Route::get('/rental', [RentalServiceController::class, 'landingPage'])->name('rental-services');
     Route::get('/about-us', [AboutUsController::class, 'landingPage'])->name('about-us');
 
-    Route::view('/location', 'frontend.pages.location')->name('location');
-    Route::view('/locationdetail', 'frontend.pages.locationdetail')->name('locationdetail');
-    Route::view('/contact-us', 'frontend.pages.contact-us')->name('contact-us');
-    Route::get('/privacy', [PrivacyPolicyController::class , 'landingPage'])->name('privacy');
+    Route::get('/location', [LocationPageController::class, 'landingPage'])->name('location');
+    Route::get('/location/{slug}', [LocationPageController::class, 'locationDetail'])->name('location.detail');
+    Route::get('/contact-us', [ContactUsController::class, 'landingPage'])->name('contact-us');
+    Route::get('/privacy', [PrivacyPolicyController::class, 'landingPage'])->name('privacy');
     Route::get('/terms', [TermsAndConditionsController::class, 'landingPage'])->name('terms');
     Route::get('/disclaimer', [DisclaimerController::class, 'landingPage'])->name('disclaimer');
     Route::get('/blogs', [BlogController::class, 'landingPage'])->name('blogs');
@@ -38,9 +40,6 @@ Route::middleware('guest')->group(function () {
     Route::get('/repair', [RepairServiceController::class, 'landingPage'])->name('repair');
     Route::get('/{category}/{slug}', [RepairServiceController::class, 'repairServiceDetail'])->name('repair.service.detail');
 
-
-
-
     Route::prefix('ajax')->group(function () {
 
         // Get cities route
@@ -50,5 +49,11 @@ Route::middleware('guest')->group(function () {
         // Blog filter route
         Route::get('/blogs/filter', [BlogController::class, 'filterBlogs'])
             ->name('blogs.filter');
+
+        Route::get('/best-products/filter', [LandingPageController::class, 'filter'])
+            ->name('best.products.filter');
+
+        Route::get('/latest-products/filter', [LandingPageController::class, 'latestProductsfilter'])
+            ->name('latest.products.filter');
     });
 });

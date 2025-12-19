@@ -2,7 +2,7 @@
     data-kt-menu="true" data-kt-menu-expand="false">
     <!--begin:Menu item-->
     <div data-kt-menu-trigger="click"
-        class="menu-item menu-accordion {{ request()->routeIs('dashboard', 'admin-category.*', 'admin-products.*', 'admin-offers.*', 'admin-oems.*', 'admin-privacy-policy.*', 'admin-terms-conditions.*', 'admin-disclaimer.*', 'admin.importent-links.*') ? 'here show' : '' }}">
+        class="menu-item menu-accordion {{ request()->routeIs('dashboard', 'admin-category.*', 'admin-products.*', 'admin-offers.*', 'admin-oems.*', 'admin-privacy-policy.*', 'admin-terms-conditions.*', 'admin-disclaimer.*', 'admin.importent-links.*', 'admin-location-page.*', 'admin.serving-cities.*', 'admin-contact-us.*') ? 'here show' : '' }}">
         <!--begin:Menu link-->
         <span class="menu-link">
             <span class="menu-icon">{!! getIcon('element-11', 'fs-2') !!}</span>
@@ -168,6 +168,41 @@
                         <span class="bullet bullet-dot"></span>
                     </span>
                     <span class="menu-title">{{ __('Importent Links') }}</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-sub menu-sub-accordion">
+            <div class="menu-item">
+                <a class="menu-link {{ request()->routeIs('admin-location-page.*') ? 'active' : '' }}"
+                    href="{{ route('admin-location-page.page') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">{{ __('Location Page') }}</span>
+                </a>
+            </div>
+        </div>
+        <div class="menu-sub menu-sub-accordion">
+            <div class="menu-item">
+                <a class="menu-link {{ request()->routeIs('admin.serving-cities.*') ? 'active' : '' }}"
+                    href="{{ route('admin.serving-cities.list') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">{{ __('City') }}</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="menu-sub menu-sub-accordion">
+            <div class="menu-item">
+                <a class="menu-link {{ request()->routeIs('admin-contact-us.*') ? 'active' : '' }}"
+                    href="{{ route('admin-contact-us.page') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">{{ __('Contact US') }}</span>
                 </a>
             </div>
         </div>

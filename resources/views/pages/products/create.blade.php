@@ -62,7 +62,8 @@
 
                             <!-- Type -->
                             <div class="col-lg-4 mb-4">
-                                <label for="type" class="form-label fw-semibold required">{{ __('Type') }}</label>
+                                <label for="type"
+                                    class="form-label fw-semibold required">{{ __('Type') }}</label>
                                 <select name="type" id="type"
                                     class="form-select form-select-lg @error('type') is-invalid @enderror" required>
                                     <option value="for_store"
@@ -129,8 +130,7 @@
 
                             <!-- Price -->
                             <div class="col-lg-4 mb-4">
-                                <label for="price"
-                                    class="form-label fw-semibold">{{ __('Price ($)') }}</label>
+                                <label for="price" class="form-label fw-semibold">{{ __('Price ($)') }}</label>
                                 <input type="number" step="0.01" min="0" id="price" name="price"
                                     class="form-control form-control-lg @error('price') is-invalid @enderror"
                                     value="{{ old('price', $data->price ?? 0) }}">
@@ -159,14 +159,14 @@
                                 <input type="number" step="0.01" min="0" id="sale_price"
                                     name="sale_price"
                                     class="form-control form-control-lg @error('sale_price') is-invalid @enderror"
-                                    value="{{ old('sale_price', $data->sale_price ?? '') }}" readonly>
+                                    value="{{ old('sale_price', $data->sale_price ?? '') }}">
                                 @error('sale_price')
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <!-- Stock Quantity -->
-                            <div class="col-lg-4 mb-4">
+                            <div class="col-lg-3 mb-4">
                                 <label for="stock_qty"
                                     class="form-label fw-semibold">{{ __('Stock Quantity') }}</label>
                                 <input type="number" min="0" id="stock_qty" name="stock_qty"
@@ -178,7 +178,7 @@
                             </div>
 
                             <!-- In Stock -->
-                            <div class="col-lg-4 mb-4">
+                            <div class="col-lg-3 mb-4">
                                 <label for="in_stock" class="form-label fw-semibold">{{ __('In Stock') }}</label>
                                 <select name="in_stock" id="in_stock"
                                     class="form-select form-select-lg @error('in_stock') is-invalid @enderror">
@@ -195,7 +195,7 @@
                             </div>
 
                             <!-- Is Active -->
-                            <div class="col-lg-4 mb-4">
+                            <div class="col-lg-3 mb-4">
                                 <label for="is_active" class="form-label fw-semibold">{{ __('Active') }}</label>
                                 <select name="is_active" id="is_active"
                                     class="form-select form-select-lg @error('is_active') is-invalid @enderror">
@@ -211,6 +211,25 @@
                                 @enderror
                             </div>
 
+                            <!-- Show on Header -->
+                            <div class="col-lg-3 mb-4">
+                                <label for="show_on_header"
+                                    class="form-label fw-semibold">{{ __('Show on Header') }}</label>
+                                <select name="show_on_header" id="show_on_header"
+                                    class="form-select form-select-lg @error('show_on_header') is-invalid @enderror">
+                                    <option value="1"
+                                        {{ old('show_on_header', $data->show_on_header ?? 0) == 1 ? 'selected' : '' }}>
+                                        {{ __('Yes') }}
+                                    </option>
+                                    <option value="0"
+                                        {{ old('show_on_header', $data->show_on_header ?? 0) == 0 ? 'selected' : '' }}>
+                                        {{ __('No') }}
+                                    </option>
+                                </select>
+                                @error('show_on_header')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
 
                             <!-- Thumbnail -->
                             <div class="col-lg-12 mb-4">

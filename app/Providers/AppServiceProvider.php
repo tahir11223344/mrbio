@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Livewire\Livewire;
 use App\Core\KTBootstrap;
+use App\Models\Category;
+use App\Models\ServingCity;
 use App\Models\State;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Schema\Builder;
@@ -44,7 +46,44 @@ class AppServiceProvider extends ServiceProvider
             });
         }
 
-        View::composer('frontend.layouts.partials.footer', function ($view) {
+        View::composer('frontend.layouts.partials.navbar', function ($view) {
+
+            // Fetch active cities that should show on header
+            $cities = ServingCity::select('city_name', 'area_name', 'slug') // only required columns
+                ->where('show_on_header', 1)
+                ->where('is_active', 1)
+                ->orderBy('city_name')
+                ->get()
+                ->groupBy('city_name'); // group by city_name to get areas
+
+
+            // Use the helper function for city labels
+            $cityLabels = function_exists('city_labels') ? city_labels() : [];
+
+            // Categories + products
+            $categories = Category::select('id', 'name', 'slug')
+                ->where('status', 1)
+                ->where('show_on_header', 1)
+                ->with([
+                    'products' => function ($q) {
+                        $q->select('id', 'category_id', 'name', 'slug')
+                            ->where('is_active', 1)
+                            ->where('show_on_header', 1);
+                    }
+                ])
+                ->get();
+
+
+            // Share with navbar view
+            $view->with([
+                'headerCities' => $cities ?? collect(), // Safe fallback
+                'cityLabels'   => $cityLabels,
+                'headerCategories' => $categories ?? collect(),
+            ]);
+        });
+
+
+        View::composer('frontend.*', function ($view) {
 
             // ---- Custom Required Country List ----
             $priorityCountries = [

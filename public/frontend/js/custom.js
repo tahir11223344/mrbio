@@ -407,72 +407,66 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// ---------------------------------------------------------
-// When user selects a state, load its related cities via AJAX
-// ---------------------------------------------------------
-$('#footer_state').on('change', function () {
+document.addEventListener('DOMContentLoaded', function () {
+    loadCities('footer_state', 'footer_city');
+    loadCities('form_state', 'form_city');
+});
 
-    // Selected state ID
-    let stateId = $(this).val();
 
-    // City dropdown reference
-    let cityDropdown = $('select[name="city"]');
+function loadCities(stateSelectId, citySelectId) {
 
-    // Show loading before request
-    cityDropdown.html('<option>Loading...</option>');
+    const stateSelect = document.getElementById(stateSelectId);
+    const citySelect = document.getElementById(citySelectId);
 
-    // If a valid state is selected
-    if (stateId) {
+    // If element does not exist, exit safely
+    if (!stateSelect || !citySelect) return;
 
-        $.ajax({
-            url: "/ajax/get-cities/" + stateId, // Route to fetch cities
-            type: "GET",
+    stateSelect.addEventListener('change', function () {
 
-            // -------------------------------------------
-            // On successful response from controller
-            // -------------------------------------------
-            success: function (response) {
+        const stateId = this.value;
 
-                // If API returned status=false
+        citySelect.innerHTML = '<option>Loading...</option>';
+
+        if (!stateId) {
+            citySelect.innerHTML = '<option>Select City</option>';
+            return;
+        }
+
+        fetch(`/ajax/get-cities/${stateId}`)
+            .then(response => response.json())
+            .then(response => {
+
+                // API error
                 if (!response.status) {
-                    cityDropdown.html('<option>' + response.message + '</option>');
+                    citySelect.innerHTML = `<option>No City Found</option>`;
                     return;
                 }
 
-                // Clear & append default option
-                cityDropdown.empty();
-                cityDropdown.append('<option value="">Select City</option>');
+                const cities = response.data || {};
 
-                // Add cities to dropdown
-                $.each(response.data, function (id, name) {
-                    cityDropdown.append(
-                        '<option value="' + id + '">' + name + '</option>'
-                    );
-                });
-            },
-
-            // -------------------------------------------
-            // Handle server-side or network errors
-            // -------------------------------------------
-            error: function (xhr) {
-
-                let errorMessage = "Error loading cities";
-
-                // Custom error for bad request
-                if (xhr.status === 400) {
-                    errorMessage = "Invalid state selected";
+                // No cities case
+                if (Object.keys(cities).length === 0) {
+                    citySelect.innerHTML = '<option>No City Found</option>';
+                    return;
                 }
 
-                cityDropdown.html('<option>' + errorMessage + '</option>');
-            }
-        });
+                // Cities found
+                citySelect.innerHTML = '<option value="">Select City</option>';
 
-    } else {
-        // If no state is selected, reset dropdown
-        cityDropdown.html('<option>Select City</option>');
-    }
+                Object.entries(cities).forEach(([id, name]) => {
+                    const option = document.createElement('option');
+                    option.value = id;
+                    option.textContent = name;
+                    citySelect.appendChild(option);
+                });
+            })
+            .catch(() => {
+                citySelect.innerHTML = '<option>Error loading cities</option>';
+            });
+    });
+}
 
-});
+
 
 
 // ============= animate card =========================
@@ -629,21 +623,22 @@ document.addEventListener('DOMContentLoaded', function () {
 // custom cursor 
 
 const cursor = document.querySelector('.custom-cursor');
+if (cursor) {
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
 
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-
-    // 👇 Y-axis offset (10–15px best hota hai)
-    cursor.style.top = (e.clientY - 6) + 'px';
-});
-
-// Hover effect
-document.querySelectorAll('a, button, .hover-target').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.classList.add('hover');
+        // 👇 Y-axis offset (10–15px best hota hai)
+        cursor.style.top = (e.clientY - 6) + 'px';
     });
 
-    el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('hover');
+    // Hover effect
+    document.querySelectorAll('a, button, .hover-target').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.classList.add('hover');
+        });
+
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('hover');
+        });
     });
-});
+}

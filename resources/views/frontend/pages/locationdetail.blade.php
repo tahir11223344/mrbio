@@ -1,6 +1,9 @@
 @extends('frontend.layouts.frontend')
 
-@section('title', 'Location Detail Page')
+{{-- @section('title', 'Location Detail Page') --}}
+@section('meta_title', $data->meta_title ?? 'Serving City')
+@section('meta_keywords', $data->meta_keywords ?? '')
+@section('meta_description', $data->meta_description ?? '')
 
 @push('frontend-styles')
     <style>
@@ -134,10 +137,9 @@
     <section class="hero-detail-section">
         <div class="container py-5 text-center text-white">
 
-            <h1 class="hero-title mb-3 fade-right"><span>Sub Location/</span> Area Detail Page </h1>
+            <h1 class="hero-title mb-3 fade-right">{!! highlightBracketText($data->hero_title ?? '', ['#000000']) !!}</h1>
             <p class="hero-description mx-auto mb-4 fade-left">
-                Discover the comprehensive range of specialized biomedical services we offer, designed to support your
-                operational needs and technological advancement.
+                {{ $data->hero_subtitle ?? '' }}
             </p>
 
             <div class="container py-5 text-center text-white">
@@ -148,7 +150,7 @@
 
                         <span class="breadcrumb-separator">|</span>
 
-                        <span class="breadcrumb-active">Location Detail page</span>
+                        <span class="breadcrumb-active">{{ $data->city_name ?? '' }}</span>
                     </div>
                 </div>
 
@@ -159,14 +161,18 @@
     <section class="biomed-section">
         <div class="container">
             <div class="row justify-content-cente mt-2">
-
+                @php
+                    $galleryImages = json_decode($data->gallery_images, true) ?? [];
+                    $mainImage = $galleryImages[0] ?? null;
+                @endphp
                 <!-- Left Column -->
                 <div class="col-lg-6">
 
                     <div class="image-slider">
                         {{-- <button class="prev-btn">&#10094;</button> --}}
 
-                        <img id="mainImage" src="{{ asset('frontend/images/rental/product-img.jpg') }}" class="main-img">
+                        <img id="mainImage" src="{{ $mainImage ? asset('storage/cities/gallery/' . $mainImage) : '' }}"
+                            class="main-img" alt="{{ $data->image_alt ?? '' }}">
 
                         {{-- <button class="next-btn">&#10095;</button> --}}
                     </div>
@@ -178,20 +184,10 @@
                         <!-- WRAPPER ADDED HERE -->
                         <div class="thumb-wrapper">
                             <div class="thumbs-track" id="thumbsTrack">
-                                @php
-                                    $images = [
-                                        'small-img.jpg',
-                                        'small-img2.jpg',
-                                        'small-img3.jpg',
-                                        'small-img4.jpg',
-                                        'small-img5.jpg',
-                                        'small-img6.jpg',
-                                    ];
-                                @endphp
-
-                                @foreach ($images as $img)
-                                    <img src="{{ asset('frontend/images/subservice/' . $img) }}" class="thumb"
-                                        onclick="thumbClicked('{{ asset('frontend/images/subservice/' . $img) }}')">
+                                @foreach ($galleryImages as $img)
+                                    <img src="{{ asset('storage/cities/gallery/' . $img) }}" class="thumb"
+                                        alt="{{ $img->image_alt ?? '' }}"
+                                        onclick="thumbClicked('{{ asset('storage/cities/gallery/' . $img) }}')">
                                 @endforeach
                             </div>
                         </div>
@@ -207,12 +203,10 @@
 
                 <!-- Right Column -->
                 <div class="col-lg-6">
-                    <h2 class="subb-heading">Medical & Lab Equipment Repair and Preventative Maintenance in Virginia and
-                        the Mid Atlantic Region </h2>
-                    <h2 class="subb-headingg">Medical & Lab Equipment Repair and Preventative Maintenance in Virginia and
-                        the Mid Atlantic Region </h2>
+                    <h2 class="subb-heading">{!! highlightBracketText($data->content_title ?? '') !!}</h2>
 
-                    <p class="subb-para">
+                    {!! $data->content_description ?? '' !!}
+                    {{-- <p class="subb-para">
                         Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit
                         tempus diam.Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam
                         vitae sit tempus diam.Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit
@@ -224,7 +218,7 @@
                         tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit tempus diam.Libero
                         diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae sit tempus
                         diam.
-                    </p>
+                    </p> --}}
 
                     <button class="quote-btn">Request A Quote</button>
                 </div>
@@ -355,9 +349,12 @@
             <div class="row">
                 <div class="col-md-12  mx-auto">
                     <h2 class="austin-heading">
-                        How We serve in <span>Austin</span>
+                        {!! highlightBracketText($data->serve_heading ?? '') !!}
                     </h2>
-                    <p class="austin-desc">
+
+                    {!! $data->serve_description ?? '' !!}
+
+                    {{-- <p class="austin-desc">
                         nec Praesent libero, placerat nec non dignissim, viverra Lorem tempor vitae elit. viverra turpis
                         faucibus non. sit fringilla risus Nam ex nisl. fringilla Donec sit nisi nec Quisque Vestibulum
                         maximus Nunc ex non. volutpat vitae at, tempor</p>
@@ -372,254 +369,26 @@
                         varius amet, eget quis ipsum eu enim. sit elit
                         Nunc lacus, urna. faucibus vitae lacus dui. dui. eget lacus In faucibus non lobortis, odio sit
                         efficitur. malesuada ex vitae eu placerat. faucibus quam massa sodales. viverra lobortis,
-                    </p>
+                    </p> --}}
 
 
                 </div>
             </div>
         </div>
     </section>
+
+
     {{-- ================faqs section ================ --}}
 
-    <section class="faqs-section py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Left Column: FAQs -->
-                <div class="col-lg-6">
-                    <h2 class="faqs-heading">Frequently Asked Questions</h2>
-                    <div class="mt-4">
-                        <h5 class="faqs-subheading">About Our Profile?</h5>
-                        <p class="faq-para">
-                            We provide sales, rental, and repair services for medical equipment with ISO certified
-                        </p>
-                    </div>
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="About Our Profile?"
+        subtext="We provide sales, rental, and repair services for medical equipment with ISO certified"
+        image="frontend/images/hero-main-img.png" :visible="4" />
 
-                    <div class="faqs-list">
-                        <!-- Sample FAQs -->
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                What services does Mr Biomed Tech offer?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                We provide sales, rental, and repair services for medical equipment with ISO certified
-                                products and 24/7 support.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                How can I request a service?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                You can contact us via our website form, email, or call our support team to request any
-                                service.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                Are your products guaranteed?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                Yes, all our equipment comes with manufacturer warranty and quality assurance for
-                                reliability.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                What is the delivery time?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                Delivery depends on product availability, usually 3-7 business days.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                Can I return a product?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                Yes, returns are possible within 14 days under our return policy.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-title">
-                                Do you offer installation services?
-                                <i class="bi bi-chevron-down faq-icon"></i>
-                            </div>
-                            <div class="faq-content">
-                                Yes, our team provides installation and training for all equipment.
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="btn-see-more">See More</button>
-                </div>
-
-                <!-- Right Column: Image -->
-                <div class="col-lg-6 text-center">
-                    <img src="{{ asset('frontend/images/hero-main-img.png') }}" alt="FAQ Image"
-                        class="faq-img img-fluid">
-                </div>
-            </div>
-        </div>
-    </section>
 
 
     {{-- ================= pruduct sectiion ============= --}}
-    <section class="products-series-section py-5">
+    <x-our-latest-products />
 
-
-        <div class="container-fluid py-5 product-series-bg">
-            <div class="container text-center">
-                <p class="text-center  product-series-para  mb-3">New From Mr Biomed Tech</p>
-                <h2 class="text-center mb-5  product-section-heading">Our <span>Latest Products</span> </h2>
-
-                <div class="product-filter-tabs mb-5 d-flex justify-content-center flex-wrap gap-">
-
-                    <button class="filter-btn active" data-filter="featured">Featured</button>
-
-                    <button class="filter-btn" data-filter="equipment">Medical Equipment</button>
-                    <button class="filter-btn" data-filter="supplies">Supplies</button>
-                    <button class="filter-btn" data-filter="parts">Parts</button>
-                </div>
-            </div>
-
-            <div class="container mt-4">
-                <div class="row g-4">
-
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="custom-card shadow-sm position-relative">
-                            <span class="discount-badge">10% OFF</span>
-
-                            <div class="card-image-box">
-                                <img src="{{ asset('frontend/images/ourproduct-img.jpg') }}" alt="PRODUCT img"
-                                    class=" img-fluid">
-                            </div>
-
-
-                            <div class="card-content-box p-3 pt-2">
-                                <div class="rating-stars p- pt-2 pb-0">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                </div>
-                                <h5 class="product-title fw-bold">Defibrillator X1</h5>
-                                <p class="card-text small mb-3">High-performance device for cardiac care and monitoring.
-                                </p>
-
-                                <div class="price-action-row d-flex justify-content-between align-items-center">
-
-                                    <span class="old-price text-decoration-line-through text-muted small">$12,000</span>
-                                    <span class="new-price fw-bolder fs-5 text-primary">$10,800</span>
-
-                                    <a href="#" class="btn buy-now-btn btn-sm">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="custom-card shadow-sm position-relative">
-                            <span class="discount-badge">10% OFF</span>
-                            <div class="card-image-box">
-                                <img src="{{ asset('frontend/images/ourproduct-img.jpg') }}" alt="PRODUCT img"
-                                    class=" img-fluid">
-                            </div>
-
-                            <div class="card-content-box p-3 pt-2">
-                                <div class="rating-stars p- pt-2 pb-0">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                </div>
-                                <h5 class="product-title fw-bold">Patient Monitor P5</h5>
-                                <p class="card-text small mb-3">Multi-parameter monitoring solution with touch interface.
-                                </p>
-                                <div class="price-action-row d-flex justify-content-between align-items-center">
-
-                                    <span class="old-price text-decoration-line-through text-muted small">$5,500</span>
-                                    <span class="new-price fw-bolder fs-5 text-primary">$4,950</span>
-
-                                    <a href="#" class="btn buy-now-btn btn-sm">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="custom-card shadow-sm position-relative">
-                            <span class="discount-badge">10% OFF</span>
-                            <div class="card-image-box">
-                                <img src="{{ asset('frontend/images/ourproduct-img.jpg') }}" alt="PRODUCT img"
-                                    class=" img-fluid">
-                            </div>
-
-                            <div class="card-content-box p-3 pt-2">
-                                <div class="rating-stars p- pt-2 pb-0">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                </div>
-                                <h5 class="product-title fw-bold">Infusion Pump D3</h5>
-                                <p class="card-text small mb-3">Precision fluid delivery system with safety alarms.</p>
-                                <div class="price-action-row d-flex justify-content-between align-items-center">
-
-                                    <span class="old-price text-decoration-line-through text-muted small">$1,500</span>
-                                    <span class="new-price fw-bolder fs-5 text-primary">$1,350</span>
-
-                                    <a href="#" class="btn buy-now-btn btn-sm">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="custom-card shadow-sm position-relative">
-                            <span class="discount-badge">10% OFF</span>
-                            <div class="card-image-box">
-                                <img src="{{ asset('frontend/images/ourproduct-img.jpg') }}" alt="PRODUCT img"
-                                    class=" img-fluid">
-                            </div>
-
-                            <div class="card-content-box p-3 pt-2">
-                                <div class="rating-stars p- pt-2 pb-0">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                </div>
-                                <h5 class="product-title fw-bold">ECG Machine M12</h5>
-                                <p class="card-text small mb-3">Compact and reliable 12-lead Electrocardiogram device.</p>
-                                <div class="price-action-row d-flex justify-content-between align-items-center">
-
-                                    <span class="old-price text-decoration-line-through text-muted small">$3,200</span>
-                                    <span class="new-price fw-bolder fs-5 text-primary">$2,880</span>
-
-                                    <a href="#" class="btn buy-now-btn btn-sm">Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
 
     {{-- ============= reveiw sectiion ================== --}}
 
@@ -814,101 +583,11 @@
 
 
 
-    {{-- ============recent news section ============ --}}
+    {{-- ============ Recent News Section ============ --}}
+    <!-- Default: 4 blogs -->
+    <x-recent-blogs-section />
 
-
-
-    <section class="recent-news-section py- mb-5">
-        <div class="container text-center">
-            <h2 class="section-title text-white mb-3">Recent News</h2>
-            <p class="section-desc  mb-5">
-                Stay updated with the latest trends and insights in biomedical technology and services.
-            </p>
-        </div>
-
-        <div class="container">
-            <div class="row g-4">
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">The Future of Technology Solutions: Innovations
-                                Driving Business Success</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">Advancements in Biomedical Devices: A Game Changer for
-                                Healthcare</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">Enhancing Efficiency: The Role of AI in Medical
-                                Equipment Maintenance</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="news-card bg-white   ">
-                        <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid w-100"
-                            alt="News Image">
-                        <div class="p-3">
-                            <h5 class="news-title fw-bold mt-2 mb-2">Cybersecurity in Healthcare: Protecting Patient Data
-                                in a Digital Age</h5>
-                            <p class="news-desc small text-muted mb-3">
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-                                Understand the critical importance of robust cybersecurity measures in modern healthcare.
-
-                            </p>
-                            <a href="#"
-                                class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
-                                Read More <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
 @endsection
+
 @push('frontend-scripts')
 @endpush

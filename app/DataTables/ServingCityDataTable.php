@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Category;
+use App\Models\ServingCity;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class CategoryDataTable extends DataTable
+class ServingCityDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -23,6 +23,11 @@ class CategoryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+
+            ->editColumn('city_name', function ($c) {
+                return city_label($c->city_name);
+            })
+
             ->addColumn('created_by', fn($c) => optional($c->createdBy)->name ?? '-')
             ->addColumn('updated_by', fn($c) => optional($c->updatedBy)->name ?? '-')
 
@@ -30,11 +35,11 @@ class CategoryDataTable extends DataTable
             ->editColumn('updated_at', fn($c) => $c->updated_at ? Carbon::parse($c->updated_at)->format('d-M-Y') : '-')
 
             // Tell Yajra how to sort these formatted columns
-            ->orderColumn('created_at', 'categories.created_at $1')
-            ->orderColumn('updated_at', 'categories.updated_at $1')
+            ->orderColumn('created_at', 'serving_cities.created_at $1')
+            ->orderColumn('updated_at', 'serving_cities.updated_at $1')
 
-            ->editColumn('status', function ($c) {
-                if ($c->status == 1) {
+            ->editColumn('is_active', function ($c) {
+                if ($c->is_active == 1) {
                     return '<span class="badge badge-success">Active</span>';
                 }
                 return '<span class="badge badge-danger">Inactive</span>';
@@ -48,19 +53,27 @@ class CategoryDataTable extends DataTable
             })
 
 
-            ->addColumn('action', fn($c) => view('pages.categories.columns._actions', compact('c'))->render())
-            ->rawColumns(['action', 'status', 'show_on_header'])
+            ->editColumn('city_image', function ($c) {
+                if (!$c->city_image) {
+                    return '-';
+                }
+
+                $url = asset('storage/cities/' . $c->city_image);
+
+                return '<img src="' . $url . '" alt="Thumbnail" width="60" height="60" style="object-fit: cover; border-radius: 5px;">';
+            })
+
+            ->addColumn('action', fn($c) => view('pages.serving_cities._actions', compact('c'))->render())
+            ->rawColumns(['action', 'city_image', 'is_active', 'show_on_header'])
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(Category $model): QueryBuilder
+    public function query(ServingCity $model): QueryBuilder
     {
-        return $model->newQuery()
-            ->select('categories.*')           // be explicit
-            ->with(['createdBy', 'updatedBy']);
+        return $model->newQuery()->with(['createdBy', 'updatedBy']);
     }
 
     /**
@@ -69,7 +82,7 @@ class CategoryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('category-table')
+            ->setTableId('servingcity-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->processing(true)
@@ -92,39 +105,28 @@ class CategoryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('name')
-                ->title(__('Name'))
-                ->name('categories.name'),
+            Column::make('city_name')->title('City Name'),
+            Column::make('area_name')->title('Area Name'),
+            // Column::make('hero_title')->title('Hero Title'),
+            Column::make('slug')->title('Slug'),
 
-            Column::make('slug')
-                ->title(__('Slug'))
-                ->name('categories.name'),
-
-            Column::make('status')->title('Status'),
+            Column::make('is_active')->title('Status'),
             Column::make('show_on_header')->title('Show On header'),
 
-            Column::make('created_by')
-                ->title(__('Created By'))
-                ->searchable(false),
+            Column::make('created_by')->title('Created By'),
+            Column::make('created_at')->title('Created At'),
+            Column::make('updated_by')->title('Updated By'),
+            Column::make('updated_at')->title('Updated At'),
 
-            Column::make('created_at')
-                ->title(__('Created At'))
-                ->name('categories.created_at'),
-
-            Column::make('updated_by')
-                ->title(__('Updated By'))
-                ->searchable(false),
-
-            Column::make('updated_at')
-                ->title(__('Updated At'))
-                ->name('categories.updated_at'),
+            Column::make('city_image')->title('City Image')
+                ->searchable(false)->orderable(false),
 
             Column::computed('action')
-                ->title(__('Actions'))
+                ->title('Actions')
                 ->exportable(false)
                 ->printable(false)
                 ->width(120)
-                ->addClass('text-end text-nowrap'),
+                ->addClass('text-center'),
         ];
     }
 
@@ -133,6 +135,6 @@ class CategoryDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Category_' . date('YmdHis');
+        return 'ServingCity_' . date('YmdHis');
     }
 }

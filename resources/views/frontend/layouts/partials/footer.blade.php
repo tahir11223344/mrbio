@@ -533,7 +533,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        <select class="form-select footer-select" name="city">
+                        <select class="form-select footer-select" id="footer_city" name="city">
                             <option>Select City</option>
                         </select>
                     </div>

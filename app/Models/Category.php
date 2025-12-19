@@ -11,9 +11,15 @@ class Category extends Model
         'name',
         'slug',
         'status',
+        'show_on_header',
         'created_by',
         'updated_by',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id');
+    }
 
     public function createdBy()
     {

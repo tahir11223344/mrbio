@@ -309,4 +309,75 @@ class LandingPageController extends Controller
             ], 500);
         }
     }
+
+    public function filter(Request $request)
+    {
+        $query = Product::where('is_active', true)
+            ->whereIn('type', ['for_store', 'both']);
+
+        // Category tab filter (button click)
+        if ($request->category && $request->category !== 'all') {
+            $category = Category::where('slug', $request->category)->first();
+            if ($category) {
+                $query->where('category_id', $category->id);
+            }
+        }
+
+        // SMART SEARCH (Product + Category)
+        if ($request->search) {
+
+            $search = $request->search;
+
+            // Search matching categories
+            $categoryIds = Category::where('name', 'like', "%{$search}%")
+                ->pluck('id')
+                ->toArray();
+
+            $query->where(function ($q) use ($search, $categoryIds) {
+
+                // Product name match
+                $q->where('name', 'like', "%{$search}%");
+
+                // OR products belonging to matched categories
+                if (!empty($categoryIds)) {
+                    $q->orWhereIn('category_id', $categoryIds);
+                }
+            });
+        }
+
+        $products = $query->latest()->take(16)->get();
+
+        return response()->json([
+            'html' => view('partials.best-products', compact('products'))->render()
+        ]);
+    }
+
+    public function latestProductsFilter(Request $request)
+    {
+        $slug = $request->slug;
+
+        // Find category by slug
+        $category = null;
+        if ($slug) {
+            $category = Category::where('slug', $slug)->first();
+        }
+
+        // Agar category nahi mili, to empty collection return karo
+        if (!$category) {
+            return response()->json([
+                'html' => view('partials.latest-products', ['products' => collect()])->render()
+            ]);
+        }
+
+        // Category mil gayi, uske products fetch karo
+        $products = Product::where('is_active', true)
+            ->where('category_id', $category->id)
+            ->latest()
+            ->take(4)
+            ->get();
+
+        return response()->json([
+            'html' => view('partials.latest-products', compact('products'))->render()
+        ]);
+    }
 }

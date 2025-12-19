@@ -60,7 +60,7 @@ class BlogsDataTable extends DataTable
      */
     public function query(Blog $model): QueryBuilder
     {
-        return $model->newQuery()->with(['createdBy', 'updatedBy']);;
+        return $model->newQuery()->with(['createdBy', 'updatedBy']);
     }
 
     /**

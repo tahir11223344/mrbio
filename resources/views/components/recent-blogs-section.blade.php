@@ -26,7 +26,7 @@
                                     Understand the critical importance of robust cybersecurity measures in modern
                                     healthcare.
                                 </p> --}}
-                                <a href="#"
+                                <a href="{{ route('blog.detail', $item->slug) }}"
                                     class="read-more-link d-flex align-items-center justify-content-start text-decoration-none">
                                     Read More <i class="fas fa-arrow-right ms-2"></i>
                                 </a>
@@ -34,7 +34,6 @@
                         </div>
                     </div>
                 @endforeach
-
             </div>
         </div>
     </section>

@@ -27,6 +27,7 @@ class Product extends Model
         'gallery_images',
         'image_alt',
         'is_active',
+        'show_on_header',
         'meta_title',
         'meta_keywords',
         'meta_description',
