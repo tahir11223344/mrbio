@@ -13,7 +13,7 @@
                             <h4 class="oem-card-title">{{ $item->title ?? '' }}</h4>
                         </div>
 
-                        <p class="oem-desc">{!! $item->description !!}</p>
+                        <div class="oem-desc">{!! $item->description !!}</div>
                         {{-- <p class="oem-desc">
                                 We provide top-notch medical equipment that meets international standards.
                             </p>

@@ -340,6 +340,11 @@
             height: 100% !important;
 
         }
+
+        .footer-main-content .Field {
+            font-size: 28px !important;
+
+        }
     }
 
     .footer-logo {

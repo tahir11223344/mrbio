@@ -20,6 +20,7 @@
             max-width: 570px;
             /* height: 90px; */
             line-height: 140%;
+
         }
 
         .rental-main-heading span {
@@ -27,9 +28,11 @@
         }
 
         .rental-main-desc {
-            font-size: 16px;
-            color: #444;
-            line-height: 1.6;
+            font-size: 20px;
+            color: #000000;
+            line-height: 160%;
+            font-weight: 400;
+            font-family: Arial;
             margin-bottom: 25px;
             width: 100%;
             max-width: 408px;
@@ -38,8 +41,8 @@
         }
 
         .rental-sub-heading {
-
-            margin-top: 122px;
+            /* max-width: 339px; */
+            margin-top: 50px;
             font-size: 24px;
             font-weight: 600;
             color: #0168A4;
@@ -47,12 +50,13 @@
             font-family: Inter, sans-serif;
         }
 
-        .equip-list {
-            margin-top: 30px;
+        /*
+                                                                                                                                                                                .equip-list {
+                                                                                                                                                                                    margin-top: 30px;
 
-        }
+                                                                                                                                                                                } */
 
-        .equip-list li {
+        .li {
             /* padding-left: 18px; */
             color: #000000;
             font-family: Arial;
@@ -61,6 +65,7 @@
             line-height: 160%;
             /* margin-top: 20px; */
             margin-bottom: 15px;
+            max-width: 408px;
         }
 
         /* RIGHT COLUMN */
@@ -125,6 +130,29 @@
                 width: 100%;
                 height: auto;
             }
+
+            .rental-img {
+                width: 100% !important;
+                height: 450px !important;
+
+                margin: 0px !important;
+            }
+
+            .btn-overlay {
+                bottom: 4px !important;
+
+                width: 255px !important;
+
+            }
+
+            .product-name {
+                font-size: 31px !important;
+            }
+
+            .product-desc {
+                font-size: 17px !important;
+
+            }
         }
 
         @media(max-width:767px) {
@@ -134,6 +162,63 @@
 
             .rental-products-section {
                 padding-top: 0px !important;
+            }
+
+            .rental-img {
+                width: 100% !important;
+
+                margin: 0px !important;
+            }
+
+            .btn-overlay {
+                bottom: 4px !important;
+
+            }
+
+            .rental-main-heading {
+                font-size: 23px !important;
+
+            }
+
+            .rental-main-desc {
+                font-size: 16px !important;
+
+            }
+
+            .rental-sub-heading {
+
+                font-size: 22px !important;
+            }
+
+            .li {
+
+                font-size: 16px !important;
+
+            }
+
+            .why-heading {
+                font-size: 22px !important;
+
+            }
+
+            .main-title {
+                font-size: 33px !important;
+
+            }
+
+            .product-name {
+                font-size: 30px !important;
+
+            }
+
+            .product-desc {
+                font-size: 16px !important;
+
+            }
+
+            .four-column-desc {
+                font-size: 38px !important;
+
             }
         }
 
@@ -192,20 +277,22 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 12px 25px;
+            /* padding: 12px 25px; */
             border-radius: 10px;
             border: none;
             cursor: pointer;
             overflow: hidden;
             z-index: 0;
-
+            max-width: 189px;
+            width: 100%;
+            height: 43px;
             background: #0168A4;
             color: #FFFFFF;
-            box-shadow: 0px 4px 10px #00000040;
-            font-weight: 700;
-            font-family: Inter, sans-serif;
+            box-shadow: 0px 4px 4px #00000040;
+            font-weight: 400;
+            font-family: Inter;
             font-size: 20px;
-            line-height: 1;
+            line-height: 100%;
             transition: color 0.8s ease-in-out;
         }
 
@@ -377,10 +464,10 @@
         /* =============== four-column-section ======================= */
 
         /*
-                * Background Color Calculation:
-                * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
-                * This translates to a light grey color with low opacity.
-                */
+                                                                                                                                                                                                                                                                        * Background Color Calculation:
+                                                                                                                                                                                                                                                                        * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
+                                                                                                                                                                                                                                                                        * This translates to a light grey color with low opacity.
+                                                                                                                                                                                                                                                                        */
         .four-column-section {
             background-color: #D9D9D938;
             padding: 40px 20px;
@@ -513,25 +600,27 @@
                             {!! highlightBracketText($data->main_heading ?? '') !!}
                         </h2>
 
-                        <p class="rental-main-desc">
+                        <div class="rental-main-desc">
                             {{ $data->main_description ?? '' }}
-                        </p>
+                        </div>
 
                         <h3 class="rental-sub-heading">{!! highlightBracketText($data->equipment_heading ?? '') !!}</h3>
-
+                        {{-- 
                         <ul class="equip-list">
-                            {{-- <li>Hospital Beds</li>
+                            <li>Hospital Beds</li>
                             <li>Ventilators</li>
                             <li>Wheelchairs</li>
                             <li>Suction Machines</li>
                             <li>Oxygen Concentrators</li>
                             <li>Cardiac Monitors</li>
                             <li>Infusion Pumps</li>
-                            <li>Patient Stretchers</li> --}}
+                            <li>Patient Stretchers</li>
 
+                        </ul> --}}
+                        <div class="li">
                             {!! $data->equipment_list ?? '' !!}
-                        </ul>
 
+                        </div>
                     </div>
 
                     <!-- RIGHT COLUMN -->
@@ -546,14 +635,17 @@
                         <div class="d-flex flex-column justify-content-center mmx-left">
                             <h3 class="why-heading">{!! highlightBracketText($data->why_rent_heading ?? '') !!}</h3>
 
-                            <ul class="why-list">
-                                {{-- <li>Mr. Biomed rents various types of medical equipment to both medical facilities and home
+                            {{-- <ul class="why-list">
+                                <li>Mr. Biomed rents various types of medical equipment to both medical facilities and home
                                     healthcare.</li>
                                 <li>We provide certified and well-maintained devices meeting all safety standards.</li>
-                                <li>24/7 customer support for all rental equipment and emergency needs.</li> --}}
+                                <li>24/7 customer support for all rental equipment and emergency needs.</li>
 
+                            </ul> --}}
+                            <div class="li">
                                 {!! $data->why_rent_list ?? '' !!}
-                            </ul>
+
+                            </div>
                         </div>
 
                     </div>

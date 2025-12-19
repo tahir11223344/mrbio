@@ -141,7 +141,7 @@
             }
 
             .bottom-bg {
-                margin-top: -243px !important;
+                margin-top: -257px !important;
             }
 
             .contact-section {
@@ -150,12 +150,12 @@
             }
 
             .service-card h4 {
-                font-size: 25px !important;
+                font-size: 22px !important;
 
             }
 
             .service-card p {
-                font-size: 14px !important;
+                font-size: 12px !important;
 
             }
 
@@ -245,29 +245,34 @@
         /* ==== biomed-section ==============*/
         .biomed-section {
             /* padding: 80px 0;
-                                                                                                                                                                                                                                                                                                                                                        font-family: Arial, sans-serif; */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        font-family: Arial, sans-serif; */
         }
 
         .service-main-heading {
             font-size: 40px;
             font-weight: 700;
-            text-align: center;
             font-family: Arial, Helvetica, sans-serif;
-            /* max-width: 750px;
-                                                                                                                                                                                                                        margin-left: 240px; */
 
+            max-width: 750px;
+            margin: 0 auto;
+            /* 👈 THIS IS THE KEY */
+            text-align: center;
         }
+
 
         .service-main-heading span {
             color: #0071A8;
         }
 
         .main-desc {
-            /* text-align: center;
-                                                                                                                                                                                                                                                        max-width: 750px;
-                                                                                                                                                                                                                                                        margin: 0 auto; */
-            font-size: 18px;
-            line-height: 1.6;
+            text-align: center;
+            max-width: 843px;
+            margin: 0 auto;
+            font-size: 20px;
+            line-height: 160%;
+            font-family: Arial;
+            font-weight: 400;
+            color: #000000;
         }
 
         /* SERVICE CARDS */
@@ -295,9 +300,10 @@
         .service-card p {
             font-size: 16px;
             color: #121212B2;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Arial;
             line-height: 160%;
             font-weight: 400;
+            max-width: 558px;
 
         }
 
@@ -343,7 +349,7 @@
             font-weight: 400;
             line-height: 160%;
             color: #121212B2;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Arial;
             width: 100%;
             max-width: 528px;
             letter-spacing: 0;
@@ -357,7 +363,7 @@
             /* text-align: center; */
             line-height: 140%;
             color: #0D0D0D;
-            font-family: Inter, sans-serif;
+            font-family: Inter;
         }
 
         .rental-h4 span {
@@ -449,10 +455,10 @@
         }
 
         /* .top-bg {
-                                                                                                                                                                                                                                                                                                                                                                                                                                    width: 100%;
-                                                                                                                                                                                                                                                                                                                                                                                                                                    height: 60px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                    background: #ACD5D5;
-                                                                                                                                                                                                                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    width: 100%;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    height: 60px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background: #ACD5D5;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } */
         .top-bg {
             width: 100%;
             height: 10px;
@@ -465,7 +471,6 @@
         .bottom-bg {
             width: 100%;
             height: 10px;
-            /* adjust height as needed */
             background: #0071A8;
             margin-top: 0px;
         }
@@ -501,7 +506,7 @@
         .contact-content {
             max-width: 600px;
             /* display: flex;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        flex-direction: column; */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        flex-direction: column; */
             gap: 20px;
             margin-top: 70px;
             margin-left: 0px !important;
@@ -581,6 +586,37 @@
                 height: auto;
                 margin-left: 0px;
             }
+
+            .rental-h4 {
+                font-size: 30px;
+            }
+
+            .rental-card p {
+                font-size: 14px;
+            }
+
+            .rental-img {
+                width: 100%;
+
+            }
+        }
+
+        @media(max-width: 767px) {
+            .rental-h4 {
+                font-size: 30px !important;
+
+            }
+
+            .rental-card p {
+                font-size: 13px !important;
+
+
+            }
+
+            .rental-img {
+                width: 100% !important;
+
+            }
         }
     </style>
 @endpush
@@ -590,9 +626,9 @@
     <section class="hero-detail-section">
         <div class="container py-5 text-center text-white">
 
-            <h1 class="hero-title mb-3">{!! highlightBracketText($data->hero_title ?? '', ['#000000']) !!}</h1>
+            <h1 class="hero-title mb-3 fade-left">{!! highlightBracketText($data->hero_title ?? '', ['#000000']) !!}</h1>
 
-            <p class="hero-description mx-auto mb-4">
+            <p class="hero-description mx-auto mb-4 fade-right">
                 {{ $data->hero_subtitle ?? '' }}
             </p>
 
@@ -623,18 +659,21 @@
         <div class="container py-5 py-md-6 position-relative z-1">
             <div class="row ">
 
-                <div class="col-lg-6 col-md-6 ">
+                <div class="col-lg-6 col-md-6 fade-left">
                     <h1 class="hero-main-heading  mb-4">
                         {!! highlightBracketText($data->intro_heading ?? '') !!}
                     </h1>
-                    {!! $data->intro_text ?? '' !!}
+                    <div class="hero-description ">
+                        {!! $data->intro_text ?? '' !!}
+
+                    </div>
                     {{-- <p class="hero-description ">
 
                     </p> --}}
                 </div>
 
 
-                <div class="col-lg-6 col-md-6 text-center">
+                <div class="col-lg-6 col-md-6 text-center fade-right">
                     <div class="image-stack d-inline-block position-relative justify-content-center">
 
                         <img src="{{ $data->intro_image_1 ? asset('storage/biomed_services/' . $data->intro_image_1) : '' }}"
@@ -662,11 +701,11 @@
         background-position: center;
         background-repeat: no-repeat;
         padding: 80px 0;
-        height:293px;
+        /* height:293px; */
     ">
         <div class="container  text-white">
 
-            <h2 style="access-heading">
+            <h2 style="access-heading ">
                 {!! highlightBracketText($data->banner_heading ?? '') !!}
             </h2>
 
@@ -687,11 +726,11 @@
             <!-- MAIN HEADING -->
             <div class="row">
                 <div class="row mx-auto">
-                    <h2 class="service-main-heading">
+                    <h2 class="service-main-heading fade-left">
                         {!! highlightBracketText($data->service_heading ?? '') !!}
                     </h2>
 
-                    <p class="main-desc">
+                    <p class="main-desc fade-right">
                         {{ $data->service_sd ?? '' }}
                     </p>
                 </div>
@@ -702,7 +741,7 @@
                     <!-- LEFT COLUMN - CARDS -->
                     <div class="col-lg-6 col-md-12">
                         @foreach ($data->service_cards ?? [] as $card)
-                            <div class="service-card">
+                            <div class="service-card fade-left">
                                 <h4>{{ $card['heading'] ?? '' }}</h4>
                                 <p>{{ $card['description'] ?? '' }}</p>
                             </div>
@@ -710,10 +749,10 @@
                     </div>
 
                     <!-- RIGHT COLUMN - IMAGES -->
-                    <div class="col-lg-6 col-md-12 text-center">
+                    <div class="col-lg-6 col-md-12 text-center ">
                         @foreach ($data->service_images ?? [] as $image)
                             <img src="{{ $image ? asset('storage/biomed_services/' . $image['path']) : '' }}"
-                                alt="{{ $image['alt'] }}" class="img-fluid infoo-img">
+                                alt="{{ $image['alt'] }}" class="img-fluid infoo-img fade-right">
                         @endforeach
                     </div>
 
@@ -845,8 +884,8 @@
                     </div>
                 </div>
             </section> --}}
-
-            <x-rental-equipment-products-section />
+        </div>
+        <x-rental-equipment-products-section />
     </section>
 
 

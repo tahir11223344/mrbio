@@ -285,12 +285,12 @@
         <div class="container">
             <div class="row align-items-stretch">
                 <!-- LEFT COLUMN -->
-                <div class="col-lg-6 col-md-6 fade-left">
+                <div class="col-lg-6 col-md-6 animate-card">
                     <h2 class="info-heading fade-left">{{ $c['first_text'] }} <span>{{ $c['second_text'] }}</span> </h2>
 
-                    <p class="info-para fade-right">
+                    <div class="info-para fade-right">
                         {!! $data->content_description !!}
-                    </p>
+                    </div>
 
 
                     <button class="read-btn mt-3">Read More</button>

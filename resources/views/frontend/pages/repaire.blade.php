@@ -10,7 +10,7 @@
             height: 583px;
             overflow: hidden;
             /* display: flex;
-                                                                                                                                            align-items: center; */
+                                                                                                                                                                                                    align-items: center; */
             /* padding-left: 60px;  */
             color: #fff;
         }
@@ -102,6 +102,19 @@
             }
         }
 
+        @media(max-width: 767px) {
+            .special-section-title {
+
+                font-size: 29px !important;
+
+            }
+
+            .desc {
+
+                font-size: 14px !important;
+
+            }
+        }
 
         /* ============ special section ================ */
 
@@ -133,22 +146,6 @@
             flex-wrap: wrap;
             gap: 20px;
         }
-
-        /* .service-card {
-                                                                                                                                            width: 266px;
-                                                                                                                                            height: 117px;
-                                                                                                                                            background-color: #F0F0F0;
-                                                                                                                                            border: 4px solid #FE0000;
-                                                                                                                                            border-radius: 25px;
-                                                                                                                                            padding: 15px;
-                                                                                                                                            display: flex;
-                                                                                                                                            flex-direction: column;
-                                                                                                                                            justify-content: space-between;
-                                                                                                                                            display: flex;
-                                                                                                                                            justify-content: center;
-                                                                                                                                            align-items: center;
-                                                                                                                                            margin-top: 40px;
-                                                                                                                                        } */
 
         .service-card {
             position: relative;

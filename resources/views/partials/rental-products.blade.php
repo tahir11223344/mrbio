@@ -2,7 +2,7 @@
     @if ($index % 2 == 0)
         <div class="row mb-5">
     @endif
-    <div class="col-lg-6">
+    <div class="col-lg-6 col-md-6 animate-card">
         <div class="rental-card">
             <h4 class="rental-h4">{{ $product->name }}</h4>
             @if ($product->thumbnail)

@@ -1,5 +1,5 @@
 <div class="row pb-3 pt-0 mt-0">
-    <h3 class="rental-heading">Rental <span>Equipment</span> </h3>
+    <h3 class="rental-heading fade-left">Rental <span>Equipment</span> </h3>
 
     <div class="product-filter-tabs  d-flex justify-content-center flex-wrap gap-2 mt-4">
 

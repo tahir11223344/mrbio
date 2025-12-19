@@ -366,7 +366,7 @@
             }
 
             .desc {
-                font-size: 13px;
+                font-size: 16px;
             }
 
             .about-sub-title {
@@ -405,13 +405,17 @@
 
         @media(max-width:767px) {
             .co-heading {
-                font-size: 38px;
+                font-size: 33px !important;
 
             }
 
             .co-small {
-                font-size: 13px !important;
+                font-size: 12px !important;
 
+            }
+
+            .co-desc {
+                font-size: 12px !important;
             }
 
             .info-card {
@@ -463,9 +467,9 @@
     <section class="hero-detail-section">
         <div class="container py-5 text-center text-white">
 
-            <h1 class="hero-title mb-3">{!! highlightBracketText($about->hero_title ?? '', ['#000000']) !!}</h1>
+            <h1 class="hero-title mb-3 fade-right">{!! highlightBracketText($about->hero_title ?? '', ['#000000']) !!}</h1>
 
-            <p class="hero-description mx-auto mb-4">
+            <p class="hero-description mx-auto mb-4 fade-left">
                 {{ $about->hero_subtitle ?? '' }}
             </p>
 
@@ -494,9 +498,9 @@
                 <div class="col-lg-6 fade-left">
                     <h2 class="co-heading">{!! highlightBracketText($about->main_heading ?? '') !!}</h2>
 
-                    <p class="co-desc">
+                    <div class="co-desc">
                         {!! $about->main_description ?? '' !!}
-                    </p>
+                    </div>
 
 
                 </div>
@@ -564,10 +568,10 @@
             <div class="col-lg-7 col-md-6 fade-left">
                 <h3 class="about-sub-title">{{ $value['second_text'] ?? '' }}</h3>
 
-                <p class="desc">
+                <div class="desc">
                     {!! $about->value_section_description !!}
 
-                </p>
+                </div>
 
                 <button class="talk-btn">
                     Talk to Expert

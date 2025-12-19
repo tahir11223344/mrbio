@@ -87,7 +87,7 @@
         }
 
         .query-btn {
-            width: 145px;
+            max-width: 145px;
             height: 45px;
             border-radius: 10px;
             background: #0071A8;
@@ -129,6 +129,23 @@
             font-family: Arial;
             font-size: 16px;
             line-height: 160%;
+        }
+
+        @media(max-width: 767px) {
+            .query-btn {
+                max-width: 121px !important;
+                width: 100%;
+                height: 31px !important;
+
+                font-size: 18px !important;
+
+            }
+
+            .query-heading {
+
+                font-size: 30px !important;
+
+            }
         }
     </style>
 @endpush

@@ -93,6 +93,8 @@
                 /* FORCE stacking */
             }
 
+
+
             .col-lg-6 {
                 width: 100% !important;
                 /* left + right column full width */
@@ -382,6 +384,7 @@
     {{-- ================= pruduct sectiion ============= --}}
     <x-our-latest-products />
 
+    <x-our-latest-products />
     {{-- ============= reveiw sectiion ================== --}}
 
     <section>

@@ -1,4 +1,4 @@
-<div class="col-lg-6 mb-4">
+<div class="col-lg-6 col-md-6 mb-4">
 
     <h3 class="product-name">{!! highlightBracketText($product->name ?? '') !!}</h3>
 
@@ -20,7 +20,7 @@
     </div>
 </div>
 
-<div class="col-lg-6">
+<div class="col-lg-6 col-md-6">
     <div class="product-section">
 
         {{-- MAIN THUMBNAIL IMAGE --}}
