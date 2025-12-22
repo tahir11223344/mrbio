@@ -555,90 +555,236 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// navbar toggler
+//==================  navbar mega dropdown toggler  ==========================================
 
+// document.addEventListener('DOMContentLoaded', function () {
+
+//     let closeTimer;
+
+//     document.querySelectorAll('.has-mega').forEach(item => {
+//         const menu = item.querySelector('.mega-menu');
+//         const toggleBtn = item.querySelector('.mega-toggle'); // mobile toggle button
+
+//         const isDesktop = () => window.innerWidth >= 992;
+
+//         // Desktop → hover only
+//         if (isDesktop()) {
+//             item.addEventListener('mouseenter', () => {
+//                 clearTimeout(closeTimer);
+//                 item.classList.add('show');
+//             });
+
+//             item.addEventListener('mouseleave', () => {
+//                 closeTimer = setTimeout(() => {
+//                     item.classList.remove('show');
+//                 }, 250);
+//             });
+
+//             menu.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+//             menu.addEventListener('mouseleave', () => {
+//                 item.classList.remove('show');
+//             });
+//         }
+
+//         // Mobile / MD → click toggle only
+//         if (toggleBtn) {
+//             toggleBtn.addEventListener('click', (e) => {
+//                 e.preventDefault();
+//                 if (!isDesktop()) {
+//                     item.classList.toggle('show');
+//                 }
+//             });
+//         }
+//     });
+
+//     // Click outside → close mobile menu
+//     document.addEventListener('click', (e) => {
+//         document.querySelectorAll('.has-mega.show').forEach(item => {
+//             const toggleBtn = item.querySelector('.mega-toggle');
+//             if (!window.innerWidth >= 992 && toggleBtn && !item.contains(e.target)) {
+//                 item.classList.remove('show');
+//             }
+//         });
+//     });
+
+//     // Window resize → remove show on desktop
+//     window.addEventListener('resize', () => {
+//         if (window.innerWidth >= 992) {
+//             document.querySelectorAll('.has-mega.show').forEach(item => {
+//                 item.classList.remove('show');
+//             });
+//         }
+//     });
+
+// });
 document.addEventListener('DOMContentLoaded', function () {
 
     let closeTimer;
+    const DESKTOP_WIDTH = 992;
+    const isDesktop = () => window.innerWidth >= DESKTOP_WIDTH;
+
+    const forceCloseAll = () => {
+        document.querySelectorAll('.has-mega').forEach(item => {
+            item.classList.remove('show');
+            item.classList.add('mega-force-hide');
+        });
+        clearTimeout(closeTimer);
+    };
+
+    const allowOpenAgain = () => {
+        document.querySelectorAll('.has-mega').forEach(item => {
+            item.classList.remove('mega-force-hide');
+        });
+    };
 
     document.querySelectorAll('.has-mega').forEach(item => {
+
         const menu = item.querySelector('.mega-menu');
-        const toggleBtn = item.querySelector('.mega-toggle'); // mobile toggle button
+        const toggleBtn = item.querySelector('.mega-toggle');
 
-        const isDesktop = () => window.innerWidth >= 992;
+        /* ================= DESKTOP HOVER ================= */
+        item.addEventListener('mouseenter', () => {
+            if (!isDesktop() || item.classList.contains('mega-force-hide')) return;
 
-        // Desktop → hover only
-        if (isDesktop()) {
-            item.addEventListener('mouseenter', () => {
-                clearTimeout(closeTimer);
-                item.classList.add('show');
-            });
+            // 🔥 CLOSE ALL FIRST
+            forceCloseAll();
+            allowOpenAgain();
 
-            item.addEventListener('mouseleave', () => {
-                closeTimer = setTimeout(() => {
-                    item.classList.remove('show');
-                }, 250);
-            });
+            item.classList.add('show');
+        });
 
-            menu.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+        item.addEventListener('mouseleave', () => {
+            if (!isDesktop()) return;
+            closeTimer = setTimeout(() => {
+                item.classList.remove('show');
+            }, 250);
+        });
+
+        if (menu) {
             menu.addEventListener('mouseleave', () => {
+                if (!isDesktop()) return;
                 item.classList.remove('show');
             });
         }
 
-        // Mobile / MD → click toggle only
+        /* ================= MOBILE CLICK ================= */
         if (toggleBtn) {
             toggleBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                if (!isDesktop()) {
-                    item.classList.toggle('show');
-                }
+                if (isDesktop()) return;
+
+                const isOpen = item.classList.contains('show');
+                forceCloseAll();
+                allowOpenAgain();
+
+                if (!isOpen) item.classList.add('show');
             });
         }
     });
 
-    // Click outside → close mobile menu
+    /* ================= CLICK OUTSIDE ================= */
     document.addEventListener('click', (e) => {
         document.querySelectorAll('.has-mega.show').forEach(item => {
-            const toggleBtn = item.querySelector('.mega-toggle');
-            if (!window.innerWidth >= 992 && toggleBtn && !item.contains(e.target)) {
+            if (!item.contains(e.target)) {
                 item.classList.remove('show');
             }
         });
     });
 
-    // Window resize → remove show on desktop
+    /* ================= SCROLL ================= */
+    window.addEventListener('scroll', () => {
+        forceCloseAll();
+        setTimeout(allowOpenAgain, 200);
+    }, { passive: true });
+
+    /* ================= RESIZE ================= */
     window.addEventListener('resize', () => {
-        if (window.innerWidth >= 992) {
-            document.querySelectorAll('.has-mega.show').forEach(item => {
-                item.classList.remove('show');
-            });
-        }
+        forceCloseAll();
+        setTimeout(allowOpenAgain, 200);
     });
 
 });
 
 
 
-// custom cursor 
 
-const cursor = document.querySelector('.custom-cursor');
-if (cursor) {
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
 
-        // 👇 Y-axis offset (10–15px best hota hai)
-        cursor.style.top = (e.clientY - 6) + 'px';
-    });
 
-    // Hover effect
-    document.querySelectorAll('a, button, .hover-target').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('hover');
-        });
 
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('hover');
+// ============= moddel open js =====================
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const overlay = document.getElementById('buyFormOverlay');
+
+    // Open form
+    document.querySelectorAll('[data-open-form]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            overlay.classList.add('active');
         });
     });
-}
+
+    // Close form
+    overlay.querySelector('.close-form').addEventListener('click', () => {
+        overlay.classList.remove('active');
+    });
+
+    // Click outside close
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.classList.remove('active');
+        }
+    });
+
+});
+
+// ====================== home category slider ===============================
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const sliderRow = document.querySelector('.category-slider .row');
+    const items = document.querySelectorAll('.category-slider .col-auto');
+    const prevBtn = document.querySelector('.cat-nav.prev');
+    const nextBtn = document.querySelector('.cat-nav.next');
+
+    let currentIndex = 0;
+    let visibleItems = 7; // default for large screens
+
+    function updateVisibleItems() {
+        const width = window.innerWidth;
+        if (width < 576) visibleItems = 2; // mobile
+        else if (width < 768) visibleItems = 2; // small tablets
+        else if (width < 992) visibleItems = 3; // tablets
+        else visibleItems = 5; // desktops
+    }
+
+    function updateSlider() {
+        const itemWidth = items[0].offsetWidth + 16; // gap included
+        const maxIndex = Math.max(items.length - visibleItems, 0);
+        if (currentIndex > maxIndex) currentIndex = maxIndex;
+        sliderRow.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= maxIndex;
+    }
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex++;
+        updateSlider();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentIndex--;
+        updateSlider();
+    });
+
+    window.addEventListener('resize', () => {
+        updateVisibleItems();
+        updateSlider();
+    });
+
+    // Initial setup
+    updateVisibleItems();
+    updateSlider();
+});

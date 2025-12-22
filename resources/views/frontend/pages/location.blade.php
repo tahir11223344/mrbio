@@ -384,7 +384,7 @@
     {{-- ================= pruduct sectiion ============= --}}
     <x-our-latest-products />
 
-    <x-our-latest-products />
+    {{-- <x-our-latest-products /> --}}
     {{-- ============= reveiw sectiion ================== --}}
 
     <section>
@@ -576,10 +576,11 @@
     </section>
 
     {{-- ============ Recent News Section ============ --}}
-    <!-- Default: 4 blogs -->
-    <x-recent-blogs-section />
 
+    <div class="mt-5">
+        <x-recent-news />
 
+    </div>
 @endsection
 
 @push('frontend-scripts')

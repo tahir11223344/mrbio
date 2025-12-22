@@ -81,7 +81,7 @@
             display: block;
         }
 
-        .service-list li {
+        .service-list {
             font-family: Arial;
             font-weight: 400;
             font-size: 20px;
@@ -468,9 +468,9 @@
                 <div class="col-lg-6">
                     <h2 class="detail-heading">{!! highlightBracketText($data->content_title ?? '') !!}</h2>
                     {{-- {!! $data->content_description ?? ''!!} --}}
-                    <ul class="service-list">
+                    <div class="service-list">
                         {!! $data->content_description ?? '' !!}
-                    </ul>
+                    </div>
 
                     <button class="quote-btn">Request A Quote</button>
                 </div>
@@ -487,9 +487,9 @@
                     <h2 class="austin-heading">
                         {!! highlightBracketText($data->serve_heading ?? '') !!}
                     </h2>
-                    <p class="austin-desc">
+                    <div class="austin-desc">
                         {!! $data->serve_description ?? '' !!}
-                    </p>
+                    </div>
 
 
                 </div>
@@ -504,9 +504,9 @@
                     <h2 class="austin-heading">
                         {!! highlightBracketText($data->benefits_heading ?? '') !!}</span>
                     </h2>
-                    <p class="austin-desc">
+                    <div class="austin-desc">
                         {!! $data->benefits_description ?? '' !!}
-                    </p>
+                    </div>
 
                     {{-- <ul>
                         <li class="austin-li"> nec Praesent libero, placerat nec non dignissim, viverra Lorem tempor vitae
@@ -538,8 +538,10 @@
 
                 <!-- LEFT COLUMN -->
                 <div class="col-lg-7 mb-4">
-                    {!! $data->challenges_description ?? '' !!}
 
+                    <div class="section-text">
+                        {!! $data->challenges_description ?? '' !!}
+                    </div>
                     {{-- <h2 class="common-title">Common Problems We Solve</h2>
 
                     <ul class="problem-list">
@@ -583,8 +585,10 @@
 
                 <!-- RIGHT COLUMN -->
                 <div class="col-lg-6 pt-4">
+                    <div class="description">
+                        {!! $data->cta_description ?? '' !!}
 
-                    {!! $data->cta_description ?? '' !!}
+                    </div>
                     {{-- <h3 class="top-heading">Onsite Medical Inspection Services</h3>
 
                     <h2 class="main-heading">

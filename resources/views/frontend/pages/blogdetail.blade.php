@@ -8,9 +8,9 @@
 @push('frontend-styles')
     <style>
         /* ============================================================
-        BLOG DETAILS PAGE – CSS Styling
-        Includes: Images, Lists, Sidebar, Related Articles, Responsive Fixes
-        =============================================================== */
+                BLOG DETAILS PAGE – CSS Styling
+                Includes: Images, Lists, Sidebar, Related Articles, Responsive Fixes
+                =============================================================== */
 
         .blog-content {
             max-width: 100%;
@@ -353,11 +353,11 @@
 
 
     <!-- ============================================================
-                                                                        BLOG DETAILS SECTION (Responsive)
-                                                                        Created for: Detailed Blog Page Layout
-                                                                        Columns: Left Content (8), Right Sidebar (4)
-                                                                        Includes: Images, Headings, Description, Lists, Categories, Related Articles
-                                                                        =============================================================== -->
+                                                                                BLOG DETAILS SECTION (Responsive)
+                                                                                Created for: Detailed Blog Page Layout
+                                                                                Columns: Left Content (8), Right Sidebar (4)
+                                                                                Includes: Images, Headings, Description, Lists, Categories, Related Articles
+                                                                                =============================================================== -->
 
     <section class="blog-details-section py-5">
         <div class="container">
@@ -540,11 +540,11 @@
     </section>
 
     <!-- ============================================================
-                                        LEAVE A COMMENT + COMMENTS SECTION
-                                        Background: #006A9E1A
-                                        Left: Comment Form
-                                        Right: Comments Box
-                                        =============================================================== -->
+                                                LEAVE A COMMENT + COMMENTS SECTION
+                                                Background: #006A9E1A
+                                                Left: Comment Form
+                                                Right: Comments Box
+                                                =============================================================== -->
 
     <section class="comment-section py-5">
         <div class="container">

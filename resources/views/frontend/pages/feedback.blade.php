@@ -199,8 +199,8 @@
         }
 
         /* ============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               📱 Responsive Breakpoints
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ============================ */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           📱 Responsive Breakpoints
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ============================ */
 
         @media (max-width: 768px) {
             .bio-wrapper {
@@ -362,8 +362,8 @@
         }
 
         /* .review-scroll::-webkit-scrollbar {
-                                                                                                                                                width: 8px;
-                                                                                                                                            } */
+                                                                                                                                                                            width: 8px;
+                                                                                                                                                                        } */
 
         /* -------- Scrollbar Styling -------- */
         .review-scroll::-webkit-scrollbar {
@@ -1080,27 +1080,34 @@
                         <!-- Inner Comment -->
                         <div class="single-comment">
                             <h5 class="comment-name">Danial</h5>
-                            <p class="comment-by">By test</p>
+                            <p class="comment-by"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore
+                                reiciendis pariatur tempora odio atque vero quas in! Consectetur exercitationem veniam ex,
+                                illo deleniti, laudantium earum fugiat, nostrum odit ipsam dolorem! </p>
                         </div>
                         <div class="single-comment">
                             <h5 class="comment-name">Danial</h5>
-                            <p class="comment-by">By test</p>
+                            <p class="comment-by"> reiciendis pariatur tempora odio atque vero quas in! Consectetur
+                                exercitationem veniam ex,</p>
                         </div>
                         <div class="single-comment">
                             <h5 class="comment-name">Danial</h5>
-                            <p class="comment-by">By test</p>
+                            <p class="comment-by"> reiciendis pariatur tempora odio atque vero quas in! Consectetur
+                                exercitationem veniam ex,</p>
                         </div>
                         <div class="single-comment">
                             <h5 class="comment-name">Danial</h5>
-                            <p class="comment-by">By test</p>
+                            <p class="comment-by"> reiciendis pariatur tempora odio atque vero quas in! Consectetur
+                                exercitationem veniam ex,</p>
                         </div>
                         <div class="single-comment">
                             <h5 class="comment-name">Danial</h5>
-                            <p class="comment-by">By test</p>
+                            <p class="comment-by"> reiciendis pariatur tempora odio atque vero quas in! Consectetur
+                                exercitationem veniam ex,</p>
                         </div>
                         <div class="single-comment">
                             <h5 class="comment-name">Danial</h5>
-                            <p class="comment-by">By test</p>
+                            <p class="comment-by"> reiciendis pariatur tempora odio atque vero quas in! Consectetur
+                                exercitationem veniam ex,</p>
                         </div>
 
                     </div>

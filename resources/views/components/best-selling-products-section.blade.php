@@ -1,3 +1,51 @@
+<style>
+    .category-slider-wrapper {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .category-slider {
+        overflow: hidden;
+    }
+
+    .category-slider .row {
+        flex-wrap: nowrap;
+        transition: transform 0.4s ease;
+    }
+
+    /* Prev / Next buttons */
+    .cat-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        background: #005884;
+        color: #fff;
+        font-size: 22px;
+        cursor: pointer;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cat-nav.prev {
+        left: 10px;
+    }
+
+    .cat-nav.next {
+        right: 10px;
+    }
+
+    .cat-nav:disabled {
+        /* opacity: 0.4; */
+        cursor: not-allowed;
+    }
+</style>
+
 <section class="best-selling-section mt-5 py-3">
 
     <div class="container">
@@ -15,7 +63,7 @@
         </div>
 
         <!-- Category Buttons -->
-        <div class="row g-4 justify-content-center mb-4">
+        {{-- <div class="row g-4 justify-content-center mb-4">
 
             <!-- ALL Button -->
             <div class="col-auto">
@@ -29,7 +77,37 @@
                     </button>
                 </div>
             @endforeach
+        </div> --}}
+        <div class="category-slider-wrapper position-relative mb-4">
+
+            <!-- PREV -->
+            <button class="cat-nav prev">&lsaquo;</button>
+
+            <!-- SLIDER -->
+            <div class="category-slider">
+                <div class="row g-4 flex-nowrap justify-content-center">
+
+                    <!-- ALL -->
+                    <div class="col-auto">
+                        <button class="cat-btn active" data-slug="all">All</button>
+                    </div>
+
+                    @foreach ($categories as $category)
+                        <div class="col-auto">
+                            <button class="cat-btn" data-slug="{{ $category->slug }}">
+                                {{ $category->name }}
+                            </button>
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+
+            <!-- NEXT -->
+            <button class="cat-nav next">&rsaquo;</button>
         </div>
+
+
     </div>
 
     <!-- Products -->
@@ -126,4 +204,7 @@
         });
 
     });
+</script>
+<script>
+  
 </script>

@@ -200,7 +200,7 @@
      position: fixed;
      top: 119px;
      left: 58%;
-     transform: translateX(-50%) translateY(20px);
+     transform: translateX(-50%);
      width: 85vw;
      background: linear-gradient(90deg, #006A9E, #658392);
      color: white;
@@ -208,19 +208,19 @@
      border-radius: 15px;
      z-index: 9999;
 
-     /* animation */
-     opacity: 0;
-     visibility: hidden;
-     pointer-events: none;
-     transition: all 0.4s ease-in;
+     display: none;
+     /* 👈 no animation */
  }
+
 
  /* SHOW STATE */
  .has-mega.show .mega-menu {
-     opacity: 1;
-     visibility: visible;
-     transform: translateX(-50%) translateY(0);
-     pointer-events: auto;
+     display: block;
+     /* 👈 instant show */
+ }
+
+ .mega-force-hide .mega-menu {
+     display: none !important;
  }
 
  /* icon rotate */
@@ -4228,7 +4228,7 @@
  .single-comment {
      background: #fff;
      width: 518px;
-     height: 71px;
+     height: auto;
      border-left: 10px solid #0168A4;
      /* border-radius: 10px 0px 10px 10px; */
      padding: 2px 15px;
@@ -4316,4 +4316,95 @@
      opacity: 1;
      transform: scale(1.05);
 
+ }
+
+
+ /*=========================== model css ===================*/
+
+ .buy-form-overlay {
+     position: fixed;
+     inset: 0;
+     background: rgba(0, 0, 0, 0.7);
+     display: none;
+     justify-content: center;
+     align-items: center;
+     z-index: 9999;
+ }
+
+ .buy-form-overlay.active {
+     display: flex;
+ }
+
+ .buy-form-box {
+     /* background: #fff; */
+     background: linear-gradient(90deg, #5aa2c7 0%, #c9cacb 100%);
+
+     width: 100%;
+     max-width: 450px;
+     padding: 25px;
+     border-radius: 12px;
+     position: relative;
+ }
+
+ .buy-form-box h3 {
+     margin-bottom: 20px;
+     text-align: center;
+     font-weight: 700;
+     font-family: 'Poppins';
+     font-size: 32px;
+     line-height: 100%;
+     color: #ffffff;
+ }
+
+ /* .buy-form-box h3 span {
+     color: #0071A8;
+
+ } */
+
+ .buy-form input,
+ .buy-form select,
+ .buy-form textarea {
+     width: 100%;
+     padding: 10px;
+     margin-bottom: 12px;
+     border-radius: 6px;
+     border: 1px solid #ccc;
+ }
+
+ .buy-form textarea {
+     resize: none;
+     height: 80px;
+ }
+
+ .buy-form .submit-btn {
+     width: 100%;
+     background: #006A9E;
+     color: #fff;
+     padding: 10px;
+     border: none;
+     border-radius: 6px;
+     cursor: pointer;
+ }
+
+ .close-form {
+     position: absolute;
+     top: 10px;
+     right: 15px;
+     font-size: 24px;
+     cursor: pointer;
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     background-color: #ebf2f2;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: rgb(250, 6, 6);
+     transition: all 0.4s ease-in-out;
+ }
+
+ .close-form:hover {
+
+     background-color: red;
+     color: #ffffff !important;
  }

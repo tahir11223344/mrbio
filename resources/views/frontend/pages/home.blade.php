@@ -165,6 +165,143 @@
         .services-panel.active {
             display: block;
         }
+
+        /* ============= service form ========================= */
+
+        .service-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .service-modal-overlay.active {
+            display: flex;
+        }
+
+        /* 🔹 Modal box compact */
+        .service-modal-box {
+            width: 100%;
+            max-width: 480px;
+            /* thori choti width */
+            padding: 20px;
+            /* padding kam */
+            border-radius: 14px;
+            background: linear-gradient(135deg, #FFFFFF, #5BC3C4);
+            position: relative;
+        }
+
+        /* 🔹 Heading compact */
+        .service-modal-heading {
+            text-align: center;
+            margin-bottom: 12px;
+            /* kam margin */
+            font-size: 22px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* 🔹 Inputs compact */
+
+
+        .service-form input,
+        .service-form select,
+        .service-form textarea {
+            width: 100%;
+            padding: 8px 10px;
+            /* kam padding */
+            margin-bottom: 12px;
+            /* kam gap */
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .checkbox-group input,
+        .radio-group input {
+            margin: 0;
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        /* 🔹 Textarea choti */
+        .service-form textarea {
+            resize: none;
+            max-height: 80px;
+        }
+
+        /* 🔹 Group spacing reduced */
+        .form-group {
+            margin-bottom: 8px;
+        }
+
+        /* 🔹 Checkbox & radio compact */
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .checkbox-group label,
+        .radio-group label {
+            font-size: 11px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            line-height: 1.3;
+            white-space: nowrap;
+        }
+
+
+        /* 🔹 Submit button compact */
+        .service-submit-btn {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(90deg, #006A9E, #d81212);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .service-submit-btn:hover {
+            transform: scale(1.01);
+        }
+
+        /* 🔹 Close icon */
+        .service-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+
+            width: 32px;
+            height: 32px;
+
+            display: grid;
+            place-items: center;
+
+            font-size: 18px;
+            line-height: 1;
+
+            cursor: pointer;
+            color: red;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+
+        .service-modal-close:hover {
+            background-color: #FE0000;
+            color: #FFFFFF;
+        }
     </style>
 @endpush
 
@@ -229,7 +366,10 @@
                         <!-- Service Request -->
                         <div class="d-flex align-items-center gap-2 fade-left">
                             <i class="bi bi-key" id="service-icon"></i>
-                            <button class="hero-btn">Service Request</button>
+                            <button class="hero-btn" data-open-service-modal>
+                                Service Request
+                            </button>
+
                         </div>
 
                         <!-- Login -->
@@ -339,8 +479,7 @@
             </div>
         </div>
     </section>
-    <section class="features-section
-                        py-5">
+    <section class="features-section py-5">
         <div class="container">
             <div class="row text-white">
 
@@ -889,12 +1028,187 @@
         </div>
     </div>
 
-    <div class="custom-cursor"></div>
+    {{-- <div class="service-modal-overlay" id="serviceModal">
+        <div class="service-modal-box">
+
+            <span class="service-modal-close">&times;</span>
+
+            <!-- Heading -->
+            <h2 class="service-modal-heading">Service Request</h2>
+
+            <!-- Form -->
+            <form class="service-form">
+
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number" required>
+
+                <input type="text" placeholder="Company / Hospital Name">
+
+                <select required class="w-50">
+                    <option value="">Select Your Service Needs</option>
+                    <option>Repair</option>
+                    <option>Maintenance</option>
+                    <option>Rental</option>
+                </select>
+
+                <!-- Equipment Category -->
+                <div class="form-group">
+                    <label>Equipment Category</label>
+
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> MRI</label>
+                        <label><input type="checkbox"> CT Scan</label>
+                        <label><input type="checkbox"> X-Ray</label>
+                        <label><input type="checkbox"> Ultrasound</label>
+
+                    </div>
+                </div>
+
+                <textarea placeholder="Message / Details"></textarea>
+
+                <!-- Preferred Contact Method -->
+                <div class="form-group">
+                    <label>Preferred Contact Method</label>
+
+                    <div class="radio-group">
+                        <label><input type="radio" name="contact" checked> Email</label>
+                        <label><input type="radio" name="contact"> Phone</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="service-submit-btn">
+                    Submit Request
+                </button>
+
+            </form>
+        </div>
+    </div> --}}
+    <div class="service-modal-overlay" id="serviceModal">
+        <div class="service-modal-box">
+
+            <span class="service-modal-close">&times;</span>
+
+            <!-- Heading -->
+            <h2 class="service-modal-heading">Service Request</h2>
+
+            <!-- Form -->
+            <form class="service-form">
+
+                <div class="mb-2">
+                    <input type="text" class="form-control form-control-sm" placeholder="Full Name" required>
+                </div>
+
+                <div class="mb-2">
+                    <input type="email" class="form-control form-control-sm" placeholder="Email Address" required>
+                </div>
+
+                <div class="mb-2">
+                    <input type="tel" class="form-control form-control-sm" placeholder="Phone Number" required>
+                </div>
+
+                <div class="mb-2">
+                    <input type="text" class="form-control form-control-sm" placeholder="Company / Hospital Name">
+                </div>
+
+                <div class="mb-2 w-50">
+                    <select class="form-select form-select-sm" required>
+                        <option value="">Select Your Service Needs</option>
+                        <option>Repair</option>
+                        <option>Maintenance</option>
+                        <option>Rental</option>
+                    </select>
+                </div>
+
+                <!-- Equipment Category -->
+                <div class="mb-2">
+                    <label class="form-label mb-1">Equipment Category</label>
+
+                    <div class="checkbox-group">
+                        <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox">
+                            <span class="form-check-label">MRI</span>
+                        </label>
+
+                        <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox">
+                            <span class="form-check-label">CT Scan</span>
+                        </label>
+
+                        <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox">
+                            <span class="form-check-label">X-Ray</span>
+                        </label>
+
+                        <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox">
+                            <span class="form-check-label">Ultrasound</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <textarea class="form-control form-control-sm" rows="3" placeholder="Message / Details"></textarea>
+                </div>
+
+                <!-- Preferred Contact Method -->
+                <div class="mb-3">
+                    <label class="form-label mb-1">Preferred Contact Method</label>
+
+                    <div class="radio-group">
+                        <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="contact" checked>
+                            <span class="form-check-label">Email</span>
+                        </label>
+
+                        <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="contact">
+                            <span class="form-check-label">Phone</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="service-submit-btn">
+                    Submit Request
+                </button>
+
+            </form>
+        </div>
+    </div>
+
 
 
 @endsection
 
 @push('frontend-scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const modal = document.getElementById('serviceModal');
+
+            // Open modal
+            document.querySelectorAll('[data-open-service-modal]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.classList.add('active');
+                });
+            });
+
+            // Close modal (X)
+            modal.querySelector('.service-modal-close').addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            // Close on outside click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+
+        });
+    </script>
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
 
