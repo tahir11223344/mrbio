@@ -28,9 +28,9 @@
             @endforeach
 
             <div class="text-center mt-5">
-                <button class=" btn-lgg">
-                    Talk to Expert
-                </button>
+                <a href="{{ route('contact-us') }}">
+                    <button class="btn-lgg">Talk to Expert</button>
+                </a>
             </div>
         </div>
     </div>

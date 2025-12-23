@@ -432,8 +432,9 @@
                         {!! $data->content_description !!}
                     </div>
 
-
-                    <button class="read-btn mt-3">Read More</button>
+                    <a href="{{ route('about-us') }}">
+                        <button class="read-btn mt-3">Read More</button>
+                    </a>
                 </div>
 
                 <!-- RIGHT COLUMN (Image) -->
@@ -805,194 +806,8 @@
 
 
     {{-- ============= reveiw sectiion ================== --}}
-
-    <section>
-        <h2 class="review-heading fade-left">Our Users Are <span>Happy And Healthy</span></h2>
-
-        <div class="container">
-
-            <div class="mx-auto main-wrapper" style="width:1100px;">
-
-                <div class="swiper reviewSwiper">
-                    <div class="swiper-wrapper">
-
-                        <!-- Slide 1 -->
-                        <div class="swiper-slide tooltip-slide">
-                            <img src="{{ asset('frontend/images/hero-img-1.jpg') }}" alt="">
-                            <div class="tooltip-box">
-                                <div class="starss">
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas diff fa-star "></i>
-                                </div>
-                                <p>
-
-                                    <span class="quote">“</span> "Pharmacy Store is my go-to for over-the-counter
-                                    medications and health products. They
-                                    have a wide selection, and their website makes it easy to order online. The only
-                                    improvement I'd suggest is expanding their beauty and skincare section."
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Slide 2 -->
-                        <div class="swiper-slide tooltip-slide">
-                            <img src="{{ asset('frontend/images/hero-img-4.jpg') }}">
-                            <div class="tooltip-box">
-                                <div class="starss">
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star diff"></i>
-                                </div>
-                                <p>
-                                    <span class="quote">“</span>
-                                    "Pharmacy Store is my go-to for over-the-counter medications and health products. They
-                                    have a wide selection, and their website makes it easy to order online. The only
-                                    improvement I'd suggest is expanding their beauty and skincare section."
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Slide 3 -->
-                        <div class="swiper-slide tooltip-slide">
-                            <img src="{{ asset('frontend/images/hero-img-3.jpg') }}">
-                            <div class="tooltip-box">
-                                <div class="starss">
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star diff"></i>
-                                </div>
-                                <p>
-                                    <span class="quote">“</span>
-                                    "Pharmacy Store is my go-to for over-the-counter medications and health products. They
-                                    have a wide selection, and their website makes it easy to order online. The only
-                                    improvement I'd suggest is expanding their beauty and skincare section."
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Slide 4 -->
-                        <div class="swiper-slide tooltip-slide">
-                            <img src="{{ asset('frontend/images/hero-img-2.jpg') }}">
-                            <div class="tooltip-box">
-                                <div class="starss">
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star diff "></i>
-                                </div>
-                                <p>
-                                    <span class="quote">“</span>
-                                    "Pharmacy Store is my go-to for over-the-counter medications and health products. They
-                                    have a wide selection, and their website makes it easy to order online. The only
-                                    improvement I'd suggest is expanding their beauty and skincare section."
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Slide 5 -->
-                        <div class="swiper-slide tooltip-slide">
-                            <img src="{{ asset('frontend/images/hero-img-1.jpg') }}">
-                            <div class="tooltip-box">
-                                <div class="starss">
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas diff fa-star "></i>
-                                </div>
-                                <p>
-                                    <span class="quote">“</span>
-                                    "Pharmacy Store is my go-to for over-the-counter medications and health products. They
-                                    have a wide selection, and their website makes it easy to order online. The only
-                                    improvement I'd suggest is expanding their beauty and skincare section."
-                                </p>
-                            </div>
-                        </div>
-                        <div class="swiper-slide tooltip-slide">
-                            <img src="{{ asset('frontend/images/hero-img-1.jpg') }}">
-                            <div class="tooltip-box">
-                                <div class="starss">
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star diff"></i>
-                                </div>
-                                <p>
-                                    <span class="quote">“</span>
-                                    "Pharmacy Store is my go-to for over-the-counter medications and health products. They
-                                    have a wide selection, and their website makes it easy to order online. The only
-                                    improvement I'd suggest is expanding their beauty and skincare section."
-                                </p>
-                            </div>
-                        </div>
-                        <div class="swiper-slide tooltip-slide">
-                            <img src="{{ asset('frontend/images/hero-img-1.jpg') }}">
-                            <div class="tooltip-box">
-                                <div class="starss">
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star diff"></i>
-                                </div>
-                                <p>
-                                    <span class="quote">“</span>
-                                    "Pharmacy Store is my go-to for over-the-counter medications and health products. They
-                                    have a wide selection, and their website makes it easy to order online. The only
-                                    improvement I'd suggest is expanding their beauty and skincare section."
-                                </p>
-                            </div>
-                        </div>
-                        <div class="swiper-slide tooltip-slide">
-                            <img src="{{ asset('frontend/images/hero-img-1.jpg') }}">
-                            <div class="tooltip-box">
-                                <div class="starss">
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star diff"></i>
-                                </div>
-                                <p>
-                                    <span class="quote">“</span>
-                                    "Pharmacy Store is my go-to for over-the-counter medications and health products. They
-                                    have a wide selection, and their website makes it easy to order online. The only
-                                    improvement I'd suggest is expanding their beauty and skincare section."
-                                </p>
-                            </div>
-                        </div>
-                        <div class="swiper-slide tooltip-slide">
-                            <img src="{{ asset('frontend/images/hero-img-1.jpg') }}">
-                            <div class="tooltip-box">
-                                <div class="starss">
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star "></i>
-                                    <i class="fas fa-star diff"></i>
-                                </div>
-                                <p>
-                                    <span class="quote">“</span>
-                                    "Pharmacy Store is my go-to for over-the-counter medications and health products. They
-                                    have a wide selection, and their website makes it easy to order online. The only
-                                    improvement I'd suggest is expanding their beauty and skincare section."
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-testimonial-slider />
+   
 
     {{-- ============ Recent News Section ============ --}}
     <!-- Default: 4 blogs -->
@@ -1006,13 +821,20 @@
         <div class="services-panel">
             <h4>Choose Your Rental Services</h4>
 
-            <p>Service 1</p>
-            <p>Service 2</p>
-            <p>Service 3</p>
-            <p>Service 4</p>
-            <p>Service 5</p>
+            @foreach (getServicesList() as $service)
+                <p class="mb-1">
+                    <a href="{{ route('biomed-services') }}" class="text-decoration-none">
+                        {{ $service }}
+                    </a>
+                </p>
+            @endforeach
 
-            <button class="explore-btn">Explore More</button>
+            <a href="{{ route('biomed-services') }}">
+                <button type="button" class="explore-btn">
+                    Explore More
+                </button>
+            </a>
+
         </div>
 
         <!-- BUTTON + ICON GROUP -->
@@ -1028,186 +850,9 @@
         </div>
     </div>
 
-    {{-- <div class="service-modal-overlay" id="serviceModal">
-        <div class="service-modal-box">
-
-            <span class="service-modal-close">&times;</span>
-
-            <!-- Heading -->
-            <h2 class="service-modal-heading">Service Request</h2>
-
-            <!-- Form -->
-            <form class="service-form">
-
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <input type="tel" placeholder="Phone Number" required>
-
-                <input type="text" placeholder="Company / Hospital Name">
-
-                <select required class="w-50">
-                    <option value="">Select Your Service Needs</option>
-                    <option>Repair</option>
-                    <option>Maintenance</option>
-                    <option>Rental</option>
-                </select>
-
-                <!-- Equipment Category -->
-                <div class="form-group">
-                    <label>Equipment Category</label>
-
-                    <div class="checkbox-group">
-                        <label><input type="checkbox"> MRI</label>
-                        <label><input type="checkbox"> CT Scan</label>
-                        <label><input type="checkbox"> X-Ray</label>
-                        <label><input type="checkbox"> Ultrasound</label>
-
-                    </div>
-                </div>
-
-                <textarea placeholder="Message / Details"></textarea>
-
-                <!-- Preferred Contact Method -->
-                <div class="form-group">
-                    <label>Preferred Contact Method</label>
-
-                    <div class="radio-group">
-                        <label><input type="radio" name="contact" checked> Email</label>
-                        <label><input type="radio" name="contact"> Phone</label>
-                    </div>
-                </div>
-
-                <button type="submit" class="service-submit-btn">
-                    Submit Request
-                </button>
-
-            </form>
-        </div>
-    </div> --}}
-    <div class="service-modal-overlay" id="serviceModal">
-        <div class="service-modal-box">
-
-            <span class="service-modal-close">&times;</span>
-
-            <!-- Heading -->
-            <h2 class="service-modal-heading">Service Request</h2>
-
-            <!-- Form -->
-            <form class="service-form">
-
-                <div class="mb-2">
-                    <input type="text" class="form-control form-control-sm" placeholder="Full Name" required>
-                </div>
-
-                <div class="mb-2">
-                    <input type="email" class="form-control form-control-sm" placeholder="Email Address" required>
-                </div>
-
-                <div class="mb-2">
-                    <input type="tel" class="form-control form-control-sm" placeholder="Phone Number" required>
-                </div>
-
-                <div class="mb-2">
-                    <input type="text" class="form-control form-control-sm" placeholder="Company / Hospital Name">
-                </div>
-
-                <div class="mb-2 w-50">
-                    <select class="form-select form-select-sm" required>
-                        <option value="">Select Your Service Needs</option>
-                        <option>Repair</option>
-                        <option>Maintenance</option>
-                        <option>Rental</option>
-                    </select>
-                </div>
-
-                <!-- Equipment Category -->
-                <div class="mb-2">
-                    <label class="form-label mb-1">Equipment Category</label>
-
-                    <div class="checkbox-group">
-                        <label class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox">
-                            <span class="form-check-label">MRI</span>
-                        </label>
-
-                        <label class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox">
-                            <span class="form-check-label">CT Scan</span>
-                        </label>
-
-                        <label class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox">
-                            <span class="form-check-label">X-Ray</span>
-                        </label>
-
-                        <label class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox">
-                            <span class="form-check-label">Ultrasound</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="mb-2">
-                    <textarea class="form-control form-control-sm" rows="3" placeholder="Message / Details"></textarea>
-                </div>
-
-                <!-- Preferred Contact Method -->
-                <div class="mb-3">
-                    <label class="form-label mb-1">Preferred Contact Method</label>
-
-                    <div class="radio-group">
-                        <label class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="contact" checked>
-                            <span class="form-check-label">Email</span>
-                        </label>
-
-                        <label class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="contact">
-                            <span class="form-check-label">Phone</span>
-                        </label>
-                    </div>
-                </div>
-
-                <button type="submit" class="service-submit-btn">
-                    Submit Request
-                </button>
-
-            </form>
-        </div>
-    </div>
-
-
-
 @endsection
 
 @push('frontend-scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            const modal = document.getElementById('serviceModal');
-
-            // Open modal
-            document.querySelectorAll('[data-open-service-modal]').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    modal.classList.add('active');
-                });
-            });
-
-            // Close modal (X)
-            modal.querySelector('.service-modal-close').addEventListener('click', () => {
-                modal.classList.remove('active');
-            });
-
-            // Close on outside click
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                }
-            });
-
-        });
-    </script>
-
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

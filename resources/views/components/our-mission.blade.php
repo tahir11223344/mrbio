@@ -26,7 +26,10 @@
                      companies.
                  </p>
 
-                 <button class="about-btn ">About Us</button>
+                 <a href="{{ route('about-us') }}">
+                     <button class="about-btn">About Us</button>
+                 </a>
+
              </div>
 
          </div>

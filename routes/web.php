@@ -30,6 +30,7 @@ use App\Http\Controllers\RepairServiceController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\ServingCityController;
 use App\Http\Controllers\TermsAndConditionsController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\WhatWeDoController;
 use Illuminate\Support\Facades\Route;
 
@@ -350,6 +351,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Reviews Customer Feedback
     // ===========================
     Route::controller(ReviewsController::class)->prefix('admin/reviews')->as('admin.feedback.')->group(function () {
+        Route::get('/list', 'list')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::put('/{id}/update', 'update')->name('update');
+        Route::delete('/{id}/destroy', 'destroy')->name('destroy');
+    });
+
+    // ===========================
+    // Testimonial
+    // ===========================
+    Route::controller(TestimonialController::class)->prefix('admin/testimonials')->as('admin.testimonials.')->group(function () {
         Route::get('/list', 'list')->name('list');
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');

@@ -73,7 +73,6 @@ class AppServiceProvider extends ServiceProvider
                 ])
                 ->get();
 
-
             // Share with navbar view
             $view->with([
                 'headerCities' => $cities ?? collect(), // Safe fallback
@@ -105,9 +104,18 @@ class AppServiceProvider extends ServiceProvider
                     ->get(['id', 'name', 'country_id']);
             });
 
+            $servingAreas = ServingCity::select('area_name', 'slug')
+                ->where([
+                    'show_on_header' => true,
+                    'is_active'      => true,
+                ])
+                ->get();
+
             // Send both manual country list + states to footer
             $view->with([
                 'footerStates'      => $footerStates,
+                'servingAreas' => $servingAreas ?? collect(),
+
             ]);
         });
     }

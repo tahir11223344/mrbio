@@ -1,0 +1,148 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\ContactUsFormInquiry;
+use App\Models\ServiceRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
+
+class InquiryController extends Controller
+{
+    public function contactUsForm(Request $request)
+    {
+        try {
+            // ---------------- VALIDATION ----------------
+            $validated = $request->validate([
+                'name'    => 'required|string|max:255',
+                'email'   => 'required|email|max:255',
+                'state'   => 'required|exists:states,id',
+                'city'    => 'nullable|string|max:255',
+                'service' => 'required|string|max:255',
+                'message' => 'required|string|max:1000',
+                'g-recaptcha-response' => 'required',
+            ], [
+                'service.required' => 'Please select at least one service.',
+                'g-recaptcha-response.required' => 'Please confirm you are not a robot.',
+            ]);
+
+            // ---------------- VERIFY reCAPTCHA ----------------
+            $response = Http::asForm()->post(
+                'https://www.google.com/recaptcha/api/siteverify',
+                [
+                    'secret'   => config('services.recaptcha.secret'),
+                    'response' => $request->input('g-recaptcha-response'),
+                    'remoteip' => $request->ip(),
+                ]
+            );
+
+            $responseBody = $response->json();
+
+            if (!($responseBody['success'] ?? false)) {
+                throw ValidationException::withMessages([
+                    'g-recaptcha-response' => ['reCAPTCHA verification failed. Please try again.'],
+                ]);
+            }
+
+            DB::beginTransaction();
+
+            ContactUsFormInquiry::create([
+                'name'     => $validated['name'],
+                'email'    => $validated['email'],
+                'state_id' => $validated['state'],
+                'city_id'  => $validated['city'] ?? null,
+                'service'  => $validated['service'],
+                'message'  => $validated['message'],
+            ]);
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Thank you! Your request has been received. Our team will contact you soon.',
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'errors' => $e->errors(),
+            ], 422);
+        } catch (\Throwable $e) {
+            DB::rollBack();
+
+            Log::error('Inquiry Form Error', [
+                'error' => $e->getMessage(),
+                'request' => $request->all(),
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong. Please try again later.',
+            ], 500);
+        }
+    }
+
+    public function serviceRequest(Request $request)
+    {
+        $validated = $request->validate([
+            'name'              => 'required|string|max:255',
+            'email'             => 'required|email|max:255',
+            'phone'             => 'nullable|string|max:50',
+            'company'           => 'nullable|string|max:255',
+            'service'           => 'required|string|max:255',
+            'categories'        => 'nullable|array',
+            'categories.*'      => 'string|max:255',
+            'message'           => 'nullable|string|max:2000',
+            'preferred_contact' => 'required|in:email,phone',
+            'g-recaptcha-response' => 'required',
+        ], [
+            'service.required' => 'Please select a service.',
+            'g-recaptcha-response.required' => 'Please confirm you are not a robot.',
+        ]);
+
+        // Verify Google reCAPTCHA
+        $recaptcha = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => config('services.recaptcha.secret'),
+            'response' => $request->input('g-recaptcha-response'),
+            'remoteip' => $request->ip(),
+        ])->json();
+
+        if (!($recaptcha['success'] ?? false)) {
+            return response()->json([
+                'success' => false,
+                'errors'  => ['g-recaptcha-response' => ['Captcha verification failed.']],
+            ], 422);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            ServiceRequest::create([
+                'name'              => $validated['name'],
+                'email'             => $validated['email'],
+                'phone'             => $validated['phone'] ?? null,
+                'company'           => $validated['company'] ?? null,
+                'service'           => $validated['service'],
+                'categories'        => $validated['categories'] ?? [],
+                'message'           => $validated['message'] ?? null,
+                'preferred_contact' => $validated['preferred_contact'],
+            ]);
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Thank you! We will get back to you shortly.',
+            ]);
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            Log::error('Service Request Error: ' . $e->getMessage(), ['request' => $request->all()]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong. Please try again later.',
+            ], 500);
+        }
+    }
+}

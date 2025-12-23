@@ -56,25 +56,31 @@
                         our team will get back to you shortly.
                     </p>
 
-                    <form>
+                    <form class="contact-us-form" action="{{ route('contact.us.form') }}" method="POST">
+                        @csrf
+
                         <div class="mb-3">
-                            <input type="text" class="form-control formm-input" placeholder="Enter Name">
+                            <input type="text" name="name" class="form-control formm-input"
+                                placeholder="Enter Name" value="{{ old('name') }}">
+                            <span class="text-danger error-text name_error"></span>
+
                         </div>
 
                         <div class="mb-3">
-                            <input type="email" class="form-control formm-input" placeholder="Enter Email">
+                            <input type="email" name="email" class="form-control formm-input"
+                                placeholder="Enter Email" value="{{ old('email') }}">
+                            <span class="text-danger error-text email_error"></span>
+
                         </div>
 
                         <!-- State & City -->
-                        <div class="d-flex gap-3">
+                        <div class="d-flex gap-3 mb-2">
                             <div class="mb-3">
-                                <select class="form-select formm-select" name="state" id="form_state">
+                                <select name="state" class="form-select formm-select" name="state" id="form_state">
                                     <option value="">{{ __('Select State') }}</option>
 
-                                    @foreach ($footerStates as $state)
-                                        <option value="{{ $state->id }}">
-                                            {{ $state->name }}
-                                        </option>
+                                    @foreach ($footerStates ?? [] as $state)
+                                        <option value="{{ $state->id }}">{{ $state->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -83,22 +89,33 @@
                                 <select class="form-select formm-select" id="form_city" name="city">
                                     <option>Select City</option>
                                 </select>
+                                <span class="text-danger error-text city_error"></span>
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <select class="form-select formmm-select">
-                                <option selected>Select Services</option>
-                                <option>X-Ray Machine Repair</option>
-                                <option>Imaging Maintenance</option>
-                                <option>Biomedical Services</option>
+                            <select name="service" class="form-select formmm-select">
+                                <option value="" disabled selected>Services Dropdown</option>
+                                @foreach (getServicesList() as $service)
+                                    <option value="{{ $service }}">{{ $service }}</option>
+                                @endforeach
                             </select>
+                            <span class="text-danger error-text service_error"></span>
                         </div>
 
                         <div class="mb-3">
-                            <textarea class="form-control formm-text" rows="4" placeholder="Enter Message"></textarea>
+                            <textarea name="message" class="form-control formm-text" rows="4" placeholder="Enter Message">{{ old('message') }}</textarea>
+                            <span class="text-danger error-text message_error"></span>
+
                         </div>
 
+                        <div class="form-group mb-3">
+                            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                            <div class="g-recaptcha w-100" data-sitekey="{{ config('services.recaptcha.sitekey') }}">
+                            </div>
+                            <span class="text-danger error-text g-recaptcha-response_error"></span>
+                        </div>
+                        
                         <button type="submit" class="btn submit-btn">
                             Request Submit
                         </button>

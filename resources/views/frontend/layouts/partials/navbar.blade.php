@@ -221,12 +221,10 @@
                         </div>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" href="#">Rental</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-
-                    <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('rental-services') }}">Rental</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('blogs') }}">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('biomed-services') }}">Services</a></li>
 
                     <li class="nav-item d-flex flex-column align-items-center ms-lg-4 mt-2 mt-lg-0 ">
                         <div class="d-flex align-items-center gap-2 mb-1 contact-icons-wrapper ">
@@ -267,7 +265,7 @@
                             @endif
 
                         </div>
-                        <a href="#" class="btn contact-btn mt-2 px-3 py-1">CONTACT</a>
+                        <a href="{{ route('contact-us') }}" class="btn contact-btn mt-2 px-3 py-1">CONTACT</a>
                     </li>
 
                 </ul>

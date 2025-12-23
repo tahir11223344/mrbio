@@ -230,6 +230,10 @@
         font-weight: 600;
     }
 
+    .location-link {
+        color: #FFFFFF;
+    }
+
     /* Responsive adjustments for the overlapping container */
     @media (max-width: 768px) {
         .contact-container {
@@ -526,47 +530,86 @@
 
                 <p class="footer-p">Fill out the form below and we'll get back to you as soon as possible.
                 </p>
-                <form>
-                    <input type="text" class="form-control mb-2 footer-input" placeholder="Full Name">
-                    <input type="email" class="form-control mb-2 footer-input" placeholder="Email Address">
-                    <div class="d-flex gap-2 mb-2">
-                        <select name="state" id="footer_state" class="form-select footer-select">
-                            <option value="">{{ __('Select State') }}</option>
-                            @foreach ($footerStates ?? [] as $state)
-                                <option value="{{ $state->id }}">
-                                    {{ $state->name }}
-                                </option>
+                <form class="contact-us-form" id="footerContactUsForm" action="{{ route('contact.us.form') }}"
+                    method="POST">
+                    @csrf
+
+                    <div class="mb-2">
+                        <input type="text" name="name" class="form-control footer-input" placeholder="Full Name"
+                            value="{{ old('name') }}">
+                        <span class="text-danger error-text name_error"></span>
+                    </div>
+
+                    <div class="mb-2">
+                        <input type="email" name="email" class="form-control footer-input"
+                            placeholder="Email Address" value="{{ old('email') }}">
+                        <span class="text-danger error-text email_error"></span>
+                    </div>
+
+                    <div class="d-flex gap-1 mb-2">
+                        <div>
+                            <select name="state" id="footer_state" class="form-select footer-select">
+                                <option value="">Select State</option>
+                                @foreach ($footerStates ?? [] as $state)
+                                    <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger error-text state_error"></span>
+                        </div>
+                        <div>
+                            <select class="form-select footer-select" id="footer_city" name="city">
+                                <option value="">Select City</option>
+                            </select>
+                            <span class="text-danger error-text city_error"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <select name="service" class="form-select footer-select">
+                            <option value="" disabled selected>Services Dropdown</option>
+                            @foreach (getServicesList() as $service)
+                                <option value="{{ $service }}">{{ $service }}</option>
                             @endforeach
                         </select>
-                        <select class="form-select footer-select" id="footer_city" name="city">
-                            <option>Select City</option>
-                        </select>
+                        <span class="text-danger error-text service_error"></span>
                     </div>
-                    <select class="form-select mb-2  footer-select">
-                        <option>Services Dropdown</option>
-                    </select>
-                    <textarea class="form-control mb-3 footer-area" rows="2" placeholder="How Can I Help You?"></textarea>
-                    <button type="submit" class=" request-submit-button ">Request Submit</button>
+
+                    <div class="mb-3">
+                        <textarea name="message" class="form-control footer-area" rows="3" placeholder="How Can I Help You?">{{ old('message') }}</textarea>
+                        <span class="text-danger error-text message_error"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                        <div class="g-recaptcha w-100" data-sitekey="{{ config('services.recaptcha.sitekey') }}">
+                        </div>
+                        <span class="text-danger error-text g-recaptcha-response_error"></span>
+                    </div>
+
+                    <button type="submit" class="request-submit-button">Request Submit</button>
                 </form>
             </div>
 
             <div class="col-lg-4 ps-5">
                 <h4 class="Field mb-3 pb-2">Field Service Location</h4>
-                <div class="row location-list mb-4 ">
-                    <div class="col-6">
-                        <p class=" mb-1">Location 1</p>
-                        <p class=" mb-1">Location 2</p>
-                        <p class=" mb-1">Location 3</p>
-                        <p class=" mb-1">Location 4</p>
-                        <p class=" mb-1">Location 5</p>
-                    </div>
-                    <div class="col-6">
-                        <p class=" mb-1">Location 6</p>
-                        <p class=" mb-1">Location 7</p>
-                        <p class=" mb-1">Location 8</p>
-                        <p class=" mb-1">Location 9</p>
-                        <p class=" mb-1">Location 10</p>
-                    </div>
+                <div class="row location-list mb-4">
+                    @php
+                        // Areas ko 2 columns me divide kar rahe hain
+                        $chunks = ($servingAreas ?? collect())->chunk(ceil(($servingAreas?->count() ?? 0) / 2));
+                    @endphp
+
+                    @foreach ($chunks as $chunk)
+                        <div class="col-6">
+                            @foreach ($chunk as $area)
+                                <p class="mb-1">
+                                    <a href="{{ route('location.detail', $area->slug) }}"
+                                        class="text-decoration-none location-link">
+                                        {{ $area->area_name }}
+                                    </a>
+                                </p>
+                            @endforeach
+                        </div>
+                    @endforeach
                 </div>
 
                 <h4 class="Rate mb-3 pb-2 ">Rate The Company</h4>
@@ -590,20 +633,22 @@
         <div class="container text-center ">
             <div class="footer-links-wrapper">
                 <div class="footer-links mb-1">
-                    <a href="#" class="text-decoration-none mx-2">Mr Biomed Service</a><span
+                    <a href="{{ route('biomed-services') }}" class="text-decoration-none mx-2">Mr Biomed
+                        Service</a><span class="separator">|</span>
+                    <a href="{{ route('location') }}" class="text-decoration-none mx-2">Locations</a><span
                         class="separator">|</span>
-                    <a href="#" class="text-decoration-none mx-2">Locations</a><span class="separator">|</span>
-                    <a href="#" class="text-decoration-none mx-2">Product Store</a><span
+                    {{-- <a href="#" class="text-decoration-none mx-2">Product Store</a><span
+                        class="separator">|</span> --}}
+                    <a href="{{ route('about-us') }}" class="text-decoration-none mx-2">About Mbmts</a><span
                         class="separator">|</span>
-                    <a href="#" class="text-decoration-none mx-2">About Mbmts</a><span
+                    <a href="{{ route('blogs') }}" class="text-decoration-none mx-2">Blog</a><span
                         class="separator">|</span>
-                    <a href="#" class="text-decoration-none mx-2">Blog</a><span class="separator">|</span>
-                    <a href="#" class="text-decoration-none mx-2">Career</a><span class="separator">|</span>
-                    <a href="#" class="text-decoration-none mx-2">Terms & Conditions</a><span
+                    {{-- <a href="#" class="text-decoration-none mx-2">Career</a><span class="separator">|</span> --}}
+                    <a href="{{ route('terms') }}" class="text-decoration-none mx-2">Terms & Conditions</a><span
                         class="separator">|</span>
-                    <a href="#" class="text-decoration-none mx-2">Privacy Policy</a><span
+                    <a href="{{ route('privacy') }}" class="text-decoration-none mx-2">Privacy Policy</a><span
                         class="separator">|</span>
-                    <a href="#" class="text-decoration-none mx-2">Disclaimer</a>
+                    <a href="{{ route('disclaimer') }}" class="text-decoration-none mx-2">Disclaimer</a>
                 </div>
             </div>
             <p class="copyright mb-0 t">

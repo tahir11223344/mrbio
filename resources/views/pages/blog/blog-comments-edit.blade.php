@@ -55,7 +55,7 @@
                                 <label for="blog_title" class="form-label fw-semibold">{{ __('Blog Title') }}</label>
                                 <input type="text" id="blog_title"
                                     class="form-control form-control-lg @error('blog_title') is-invalid @enderror"
-                                    value="{{ old('blog_title', $data->blog?->title ?? '') }}" readonly>
+                                    value="{{ old('blog_title', plainBracketText($data->blog?->title ?? '')) }}" readonly>
                                 @error('blog_title')
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror

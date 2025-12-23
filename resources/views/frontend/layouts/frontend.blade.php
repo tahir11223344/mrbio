@@ -75,6 +75,9 @@
 
     @yield('frontend-content')
 
+    {{-- Global Service Request Modal --}}
+    <x-service-request-modal />
+
     @include('frontend.layouts.partials.footer')
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LocationPageController;
 use App\Http\Controllers\PrivacyPolicyController;
@@ -43,6 +44,14 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/repair', [RepairServiceController::class, 'landingPage'])->name('repair');
     Route::get('/{category}/{slug}', [RepairServiceController::class, 'repairServiceDetail'])->name('repair.service.detail');
+
+    // ===========================
+    // Inquiry Form
+    // ===========================
+    Route::controller(InquiryController::class)->group(function () {
+        Route::post('/contact-us', 'contactUsForm')->name('contact.us.form');
+        Route::post('/service-request', 'serviceRequest')->name('service.request.submit');
+    });
 
     Route::prefix('ajax')->group(function () {
 

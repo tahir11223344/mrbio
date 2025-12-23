@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\BlogComment;
+use App\Models\Testimonial;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -13,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class BlogCommentDataTable extends DataTable
+class TestimonialDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -23,38 +23,42 @@ class BlogCommentDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            // Show blog title instead of blog_id
-            ->addColumn('blog_title', fn ($c) => plainBracketText(optional($c->blog)->title) ?: '-')
-            ->addColumn('created_by', fn($c) => optional($c->createdBy)->name ?? '-')
-            ->addColumn('updated_by', fn($c) => optional($c->updatedBy)->name ?? '-')
+            ->addColumn('created_by', fn($t) => optional($t->createdBy)->name ?? '-')
+            ->addColumn('updated_by', fn($t) => optional($t->updatedBy)->name ?? '-')
 
-            ->editColumn('created_at', fn($c) => Carbon::parse($c->created_at)->format('d-M-Y'))
-            ->editColumn('updated_at', fn($c) => $c->updated_at ? Carbon::parse($c->updated_at)->format('d-M-Y') : '-')
+            ->editColumn('created_at', fn($t) => Carbon::parse($t->created_at)->format('d-M-Y'))
+            ->editColumn('updated_at', fn($t) => $t->updated_at ? Carbon::parse($t->updated_at)->format('d-M-Y') : '-')
 
             // Tell Yajra how to sort these formatted columns
-            ->orderColumn('created_at', 'blog_comments.created_at $1')
-            ->orderColumn('updated_at', 'blog_comments.updated_at $1')
+            ->orderColumn('created_at', 'testimonials.created_at $1')
+            ->orderColumn('updated_at', 'testimonials.updated_at $1')
 
-            ->editColumn('status', function ($c) {
-                if ($c->status == 'pending') {
-                    return '<span class="badge badge-warning">Pending</span>';
-                } elseif ($c->status == 'approved') {
-                    return '<span class="badge badge-success">Approved</span>';
-                } else {
-                    return '<span class="badge badge-danger">Rejected</span>';
+            ->editColumn('is_active', function ($t) {
+                if ($t->is_active == 1) {
+                    return '<span class="badge badge-success">Active</span>';
                 }
+                return '<span class="badge badge-danger">Inactive</span>';
             })
-            ->addColumn('action', fn($c) => view('pages.blog._blog_comment_actions', compact('c'))->render())
-            ->rawColumns(['action', 'status'])
+            ->editColumn('image', function ($t) {
+                if (!$t->image) {
+                    return '-';
+                }
+
+                $url = asset('storage/testimonials/' . $t->image);
+
+                return '<img src="' . $url . '" alt="Image" width="60" height="60" style="object-fit: cover; border-radius: 5px;">';
+            })
+            ->addColumn('action', fn($t) => view('pages.testimonials._actions', compact('t'))->render())
+            ->rawColumns(['action', 'is_active', 'image'])
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(BlogComment $model): QueryBuilder
+    public function query(Testimonial $model): QueryBuilder
     {
-        return $model->newQuery()->with(['blog', 'createdBy', 'updatedBy']);
+        return $model->newQuery()->with(['createdBy', 'updatedBy']);
     }
 
     /**
@@ -63,12 +67,12 @@ class BlogCommentDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('blogcomment-table')
+            ->setTableId('testimonial-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->processing(true)
             ->serverSide(true)
-            ->orderBy(4, 'desc')
+            ->orderBy(6, 'desc')
             ->addTableClass('table table-striped table-row-bordered gy-5 gs-7 border rounded text-gray-700 fw-semibold')
             ->setTableHeadClass('text-start text-muted fw-bold fs-7 text-uppercase gs-0')
             ->drawCallback(
@@ -86,17 +90,17 @@ class BlogCommentDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('name')->title('Name'),
-            Column::make('email')->title('Email'),
-            Column::make('blog_title')->title('Blog Title'),
+            Column::make('short_description')->title('Short Description'),
+            Column::make('image')->title('Image'),
+            Column::make('image_alt')->title('Image Alt'),
+            Column::make('rating')->title('Rating'),
 
-            Column::make('status')->title('Status'),
+            Column::make('is_active')->title('Is Active'),
 
+            Column::make('created_by')->title('Created By'),
             Column::make('created_at')->title('Created At'),
             Column::make('updated_by')->title('Updated By'),
             Column::make('updated_at')->title('Updated At'),
-
-
 
             Column::computed('action')
                 ->title('Actions')
@@ -112,6 +116,6 @@ class BlogCommentDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'BlogComment_' . date('YmdHis');
+        return 'Testimonial_' . date('YmdHis');
     }
 }

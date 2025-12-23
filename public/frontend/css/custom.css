@@ -2675,14 +2675,17 @@
 
  .starss {
      padding-left: 50px;
-
  }
 
  .starss i {
-     /* text-align: left !important; */
-     /* margin-bottom: 10px; */
      font-size: 30px;
+     color: #CACDD8;
+     /* default grey */
+ }
+
+ .starss i.active {
      color: #E9A426 !important;
+     /* active star */
  }
 
  .diff {

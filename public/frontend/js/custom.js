@@ -1,5 +1,104 @@
-// ================ review slider function ======================
+$(document).ready(function () {
 
+    $(document).on('submit', '.contact-us-form', function (e) {
+        e.preventDefault();
+
+        let form = $(this);
+
+        // Clear previous errors ONLY inside this form
+        form.find('.error-text').text('');
+        form.find('.invalid-feedback').remove();
+
+        $.ajax({
+            url: form.attr('action'),
+            method: 'POST',
+            data: form.serialize(),
+            dataType: 'json',
+
+            success: function (response) {
+                if (response.success) {
+                    form[0].reset();
+
+                    // Reset captcha for THIS form
+                    if (typeof grecaptcha !== 'undefined') {
+                        grecaptcha.reset();
+                    }
+
+                    if (typeof toastr !== 'undefined') {
+                        toastr.success(response.message);
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            },
+
+            error: function (xhr) {
+
+                if (xhr.status === 422) {
+                    let errors = xhr.responseJSON.errors;
+
+                    $.each(errors, function (key, value) {
+                        let errorField = form.find('.' + key + '_error');
+
+                        if (errorField.length) {
+                            errorField.text(value[0]);
+                        } else {
+                            // For captcha or non-input errors
+                            form.find('[name="' + key + '"]').after(
+                                '<div class="invalid-feedback d-block">' + value[0] + '</div>'
+                            );
+                        }
+                    });
+
+                    if (typeof toastr !== 'undefined') {
+                        toastr.error('Please fix the errors in the form.');
+                    }
+
+                } else {
+                    if (typeof toastr !== 'undefined') {
+                        toastr.error('Something went wrong. Please try again later.');
+                    } else {
+                        alert('Something went wrong. Please try again later.');
+                    }
+                }
+            }
+        });
+    });
+
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const modal = document.getElementById('serviceModal');
+    if (!modal) return; // safety check
+
+    // OPEN MODAL (event delegation)
+    document.body.addEventListener('click', function (e) {
+        const btn = e.target.closest('[data-open-service-modal]');
+        if (btn) {
+            modal.classList.add('active');
+        }
+    });
+
+    // CLOSE MODAL (X)
+    const closeBtn = modal.querySelector('.service-modal-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+    }
+
+    // CLOSE ON OUTSIDE CLICK
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+        }
+    });
+
+});
+
+
+// ================ review slider function ======================
 function initReviewSlider() {
 
     const sliderEl = document.querySelector(".reviewSwiper");
