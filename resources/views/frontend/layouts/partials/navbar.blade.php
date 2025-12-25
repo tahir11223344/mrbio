@@ -4,6 +4,28 @@
         opacity: 1;
         transform: translateX(0);
     } */
+    .nav-link {
+        position: relative;
+        padding-bottom: 6px;
+    }
+
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 0;
+        height: 3px;
+        background-color: #FE0000;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+    }
+
+    .nav-link.active::after {
+        width: 60%;
+        left: 44%;
+
+    }
 </style>
 <section class="sticky-to">
     <nav class="navbar navbar-expand-lg navbar-light bg-white p-0">
@@ -224,11 +246,34 @@
                             </div>
                         </div>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('rental-services') ? 'active' : '' }}"
+                            href="{{ route('rental-services') }}">
+                            Rental
+                        </a>
+                    </li>
 
-                    <li class="nav-item"><a class="nav-link" href="{{ route('rental-services') }}">Rental</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('blogs') }}">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('about-us') }}">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('biomed-services') }}">Services</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('blogs*') ? 'active' : '' }}"
+                            href="{{ route('blogs') }}">
+                            Blog
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('about-us') ? 'active' : '' }}"
+                            href="{{ route('about-us') }}">
+                            About
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
+                            href="{{ route('biomed-services') }}">
+                            Services
+                        </a>
+                    </li>
+
 
                     <li class="nav-item d-flex flex-column align-items-center ms-lg-4 mt-2 mt-lg-0 ">
                         <div class="d-flex align-items-center gap-2 mb-1 contact-icons-wrapper ">

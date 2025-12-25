@@ -138,7 +138,6 @@
         .map-section {
             width: 100%;
             padding: 0;
-            margin: 0;
         }
 
         .map-container {
@@ -158,7 +157,7 @@
 
 
             .map-section {
-                margin-top: 166% !important;
+                margin-top: 233% !important;
             }
         }
 
@@ -344,7 +343,7 @@
     <x-contact-us-section :footer-states="$footerStates" />
 
 
-    <section class="map-section">
+    <section class="map-section ">
         <div class="map-container">
             {!! $data->map_iframe ?? '' !!}
         </div>
@@ -406,7 +405,7 @@
     <x-our-latest-products />
 
 
-   {{-- ============= reveiw sectiion ================== --}}
+    {{-- ============= reveiw sectiion ================== --}}
     <x-testimonial-slider />
 
     {{-- ============ Recent News Section ============ --}}

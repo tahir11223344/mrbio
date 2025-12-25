@@ -1073,21 +1073,28 @@
 
  /* Category Buttons */
  .cat-btn {
-     width: 13rem;
+     width: 150px;
      background: #DEE9FF;
      border: none;
      color: #A2A6B0;
-     padding: 10px 0;
+     /* padding: 10px 0; */
      font-size: 16px;
      border-radius: 21px;
      font-weight: 500;
-     transition: 0.3s;
+     transition: all 0.4s ease-in-out;
+     height: 39px;
  }
 
- /* .cat-btn:hover {
-            background: #b1c1ef;
-        } */
+ .cat-btn:hover {
+     background: #b1c1ef;
+ }
 
+ @media(max-width: 767px) {
+     .cat-btn {
+         width: 130px !important;
+         font-size: 12px !important;
+     }
+ }
 
  /* best product section */
 
@@ -1172,6 +1179,12 @@
      border: none;
      font-weight: 600;
      font-size: 12px;
+     transition: all 0.4s ease-in-out;
+ }
+
+ .buy-btn:hover {
+     background: rgb(224, 223, 223);
+
  }
 
  @keyframes blink-zoom {
@@ -4363,7 +4376,7 @@
  .buy-form-overlay {
      position: fixed;
      inset: 0;
-     background: rgba(0, 0, 0, 0.7);
+     /* background: rgba(0, 0, 0, 0.1); */
      display: none;
      justify-content: center;
      align-items: center;

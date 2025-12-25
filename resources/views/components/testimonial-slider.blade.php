@@ -1,3 +1,8 @@
+<style>
+    .main-wrapper {
+        margin-bottom: 60px;
+    }
+</style>
 <section>
     <h2 class="review-heading fade-left">Our Users Are <span>Happy And Healthy</span></h2>
 

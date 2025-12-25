@@ -1,4 +1,4 @@
-  <section class="recent-news-section py- mb-5">
+  <section class="recent-news-section py- ">
       <div class="container text-center">
           <h2 class="section-title text-white mb-3 fade-left">Recent News</h2>
           <p class="section-desc  mb-5 fade-right">

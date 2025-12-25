@@ -124,6 +124,11 @@
             color: #000000;
         }
 
+        .services-panel p a {
+            color: #000000 !important;
+
+        }
+
         .explore-btn {
             margin-top: 10px;
             width: 109px;
@@ -171,7 +176,7 @@
         .service-modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.3);
             display: none;
             justify-content: center;
             align-items: center;
@@ -186,20 +191,34 @@
         .service-modal-box {
             width: 100%;
             max-width: 480px;
-            /* thori choti width */
             padding: 20px;
-            /* padding kam */
             border-radius: 14px;
-            background: linear-gradient(135deg, #FFFFFF, #5BC3C4);
+            /* background: linear-gradient(135deg, #FFFFFF, #5BC3C4); */
+            background: linear-gradient(to right, #66b9e2, #7DAAC0);
+
             position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
         }
+
+        .service-modal-box::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* .checkbox-group {
+                                        max-height: 90px;
+                                        overflow-y: auto;
+                                    } */
 
         /* 🔹 Heading compact */
         .service-modal-heading {
             text-align: center;
             margin-bottom: 12px;
             /* kam margin */
-            font-size: 22px;
+            font-size: 20px;
             font-family: 'Poppins', sans-serif;
         }
 
@@ -223,8 +242,8 @@
         .checkbox-group input,
         .radio-group input {
             margin: 0;
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             flex-shrink: 0;
         }
 
@@ -807,7 +826,7 @@
 
     {{-- ============= reveiw sectiion ================== --}}
     <x-testimonial-slider />
-   
+
 
     {{-- ============ Recent News Section ============ --}}
     <!-- Default: 4 blogs -->
@@ -853,7 +872,6 @@
 @endsection
 
 @push('frontend-scripts')
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
 

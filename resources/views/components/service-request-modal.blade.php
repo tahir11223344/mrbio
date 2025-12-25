@@ -10,97 +10,99 @@
         <form class="service-form" id="serviceRequestForm" action="{{ route('service.request.submit') }}" method="POST">
             @csrf
 
-            <!-- Full Name -->
-            <div class="mb-2">
-                <input type="text" name="name" class="form-control form-control-sm" placeholder="Full Name">
-                <span class="text-danger error-text name_error"></span>
-            </div>
+            <div class="row g-2">
 
-            <!-- Email -->
-            <div class="mb-2">
-                <input type="email" name="email" class="form-control form-control-sm" placeholder="Email Address">
-                <span class="text-danger error-text email_error"></span>
-            </div>
+                <!-- Full Name -->
+                <div class="col-md-6 col-6">
+                    <input type="text" name="name" class="form-control form-control-sm" placeholder="Full Name">
+                    <span class="text-danger error-text name_error"></span>
+                </div>
 
-            <!-- Phone -->
-            <div class="mb-2">
-                <input type="tel" name="phone" class="form-control form-control-sm" placeholder="Phone Number">
-                <span class="text-danger error-text phone_error"></span>
-            </div>
+                <!-- Email -->
+                <div class="col-md-6 col-6">
+                    <input type="email" name="email" class="form-control form-control-sm"
+                        placeholder="Email Address">
+                    <span class="text-danger error-text email_error"></span>
+                </div>
 
-            <!-- Company -->
-            <div class="mb-2">
-                <input type="text" name="company" class="form-control form-control-sm"
-                    placeholder="Company / Hospital Name">
-                <span class="text-danger error-text company_error"></span>
-            </div>
+                <!-- Phone -->
+                <div class="col-md-6 col-6">
+                    <input type="tel" name="phone" class="form-control form-control-sm"
+                        placeholder="Phone Number">
+                    <span class="text-danger error-text phone_error"></span>
+                </div>
 
-            <!-- Service -->
-            <div class="mb-2 w-50">
-                <select name="service" class="form-select form-select-sm">
-                    <option value="" disabled selected>Services Dropdown</option>
-                    @foreach (getServicesList() as $service)
-                        <option value="{{ $service }}">{{ $service }}</option>
-                    @endforeach
-                </select>
-                <span class="text-danger error-text service_error"></span>
-            </div>
+                <!-- Company -->
+                <div class="col-md-6 col-6">
+                    <input type="text" name="company" class="form-control form-control-sm"
+                        placeholder="Company / Hospital Name">
+                    <span class="text-danger error-text company_error"></span>
+                </div>
 
-            <!-- Equipment Category -->
-            <div class="mb-2">
-                <label class="form-label mb-1">Equipment Category</label>
+                <!-- Services -->
+                <div class="col-md-6 col-6">
+                    <select name="service" class="form-select form-select-sm">
+                        <option value="" disabled selected>Select Service</option>
+                        @foreach (getServicesList() as $service)
+                            <option value="{{ $service }}">{{ $service }}</option>
+                        @endforeach
+                    </select>
+                    <span class="text-danger error-text service_error"></span>
+                </div>
 
-                <div class="checkbox-group">
-                    @forelse ($all_categories as $category)
-                        <label class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="categories[]"
-                                value="{{ $category->slug }}">
-                            <span class="form-check-label">
-                                {{ $category->name }}
-                            </span>
+                <!-- Preferred Contact -->
+                <div class="col-md-6 col-6">
+                    <label class="form-label mb-1">Preferred Contact</label>
+                    <div class="radio-group d-flex gap-3">
+                        <label class="form-check form-check-inline m-0">
+                            <input class="form-check-input" type="radio" name="preferred_contact" value="email"
+                                checked>
+                            <span>Email</span>
                         </label>
-                    @empty
-                        <p class="text-muted small">No categories available</p>
-                    @endforelse
+                        <label class="form-check form-check-inline m-0">
+                            <input class="form-check-input" type="radio" name="preferred_contact" value="phone">
+                            <span>Phone</span>
+                        </label>
+                    </div>
+                    <span class="text-danger error-text preferred_contact_error"></span>
                 </div>
-                <span class="text-danger error-text categories_error"></span>
-            </div>
 
-            <!-- Message -->
-            <div class="mb-2">
-                <textarea name="message" class="form-control form-control-sm" rows="3" placeholder="Message / Details"></textarea>
-                <span class="text-danger error-text message_error"></span>
-            </div>
-
-            <!-- Preferred Contact Method -->
-            <div class="mb-3">
-                <label class="form-label mb-1">Preferred Contact Method</label>
-
-                <div class="radio-group">
-                    <label class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="preferred_contact" value="email" checked>
-                        <span class="form-check-label">Email</span>
-                    </label>
-
-                    <label class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="preferred_contact" value="phone">
-                        <span class="form-check-label">Phone</span>
-                    </label>
+                <!-- Equipment Category (Full Width) -->
+                <div class="col-12">
+                    <label class="form-label mb-1">Equipment Category</label>
+                    <div class="checkbox-group d-flex flex-wrap gap-2">
+                        @foreach ($all_categories as $category)
+                            <label class="form-check form-check-inline m-0">
+                                <input class="form-check-input" type="checkbox" name="categories[]"
+                                    value="{{ $category->slug }}">
+                                <span>{{ $category->name }}</span>
+                            </label>
+                        @endforeach
+                    </div>
+                    <span class="text-danger error-text categories_error"></span>
                 </div>
-                <span class="text-danger error-text preferred_contact_error"></span>
-            </div>
 
-            <div class="mb-3">
-                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                <div class="g-recaptcha w-100" data-sitekey="{{ config('services.recaptcha.sitekey') }}">
+                <!-- Message (Full Width) -->
+                <div class="col-12">
+                    <textarea name="message" rows="3" class="form-control form-control-sm" placeholder="Message / Details"></textarea>
+                    <span class="text-danger error-text message_error"></span>
                 </div>
-                <span class="text-danger error-text g-recaptcha-response_error"></span>
+
+                <!-- Recaptcha -->
+                <div class="col-12">
+                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>
+                    <span class="text-danger error-text g-recaptcha-response_error"></span>
+                </div>
+
+                <!-- Submit -->
+                <div class="col-12">
+                    <button type="submit" class="service-submit-btn w-100">
+                        Submit Request
+                    </button>
+                </div>
+
             </div>
-
-            <button type="submit" class="service-submit-btn">
-                Submit Request
-            </button>
-
         </form>
+
     </div>
 </div>
