@@ -545,7 +545,7 @@
 
                     <!-- BUTTON -->
                     <div class="d-flex  justify-content-center w-75">
-                        <button class="co-btn ">
+                        <button class="co-btn " id="getProposalBtn">
                             Get Proposal <i class="bi bi-arrow-right ms-2"></i>
                         </button>
                     </div>
@@ -572,10 +572,11 @@
                     {!! $about->value_section_description !!}
 
                 </div>
-
-                <button class="talk-btn">
-                    Talk to Expert
-                </button>
+                <a href="{{ route('contact-us') }}">
+                    <button class="talk-btn">
+                        Talk to Expert
+                    </button>
+                </a>
             </div>
 
             <!-- RIGHT COLUMN (IMAGE) -->
@@ -598,7 +599,7 @@
                 @foreach ($about_cards as $card)
                     <div class="col-lg-6 col-md-6 animate-card">
                         <div class="card-box">
-                            <h3 class="about-card-title">{{ $card->title ?? '' }}</h3>
+                            <h3 class="about-card-title">{{ plainBracketText($card->title) ?? '' }}</h3>
                             <p class="about-card-text">
                                 {{ $card->description ?? '' }}
                             </p>
@@ -742,10 +743,11 @@
                         <div class="cta-contact-box">
                             {{-- <img src="left-icon.png" alt="left icon" class="contact-icon"> --}}
                             <span class="cta-contact-sp">|</span>
-
-                            <span class="cta-contact-text">
-                                Get In Touch With Mr-Biomed Tech Today!
-                            </span>
+                            <a href="{{ route('contact-us') }}">
+                                <span class="cta-contact-text">
+                                    Get In Touch With Mr-Biomed Tech Today!
+                                </span>
+                            </a>
 
                             <div class="cta-img-wraper">
                                 <img src="/frontend/images/rental/contact-img2.png" alt="right icon"

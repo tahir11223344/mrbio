@@ -10,7 +10,7 @@
             height: 583px;
             overflow: hidden;
             /* display: flex;
-                                                                                                                                                                                                    align-items: center; */
+                                                                                                                                                                                                                align-items: center; */
             /* padding-left: 60px;  */
             color: #fff;
         }
@@ -308,7 +308,7 @@
                         <p class="fade-right">
                             {{ $data->banner_short_description ?? '' }}
                         </p>
-                        <a href="#" class="service-btn fade-left">Schedule Your Service Today</a>
+                        <a href="javascript:void(0)" class="service-btn fade-left" data-open-service-modal>Schedule Your Service Today</a>
                     </div>
                 </div>
             </div>
@@ -351,7 +351,10 @@
                         eveniet est aliquid rerum ad commodi et veritatis
                         nobis!</p>
 
-                    <button class="expert-btn mt-4">Talk to Expert</button>
+                    <a href="{{ route('contact-us') }}">
+                        <button class="expert-btn mt-4">Talk to Expert</button>
+                    </a>
+
                 </div>
 
 
@@ -378,10 +381,11 @@
                         <div class="cta-contact-box">
                             {{-- <img src="left-icon.png" alt="left icon" class="contact-icon"> --}}
                             <span class="cta-contact-sp">|</span>
-
-                            <span class="cta-contact-text">
-                                Get In Touch With Mr-Biomed Tech Today!
-                            </span>
+                            <a href="{{ route('contact-us') }}">
+                                <span class="cta-contact-text">
+                                    Get In Touch With Mr-Biomed Tech Today!
+                                </span>
+                            </a>
 
                             <div class="cta-img-wraper">
                                 <img src="/frontend/images/rental/contact-img2.png" alt="right icon"

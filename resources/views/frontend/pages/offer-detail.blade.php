@@ -1,6 +1,11 @@
 @extends('frontend.layouts.frontend')
 
-@section('title', 'Repaire Sub page')
+{{-- @section('title', 'Offer') --}}
+
+@section('meta_title', $data->meta_title ?? 'Offer')
+@section('meta_keywords', $data->meta_keywords ?? '')
+@section('meta_description', $data->meta_description ?? '')
+
 
 @push('frontend-styles')
     <style>
@@ -415,7 +420,7 @@
 
                         <span class="breadcrumb-separator">|</span>
 
-                        <span class="breadcrumb-active"> Repaire Sub Page</span>
+                        <span class="breadcrumb-active"> {{ $data->slug }}</span>
                     </div>
                 </div>
 
@@ -434,7 +439,7 @@
                     <div class="image-slider">
                         {{-- <button class="prev-btn">&#10094;</button> --}}
 
-                        <img id="mainImage" src="{{ asset('storage/repair-pages/' . $data->content_thumbnail) }}"
+                        <img id="mainImage" src="{{ asset('storage/offers/thumbnails/' . $data->thumbnail) }}"
                             class="main-img">
 
                         {{-- <button class="next-btn">&#10095;</button> --}}
@@ -469,7 +474,7 @@
                     <h2 class="detail-heading">{!! highlightBracketText($data->content_title ?? '') !!}</h2>
                     {{-- {!! $data->content_description ?? ''!!} --}}
                     <div class="service-list">
-                        {!! $data->content_description ?? '' !!}
+                        {!! $data->description ?? '' !!}
                     </div>
 
                     <button class="quote-btn" data-open-service-modal>Request A Quote</button>
@@ -508,26 +513,6 @@
                         {!! $data->benefits_description ?? '' !!}
                     </div>
 
-                    {{-- <ul>
-                        <li class="austin-li"> nec Praesent libero, placerat nec non dignissim, viverra Lorem tempor vitae
-                            placerat nec non dignissim, viverra Lorem tempor vitae
-                            elit. viverra
-                            turpis</li>
-                        <li class="austin-li"> nec Praesent libero, placerat nec non dignissim, viverra Lorem tempor vitae
-                            placerat nec non dignissim, viverra Lorem tempor vitae
-                            elit. viverra
-                            turpis</li>
-                        <li class="austin-li"> nec Praesent libero, placerat nec non dignissim, viverra Lorem tempor vitae
-                            placerat nec non dignissim, viverra Lorem tempor vitae
-                            elit. viverra
-                            turpis</li>
-                        <li class="austin-li"> nec Praesent libero, placerat nec non dignissim, viverra Lorem tempor vitae
-                            placerat nec non dignissim, viverra Lorem tempor vitae
-                            elit. viverra
-                            turpis</li>
-                    </ul> --}}
-
-
                 </div>
             </div>
         </div>
@@ -542,31 +527,12 @@
                     <div class="section-text">
                         {!! $data->challenges_description ?? '' !!}
                     </div>
-                    {{-- <h2 class="common-title">Common Problems We Solve</h2>
-
-                    <ul class="problem-list">
-                        <li>Equipment malfunctions and calibration issues</li>
-                        <li>Radiation leakage and safety compliance problems</li>
-                        <li>Low-quality image output and exposure inconsistencies</li>
-                        <li>Preventive maintenance and annual inspections</li>
-
-                    </ul>
-
-                    <h3 class="pro-subtitle">Request Your Free Consultation Today</h3>
-
-                    <p class="section-text">
-                        Whether you're a private practice, dental clinic, or diagnostic center,
-                        we’re ready to support your imaging goals. Contact us for a free quote on
-                        our Dallas-based X-ray machine services.Contact us for a free quote on Contact us for a free quote
-                        on Contact us for a free quote on Contact us for a free quote on Contact us for a free quote on for
-                        a free quote on
-
-                    </p> --}}
+    
                 </div>
 
                 <!-- RIGHT COLUMN -->
                 <div class="col-lg-5 text-center">
-                    <img src="{{ asset('storage/repair-pages/' . $data->challenges_image) }}"
+                    <img src="{{ asset('storage/offers/challenges/' . $data->challenges_image) }}"
                         alt="{{ $data->challenges_image_alt ?? '' }}" class="right-img">
                 </div>
 
@@ -579,7 +545,7 @@
 
                 <!-- LEFT COLUMN -->
                 <div class="col-lg-6 text-center">
-                    <img src="{{ asset('storage/repair-pages/' . $data->cta_thumbnail) }}"
+                    <img src="{{ asset('storage/offers/cta/' . $data->cta_thumbnail) }}"
                         alt="{{ $data->cta_image_alt ?? '' }}" class="left-img">
                 </div>
 
@@ -589,17 +555,7 @@
                         {!! $data->cta_description ?? '' !!}
 
                     </div>
-                    {{-- <h3 class="top-heading">Onsite Medical Inspection Services</h3>
-
-                    <h2 class="main-heading">
-                        Let Us Get Your Facility Ready For Your Next Inspection
-                    </h2>
-
-                    <p class="description">
-                        “ Bio-Medical Service, Imaging Service and Local Repair. OEM-Quality Technical Support
-                        to meet your medical equipment Maintenance Need ”
-                    </p> --}}
-
+                    
                     <h4 class="appointment-title">Make an Appointment</h4>
 
                     @if (setting('phone'))
@@ -692,76 +648,5 @@
 
 @endsection
 @push('frontend-scripts')
-    {{-- <script>
-        const mainImage = document.getElementById("mainImage");
-        const thumbTrack = document.getElementById("thumbsTrack");
-
-        let offset = 0;
-        const visibleThumbs = 4;
-        const thumbWidth = 92;
-        let thumbElements = document.querySelectorAll(".thumb");
-
-        const totalPages = Math.ceil(thumbElements.length / visibleThumbs);
-        const paginationBar = document.getElementById("paginationBar");
-
-        // Create Pagination Segments
-        for (let i = 0; i < totalPages; i++) {
-            let seg = document.createElement("div");
-            seg.classList.add("pg-segment");
-            seg.dataset.page = i;
-            paginationBar.appendChild(seg);
-        }
-
-        const pgSegments = document.querySelectorAll(".pg-segment");
-
-        function setActivePage(page) {
-            pgSegments.forEach(seg => seg.classList.remove("active"));
-            pgSegments[page].classList.add("active");
-        }
-        setActivePage(0);
-
-        // Slide to page
-        function goToPage(page) {
-            offset = -(page * visibleThumbs * thumbWidth);
-            thumbTrack.style.transform = `translateX(${offset}px)`;
-            setActivePage(page);
-        }
-
-        // Pagination click
-        pgSegments.forEach(seg => {
-            seg.onclick = () => goToPage(parseInt(seg.dataset.page));
-        });
-
-        // Arrow Left
-        document.querySelector(".thumb-prev").onclick = () => {
-            let currentPage = Math.abs(offset / (visibleThumbs * thumbWidth));
-            if (currentPage > 0) goToPage(currentPage - 1);
-        };
-
-        // Arrow Right
-        document.querySelector(".thumb-next").onclick = () => {
-            let currentPage = Math.abs(offset / (visibleThumbs * thumbWidth));
-            if (currentPage < totalPages - 1) goToPage(currentPage + 1);
-        };
-
-        // ------------------------------
-        //  FIXED FUNCTION (Thumbnail Click)
-        // ------------------------------
-        function thumbClicked(src) {
-            // 1) Main image update
-            mainImage.src = src;
-
-            // 2) Clicked thumbnail ko dhoondo
-            const clickedThumb = [...thumbElements].find(t => t.src === src);
-
-            // 3) Us thumbnail ko track ke end me move karo
-            thumbTrack.appendChild(clickedThumb);
-
-            // 4) Thumbnail NodeList refresh (important)
-            thumbElements = document.querySelectorAll(".thumb");
-
-            // 5) Start se show karo (animation visible hota hai)
-            goToPage(0);
-        }
-    </script> --}}
+    
 @endpush

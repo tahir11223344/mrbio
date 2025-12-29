@@ -76,7 +76,13 @@
     @yield('frontend-content')
 
     {{-- Global Service Request Modal --}}
-    {{-- <x-service-request-modal /> --}}
+    <x-service-request-modal />
+
+    {{-- Global Buy Form Modal --}}
+    <x-product-buy-form-modal />
+
+    {{-- Global Get A Quote Form Modal --}}
+    <x-get-a-quote-form-modal />
 
     @include('frontend.layouts.partials.footer')
 

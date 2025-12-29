@@ -2,6 +2,7 @@
 
 use App\Models\Faq;
 use App\Models\GeneralSetting;
+use App\Models\State;
 use Illuminate\Support\Facades\Cache;
 
 if (!function_exists('theme')) {
@@ -732,5 +733,34 @@ if (!function_exists('getConsultancyServicesList')) {
         $services[] = $other;
 
         return $services;
+    }
+}
+
+
+if (!function_exists('getPriorityCountries')) {
+    function getPriorityCountries()
+    {
+        return [
+            ['id' => 39,  'name' => 'Canada'],
+            ['id' => 232, 'name' => 'United Kingdom'],
+            ['id' => 233, 'name' => 'United States'],
+            ['id' => 14,  'name' => 'Australia'],
+        ];
+    }
+}
+
+if (!function_exists('getPriorityStates')) {
+    function getPriorityStates()
+    {
+        $priorityCountries = getPriorityCountries();
+        $countryIds = collect($priorityCountries)->pluck('id')->toArray();
+
+        return \Illuminate\Support\Facades\Cache::rememberForever('footer_priority_states', function () use ($countryIds) {
+            return State::query()
+                ->whereIn('country_id', $countryIds)
+                ->where('is_active', 1)
+                ->orderBy('name')
+                ->get(['id', 'name', 'country_id']);
+        });
     }
 }

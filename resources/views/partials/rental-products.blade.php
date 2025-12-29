@@ -13,7 +13,7 @@
             @endif
 
             {!! $product->description ?? '' !!}
-            <button class="btn-get">Get Now</button>
+            <button class="btn-get" data-slug="{{ $product->slug ?? '' }}" data-open-form>Get Now</button>
         </div>
     </div>
 

@@ -20,14 +20,16 @@
 
                         @foreach ($offers as $offer)
                             <div class="offer-card">
-                                <img src="{{ asset('storage/offers/thumbnails/' . $offer->thumbnail) }}"
+                                <img src="{{ $offer->thumbnail ? asset('storage/offers/thumbnails/' . $offer->thumbnail) : '' }}"
                                     alt="{{ $offer->image_alt ?? '' }}" class="card-img img-fluid">
 
                                 <h4 class="card-title">{{ $offer->title }}</h4>
                                 <hr>
                                 <p class="card-desc">
                                     {{ \Illuminate\Support\Str::limit($offer->short_description, 110) }}</p>
-                                <button class="read-btn">Read More</button>
+                                <a href="{{ route('offer.detail', $offer->slug) }}">
+                                    <button class="read-btn">Read More</button>
+                                </a>
                             </div>
                         @endforeach
 

@@ -4,20 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ContactUsFormInquiry extends Model
+class BuyProductForm extends Model
 {
-
-    protected $table = 'contact_us_form_inquiries';
-
     protected $fillable = [
+        'product_id',
         'name',
         'email',
-        'phone',
         'state_id',
         'city_id',
-        'service',
         'message',
+        'ip_address',
+        'user_agent',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
 
     public function state()
     {

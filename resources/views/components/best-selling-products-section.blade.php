@@ -102,21 +102,6 @@
         </div>
 
         <!-- Category Buttons -->
-        {{-- <div class="row g-4 justify-content-center mb-4">
-
-            <!-- ALL Button -->
-            <div class="col-auto">
-                <button class="cat-btn active" data-slug="all">All</button>
-            </div>
-
-            @foreach ($categories as $category)
-                <div class="col-auto">
-                    <button class="cat-btn" data-slug="{{ $category->slug }}">
-                        {{ $category->name }}
-                    </button>
-                </div>
-            @endforeach
-        </div> --}}
         <div class="category-slider-wrapper position-relative mb-4">
 
             <!-- PREV -->
@@ -148,7 +133,6 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
-
 
     </div>
 
@@ -290,20 +274,6 @@
             updateVisibleItems();
             updateSlider();
         });
-        const catButtons = document.querySelectorAll('.cat-btn');
-
-        catButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-
-                catButtons.forEach(b => b.classList.remove('active'));
-
-                btn.classList.add('active');
-
-                const slug = btn.dataset.slug;
-                console.log('Selected category:', slug);
-            });
-        });
-
 
         updateVisibleItems();
         updateSlider();

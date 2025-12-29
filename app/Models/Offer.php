@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Offer extends Model
 {
     use SoftDeletes;
-    
+
     protected $fillable = [
         'title',
         'slug',
 
         // Descriptions
         'short_description',
+        'content_title',
         'description',
 
         // Media
@@ -24,6 +25,24 @@ class Offer extends Model
 
         // Status
         'is_active',
+
+        // How We Serve
+        'serve_heading',
+        'serve_description',
+
+        // Benefits
+        'benefits_heading',
+        'benefits_description',
+
+        // Challenges
+        'challenges_image',
+        'challenges_image_alt',
+        'challenges_description',
+
+        // CTA Section
+        'cta_thumbnail',
+        'cta_image_alt',
+        'cta_description',
 
         // SEO
         'meta_title',

@@ -389,6 +389,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/list', 'consultancyList')->name('list');
         Route::delete('/{id}/destroy', 'consultancydestroy')->name('destroy');
     });
+
+    Route::controller(InquiryController::class)->prefix('admin/buy-product-form')->as('admin.buy.product.')->group(function () {
+        Route::get('/list', 'productFormList')->name('list');
+        Route::delete('/{id}/destroy', 'productFormDestroy')->name('destroy');
+    });
 });
 
 Route::get('/error', function () {

@@ -93,6 +93,9 @@ class AppServiceProvider extends ServiceProvider
             ];
 
             // Extract IDs for query
+            // $countryIds = collect($priorityCountries)->pluck('id')->toArray();
+
+            $priorityCountries = getPriorityCountries();
             $countryIds = collect($priorityCountries)->pluck('id')->toArray();
 
             // ---- Fetch states from DB based on these IDs ----

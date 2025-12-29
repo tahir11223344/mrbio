@@ -170,157 +170,6 @@
         .services-panel.active {
             display: block;
         }
-
-        /* ============= service form ========================= */
-
-        .service-modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.3);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .service-modal-overlay.active {
-            display: flex;
-        }
-
-        /* 🔹 Modal box compact */
-        .service-modal-box {
-            width: 100%;
-            max-width: 480px;
-            padding: 20px;
-            border-radius: 14px;
-            /* background: linear-gradient(135deg, #FFFFFF, #5BC3C4); */
-            background: linear-gradient(to right, #66b9e2, #7DAAC0);
-
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-            scrollbar-width: none;
-            /* Firefox */
-            -ms-overflow-style: none;
-        }
-
-        .service-modal-box::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* .checkbox-group {
-                                        max-height: 90px;
-                                        overflow-y: auto;
-                                    } */
-
-        /* 🔹 Heading compact */
-        .service-modal-heading {
-            text-align: center;
-            margin-bottom: 12px;
-            /* kam margin */
-            font-size: 20px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* 🔹 Inputs compact */
-
-
-        .service-form input,
-        .service-form select,
-        .service-form textarea {
-            width: 100%;
-            padding: 8px 10px;
-            /* kam padding */
-            margin-bottom: 12px;
-            /* kam gap */
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .checkbox-group input,
-        .radio-group input {
-            margin: 0;
-            width: 12px;
-            height: 12px;
-            flex-shrink: 0;
-        }
-
-        /* 🔹 Textarea choti */
-        .service-form textarea {
-            resize: none;
-            max-height: 80px;
-        }
-
-        /* 🔹 Group spacing reduced */
-        .form-group {
-            margin-bottom: 8px;
-        }
-
-        /* 🔹 Checkbox & radio compact */
-        .checkbox-group,
-        .radio-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-
-        .checkbox-group label,
-        .radio-group label {
-            font-size: 11px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            line-height: 1.3;
-            white-space: nowrap;
-        }
-
-
-        /* 🔹 Submit button compact */
-        .service-submit-btn {
-            width: 100%;
-            padding: 10px;
-            background: linear-gradient(90deg, #006A9E, #d81212);
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-        }
-
-        .service-submit-btn:hover {
-            transform: scale(1.01);
-        }
-
-        /* 🔹 Close icon */
-        .service-modal-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-
-            width: 32px;
-            height: 32px;
-
-            display: grid;
-            place-items: center;
-
-            font-size: 18px;
-            line-height: 1;
-
-            cursor: pointer;
-            color: red;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-
-        .service-modal-close:hover {
-            background-color: #FE0000;
-            color: #FFFFFF;
-        }
     </style>
 @endpush
 
@@ -744,9 +593,13 @@
                     </p>
 
                     <div class="text-start mt-4">
-                        <button class=" get-btn fade-right">
-                            Get in Touch with Us Today!
-                        </button>
+                        <a href="{{ route('contact-us') }}">
+                            <button class=" get-btn fade-right">
+                                Get in Touch with Us Today!
+                            </button>
+                        </a>
+
+
                     </div>
                 </div>
 

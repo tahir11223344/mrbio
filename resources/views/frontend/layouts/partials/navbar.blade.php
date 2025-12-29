@@ -159,7 +159,9 @@
                                                 <p>Our reputation is based on integrity, honesty, and reliability for
                                                     selling new medical equipment, pre-owned medical equipment, and
                                                     disposition services.</p>
-                                                <button class="nav-mega-btn">Talk To Expert</button>
+                                                <a href="{{ route('contact-us') }}">
+                                                    <button class="nav-mega-btn">Talk To Expert</button>
+                                                </a>
                                             </div>
 
                                             <h6 class="nav-repair-title mt-4">
@@ -209,7 +211,9 @@
                                             <p class="mt-3"><a href="#" class="bottomm">Nearby
                                                     communities</a>
                                             </p>
-                                            <button class="nav-mega-btn mt-3">Talk To Expert</button>
+                                            <a href="{{ route('contact-us') }}">
+                                                <button class="nav-mega-btn mt-3">Talk To Expert</button>
+                                            </a>
                                         </div>
                                     @endforeach
                                 </div>

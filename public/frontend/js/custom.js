@@ -67,34 +67,261 @@ $(document).ready(function () {
 
 });
 
+//Servies Modal JS
 document.addEventListener('DOMContentLoaded', () => {
 
     const modal = document.getElementById('serviceModal');
-    if (!modal) return; // safety check
+    if (!modal) return;
 
-    // OPEN MODAL (event delegation)
+    const closeBtn = modal.querySelector('.service-modal-close');
+    const form = document.getElementById('serviceRequestForm');
+
+    // Function to clear errors
+    const clearErrors = () => {
+        modal.querySelectorAll('.error-text').forEach(span => {
+            span.textContent = '';
+        });
+    };
+
+    // Function to reset form fields
+    const resetForm = () => {
+        form.reset();
+        if (window.grecaptcha) {
+            grecaptcha.reset(); // reset reCAPTCHA
+        }
+    };
+
+    // OPEN MODAL
     document.body.addEventListener('click', function (e) {
         const btn = e.target.closest('[data-open-service-modal]');
         if (btn) {
             modal.classList.add('active');
         }
-    });
 
-    // CLOSE MODAL (X)
-    const closeBtn = modal.querySelector('.service-modal-close');
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
+        // CLOSE MODAL (X button)
+        if (e.target === closeBtn) {
             modal.classList.remove('active');
-        });
-    }
+            clearErrors();
+            resetForm();
+        }
 
-    // CLOSE ON OUTSIDE CLICK
-    modal.addEventListener('click', (e) => {
+        // CLOSE MODAL (click outside modal box)
         if (e.target === modal) {
             modal.classList.remove('active');
+            clearErrors();
+            resetForm();
         }
     });
 
+    // AJAX FORM SUBMISSION
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        clearErrors(); // remove old errors
+
+        const formData = new FormData(form);
+        const actionUrl = form.getAttribute('action');
+
+        fetch(actionUrl, {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: formData
+        })
+            .then(async response => {
+                const data = await response.json();
+
+                if (!response.ok) {
+                    // Handle validation errors (422)
+                    if (response.status === 422 && data.errors) {
+                        Object.keys(data.errors).forEach(key => {
+                            const errorSpan = form.querySelector(`.${key}_error`);
+                            if (errorSpan) {
+                                errorSpan.textContent = data.errors[key][0];
+                            }
+                        });
+                    } else {
+                        // Server error
+                        alert(data.message || 'Something went wrong. Please try again later.');
+                    }
+                } else if (data.success) {
+                    // Success
+                    resetForm();
+                    modal.classList.remove('active');
+
+                    // Show toast
+                    if (typeof toastr !== 'undefined') {
+                        toastr.success(data.message);
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            })
+            .catch(err => {
+                console.error('AJAX error:', err);
+                alert('Something went wrong. Please try again later.');
+            });
+    });
+
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const modal = document.getElementById('getAQuoteFormOverlay');
+    if (!modal) return;
+
+    const closeBtn = modal.querySelector('.close-form');
+    const form = modal.querySelector('#getAQuoteForm');
+
+    /* ================= HELPERS ================= */
+
+    // Clear validation errors
+    const clearErrors = () => {
+        modal.querySelectorAll('.error-text').forEach(el => {
+            el.textContent = '';
+        });
+
+        modal.querySelectorAll('.invalid-feedback').forEach(el => {
+            el.remove();
+        });
+    };
+
+    // Reset form fields
+    const resetForm = () => {
+        if (form) form.reset();
+
+        if (window.grecaptcha) {
+            grecaptcha.reset();
+        }
+    };
+
+    // Show field errors under inputs
+    const showErrors = (errors) => {
+        Object.keys(errors).forEach(key => {
+
+            const errorClass = key.replace(/\./g, '-') + '_error';
+            const errorEl = form.querySelector('.' + errorClass);
+
+            if (errorEl) {
+                errorEl.textContent = errors[key][0];
+            } else {
+                const input = form.querySelector(`[name="${key}"]`);
+                if (input) {
+                    const div = document.createElement('div');
+                    div.className = 'invalid-feedback d-block';
+                    div.textContent = errors[key][0];
+                    input.after(div);
+                }
+            }
+        });
+    };
+
+    /* ================= OPEN / CLOSE MODAL ================= */
+
+    document.body.addEventListener('click', (e) => {
+
+        // OPEN MODAL
+        const openBtn = e.target.closest('[data-open-get-quote]');
+        if (openBtn) {
+            e.preventDefault();
+            modal.classList.add('active');
+            return;
+        }
+
+        // CLOSE MODAL (X button)
+        if (e.target === closeBtn) {
+            modal.classList.remove('active');
+            clearErrors();
+            resetForm();
+            return;
+        }
+
+        // CLOSE MODAL (outside click)
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            clearErrors();
+            resetForm();
+        }
+    });
+
+    /* ================= SUBMIT FORM (AJAX) ================= */
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        clearErrors();
+
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: formData
+        })
+            .then(async response => {
+
+                // Validation error
+                if (response.status === 422) {
+                    const data = await response.json();
+                    showErrors(data.errors);
+
+                    if (window.toastr) {
+                        toastr.error('Please fix the errors in the form.');
+                    }
+                    return;
+                }
+
+                // Server error
+                if (!response.ok) {
+                    throw new Error('Server error');
+                }
+
+                return response.json();
+            })
+            .then(data => {
+                if (!data) return;
+
+                if (data.success) {
+
+                    resetForm();
+                    modal.classList.remove('active');
+
+                    if (window.toastr) {
+                        toastr.success(data.message);
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            })
+            .catch(() => {
+                if (window.toastr) {
+                    toastr.error('Something went wrong. Please try again later.');
+                } else {
+                    alert('Something went wrong. Please try again later.');
+                }
+            });
+    });
+
+});
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const btn = document.getElementById('getProposalBtn');
+    const footer = document.getElementById('footerSection');
+
+    if (!btn || !footer) return;
+
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        footer.scrollIntoView({ behavior: 'smooth' });
+    });
 });
 
 
@@ -510,6 +737,8 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener('DOMContentLoaded', function () {
     loadCities('footer_state', 'footer_city');
     loadCities('form_state', 'form_city');
+    loadCities('modal_form_state', 'modal_form_city');
+    loadCities('get_quote_form_state', 'get_quote_form_city');
 });
 
 
@@ -538,7 +767,7 @@ function loadCities(stateSelectId, citySelectId) {
 
                 // API error
                 if (!response.status) {
-                    citySelect.innerHTML = `<option>No City Found</option>`;
+                    citySelect.innerHTML = `<option value="" disabled selected>No City Found</option>`;
                     return;
                 }
 
@@ -546,7 +775,7 @@ function loadCities(stateSelectId, citySelectId) {
 
                 // No cities case
                 if (Object.keys(cities).length === 0) {
-                    citySelect.innerHTML = '<option>No City Found</option>';
+                    citySelect.innerHTML = '<option value="" disabled selected>No City Found</option>';
                     return;
                 }
 
@@ -561,7 +790,7 @@ function loadCities(stateSelectId, citySelectId) {
                 });
             })
             .catch(() => {
-                citySelect.innerHTML = '<option>Error loading cities</option>';
+                citySelect.innerHTML = '<option value="" disabled selected>Error loading cities</option>';
             });
     });
 }
@@ -811,42 +1040,90 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// ============= moddel open js =====================
+// ============= Buy Product moddel open js =====================
 
 document.addEventListener('DOMContentLoaded', function () {
 
     const overlay = document.getElementById('buyFormOverlay');
-
-    // Agar overlay exist hi nahi karta to script stop
     if (!overlay) return;
 
-    const openBtns = document.querySelectorAll('[data-open-form]');
+    const form = overlay.querySelector('.buy-form');
     const closeBtn = overlay.querySelector('.close-form');
 
-    // Open form
-    openBtns.forEach(btn => {
-        btn.addEventListener('click', function (e) {
+    // ================= OPEN / CLOSE MODAL =================
+    document.body.addEventListener('click', function (e) {
+
+        const btn = e.target.closest('[data-open-form]');
+        if (btn) {
             e.preventDefault();
             overlay.classList.add('active');
-        });
-    });
 
-    // Close form (close button)
-    if (closeBtn) {
-        closeBtn.addEventListener('click', function () {
-            overlay.classList.remove('active');
-        });
-    }
+            const slug = btn.dataset.slug ?? '';
+            document.getElementById('product_slug').value = slug;
+        }
 
-    // Close form (overlay background click)
-    overlay.addEventListener('click', function (e) {
-        if (e.target === overlay) {
-            overlay.classList.remove('active');
+        // Close modal
+        if (e.target === closeBtn || e.target === overlay) {
+            closeModal();
         }
     });
 
-});
+    function closeModal() {
+        overlay.classList.remove('active');
+        resetForm();
+    }
 
+    function resetForm() {
+        form.reset();
+        document.getElementById('product_slug').value = '';
+
+        // remove errors
+        overlay.querySelectorAll('.error-text').forEach(el => el.innerText = '');
+    }
+
+    // ================= FORM SUBMIT AJAX =================
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        let formData = new FormData(form);
+
+        // clear previous errors
+        overlay.querySelectorAll('.error-text').forEach(el => el.innerText = '');
+
+        fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name=_token]').value,
+                'Accept': 'application/json',
+            },
+            body: formData
+        })
+            .then(async response => {
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw data;
+                }
+                return response.json();
+            })
+            .then(res => {
+                toastr.success(res.message);
+                closeModal();
+            })
+            .catch(err => {
+                if (err.errors) {
+                    Object.keys(err.errors).forEach(key => {
+                        const errorEl = overlay.querySelector(`.${key}_error`);
+                        if (errorEl) {
+                            errorEl.innerText = err.errors[key][0];
+                        }
+                    });
+                } else {
+                    toastr.error('Something went wrong');
+                }
+            });
+    });
+
+});
 
 
 // ====================== home category slider ===============================
@@ -858,7 +1135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.querySelector('.cat-nav.prev');
     const nextBtn = document.querySelector('.cat-nav.next');
 
-     // Agar slider hi nahi hai to exit
+    // Agar slider hi nahi hai to exit
     if (!sliderRow || !items.length || !prevBtn || !nextBtn) return;
 
     let currentIndex = 0;

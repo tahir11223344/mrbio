@@ -563,7 +563,7 @@
                     </div>
 
                     <div class="d-flex gap-4 mt-5 ">
-                        <a href="#" class=" btn-primary-custom fade-left">Request a Quote Today!</a>
+                        <a href="javascript:void(0)" class=" btn-primary-custom fade-left" data-open-service-modal>Request a Quote Today!</a>
                         <a href="#review-cards-section" class="btn-outline-custom fade-right">Reviews</a>
                     </div>
 

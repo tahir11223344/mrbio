@@ -28,7 +28,7 @@
                         <div class="row">
 
                             <!-- offer Title -->
-                            <div class="col-lg-12 mb-4">
+                            <div class="col-lg-6 mb-4">
                                 <label for="title"
                                     class="form-label fw-semibold required">{{ __('Offer Title') }}</label>
                                 <input type="text" id="title" name="title"
@@ -40,7 +40,7 @@
                             </div>
 
                             <!-- offer Slug -->
-                            <div class="col-lg-12 mb-4">
+                            <div class="col-lg-6 mb-4">
                                 <label for="slug"
                                     class="form-label fw-semibold required">{{ __('Offer slug') }}</label>
                                 <input type="text" id="slug" name="slug"
@@ -59,6 +59,17 @@
                                 <textarea id="short_description" name="short_description"
                                     class="form-control form-control-lg @error('short_description') is-invalid @enderror" rows="3">{{ old('short_description', $data->short_description ?? '') }}</textarea>
                                 @error('short_description')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-12 mb-4">
+                                <label for="content_title"
+                                    class="form-label fw-semibold required">{{ __('Content Title') }}</label>
+                                <input type="text" id="content_title" name="content_title"
+                                    class="form-control form-control-lg @error('content_title') is-invalid @enderror"
+                                    value="{{ old('content_title', $data->content_title ?? '') }}" required>
+                                @error('content_title')
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -152,6 +163,141 @@
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
+
+                            <hr class="mt-5 mb-5">
+
+                            <h3 class="fw-bolder mb-5">{{ __('How we Serve') }}</h3>
+
+                            <div class="col-lg-12 mb-4">
+                                <label for="serve_heading" class="form-label fw-semibold">{{ __('Heading') }}</label>
+                                <input type="text" id="serve_heading" name="serve_heading"
+                                    class="form-control form-control-lg @error('serve_heading') is-invalid @enderror"
+                                    value="{{ old('serve_heading', $data->serve_heading ?? '') }}">
+                                @error('serve_heading')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Description -->
+                            <div class="col-lg-12 mb-4">
+                                <label for="serve_description"
+                                    class="form-label fw-semibold">{{ __('Description') }}</label>
+                                <textarea id="serve_description" name="serve_description"
+                                    class="ckeditor form-control form-control-lg @error('serve_description') is-invalid @enderror" rows="5">{{ old('serve_description', $data->serve_description ?? '') }}</textarea>
+                                @error('serve_description')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <hr class="mt-5 mb-5">
+
+                            <h3 class="fw-bolder mb-5">{{ __('Benefits') }}</h3>
+
+                            <div class="col-lg-12 mb-4">
+                                <label for="benefits_heading"
+                                    class="form-label fw-semibold">{{ __('Heading') }}</label>
+                                <input type="text" id="benefits_heading" name="benefits_heading"
+                                    class="form-control form-control-lg @error('benefits_heading') is-invalid @enderror"
+                                    value="{{ old('benefits_heading', $data->benefits_heading ?? '') }}">
+                                @error('benefits_heading')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Description -->
+                            <div class="col-lg-12 mb-4">
+                                <label for="benefits_description"
+                                    class="form-label fw-semibold">{{ __('Description') }}</label>
+                                <textarea id="benefits_description" name="benefits_description"
+                                    class="ckeditor form-control form-control-lg @error('benefits_description') is-invalid @enderror" rows="5">{{ old('benefits_description', $data->benefits_description ?? '') }}</textarea>
+                                @error('benefits_description')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <hr class="mt-5 mb-5">
+                            <h3 class="fw-bolder mb-5">{{ __('Common Challenges We Solve') }}</h3>
+
+                            <!-- Image -->
+                            <div class="col-lg-6 mb-4">
+                                <label for="challenges_image"
+                                    class="form-label fw-semibold">{{ __('Image') }}</label>
+                                <input type="file" id="challenges_image" name="challenges_image"
+                                    class="form-control form-control-lg @error('challenges_image') is-invalid @enderror">
+                                @if (isset($data->challenges_image) && $data->challenges_image)
+                                    <img src="{{ asset('storage/offers/challenges/' . $data->challenges_image) }}"
+                                        alt="challenges_image" class="img-challenges_image mt-2" width="100">
+                                @endif
+                                @error('challenges_image')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6 mb-4">
+                                <label for="challenges_image_alt"
+                                    class="form-label fw-semibold">{{ __('Image Alt') }}</label>
+                                <input type="text" id="challenges_image_alt" name="challenges_image_alt"
+                                    class="form-control form-control-lg @error('challenges_image_alt') is-invalid @enderror"
+                                    value="{{ old('challenges_image_alt', $data->challenges_image_alt ?? '') }}">
+                                @error('challenges_image_alt')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Description -->
+                            <div class="col-lg-12 mb-4">
+                                <label for="challenges_description"
+                                    class="form-label fw-semibold">{{ __('Description') }}</label>
+                                <textarea id="challenges_description" name="challenges_description"
+                                    class="ckeditor form-control form-control-lg @error('challenges_description') is-invalid @enderror"
+                                    rows="5">{{ old('challenges_description', $data->challenges_description ?? '') }}</textarea>
+                                @error('challenges_description')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <hr class="mt-5 mb-5">
+
+                            <h3 class="fw-bolder mb-5">{{ __('CTA Section') }}</h3>
+
+                            <!-- Thumbnail -->
+                            <div class="col-lg-6 mb-4">
+                                <label for="cta_thumbnail"
+                                    class="form-label fw-semibold">{{ __('Thumbnail Image') }}</label>
+                                <input type="file" id="cta_thumbnail" name="cta_thumbnail"
+                                    class="form-control form-control-lg @error('cta_thumbnail') is-invalid @enderror">
+                                @if (isset($data->cta_thumbnail) && $data->cta_thumbnail)
+                                    <img src="{{ asset('storage/offers/cta/' . $data->cta_thumbnail) }}"
+                                        alt="cta_thumbnail" class="img-cta_thumbnail mt-2" width="100">
+                                @endif
+                                @error('cta_thumbnail')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-lg-6 mb-4">
+                                <label for="cta_image_alt"
+                                    class="form-label fw-semibold">{{ __('Image Alt') }}</label>
+                                <input type="text" id="cta_image_alt" name="cta_image_alt"
+                                    class="form-control form-control-lg @error('cta_image_alt') is-invalid @enderror"
+                                    value="{{ old('cta_image_alt', $data->cta_image_alt ?? '') }}">
+                                @error('cta_image_alt')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Description -->
+                            <div class="col-lg-12 mb-4">
+                                <label for="cta_description"
+                                    class="form-label fw-semibold">{{ __('Description') }}</label>
+                                <textarea id="cta_description" name="cta_description"
+                                    class="ckeditor form-control form-control-lg @error('cta_description') is-invalid @enderror" rows="5">{{ old('cta_description', $data->cta_description ?? '') }}</textarea>
+                                @error('cta_description')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <hr class="mt-5 mb-5">
 
                             <!-- SEO -->
                             <div class="col-lg-6 mb-4">
@@ -263,16 +409,44 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                ClassicEditor
-                    .create(document.querySelector('#offer_description'), {
-                        ckfinder: {
-                            uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=offers/ckeditor"
-                        }
-                    })
-                    .then(editor => {
-                        console.log(`CKEditor initialized for #offer_description`);
-                    })
-                    .catch(error => console.error(error));
+                const editors = [{
+                        id: 'offer_description',
+                        uploadDir: 'offers/ckeditor'
+                    },
+                    {
+                        id: 'serve_description',
+                        uploadDir: 'offers/ckeditor'
+                    },
+                    {
+                        id: 'benefits_description',
+                        uploadDir: 'offers/ckeditor'
+                    },
+                    {
+                        id: 'challenges_description',
+                        uploadDir: 'offers/ckeditor'
+                    },
+                    {
+                        id: 'cta_description',
+                        uploadDir: 'offers/ckeditor'
+                    }
+                ];
+
+                editors.forEach(editorConfig => {
+                    const el = document.querySelector(`#${editorConfig.id}`);
+                    if (el) {
+                        ClassicEditor
+                            .create(el, {
+                                ckfinder: {
+                                    uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=" +
+                                        editorConfig.uploadDir
+                                }
+                            })
+                            .then(editorInstance => {
+                                console.log(`CKEditor initialized for #${editorConfig.id}`);
+                            })
+                            .catch(error => console.error(`CKEditor error for #${editorConfig.id}:`, error));
+                    }
+                });
             });
         </script>
     @endpush

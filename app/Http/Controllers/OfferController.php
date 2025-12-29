@@ -39,11 +39,27 @@ class OfferController extends Controller
             'title'             => 'required|string|max:255',
             'slug'              => 'required|string|max:255|unique:offers,slug',
             'short_description' => 'nullable|string',
+            'content_title'     => 'required|string|max:255',
             'description'       => 'nullable|string',
             'is_active'         => 'required|in:0,1',
             'thumbnail'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:300',
             'gallery_images.*'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:300',
             'image_alt'         => 'nullable|string',
+
+            'serve_heading'       => 'nullable|string',
+            'serve_description'   => 'nullable|string',
+
+            'benefits_heading'    => 'nullable|string',
+            'benefits_description' => 'nullable|string',
+
+            'challenges_image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:300',
+            'challenges_image_alt'    => 'nullable|string|max:255',
+            'challenges_description'  => 'nullable|string',
+
+            'cta_thumbnail'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:300',
+            'cta_image_alt'       => 'nullable|string|max:255',
+            'cta_description'     => 'nullable|string',
+
             'meta_title'        => 'nullable|string|max:255',
             'meta_keywords'     => 'nullable|string|max:255',
             'meta_description'  => 'nullable|string',
@@ -57,6 +73,7 @@ class OfferController extends Controller
             $offer->slug = Str::slug($request->slug);
 
             $offer->short_description = $request->short_description;
+            $offer->content_title = $request->content_title;
             $offer->description = $request->description;
             $offer->is_active = $request->is_active;
 
@@ -73,6 +90,32 @@ class OfferController extends Controller
             }
 
             $offer->image_alt = $request->image_alt;
+
+            // How We Serve
+            $offer->serve_heading = $request->serve_heading;
+            $offer->serve_description = $request->serve_description;
+            // Benefits
+            $offer->benefits_heading = $request->benefits_heading;
+            $offer->benefits_description = $request->benefits_description;
+            // Challenges
+            $challengesImage = null;
+            if ($request->hasFile('challenges_image')) {
+                $challengesImage = $this->uploadImage($request->file('challenges_image'), 'offers/challenges');
+            }
+
+
+            $offer->challenges_image = $challengesImage;
+            $offer->challenges_image_alt = $request->challenges_image_alt;
+            $offer->challenges_description = $request->challenges_description;
+            // CTA Section
+            $ctaThumbnail = null;
+            if ($request->hasFile('cta_thumbnail')) {
+                $ctaThumbnail = $this->uploadImage($request->file('cta_thumbnail'), 'offers/cta');
+            }
+            $offer->cta_thumbnail = $ctaThumbnail;
+            $offer->cta_image_alt = $request->cta_image_alt;
+            $offer->cta_description = $request->cta_description;
+
             // SEO
             $offer->meta_title = $request->meta_title;
             $offer->meta_keywords = $request->meta_keywords;
@@ -132,10 +175,25 @@ class OfferController extends Controller
             'slug'              => 'required|string|max:255|unique:offers,slug,' . $offer->id,
             'short_description' => 'nullable|string',
             'description'       => 'nullable|string',
+            'content_title'     => 'required|string|max:255',
             'is_active'         => 'required|in:0,1',
             'thumbnail'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:300',
             'gallery_images.*'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:300',
             'image_alt'         => 'nullable|string',
+
+            'serve_heading' => 'nullable|string',
+            'serve_description' => 'nullable|string',
+            'benefits_heading' => 'nullable|string',
+            'benefits_description' => 'nullable|string',
+
+            'challenges_image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:300',
+            'challenges_image_alt'    => 'nullable|string|max:255',
+            'challenges_description'  => 'nullable|string',
+
+            'cta_thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:300',
+            'cta_image_alt' => 'nullable|string|max:255',
+            'cta_description' => 'nullable|string',
+
             'meta_title'        => 'nullable|string|max:255',
             'meta_keywords'     => 'nullable|string|max:255',
             'meta_description'  => 'nullable|string',
@@ -143,12 +201,17 @@ class OfferController extends Controller
 
         DB::beginTransaction();
 
+        $challengesImage = $this->updateImage($request, 'challenges_image', 'offers/challenges', $offer->challenges_image);
+        $ctaThumbnail = $this->updateImage($request, 'cta_thumbnail', 'offers/cta', $offer->cta_thumbnail);
+
+
         try {
 
             $offer->title = $request->title;
             $offer->slug = Str::slug($request->slug);
 
             $offer->short_description = $request->short_description;
+            $offer->content_title = $request->content_title;
             $offer->description = $request->description;
             $offer->is_active = $request->is_active;
 
@@ -167,6 +230,22 @@ class OfferController extends Controller
             $offer->gallery_images = json_encode($existingGallery);
 
             $offer->image_alt = $request->image_alt;
+
+            // How We Serve
+            $offer->serve_heading = $request->serve_heading;
+            $offer->serve_description = $request->serve_description;
+            // Benefits
+            $offer->benefits_heading = $request->benefits_heading;
+            $offer->benefits_description = $request->benefits_description;
+            // Challenges
+            $offer->challenges_image = $challengesImage;
+            $offer->challenges_image_alt = $request->challenges_image_alt;
+            $offer->challenges_description = $request->challenges_description;
+            // CTA Section
+            $offer->cta_thumbnail = $ctaThumbnail;
+            $offer->cta_image_alt = $request->cta_image_alt;
+            $offer->cta_description = $request->cta_description;
+
             // SEO
             $offer->meta_title = $request->meta_title;
             $offer->meta_keywords = $request->meta_keywords;
@@ -288,5 +367,32 @@ class OfferController extends Controller
 
             return back()->withErrors(['error' => 'Failed to delete the offer: ' . $e->getMessage()]);
         }
+    }
+
+    public function offerDetail($slug)
+    {
+        // Fetch the sub-page using DB category and slug
+        $data = Offer::where('slug', $slug)
+            ->where('is_active', true)
+            ->first();
+
+        // Merge images
+        merge_images(
+            $data,
+            'thumbnail',
+            'gallery_images',
+            'all_images',
+            'storage/offers/thumbnails',          // thumbnail path
+            'storage/offers/gallery'   // gallery path
+        );
+
+        // If page not found → 404
+        if (!$data) {
+            abort(404, 'The requested offer was not found.');
+        }
+
+        $faqs = getFaqs('offer');
+
+        return view('frontend.pages.offer-detail', compact('data', 'faqs'));
     }
 }

@@ -25,7 +25,7 @@
                             <div class="col-lg-3 col-md-6 animate-card">
                                 <div class="xray-card p-3">
                                     <h3 class="xray-title reveal-lines">
-                                        {{ $item->title ?? '' }}
+                                        {{ plainBracketText($item->title) ?? '' }}
                                     </h3>
 
                                     <p class="xray-desc ">

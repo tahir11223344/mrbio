@@ -2,8 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\ContactUsFormInquiry;
-use App\Models\ContactUsInquiryForm;
+use App\Models\BuyProductForm;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -14,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ContactUsInquiryFormDataTable extends DataTable
+class BuyProductFormDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -24,27 +23,30 @@ class ContactUsInquiryFormDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->editColumn('phone', fn($contactForm) => $contactForm->phone ?? '-')
+            ->editColumn(
+                'product_id',
+                fn($p) => $p->product?->name ?? '-'
+            )
 
             ->editColumn(
                 'state',
-                fn($contactForm) =>
-                $contactForm->state?->name ?? '-'
+                fn($p) =>
+                $p->state?->name ?? '-'
             )
             ->editColumn(
                 'city',
-                fn($contactForm) =>
-                $contactForm->city?->name ?? '-'
+                fn($p) =>
+                $p->city?->name ?? '-'
             )
 
-            ->editColumn('created_at', fn($contactForm) => Carbon::parse($contactForm->created_at)->format('d-M-Y'))
-            ->editColumn('updated_at', fn($contactForm) => $contactForm->updated_at ? Carbon::parse($contactForm->updated_at)->format('d-M-Y') : '-')
+            ->editColumn('created_at', fn($p) => Carbon::parse($p->created_at)->format('d-M-Y'))
+            ->editColumn('updated_at', fn($p) => $p->updated_at ? Carbon::parse($p->updated_at)->format('d-M-Y') : '-')
 
             // Tell Yajra how to sort these formatted columns
-            ->orderColumn('created_at', 'contact_us_form_inquiries.created_at $1')
-            ->orderColumn('updated_at', 'contact_us_form_inquiries.updated_at $1')
+            ->orderColumn('created_at', 'buy_product_forms.created_at $1')
+            ->orderColumn('updated_at', 'buy_product_forms.updated_at $1')
 
-            ->addColumn('action', fn($contactForm) => view('pages.contact_us._actions', compact('contactForm'))->render())
+            ->addColumn('action', fn($p) => view('pages.buy_product._actions', compact('p'))->render())
             ->rawColumns(['action'])
             ->setRowId('id');
     }
@@ -52,9 +54,10 @@ class ContactUsInquiryFormDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(ContactUsFormInquiry $model): QueryBuilder
+    public function query(BuyProductForm $model): QueryBuilder
     {
-        return $model->newQuery()->with(['state', 'city']);
+        return $model->newQuery()
+            ->with(['state', 'city', 'product']);
     }
 
     /**
@@ -63,12 +66,12 @@ class ContactUsInquiryFormDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('contactusinquiryform-table')
+            ->setTableId('buyproductform-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->processing(true)
             ->serverSide(true)
-            ->orderBy(7, 'desc')
+            ->orderBy(6, 'desc')
             ->addTableClass('table table-striped table-row-bordered gy-5 gs-7 border rounded text-gray-700 fw-semibold')
             ->setTableHeadClass('text-start text-muted fw-bold fs-7 text-uppercase gs-0')
             ->drawCallback(
@@ -86,12 +89,11 @@ class ContactUsInquiryFormDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('product_id')->title('Product'),
             Column::make('name')->title('Name'),
             Column::make('email')->title('Email'),
-            Column::make('phone')->title('Phone'),
             Column::make('state')->title('State'),
             Column::make('city')->title('City'),
-            Column::make('service')->title('Service'),
             Column::make('message')->title('Message'),
 
             Column::make('created_at')->title('Created At'),
@@ -110,6 +112,6 @@ class ContactUsInquiryFormDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ContactUsInquiryForm_' . date('YmdHis');
+        return 'BuyProductForm_' . date('YmdHis');
     }
 }

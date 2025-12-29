@@ -562,9 +562,11 @@
                             {{-- <img src="left-icon.png" alt="left icon" class="contact-icon"> --}}
                             <span class="cta-contact-sp">|</span>
 
-                            <span class="cta-contact-text">
-                                Get In Touch With Mr-Biomed Tech Today!
-                            </span>
+                            <a href="{{ route('contact-us') }}">
+                                <span class="cta-contact-text">
+                                    Get In Touch With Mr-Biomed Tech Today!
+                                </span>
+                            </a>
 
                             <div class="cta-img-wraper">
                                 <img src="/frontend/images/rental/contact-img2.png" alt="right icon"

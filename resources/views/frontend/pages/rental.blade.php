@@ -51,10 +51,10 @@
         }
 
         /*
-                                                                                                                                                                                    .equip-list {
-                                                                                                                                                                                        margin-top: 30px;
+                                                                                                                                                                                        .equip-list {
+                                                                                                                                                                                            margin-top: 30px;
 
-                                                                                                                                                                                    } */
+                                                                                                                                                                                        } */
 
         .li {
             /* padding-left: 18px; */
@@ -464,10 +464,10 @@
         /* =============== four-column-section ======================= */
 
         /*
-                                                                                                                                                                                                                                                                            * Background Color Calculation:
-                                                                                                                                                                                                                                                                            * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
-                                                                                                                                                                                                                                                                            * This translates to a light grey color with low opacity.
-                                                                                                                                                                                                                                                                            */
+                                                                                                                                                                                                                                                                                * Background Color Calculation:
+                                                                                                                                                                                                                                                                                * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
+                                                                                                                                                                                                                                                                                * This translates to a light grey color with low opacity.
+                                                                                                                                                                                                                                                                                */
         .four-column-section {
             background-color: #D9D9D938;
             padding: 40px 20px;
@@ -666,7 +666,7 @@
                         @foreach ($products as $product)
                             @include('components.product-item', ['product' => $product])
                         @endforeach
-                        
+
                         @if ($products->count() > 0)
                             <div class="mt-4">
                                 {{-- {{ $products->links() }} --}}
@@ -766,9 +766,11 @@
                             {{-- <img src="left-icon.png" alt="left icon" class="contact-icon"> --}}
                             <span class="cta-contact-sp">|</span>
 
-                            <span class="cta-contact-text">
-                                Get In Touch With Mr-Biomed Tech Today!
-                            </span>
+                            <a href="{{ route('contact-us') }}">
+                                <span class="cta-contact-text">
+                                    Get In Touch With Mr-Biomed Tech Today!
+                                </span>
+                            </a>
 
                             <div class="cta-img-wraper">
                                 <img src="/frontend/images/rental/contact-img2.png" alt="right icon"

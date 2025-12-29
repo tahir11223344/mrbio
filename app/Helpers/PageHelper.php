@@ -6,15 +6,19 @@ class PageHelper
 {
     public static function labels(): array
     {
-        return [
+        $labels = [
             'landing' => 'Landing Page',
             'service' => 'Service Page',
-            'rental' => 'Rental Page',
+            'rental'  => 'Rental Page',
             'blog'    => 'Blog Page',
             'repair'  => 'Repair Page',
-            'location'  => 'Location Page',
-            'about-us'  => 'About Us',
-            'contact-us'  => 'Contact Us',
+            'location' => 'Location Page',
+            'about-us' => 'About Us',
+            'contact-us' => 'Contact Us',
+            'offer'   => 'Offer Page',
         ];
+
+        ksort($labels); // ASC
+        return $labels;
     }
 }

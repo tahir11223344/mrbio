@@ -10,6 +10,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LocationPageController;
+use App\Http\Controllers\OfferController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\RentalServiceController;
 use App\Http\Controllers\RepairServiceController;
@@ -37,6 +38,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/feedback', [ReviewsController::class, 'landingPage'])->name('feedback');
     Route::post('/feedback', [ReviewsController::class, 'store'])->name('post.feedback');
 
+    Route::get('/offer/{slug}', [OfferController::class, 'offerDetail'])->name('offer.detail');
+
 
     // web.php
     Route::get('/rentals/filter', [AjaxController::class, 'filterRentalProducts'])->name('rentals.filter');
@@ -52,6 +55,8 @@ Route::middleware('guest')->group(function () {
         Route::post('/contact-us', 'contactUsForm')->name('contact.us.form');
         Route::post('/service-request', 'serviceRequest')->name('service.request.submit');
         Route::post('/consultancy', 'consultancyForm')->name('consultancy.submit');
+        Route::post('/buy-product', 'buyProductForm')->name('buy.product.submit');
+        Route::post('/quote-submit', 'getAQuote')->name('get-a-quote.submit');
     });
 
     Route::prefix('ajax')->group(function () {
