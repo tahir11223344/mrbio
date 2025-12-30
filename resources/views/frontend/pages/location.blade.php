@@ -156,7 +156,7 @@
 
         @media (max-width: 767px) {
             .latest-products-wrapper {
-                margin-top: 740px;
+                margin-top: 850px;
             }
         }
 
@@ -406,7 +406,7 @@
         <x-our-latest-products />
     </div>
 
-   {{-- ============= reveiw sectiion ================== --}}
+    {{-- ============= reveiw sectiion ================== --}}
     <x-testimonial-slider />
 
     {{-- ============ Recent News Section ============ --}}

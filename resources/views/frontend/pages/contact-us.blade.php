@@ -203,7 +203,7 @@
 
         /* =============== what we offer ======================= */
 
-        .custom-card {
+        .customm-card {
             width: 276px;
             height: 436px;
             border-radius: 30px;
@@ -287,9 +287,9 @@
     <section class="hero-detail-section">
         <div class="container py-5 text-center text-white">
 
-            <h1 class="hero-title mb-3">{!! highlightBracketText($data->hero_title ?? '', ['#000000']) !!}</h1>
+            <h1 class="hero-title mb-3 fade-left">{!! highlightBracketText($data->hero_title ?? '', ['#000000']) !!}</h1>
 
-            <p class="hero-description mx-auto mb-4">
+            <p class="hero-description mx-auto mb-4 fade-right">
                 {{ $data->hero_subtitle ?? '' }}
             </p>
 
@@ -314,21 +314,21 @@
             <div class="row text-center">
 
                 <!-- Column 1 -->
-                <div class="col-md-4 team-box">
-                    <h2 class="team-title">Team Member</h2>
-                    <p class="team-sub">Expert</p>
+                <div class="col-md-4 team-box ">
+                    <h2 class="team-title fade-left">Team Member</h2>
+                    <p class="team-sub fade-right">Expert</p>
                 </div>
 
                 <!-- Column 2 (with borders left & right + top-bottom) -->
                 <div class="col-md-4 team-box middle-box">
-                    <h2 class="team-title">Result-Driven</h2>
-                    <p class="team-sub">Approach</p>
+                    <h2 class="team-title fade-left">Result-Driven</h2>
+                    <p class="team-sub fade-right">Approach</p>
                 </div>
 
                 <!-- Column 3 -->
                 <div class="col-md-4 team-box">
-                    <h2 class="team-title">Streamlined</h2>
-                    <p class="team-sub">Execution</p>
+                    <h2 class="team-title fade-left">Streamlined</h2>
+                    <p class="team-sub fade-right">Execution</p>
                 </div>
 
             </div>
@@ -363,8 +363,8 @@
             <div class="row justify-content-center g-4">
                 @if (!empty($data->offers) && is_array($data->offers))
                     @foreach ($data->offers as $offer)
-                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center">
-                            <div class="custom-card">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 d-flex justify-content-center animate-card">
+                            <div class="customm-card">
                                 <div class="custom-card-header">
                                     <h3 class="card-heading">{{ $offer['title'] ?? '' }}</h3>
                                 </div>

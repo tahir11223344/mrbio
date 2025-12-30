@@ -10,12 +10,13 @@
         <div class="container">
             <div class="row g-4">
                 @foreach ($blogs as $item)
-                    <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="col-lg-3 col-md-6 col-sm-12 animate-card">
                         <div class="news-card bg-white   ">
                             <img src="{{ $item->image ? asset('storage/blog/images/' . $item->image) : '' }}"
                                 class="img-fluid w-100" alt="{{ $item->image_alt_text ?? '' }}">
                             <div class="p-3">
-                                <h5 class="news-title fw-bold mt-2 mb-2">{{ \Illuminate\Support\Str::limit($item->title ?? '', 70) }}</h5>
+                                <h5 class="news-title fw-bold mt-2 mb-2">
+                                    {{ \Illuminate\Support\Str::limit($item->title ?? '', 70) }}</h5>
                                 <p class="news-desc small text-muted mb-3">
                                     {{ \Illuminate\Support\Str::limit($item->short_description ?? '', 180) }}
                                 </p>

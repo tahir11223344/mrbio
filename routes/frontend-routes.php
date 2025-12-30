@@ -40,7 +40,6 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/offer/{slug}', [OfferController::class, 'offerDetail'])->name('offer.detail');
 
-
     // web.php
     Route::get('/rentals/filter', [AjaxController::class, 'filterRentalProducts'])->name('rentals.filter');
     Route::get('/faqs', [FaqController::class, 'landingPage'])->name('faqs');

@@ -87,7 +87,7 @@
         }
 
         .query-btn {
-            max-width: 145px;
+            width: 145px;
             height: 45px;
             border-radius: 10px;
             background: #0071A8;

@@ -18,6 +18,7 @@
             /* bottom space for button */
             border-radius: 30px;
             position: relative;
+            margin-top: 40px;
         }
 
 

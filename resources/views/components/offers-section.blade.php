@@ -28,7 +28,7 @@
                                 <p class="card-desc">
                                     {{ \Illuminate\Support\Str::limit($offer->short_description, 110) }}</p>
                                 <a href="{{ route('offer.detail', $offer->slug) }}">
-                                    <button class="read-btn">Read More</button>
+                                    <button class="readd-btn">Read More</button>
                                 </a>
                             </div>
                         @endforeach

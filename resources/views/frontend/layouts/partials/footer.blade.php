@@ -341,7 +341,7 @@
         }
 
         .news-card img {
-            height: 100% !important;
+            /* height: 100% !important; */
 
         }
 
@@ -458,7 +458,8 @@
                 <p class="mb-0 ">We are the top biomedical service and equipment repair company.</p>
             </div>
             <div class="contact-right">
-                <p class="mb-0">Click Here To <a href="javascript:void(0)" class="btn quote-button ms-2" data-open-get-quote>Get A Quote</a></p>
+                <p class="mb-0">Click Here To <a href="javascript:void(0)" class="btn quote-button ms-2"
+                        data-open-get-quote>Get A Quote</a></p>
             </div>
         </div>
     </div>

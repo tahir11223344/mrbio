@@ -709,10 +709,7 @@
 
      }
 
-     .news-card .news-desc {
-         font-size: 10px !important;
 
-     }
  }
 
  /*============== HERO SECTION css ===============================css */
@@ -3051,11 +3048,13 @@
  .news-card {
      border: none;
      transition: transform 0.3s ease, box-shadow 0.3s ease;
-     height: 388px;
+     height: 412px;
+     transition: all 0.4s ease;
+     position: relative;
  }
 
  .news-card:hover {
-     transform: translateY(-5px);
+     transform: translateY(-7px) scale(1.01);
      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
  }
 
@@ -3077,7 +3076,8 @@
      line-height: 160%;
      color: #00000080 !important;
      font-weight: 700;
-
+     font-family: Arial;
+     max-width: 279.26751708984375px;
  }
 
  .read-more-link {
@@ -3085,6 +3085,9 @@
      font-weight: 700;
      font-size: 16px;
      line-height: 160%;
+     position: absolute;
+     left: 17px;
+     bottom: 14px;
 
  }
 

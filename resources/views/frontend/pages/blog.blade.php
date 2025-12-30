@@ -98,7 +98,7 @@
 
         .boddy {
             background: #E5F0F5;
-            height: 208px;
+            height: 235px;
 
         }
 
