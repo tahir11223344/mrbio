@@ -4633,3 +4633,74 @@
      background-color: red;
      color: #ffffff !important;
  }
+
+ .policy-card {
+     width: 327px;
+     min-height: 258px;
+     /* fixed height ki jagah */
+     border: 3px solid #076FA1;
+     box-shadow: 0px 4px 14.8px #5BC3C4;
+     padding: 20px 20px 70px;
+     /* bottom space for button */
+     border-radius: 30px;
+     position: relative;
+ }
+
+
+ .policy-card .card-title {
+     font-size: 22px;
+     font-weight: 700;
+     color: #0071A8;
+     font-family: Inter;
+     margin-bottom: 10px;
+     line-height: 100%;
+ }
+
+ .policy-card .card-desc {
+     font-size: 16px;
+     color: #121212B2;
+     margin-bottom: 20px;
+     text-align: start;
+     font-family: Poppins;
+     font-weight: 500;
+     line-height: 160%;
+     max-width: 263px;
+ }
+
+
+ .policy-card .custom-btn {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background: #0168A4;
+     font-size: 18px;
+     color: #fff;
+     border-radius: 10px;
+     text-decoration: none;
+     font-weight: 600;
+     width: 227px;
+     height: 43px;
+     box-shadow: 0px 4px 4px #00000040;
+     position: absolute;
+     bottom: 10px;
+     left: 18px;
+     font-family: Inter;
+     line-height: 100%;
+
+ }
+
+
+ .custom-btn i {
+     margin-left: 12px;
+     font-size: 20px;
+ }
+
+ .links-heading {
+     font-size: 48px;
+     font-weight: 600;
+     color: #0071A8;
+     font-family: Inter;
+     margin-bottom: 10px;
+     line-height: 48px;
+     text-align: center;
+ }

@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Http;
 
 class ReviewsController extends Controller
 {
@@ -166,7 +168,7 @@ class ReviewsController extends Controller
 
             // Reviews for first category (paginated 12 per page)
             $reviewsByCategory = $firstCategory
-                ? $firstCategory->reviews()->select('id', 'name', 'message', 'rating', 'category_id')->where('status', 'approved')->latest()->paginate(1)
+                ? $firstCategory->reviews()->select('id', 'name', 'message', 'rating', 'category_id')->where('status', 'approved')->latest()->paginate(12)
                 : collect();
 
 
@@ -208,7 +210,7 @@ class ReviewsController extends Controller
                 ->select('id', 'name', 'message', 'rating', 'category_id')
                 ->where('status', 'approved')
                 ->latest()
-                ->paginate(1, ['*'], 'page', $page);
+                ->paginate(12, ['*'], 'page', $page);
             return response()->json([
                 'html'       => view('partials.review-cards', compact('reviews'))->render(),
                 'pagination' => view('partials.review-pagination', compact('reviews'))->render(),
@@ -241,7 +243,7 @@ class ReviewsController extends Controller
     {
         /**
          * ---------------------------------------------
-         * STEP 1: Validate incoming request
+         * STEP 1: Validation (including reCAPTCHA)
          * ---------------------------------------------
          */
         $validated = $request->validate([
@@ -249,78 +251,71 @@ class ReviewsController extends Controller
             'email'  => 'required|email|max:255',
             'category' => 'required|exists:categories,slug',
             'message' => 'required|string',
-            'rating' => 'required|integer|min:1|max:5',
+            'rating'  => 'required|integer|min:1|max:5',
+            'g-recaptcha-response' => 'required',
+        ], [
+            'g-recaptcha-response.required' => 'Please confirm you are not a robot.',
         ]);
 
         /**
          * ---------------------------------------------
-         * STEP 2: Start DB transaction
+         * STEP 2: Verify reCAPTCHA with Google
+         * ---------------------------------------------
+         */
+        $captchaResponse = Http::asForm()->post(
+            'https://www.google.com/recaptcha/api/siteverify',
+            [
+                'secret'   => config('services.recaptcha.secret'),
+                'response' => $request->input('g-recaptcha-response'),
+                'remoteip' => $request->ip(),
+            ]
+        );
+
+        $captchaBody = $captchaResponse->json();
+
+        if (!($captchaBody['success'] ?? false)) {
+            throw ValidationException::withMessages([
+                'g-recaptcha-response' => ['reCAPTCHA verification failed. Please try again.'],
+            ]);
+        }
+
+        /**
+         * ---------------------------------------------
+         * STEP 3: DB Transaction
          * ---------------------------------------------
          */
         DB::beginTransaction();
 
         try {
 
-            // Fetch the category id from slug
-            $category = Category::where('slug', $validated['category'])->first();
-            if (!$category) {
-                throw new \Exception('Selected category does not exist.');
-            }
+            // Fetch category
+            $category = Category::where('slug', $validated['category'])->firstOrFail();
 
-            /**
-             * ---------------------------------------------
-             * STEP 3: Create review record
-             * - Status fallback: pending
-             * - created_by: logged-in user ID (nullable)
-             * ---------------------------------------------
-             */
             Review::create([
                 'name'        => $validated['name'],
                 'email'       => $validated['email'],
                 'message'     => $validated['message'],
                 'category_id' => $category->id,
                 'rating'      => $validated['rating'],
-
-                // Status fallback (security + consistency)
-                'status'      => $request->input('status', 'pending'),
-
-                // Store logged-in user ID, otherwise null
+                'status'      => 'pending',
                 'created_by'  => Auth::check() ? Auth::id() : null,
-
-                // Meta info (anti-spam / audit)
                 'ip_address'  => $request->ip(),
                 'user_agent'  => $request->userAgent(),
             ]);
 
-            /**
-             * ---------------------------------------------
-             * STEP 4: Commit DB transaction
-             * ---------------------------------------------
-             */
             DB::commit();
 
-            /**
-             * ---------------------------------------------
-             * STEP 5: Return response
-             * ---------------------------------------------
-             */
-            if ($request->ajax()) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Thank you for your feedback!'
-                ]);
-            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Thank you for your feedback!',
+            ]);
+        } catch (ValidationException $e) {
+            DB::rollBack();
 
-            return redirect()
-                ->back()
-                ->with('success', 'Thank you for your feedback!');
+            return response()->json([
+                'errors' => $e->errors(),
+            ], 422);
         } catch (\Throwable $e) {
-
-            /**
-             * ---------------------------------------------
-             * STEP 6: Rollback on error & log exception
-             * ---------------------------------------------
-             */
             DB::rollBack();
 
             Log::error('Feedback submit failed', [
@@ -329,22 +324,10 @@ class ReviewsController extends Controller
                 'line'  => $e->getLine(),
             ]);
 
-            /**
-             * ---------------------------------------------
-             * STEP 7: Error response
-             * ---------------------------------------------
-             */
-            if ($request->ajax()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Something went wrong. Please try again.'
-                ], 500);
-            }
-
-            return redirect()
-                ->back()
-                ->withInput()
-                ->with('error', 'Something went wrong. Please try again.');
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong. Please try again.',
+            ], 500);
         }
     }
 

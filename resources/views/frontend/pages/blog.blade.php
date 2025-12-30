@@ -569,7 +569,7 @@
                                 <!-- CARD TITLE -->
                                 <div class="card-header bg-white border-0 ">
                                     <h5 class="news-title  mb-2">
-                                        {{ $bioMedicalBlog->title ?? '' }}
+                                        {{ \Illuminate\Support\Str::limit($bioMedicalBlog->title ?? '', 70) }}
                                     </h5>
                                 </div>
 
@@ -577,7 +577,7 @@
                                 <div class="card-body boddyy d-flex flex-column justify-content-between">
 
                                     <p class="news-desc small  mb-3">
-                                        {{ $bioMedicalBlog->short_description ?? '' }}
+                                        {{ \Illuminate\Support\Str::limit($bioMedicalBlog->short_description ?? '', 200) }}
                                     </p>
 
                                     <a href="{{ route('blog.detail', $bioMedicalBlog->slug) }}"

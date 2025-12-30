@@ -205,8 +205,8 @@
         }
 
         /* ============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               📱 Responsive Breakpoints
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ============================ */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           📱 Responsive Breakpoints
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ============================ */
 
         @media (max-width: 768px) {
             .bio-wrapper {
@@ -368,8 +368,8 @@
         }
 
         /* .review-scroll::-webkit-scrollbar {
-                                                                                                                                                                                                width: 8px;
-                                                                                                                                                                                            } */
+                                                                                                                                                                                                            width: 8px;
+                                                                                                                                                                                                        } */
 
         /* -------- Scrollbar Styling -------- */
         .review-scroll::-webkit-scrollbar {
@@ -563,7 +563,8 @@
                     </div>
 
                     <div class="d-flex gap-4 mt-5 ">
-                        <a href="javascript:void(0)" class=" btn-primary-custom fade-left" data-open-service-modal>Request a Quote Today!</a>
+                        <a href="javascript:void(0)" class=" btn-primary-custom fade-left" data-open-service-modal>Request a
+                            Quote Today!</a>
                         <a href="#review-cards-section" class="btn-outline-custom fade-right">Reviews</a>
                     </div>
 
@@ -714,6 +715,13 @@
                             <span class="text-danger error-text rating_error"></span>
                         </div>
 
+                        <div class="form-group mb-3">
+                            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                            <div class="g-recaptcha w-100" data-sitekey="{{ config('services.recaptcha.sitekey') }}">
+                            </div>
+                            <span class="text-danger error-text g-recaptcha-response_error"></span>
+                        </div>
+
                         <button type="submit" class="btn submitt-btn mt-4">Submit</button>
                     </form>
 
@@ -852,6 +860,10 @@
                             $('#rating').val('');
                             $('.rate-stars .star').removeClass('active');
 
+                            if (typeof grecaptcha !== 'undefined') {
+                                grecaptcha.reset();
+                            }
+
                             if (typeof toastr !== 'undefined') {
                                 toastr.success(response.message);
                             } else {
@@ -868,6 +880,10 @@
                             $.each(errors, function(key, value) {
                                 $('.' + key + '_error').text(value[0]);
                             });
+
+                            if (typeof grecaptcha !== 'undefined') {
+                                grecaptcha.reset();
+                            }
 
                             if (typeof toastr !== 'undefined') {
                                 toastr.error('Please fix the errors.');

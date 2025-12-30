@@ -458,7 +458,8 @@
                 <p class="mb-0 ">We are the top biomedical service and equipment repair company.</p>
             </div>
             <div class="contact-right">
-                <p class="mb-0">Click Here To <a href="javascript:void(0)" class="btn quote-button ms-2" data-open-get-quote>Get A Quote</a></p>
+                <p class="mb-0">Click Here To <a href="javascript:void(0)" class="btn quote-button ms-2"
+                        data-open-get-quote>Get A Quote</a></p>
             </div>
         </div>
     </div>
@@ -648,7 +649,11 @@
                         class="separator">|</span>
                     <a href="{{ route('privacy') }}" class="text-decoration-none mx-2">Privacy Policy</a><span
                         class="separator">|</span>
-                    <a href="{{ route('disclaimer') }}" class="text-decoration-none mx-2">Disclaimer</a>
+                    <a href="{{ route('disclaimer') }}" class="text-decoration-none mx-2">Disclaimer</a><span
+                        class="separator">|</span>
+                    <a href="{{ route('feedback') }}" class="text-decoration-none mx-2">FeedBack</a><span
+                        class="separator">|</span>
+                    <a href="{{ route('faqs') }}" class="text-decoration-none mx-2">FAQ's</a>
                 </div>
             </div>
             <p class="copyright mb-0 t">

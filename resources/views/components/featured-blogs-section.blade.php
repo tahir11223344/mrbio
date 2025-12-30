@@ -31,13 +31,13 @@
                                 <h4 class="featured-title">
                                     <a href="{{ route('blog.detail', $featuredBlog->slug) }}"
                                         class="text-decoration-none text-dark">
-                                        {{ $featuredBlog->title }}
+                                        {{ \Illuminate\Support\Str::limit($featuredBlog->title ?? '', 70) }}
                                     </a>
                                 </h4>
 
                                 <!-- Description -->
                                 <p class="featured-desc">
-                                    {{ $featuredBlog->short_description ?? 'No description available.' }}
+                                    {{ \Illuminate\Support\Str::limit($featuredBlog->short_description ?? '', 120) }}
                                 </p>
 
                                 <!-- Read Time -->

@@ -8,9 +8,9 @@
 @push('frontend-styles')
     <style>
         /* ============================================================
-                                    BLOG DETAILS PAGE – CSS Styling
-                                    Includes: Images, Lists, Sidebar, Related Articles, Responsive Fixes
-                                    =============================================================== */
+                                                    BLOG DETAILS PAGE – CSS Styling
+                                                    Includes: Images, Lists, Sidebar, Related Articles, Responsive Fixes
+                                                    =============================================================== */
 
         .blog-content {
             max-width: 100%;
@@ -107,7 +107,7 @@
         }
 
         /* Remove blue color and underline from links inside li */
-        .categories-list li{
+        .categories-list li {
             color: #000000;
             /* default text color */
             text-decoration: none;
@@ -351,11 +351,11 @@
 
 
     <!-- ============================================================
-                                                                                                    BLOG DETAILS SECTION (Responsive)
-                                                                                                    Created for: Detailed Blog Page Layout
-                                                                                                    Columns: Left Content (8), Right Sidebar (4)
-                                                                                                    Includes: Images, Headings, Description, Lists, Categories, Related Articles
-                                                                                                    =============================================================== -->
+                                                                                                                    BLOG DETAILS SECTION (Responsive)
+                                                                                                                    Created for: Detailed Blog Page Layout
+                                                                                                                    Columns: Left Content (8), Right Sidebar (4)
+                                                                                                                    Includes: Images, Headings, Description, Lists, Categories, Related Articles
+                                                                                                                    =============================================================== -->
 
     <section class="blog-details-section py-5">
         <div class="container">
@@ -514,18 +514,24 @@
                             <h4 class="sidebar-heading mb-3">Related Articles</h4>
                             @foreach ($relatedBlogs as $related)
                                 <div class="col-lg-12">
-                                    <div class="row g-2 align-items-center">
-                                        <div class="col-lg-4">
-                                            <img src="{{ $related->image ? asset('storage/blog/images/' . $related->image) : '' }}"
-                                                class="related-img me-3"
-                                                alt="{{ $related->image_alt_text ?? plainBracketText($related->title) }}">
+                                    <a href="{{ route('blog.detail', $related->slug) }}"
+                                        class="text-decoration-none text-dark">
+                                        <div class="row g-2 align-items-center">
+                                            <div class="col-lg-4">
+                                                <img src="{{ $related->image ? asset('storage/blog/images/' . $related->image) : '' }}"
+                                                    class="related-img me-3"
+                                                    alt="{{ $related->image_alt_text ?? plainBracketText($related->title) }}">
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <h6 class="related-title">
+                                                    {{ \Illuminate\Support\Str::limit(plainBracketText($related->title) ?? '', 50) }}
+                                                </h6>
+                                                <p class="related-date">
+                                                    {{ $related->updated_at ? $related->updated_at->format('d.M.Y') : '' }}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="col-lg-8">
-                                            <h6 class="related-title">{{ plainBracketText($related->title) }}</h6>
-                                            <p class="related-date">
-                                                {{ $related->updated_at ? $related->updated_at->format('d.M.Y') : '' }}</p>
-                                        </div>
-                                    </div>
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
@@ -536,11 +542,11 @@
     </section>
 
     <!-- ============================================================
-                            LEAVE A COMMENT + COMMENTS SECTION
-                            Background: #006A9E1A
-                            Left: Comment Form
-                            Right: Comments Box
-                            =============================================================== -->
+                                            LEAVE A COMMENT + COMMENTS SECTION
+                                            Background: #006A9E1A
+                                            Left: Comment Form
+                                            Right: Comments Box
+                                            =============================================================== -->
 
     <section class="comment-section py-5">
         <div class="container">
@@ -569,6 +575,13 @@
                         <div class="mb-3">
                             <textarea name="comment" class="form-control comment-textarea" rows="5" placeholder="Write your comment"></textarea>
                             <span class="text-danger error-text comment_error"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                            <div class="g-recaptcha w-100" data-sitekey="{{ config('services.recaptcha.sitekey') }}">
+                            </div>
+                            <span class="text-danger error-text g-recaptcha-response_error"></span>
                         </div>
 
                         <button class="btn submitt-btn">Submit</button>
@@ -627,6 +640,10 @@
                             // Clear form fields
                             form[0].reset();
 
+                            if (typeof grecaptcha !== 'undefined') {
+                                grecaptcha.reset();
+                            }
+
                             // Show success toast
                             if (typeof toastr !== 'undefined') {
                                 toastr.success(response.message ||
@@ -642,6 +659,10 @@
                             $.each(errors, function(key, value) {
                                 $('.' + key + '_error').text(value[0]);
                             });
+
+                            if (typeof grecaptcha !== 'undefined') {
+                                grecaptcha.reset();
+                            }
 
                             // Optional: show a toast for error
                             if (typeof toastr !== 'undefined') {

@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Http;
 
 class BlogController extends Controller
 {
@@ -459,25 +461,46 @@ class BlogController extends Controller
     public function blogComment(Request $request, $slug)
     {
         try {
-            // Get the blog by slug
+            // ---------------- FIND BLOG ----------------
             $blog = Blog::where('slug', $slug)->firstOrFail();
 
-            // Validate input
+            // ---------------- VALIDATION ----------------
             $validated = $request->validate([
                 'name'    => 'required|string|max:255',
                 'email'   => 'required|email|max:255',
                 'comment' => 'required|string',
+                'g-recaptcha-response' => 'required',
+            ], [
+                'g-recaptcha-response.required' => 'Please confirm you are not a robot.',
             ]);
+
+            // ---------------- VERIFY reCAPTCHA ----------------
+            $response = Http::asForm()->post(
+                'https://www.google.com/recaptcha/api/siteverify',
+                [
+                    'secret'   => config('services.recaptcha.secret'),
+                    'response' => $request->input('g-recaptcha-response'),
+                    'remoteip' => $request->ip(),
+                ]
+            );
+
+            $responseBody = $response->json();
+
+            if (!($responseBody['success'] ?? false)) {
+                throw ValidationException::withMessages([
+                    'g-recaptcha-response' => ['reCAPTCHA verification failed. Please try again.'],
+                ]);
+            }
 
             DB::beginTransaction();
 
-            // Create new comment
+            // ---------------- SAVE COMMENT ----------------
             $comment = BlogComment::create([
                 'blog_id'    => $blog->id,
                 'name'       => $validated['name'],
                 'email'      => $validated['email'],
                 'comment'    => $validated['comment'],
-                'status'     => 'pending', // default status
+                'status'     => 'pending',
                 'ip_address' => $request->ip(),
             ]);
 
@@ -486,34 +509,29 @@ class BlogController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Comment submitted successfully and is pending approval.',
-                'data'    => $comment
+                'data'    => $comment,
             ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            // Validation errors
+        } catch (ValidationException $e) {
             return response()->json([
                 'success' => false,
-                'errors'  => $e->errors()
+                'errors'  => $e->errors(),
             ], 422);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            // Blog not found
             return response()->json([
                 'success' => false,
-                'message' => 'Blog not found.'
+                'message' => 'Blog not found.',
             ], 404);
-        } catch (\Exception $e) {
-            // Log unexpected errors
-            Log::error('Error submitting blog comment:', [
-                'message' => $e->getMessage(),
-                'line'    => $e->getLine(),
-                'file'    => $e->getFile(),
-                'trace'   => $e->getTraceAsString(),
-            ]);
-
+        } catch (\Throwable $e) {
             DB::rollBack();
 
+            Log::error('Blog Comment Error', [
+                'error' => $e->getMessage(),
+                'request' => $request->all(),
+            ]);
+
             return response()->json([
                 'success' => false,
-                'message' => 'Something went wrong. Please try again later.'
+                'message' => 'Something went wrong. Please try again later.',
             ], 500);
         }
     }

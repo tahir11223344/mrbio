@@ -237,7 +237,7 @@
                         diam.
                     </p> --}}
 
-                    <button class="quote-btn">Request A Quote</button>
+                    <button class="quote-btn" data-open-service-modal>Request A Quote</button>
                 </div>
 
             </div>

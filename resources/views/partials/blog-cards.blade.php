@@ -7,12 +7,12 @@
 
             <div class="p-3 boddy">
                 <h5 class="news-title fw-bold mt-2 mb-2">
-                    {{ Str::limit(plainBracketText($blog->title), 70) }}
+                    {{ \Illuminate\Support\Str::limit(plainBracketText($blog->title), 70) }}
                 </h5>
 
                 <p class="news-desc small text-muted mb-3">
                     {{-- {{ Str::limit(strip_tags($blog->description), 120) }} --}}
-                    {{ $blog->short_description ?? '' }}
+                    {{ \Illuminate\Support\Str::limit($blog->short_description ?? '', 120) }}
                 </p>
 
                 <a href="{{ route('blog.detail', $blog->slug) }}"

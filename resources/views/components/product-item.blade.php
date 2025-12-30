@@ -10,7 +10,8 @@
     <div class="d-flex gap-3 btn-wrraper">
         <button class="btn-service">
             <i class="bi bi-gear"></i>
-            <span class="btn-label">Get Service</span>
+            <span class="btn-label" data-slug="{{ $product->slug ?? '' }}" data-open-form>Get Service</span>
+            {{-- <button class="buy-btn" data-slug="{{ $product->slug ?? '' }}" data-open-form>Get A Quote</button> --}}
         </button>
 
         <button class="btn-call">

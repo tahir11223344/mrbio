@@ -258,6 +258,13 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('repair') ? 'active' : '' }}"
+                            href="{{ route('repair') }}">
+                            Repair
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('blogs*') ? 'active' : '' }}"
                             href="{{ route('blogs') }}">
                             Blog
