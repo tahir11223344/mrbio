@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
             CountriesStatesCitiesTableSeeder::class
         ]);
 
-        \App\Models\User::factory(20)->create();
+        // \App\Models\User::factory(20)->create();
 
-        Address::factory(20)->create();
+        // Address::factory(20)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

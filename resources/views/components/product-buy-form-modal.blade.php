@@ -40,7 +40,7 @@
             </div>
 
             <div class="col-12">
-                <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>
+                <div class="g-recaptcha" id="buyCaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>
                 <span class="text-danger error-text g-recaptcha-response_error"></span>
             </div>
 

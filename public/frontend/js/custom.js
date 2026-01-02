@@ -1,3 +1,37 @@
+let footerCaptchaWidgetId = null;
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof grecaptcha !== 'undefined') {
+        footerCaptchaWidgetId = grecaptcha.render('footerCaptcha', {
+            sitekey: document.getElementById('footerCaptcha').dataset.sitekey
+        });
+    }
+});
+
+function resetFooterCaptcha() {
+    if (typeof grecaptcha !== 'undefined' && footerCaptchaWidgetId !== null) {
+        grecaptcha.reset(footerCaptchaWidgetId);
+    }
+}
+
+let contactFormCaptchaWidgetId = null;
+
+document.addEventListener('DOMContentLoaded', function () {
+    const captchaEl = document.getElementById('contactFormCaptcha'); // check element
+    if (captchaEl && typeof grecaptcha !== 'undefined') {
+        contactFormCaptchaWidgetId = grecaptcha.render(captchaEl, {
+            sitekey: captchaEl.dataset.sitekey
+        });
+    }
+});
+
+
+function resetContactFormCaptcha() {
+    if (typeof grecaptcha !== 'undefined' && contactFormCaptchaWidgetId !== null) {
+        grecaptcha.reset(contactFormCaptchaWidgetId);
+    }
+}
+
 $(document).ready(function () {
 
     $(document).on('submit', '.contact-us-form', function (e) {
@@ -18,6 +52,8 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.success) {
                     form[0].reset();
+                    resetFooterCaptcha();
+                    resetContactFormCaptcha();
 
                     // Reset captcha for THIS form
                     if (typeof grecaptcha !== 'undefined') {
@@ -33,6 +69,9 @@ $(document).ready(function () {
             },
 
             error: function (xhr) {
+
+                resetFooterCaptcha();
+                resetContactFormCaptcha();
 
                 if (xhr.status === 422) {
                     let errors = xhr.responseJSON.errors;
@@ -167,6 +206,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+let getQuoteCaptchaWidgetId = null;
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof grecaptcha !== 'undefined') {
+        getQuoteCaptchaWidgetId = grecaptcha.render('getQuoteCaptcha', {
+            sitekey: document.getElementById('getQuoteCaptcha').dataset.sitekey
+        });
+    }
+});
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const modal = document.getElementById('getAQuoteFormOverlay');
@@ -186,6 +236,12 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.querySelectorAll('.invalid-feedback').forEach(el => {
             el.remove();
         });
+    };
+
+    const resetCaptcha = () => {
+        if (typeof grecaptcha !== 'undefined' && getQuoteCaptchaWidgetId !== null) {
+            grecaptcha.reset(getQuoteCaptchaWidgetId);
+        }
     };
 
     // Reset form fields
@@ -227,6 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (openBtn) {
             e.preventDefault();
             modal.classList.add('active');
+            resetCaptcha();
             return;
         }
 
@@ -268,6 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.status === 422) {
                     const data = await response.json();
                     showErrors(data.errors);
+                    resetCaptcha();
 
                     if (window.toastr) {
                         toastr.error('Please fix the errors in the form.');
@@ -298,6 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
             .catch(() => {
+                resetCaptcha();
                 if (window.toastr) {
                     toastr.error('Something went wrong. Please try again later.');
                 } else {
@@ -946,6 +1005,98 @@ document.addEventListener("DOMContentLoaded", () => {
 //     });
 
 // });
+
+// Dilawar JS for mega menu
+
+// document.addEventListener('DOMContentLoaded', function () {
+
+//     let closeTimer;
+//     const DESKTOP_WIDTH = 992;
+//     const isDesktop = () => window.innerWidth >= DESKTOP_WIDTH;
+
+//     const forceCloseAll = () => {
+//         document.querySelectorAll('.has-mega').forEach(item => {
+//             item.classList.remove('show');
+//             item.classList.add('mega-force-hide');
+//         });
+//         clearTimeout(closeTimer);
+//     };
+
+//     const allowOpenAgain = () => {
+//         document.querySelectorAll('.has-mega').forEach(item => {
+//             item.classList.remove('mega-force-hide');
+//         });
+//     };
+
+//     document.querySelectorAll('.has-mega').forEach(item => {
+
+//         const menu = item.querySelector('.mega-menu');
+//         const toggleBtn = item.querySelector('.mega-toggle');
+
+//         /* ================= DESKTOP HOVER ================= */
+//         item.addEventListener('mouseenter', () => {
+//             if (!isDesktop() || item.classList.contains('mega-force-hide')) return;
+
+//             // 🔥 CLOSE ALL FIRST
+//             forceCloseAll();
+//             allowOpenAgain();
+
+//             item.classList.add('show');
+//         });
+
+//         item.addEventListener('mouseleave', () => {
+//             if (!isDesktop()) return;
+//             closeTimer = setTimeout(() => {
+//                 item.classList.remove('show');
+//             }, 250);
+//         });
+
+//         if (menu) {
+//             menu.addEventListener('mouseleave', () => {
+//                 if (!isDesktop()) return;
+//                 item.classList.remove('show');
+//             });
+//         }
+
+//         /* ================= MOBILE CLICK ================= */
+//         if (toggleBtn) {
+//             toggleBtn.addEventListener('click', (e) => {
+//                 e.preventDefault();
+//                 if (isDesktop()) return;
+
+//                 const isOpen = item.classList.contains('show');
+//                 forceCloseAll();
+//                 allowOpenAgain();
+
+//                 if (!isOpen) item.classList.add('show');
+//             });
+//         }
+//     });
+
+//     /* ================= CLICK OUTSIDE ================= */
+//     document.addEventListener('click', (e) => {
+//         document.querySelectorAll('.has-mega.show').forEach(item => {
+//             if (!item.contains(e.target)) {
+//                 item.classList.remove('show');
+//             }
+//         });
+//     });
+
+//     /* ================= SCROLL ================= */
+//     window.addEventListener('scroll', () => {
+//         forceCloseAll();
+//         setTimeout(allowOpenAgain, 200);
+//     }, { passive: true });
+
+//     /* ================= RESIZE ================= */
+//     window.addEventListener('resize', () => {
+//         forceCloseAll();
+//         setTimeout(allowOpenAgain, 200);
+//     });
+
+// });
+
+// My JS for mega menu
 document.addEventListener('DOMContentLoaded', function () {
 
     let closeTimer;
@@ -974,11 +1125,8 @@ document.addEventListener('DOMContentLoaded', function () {
         /* ================= DESKTOP HOVER ================= */
         item.addEventListener('mouseenter', () => {
             if (!isDesktop() || item.classList.contains('mega-force-hide')) return;
-
-            // 🔥 CLOSE ALL FIRST
             forceCloseAll();
             allowOpenAgain();
-
             item.classList.add('show');
         });
 
@@ -996,19 +1144,18 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        /* ================= MOBILE CLICK ================= */
+        /* ================= MOBILE CLICK (TOGGLE BUTTON) ================= */
         if (toggleBtn) {
             toggleBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (isDesktop()) return;
-
+                if (isDesktop()) return; // desktop clicks not blocked
+                e.preventDefault();       // only prevent default on mobile
                 const isOpen = item.classList.contains('show');
                 forceCloseAll();
                 allowOpenAgain();
-
                 if (!isOpen) item.classList.add('show');
             });
         }
+
     });
 
     /* ================= CLICK OUTSIDE ================= */
@@ -1020,16 +1167,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    /* ================= SCROLL ================= */
-    window.addEventListener('scroll', () => {
-        forceCloseAll();
-        setTimeout(allowOpenAgain, 200);
-    }, { passive: true });
-
-    /* ================= RESIZE ================= */
-    window.addEventListener('resize', () => {
-        forceCloseAll();
-        setTimeout(allowOpenAgain, 200);
+    /* ================= SCROLL / RESIZE ================= */
+    ['scroll', 'resize'].forEach(evt => {
+        window.addEventListener(evt, () => {
+            forceCloseAll();
+            setTimeout(allowOpenAgain, 200);
+        }, { passive: true });
     });
 
 });
@@ -1038,11 +1181,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-
 // ============= Buy Product moddel open js =====================
-
+let captchaWidgetId = null;
 document.addEventListener('DOMContentLoaded', function () {
+
+    if (typeof grecaptcha !== 'undefined') {
+        captchaWidgetId = grecaptcha.render('buyCaptcha', {
+            sitekey: document.getElementById('buyCaptcha').dataset.sitekey
+        });
+    }
 
     const overlay = document.getElementById('buyFormOverlay');
     if (!overlay) return;
@@ -1071,7 +1218,15 @@ document.addEventListener('DOMContentLoaded', function () {
     function closeModal() {
         overlay.classList.remove('active');
         resetForm();
+        resetCaptcha();
     }
+
+    function resetCaptcha() {
+        if (typeof grecaptcha !== 'undefined' && captchaWidgetId !== null) {
+            grecaptcha.reset(captchaWidgetId);
+        }
+    }
+
 
     function resetForm() {
         form.reset();
@@ -1108,8 +1263,10 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(res => {
                 toastr.success(res.message);
                 closeModal();
+                resetCaptcha();
             })
             .catch(err => {
+                resetCaptcha();
                 if (err.errors) {
                     Object.keys(err.errors).forEach(key => {
                         const errorEl = overlay.querySelector(`.${key}_error`);

@@ -53,7 +53,7 @@
                     </li>
 
                     <li class="nav-item dropdown  has-mega">
-                        <a class="nav-link mega-toggle" href="#">
+                        <a class="nav-link mega-toggle {{ request()->routeIs('biomed-services*') ? 'active' : '' }}" href="{{ route('biomed-services') }}">
                             Mr Biomed Service
                             <i class="bi bi-chevron-down dropdown-icon"></i>
                         </a>
@@ -183,7 +183,7 @@
                     </li>
 
                     <li class="nav-item dropdown has-mega">
-                        <a class="nav-link mega-toggle" href="#">Locations <i
+                        <a class="nav-link mega-toggle {{ request()->routeIs('location') ? 'active' : '' }}" href="{{ route('location') }}">Locations <i
                                 class="bi bi-chevron-down dropdown-icon"></i></a>
                         <div class="mega-menu">
                             <div class="container-fluid">
@@ -277,14 +277,6 @@
                             About
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
-                            href="{{ route('biomed-services') }}">
-                            Services
-                        </a>
-                    </li>
-
 
                     <li class="nav-item d-flex flex-column align-items-center ms-lg-4 mt-2 mt-lg-0 ">
                         <div class="d-flex align-items-center gap-2 mb-1 contact-icons-wrapper ">

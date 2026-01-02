@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -45,6 +47,17 @@ class AppServiceProvider extends ServiceProvider
                 return Route::post('/starterkit/metronic/laravel/livewire/update', $handle);
             });
         }
+
+        // try {
+        //     DB::connection()->getPdo();
+        // } catch (\Throwable $e) {
+        //     return;
+        // }
+
+        // optional: ensure required tables exist
+        // if (!Schema::hasTable('serving_cities') || !Schema::hasTable('categories') || !Schema::hasTable('states')) {
+        //     return;
+        // }
 
         View::composer('frontend.layouts.partials.navbar', function ($view) {
 

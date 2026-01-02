@@ -789,8 +789,9 @@
                         <div class="contact-content text-cente">
                             <h2 class="contact-heading text-center">Get in Touch with Our Experts</h2>
                             <div class="d-flex justify-content-center">
-                                <button class="btn-contact">Find your local point of contact</button>
-
+                                <a href="{{route('location')}}">
+                                    <button class="btn-contact">Find your local point of contact</button>
+                                </a>
                             </div>
                         </div>
                     </div>

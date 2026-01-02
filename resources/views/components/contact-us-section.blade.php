@@ -111,7 +111,7 @@
 
                         <div class="form-group mb-3">
                             <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                            <div class="g-recaptcha w-100" data-sitekey="{{ config('services.recaptcha.sitekey') }}">
+                            <div class="g-recaptcha w-100" id="contactFormCaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}">
                             </div>
                             <span class="text-danger error-text g-recaptcha-response_error"></span>
                         </div>

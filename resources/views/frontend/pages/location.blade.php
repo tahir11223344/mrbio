@@ -410,11 +410,8 @@
     <x-testimonial-slider />
 
     {{-- ============ Recent News Section ============ --}}
-
-    <div class="mt-5">
-        <x-recent-news />
-
-    </div>
+    <!-- Default: 4 blogs -->
+    <x-recent-blogs-section />
 @endsection
 
 @push('frontend-scripts')

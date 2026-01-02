@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 
@@ -24,6 +25,12 @@ class SettingsServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        //  try {
+        //     DB::connection()->getPdo(); // ensure DB reachable
+        // } catch (\Throwable $e) {
+        //     return;
+        // }
+
         // migrate ke time ya console commands mein error na aaye
         if (!Schema::hasTable('general_settings')) {
             return;

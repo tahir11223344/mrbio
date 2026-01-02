@@ -54,9 +54,22 @@
                                     </span>
 
                                     <div class="social-icons">
-                                        <i class="fab fa-facebook-f"></i>
-                                        <i class="fab fa-twitter"></i>
-                                        <i class="fab fa-linkedin-in"></i>
+                                        @if (setting('facebook'))
+                                            <a href="{{ setting('facebook') }}" target="_blank" aria-label="Facebook">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </a>
+                                        @endif
+                                        @if (setting('twitter'))
+                                            <a href="{{ setting('twitter') }}" target="_blank" aria-label="Twitter">
+                                                <i class="fab fa-twitter"></i>
+                                            </a>
+                                        @endif
+
+                                        @if (setting('linkedin'))
+                                            <a href="{{ setting('linkedin') }}" target="_blank" aria-label="LinkedIn">
+                                                <i class="fab fa-linkedin-in"></i>
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

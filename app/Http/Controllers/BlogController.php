@@ -30,12 +30,6 @@ class BlogController extends Controller
             // Fetch main page data
             $data = BlogMainPage::first();
 
-            if (!$data) {
-                return redirect()
-                    ->back()
-                    ->with('error', 'Blog main page data not found.');
-            }
-
             // Return view
             return view('pages.blog.main_page', compact('data'));
         } catch (\Throwable $e) {

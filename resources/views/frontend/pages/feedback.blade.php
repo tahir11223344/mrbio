@@ -597,7 +597,7 @@
                     </p>
 
                     <!-- Button bottom-right -->
-                    <a href="#" class="bio-btn">Get My Free Proposal</a>
+                    <a href="javascript:void(0)" class="bio-btn" id="getProposalBtn">Get My Free Proposal</a>
                 </div>
 
             </div>

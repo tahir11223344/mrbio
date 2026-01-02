@@ -21,16 +21,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function () {
 
     Route::get('/', [LandingPageController::class, 'landingPage'])->name('home');
-    Route::get('/services', [BiomedServicesController::class, 'mainPage'])->name('biomed-services');
+    Route::get('/BioMed-Service', [BiomedServicesController::class, 'mainPage'])->name('biomed-services');
 
-    Route::get('/rental', [RentalServiceController::class, 'landingPage'])->name('rental-services');
-    Route::get('/about-us', [AboutUsController::class, 'landingPage'])->name('about-us');
+    Route::get('/medical-equipment-rental', [RentalServiceController::class, 'landingPage'])->name('rental-services');
+    Route::get('/about', [AboutUsController::class, 'landingPage'])->name('about-us');
 
-    Route::get('/location', [LocationPageController::class, 'landingPage'])->name('location');
-    Route::get('/location/{slug}', [LocationPageController::class, 'locationDetail'])->name('location.detail');
-    Route::get('/contact-us', [ContactUsController::class, 'landingPage'])->name('contact-us');
-    Route::get('/privacy', [PrivacyPolicyController::class, 'landingPage'])->name('privacy');
-    Route::get('/terms', [TermsAndConditionsController::class, 'landingPage'])->name('terms');
+    Route::get('/locations', [LocationPageController::class, 'landingPage'])->name('location');
+    Route::get('/locations/{slug}', [LocationPageController::class, 'locationDetail'])->name('location.detail');
+    Route::get('/contact', [ContactUsController::class, 'landingPage'])->name('contact-us');
+    Route::get('/privacy-policy', [PrivacyPolicyController::class, 'landingPage'])->name('privacy');
+    Route::get('/terms-and-conditions', [TermsAndConditionsController::class, 'landingPage'])->name('terms');
     Route::get('/disclaimer', [DisclaimerController::class, 'landingPage'])->name('disclaimer');
     Route::get('/blogs', [BlogController::class, 'landingPage'])->name('blogs');
     Route::get('/blog/{slug}', [BlogController::class, 'blogDetail'])->name('blog.detail');
@@ -44,7 +44,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/rentals/filter', [AjaxController::class, 'filterRentalProducts'])->name('rentals.filter');
     Route::get('/faqs', [FaqController::class, 'landingPage'])->name('faqs');
 
-    Route::get('/repair', [RepairServiceController::class, 'landingPage'])->name('repair');
+    Route::get('/medical-equipment-repair', [RepairServiceController::class, 'landingPage'])->name('repair');
     Route::get('/{category}/{slug}', [RepairServiceController::class, 'repairServiceDetail'])->name('repair.service.detail');
 
     // ===========================

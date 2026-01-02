@@ -8,6 +8,7 @@ use App\Models\Review;
 use App\Models\ReviewsLandingPage;
 use App\Traits\UploadImageTrait;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -169,7 +170,7 @@ class ReviewsController extends Controller
             // Reviews for first category (paginated 12 per page)
             $reviewsByCategory = $firstCategory
                 ? $firstCategory->reviews()->select('id', 'name', 'message', 'rating', 'category_id')->where('status', 'approved')->latest()->paginate(12)
-                : collect();
+                : new LengthAwarePaginator([], 0, 12);;
 
 
             $allCategories = Category::where('status', true)->pluck('name', 'slug');

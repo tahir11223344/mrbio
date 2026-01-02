@@ -3,14 +3,14 @@
     <h3 class="product-name">{!! highlightBracketText($product->name ?? '') !!}</h3>
 
     <p class="product-desc">
-        {{ $product->short_description }}
+        {!! $product->description !!}
     </p>
 
     <!-- BUTTONS -->
     <div class="d-flex gap-3 btn-wrraper">
-        <button class="btn-service">
+        <button class="btn-service" data-open-form>
             <i class="bi bi-gear"></i>
-            <span class="btn-label" data-slug="{{ $product->slug ?? '' }}" data-open-form>Get Service</span>
+            <span class="btn-label" data-slug="{{ $product->slug ?? '' }}">Get Service</span>
             {{-- <button class="buy-btn" data-slug="{{ $product->slug ?? '' }}" data-open-form>Get A Quote</button> --}}
         </button>
 

@@ -252,38 +252,41 @@
                 </div>
 
                 <!-- RIGHT COLUMN -->
-                <div class="col-lg-6  text-center fade-right">
-                    <div class="slider-container">
-                        <div class="slider-track">
+                @if (!empty($data->hero_slider_images) && count($data->hero_slider_images) > 0)
+                    <div class="col-lg-6  text-center fade-right">
+                        <div class="slider-container">
+                            <div class="slider-track">
 
-                            {{-- Clone last slide at start --}}
-                            @if (!empty($data->hero_slider_images))
-                                <div class="slide">
-                                    <img src="{{ asset('storage/landing-page/hero-slider/' . collect($data->hero_slider_images)->last()) }}"
-                                        class="slider-img">
-                                </div>
-                            @endif
+                                {{-- Clone last slide at start --}}
+                                @if (!empty($data->hero_slider_images))
+                                    <div class="slide">
+                                        <img src="{{ asset('storage/landing-page/hero-slider/' . collect($data->hero_slider_images)->last()) }}"
+                                            class="slider-img">
+                                    </div>
+                                @endif
 
-                            {{-- Actual Slides --}}
-                            @foreach ($data->hero_slider_images as $img)
-                                <div class="slide">
-                                    <img src="{{ asset('storage/landing-page/hero-slider/' . $img) }}" class="slider-img">
-                                </div>
-                            @endforeach
+                                {{-- Actual Slides --}}
+                                @foreach ($data->hero_slider_images as $img)
+                                    <div class="slide">
+                                        <img src="{{ asset('storage/landing-page/hero-slider/' . $img) }}"
+                                            class="slider-img">
+                                    </div>
+                                @endforeach
 
-                            {{-- Clone first slide at end --}}
-                            @if (!empty($data->hero_slider_images))
-                                <div class="slide">
-                                    <img src="{{ asset('storage/landing-page/hero-slider/' . collect($data->hero_slider_images)->first()) }}"
-                                        class="slider-img">
-                                </div>
-                            @endif
+                                {{-- Clone first slide at end --}}
+                                @if (!empty($data->hero_slider_images))
+                                    <div class="slide">
+                                        <img src="{{ asset('storage/landing-page/hero-slider/' . collect($data->hero_slider_images)->first()) }}"
+                                            class="slider-img">
+                                    </div>
+                                @endif
+
+                            </div>
+
 
                         </div>
-
-
                     </div>
-                </div>
+                @endif
 
             </div>
         </div>
