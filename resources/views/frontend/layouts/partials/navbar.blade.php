@@ -26,9 +26,34 @@
         left: 44%;
 
     }
+
+    /* ===== FORCE STICKY HEADER ===== */
+    .site-header {
+        position: fixed;
+
+        width: 100%;
+        z-index: 9999;
+    }
+
+
+
+
+    body {
+        padding-top: 0;
+    }
+
+    body.header-fixed {
+        padding-top: 180px;
+    }
+
+
+    .mega-menu {
+        position: absolute;
+        z-index: 99999;
+    }
 </style>
-<section class="sticky-to">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white p-0">
+<header class="site-header " id="siteHeader">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white p-0 ">
         <div class="container-fluid d-flex align-items-center p-0 position-relative">
 
             <!-- Logo -->
@@ -53,7 +78,8 @@
                     </li>
 
                     <li class="nav-item dropdown  has-mega">
-                        <a class="nav-link mega-toggle {{ request()->routeIs('biomed-services*') ? 'active' : '' }}" href="{{ route('biomed-services') }}">
+                        <a class="nav-link mega-toggle {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
+                            href="{{ route('biomed-services') }}">
                             Mr Biomed Service
                             <i class="bi bi-chevron-down dropdown-icon"></i>
                         </a>
@@ -183,7 +209,8 @@
                     </li>
 
                     <li class="nav-item dropdown has-mega">
-                        <a class="nav-link mega-toggle {{ request()->routeIs('location') ? 'active' : '' }}" href="{{ route('location') }}">Locations <i
+                        <a class="nav-link mega-toggle {{ request()->routeIs('location') ? 'active' : '' }}"
+                            href="{{ route('location') }}">Locations <i
                                 class="bi bi-chevron-down dropdown-icon"></i></a>
                         <div class="mega-menu">
                             <div class="container-fluid">
@@ -325,29 +352,11 @@
 
         </div>
     </nav>
-</section>
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggler = document.getElementById('customToggler');
-        const mainNav = document.getElementById('mainNav');
-        const isDesktop = () => window.innerWidth >= 992;
+</header>
 
-        toggler.addEventListener('click', function() {
-            if (!isDesktop()) {
-                mainNav.classList.toggle('show');
-                const isExpanded = mainNav.classList.contains('show');
-                toggler.setAttribute('aria-expanded', isExpanded);
-            }
-        });
 
-        window.addEventListener('resize', function() {
-            if (isDesktop() && mainNav.classList.contains('show')) {
-                mainNav.classList.remove('show');
-                toggler.setAttribute('aria-expanded', false);
-            }
-        });
-    });
-</script> --}}
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const toggler = document.getElementById('customToggler');
