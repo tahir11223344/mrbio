@@ -653,7 +653,7 @@
                         class="separator">|</span>
                     <a href="{{ route('feedback') }}" class="text-decoration-none mx-2">FeedBack</a><span
                         class="separator">|</span>
-                    <a href="{{ route('faqs') }}" class="text-decoration-none mx-2">FAQ's</a>
+                    <a href="{{ route('faqs') }}" class="text-decoration-none mx-2">FAQs</a>
                 </div>
             </div>
             <p class="copyright mb-0 t">

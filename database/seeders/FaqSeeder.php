@@ -17,7 +17,7 @@ class FaqSeeder extends Seeder
 
         // Step 3: Enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        
+
         $faqsByPage = [
 
             'landing' => [
@@ -68,8 +68,48 @@ class FaqSeeder extends Seeder
             ],
 
             'service' => [
-                // add later
+                [
+                    'question' => 'How does renting medical equipment in Texas benefit my healthcare facility?',
+                    'answer'   => 'Renting surgical and medical equipment with Mr Biomed Tech in Texas gets you in touch with industry-leading manufacturers and biomedical equipment specialists who have experience in handling all kinds of surgical and medical machinery.',
+                ],
+                [
+                    'question' => 'Can I test the rental medical equipment in Texas before committing to a purchase?',
+                    'answer'   => 'Mr Biomed Tech’s try-before-you-buy policy gives healthcare facilities a fair shot at seeing what machinery is best suited for their patients’ needs.',
+                ],
+                [
+                    'question' => 'How do I find the best medical equipment rental companies in Texas?',
+                    'answer'   => 'The best biomedical equipment rental company is Mr Biomed Tech who services areas all across Texas, including Garland, San Antonio, Austin, Dallas, and Houston.',
+                ],
+                [
+                    'question' => 'Do you offer used medical equipment rental near me?',
+                    'answer'   => 'Used biomedical equipment rental is available at Mr Biomed Tech in Texas. We offer a variety of biomed equipment selections from renowned manufacturers. All our products are refurbished for ready-to-use working conditions.',
+                ],
+                [
+                    'question' => 'What does a biomedical equipment technician do?',
+                    'answer'   => 'A biomedical equipment technician has the interdisciplinary knowledge to calibrate, repair, and maintain a wide variety of surgical and medical technology for hospitals and other healthcare facilities.',
+                ],
+                [
+                    'question' => 'How fast can Mr Biomed Tech repair biomedical equipment?',
+                    'answer'   => 'Mr Biomed Tech offers 24/7 biomedical equipment repair services all over Texas in case of any healthcare emergencies.',
+                ],
+                [
+                    'question' => 'Can biomedical technicians train hospital staff?',
+                    'answer'   => 'The biomedical technicians at Mr Biomed Tech Services offer training to hospital staff to prevent misuse of machinery and so clinicians can identify regulatory issues.',
+                ],
+                [
+                    'question' => 'What types of equipment does Mr Biomed Tech sell?',
+                    'answer'   => 'Mr Biomed Tech sells equipment ranging from hospital beds and stretchers to autoclave machines and other sterilization devices, as well as defibrillators, SCD pumps, X-rays, etc.',
+                ],
+                [
+                    'question' => 'How do you sterilize surgical equipment properly?',
+                    'answer'   => 'To sterilize surgical equipment requires a methodical decontamination process to avoid pathogenic transfer. You can rent or purchase a sterilization device, such as an autoclave, from Mr Biomed Tech Services in Texas.',
+                ],
+                [
+                    'question' => 'How does a medical equipment management strategy reduce costs for hospitals?',
+                    'answer'   => 'A medical equipment management strategy is employed by Mr Biomed Tech to assist hospitals in keeping track of preventative maintenance of machinery, spare parts inventory, and staying up to date on device lifecycles. It ultimately ensures the investment in your medical equipment.',
+                ],
             ],
+
         ];
 
         foreach ($faqsByPage as $pageName => $faqs) {

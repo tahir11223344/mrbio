@@ -3492,7 +3492,7 @@
      justify-content: space-between;
      padding: 0 18px;
      gap: 15px;
-     margin-top: 120px;
+     margin-top: 50px;
  }
 
  .cta-contact-text {
@@ -3515,7 +3515,7 @@
  }
 
  .cta-contact-img1 {
-     margin-top: 20px;
+     margin-top: -45px;
      width: 91.49410625494069px;
      height: 133.9307499759018px;
  }

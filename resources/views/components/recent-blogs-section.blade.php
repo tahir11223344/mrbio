@@ -3,7 +3,7 @@
         <div class="container text-center">
             <h2 class="section-title text-white mb-3">Recent News</h2>
             <p class="section-desc  mb-5">
-                Stay updated with the latest trends and insights in biomedical technology and services.
+                Stay informed with the latest updates, innovations, and industry insights in biomedical equipment and healthcare technology.
             </p>
         </div>
 

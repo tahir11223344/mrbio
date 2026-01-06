@@ -10,7 +10,7 @@
             height: 583px;
             overflow: hidden;
             /* display: flex;
-                                                                                                                                                                                                                align-items: center; */
+                                                                                                                                                                                                                    align-items: center; */
             /* padding-left: 60px;  */
             color: #fff;
         }
@@ -308,7 +308,8 @@
                         <p class="fade-right">
                             {{ $data->banner_short_description ?? '' }}
                         </p>
-                        <a href="javascript:void(0)" class="service-btn fade-left" data-open-service-modal>Schedule Your Service Today</a>
+                        <a href="javascript:void(0)" class="service-btn fade-left" data-open-service-modal>Schedule Your
+                            Service Today</a>
                     </div>
                 </div>
             </div>
@@ -323,15 +324,15 @@
 
     <section class="special-section">
         <div class="container">
-            <h2 class="special-section-title">Specialized Services in <span>Mr biomed Tech, TX</span> </h2>
+            <h2 class="special-section-title">Specialized Services <span>All Over Texas From Mr Biomed Tech</span> </h2>
 
             <div class="card-wrapper">
                 <div class="service-card ">
-                    <h3>ipsum illo maxime? Accusamus repellendus eveniet</h3>
+                    <h3>Sterilizer and/or Table Maintenance</h3>
                 </div>
 
                 <div class="service-card ">
-                    <h3>Anesthesia Machine Repairing and Certification </h3>
+                    <h3>Anesthesia Machine Repairing & Certification</h3>
                 </div>
 
                 <div class="service-card ">
@@ -339,17 +340,15 @@
                 </div>
 
                 <div class="service-card ">
-                    <h3>Life Safety and Electrical Safety Serives</h3>
+                    <h3>Life Safety & Electrical Safety Services</h3>
                 </div>
             </div>
             <div class="row text-center mt-4">
                 <div class="col-md-7 mx-auto">
-                    <p class="desc">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto vitae eaque at
-                        commodi vel
-                        itaque
-                        quaerat ipsum illo maxime? Accusamus repellendus eveniet ipsum illo maxime? Accusamus repellendus
-                        eveniet est aliquid rerum ad commodi et veritatis
-                        nobis!</p>
+                    <p class="desc">Mr Biomed Tech is a CBET accredited and HIPAA compliant Texas-based team of biomedical
+                        engineers dedicated to serving and upholding the American public healthcare system. We’ve introduced
+                        specialized services at cost-effective rates to demonstrate our deep knowledge and years of hands-on
+                        experience.</p>
 
                     <a href="{{ route('contact-us') }}">
                         <button class="expert-btn mt-4">Talk to Expert</button>
@@ -368,52 +367,16 @@
     {{-- ================= Why Choose Biomed Section ================= --}}
     <x-why-choice-biomed />
 
-    <section class="cta-contact-section">
-        <div class="container ">
-
-            <div class="row">
-                <div class="col-lg-8">
-                    <h2 class="cta-contact-heading">
-                        Have a question? we’d love to hear from you.
-                    </h2>
-                    <div class="d-flex gap-5">
-
-                        <div class="cta-contact-box">
-                            {{-- <img src="left-icon.png" alt="left icon" class="contact-icon"> --}}
-                            <span class="cta-contact-sp">|</span>
-                            <a href="{{ route('contact-us') }}">
-                                <span class="cta-contact-text">
-                                    Get In Touch With Mr-Biomed Tech Today!
-                                </span>
-                            </a>
-
-                            <div class="cta-img-wraper">
-                                <img src="/frontend/images/rental/contact-img2.png" alt="right icon"
-                                    class="cta-contact-icon">
-                                <img src="/frontend/images/rental/contact-img4.png" alt="" class="cta-phone">
-                                <span class="cta-line">|</span>
-                            </div>
-                        </div>
-                        <img src="/frontend/images/rental/contact-img1.png" alt=""
-                            class="img-fluid cta-contact-img1">
-                    </div>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <img src="{{ asset('frontend/images/rental/contact-img3.png') }}" alt="cta img"
-                        class="cta-image img-fluid">
-                </div>
-            </div>
-
-        </div>
-    </section>
+     {{-- ================= CTA Section ================= --}}
+    <x-cta-section />
 
 
 
 
     {{-- ================faqs section ================ --}}
 
-    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="About Our Profile?"
-        subtext="We provide sales, rental, and repair services for medical equipment with ISO certified"
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading=""
+        subtext=""
         image="frontend/images/hero-main-img.png" :visible="4" />
 
 

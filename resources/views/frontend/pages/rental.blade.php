@@ -51,10 +51,10 @@
         }
 
         /*
-                                                                                                                                                                                        .equip-list {
-                                                                                                                                                                                            margin-top: 30px;
+                                                                                                                                                                                                .equip-list {
+                                                                                                                                                                                                    margin-top: 30px;
 
-                                                                                                                                                                                        } */
+                                                                                                                                                                                                } */
 
         .li {
             /* padding-left: 18px; */
@@ -464,10 +464,10 @@
         /* =============== four-column-section ======================= */
 
         /*
-                                                                                                                                                                                                                                                                                * Background Color Calculation:
-                                                                                                                                                                                                                                                                                * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
-                                                                                                                                                                                                                                                                                * This translates to a light grey color with low opacity.
-                                                                                                                                                                                                                                                                                */
+                                                                                                                                                                                                                                                                                        * Background Color Calculation:
+                                                                                                                                                                                                                                                                                        * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
+                                                                                                                                                                                                                                                                                        * This translates to a light grey color with low opacity.
+                                                                                                                                                                                                                                                                                        */
         .four-column-section {
             background-color: #D9D9D938;
             padding: 40px 20px;
@@ -708,8 +708,7 @@
                     </div>
                     <h3 class="title">Contact</h3>
                     <p class="description">
-                        **Contact us according to your specific needs and requirements.** Our dedicated support team is
-
+                        Get in touch with a biomed technician to discover rental options and request a quote.
                     </p>
                 </div>
 
@@ -719,10 +718,8 @@
                     </div>
                     <h3 class="title">Confirmation</h3>
                     <p class="description">
-                        **Your order or service request will be officially confirmed via email or SMS immediately.** This
-                        confirmation process verifies
-
-                    </p>
+                        We confirm equipment availability and pricing and only finalize booking once you’re thoroughly
+                        satisfied.</p>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
@@ -731,11 +728,7 @@
                     </div>
                     <h3 class="title">Payment</h3>
                     <p class="description">
-                        **Complete your payment securely and conveniently using your preferred method.** We offer multiple
-                        safe
-                        payment
-
-                    </p>
+                        While we prepare your equipment, choose from our flexible payment options.</p>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
@@ -744,53 +737,17 @@
                     </div>
                     <h3 class="title">Delivery</h3>
                     <p class="description">
-                        **Your purchased goods will be processed and delivered promptly to your specified address.** We
-                        utilize
-
+                        Within 24 hours or less, your equipment will be delivered, installed, and tested to ensure proper functionality.
                     </p>
                 </div>
             </div>
         </div>
     </section>
-    <section class="cta-contact-section">
-        <div class="container ">
 
-            <div class="row">
-                <div class="col-lg-8">
-                    <h2 class="cta-contact-heading">
-                        Have a question? we’d love to hear from you.
-                    </h2>
-                    <div class="d-flex flex-wra gap-5">
 
-                        <div class="cta-contact-box">
-                            {{-- <img src="left-icon.png" alt="left icon" class="contact-icon"> --}}
-                            <span class="cta-contact-sp">|</span>
+    {{-- ================= CTA Section ================= --}}
+    <x-cta-section />
 
-                            <a href="{{ route('contact-us') }}">
-                                <span class="cta-contact-text">
-                                    Get In Touch With Mr-Biomed Tech Today!
-                                </span>
-                            </a>
-
-                            <div class="cta-img-wraper">
-                                <img src="/frontend/images/rental/contact-img2.png" alt="right icon"
-                                    class="cta-contact-icon">
-                                <img src="/frontend/images/rental/contact-img4.png" alt="" class="cta-phone">
-                                <span class="cta-line">|</span>
-                            </div>
-                        </div>
-                        <img src="/frontend/images/rental/contact-img1.png" alt=""
-                            class="img-fluid cta-contact-img1">
-                    </div>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <img src="{{ asset('frontend/images/rental/contact-img3.png') }}" alt="cta img"
-                        class="cta-image img-fluid">
-                </div>
-            </div>
-
-        </div>
-    </section>
 
     {{-- ================= Why Choose Biomed Section ================= --}}
     <x-why-choice-biomed />
@@ -802,8 +759,8 @@
 
     {{-- ================faqs section ================ --}}
 
-    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="About Our Profile?"
-        subtext="We provide sales, rental, and repair services for medical equipment with ISO certified"
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading=""
+        subtext=""
         image="frontend/images/hero-main-img.png" :visible="4" />
 
 

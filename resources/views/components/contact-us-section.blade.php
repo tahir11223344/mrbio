@@ -7,8 +7,9 @@
                 <h2 class="contact-heading mb-3">Contact Us</h2>
 
                 <p class="contact-desc mb-4">
-                    Have questions or need support? Our team is ready to assist you with expert imaging services,
-                    maintenance, and repairs across Texas.
+                    Want to learn more about how you can maximize the potential of your healthcare facility by enlisting
+                    biomedical equipment services from Mr Biomed Tech? We offer support all across Texas. Call, email,
+                    or visit us to discuss rentals, repairs, purchasing, or equipment disposition today.
                 </p>
 
                 <div class="contact-info mb-3">
@@ -52,8 +53,9 @@
                     </h3>
 
                     <p class="form-desc mb-4">
-                        Fill out the form below and our team will get back to you shortly. Fill out the form below and
-                        our team will get back to you shortly.
+                        Our Texas-based biomedical technicians are ready to answer your questions, provide you with
+                        quotes, or schedule a consultation. Let's have a conversation. We’re on call 24/7 and can get
+                        you in touch with a team member right away!
                     </p>
 
                     <form class="contact-us-form" action="{{ route('contact.us.form') }}" method="POST">
@@ -111,11 +113,12 @@
 
                         <div class="form-group mb-3">
                             <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                            <div class="g-recaptcha w-100" id="contactFormCaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}">
+                            <div class="g-recaptcha w-100" id="contactFormCaptcha"
+                                data-sitekey="{{ config('services.recaptcha.sitekey') }}">
                             </div>
                             <span class="text-danger error-text g-recaptcha-response_error"></span>
                         </div>
-                        
+
                         <button type="submit" class="btn submit-btn">
                             Request Submit
                         </button>

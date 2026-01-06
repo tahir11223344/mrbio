@@ -249,7 +249,7 @@
                         </div>
                     </li>
 
-                    <li class="nav-item dropdown has-mega">
+                    {{-- <li class="nav-item dropdown has-mega">
                         <a class="nav-link mega-toggle" href="#">Product Store <i
                                 class="bi bi-chevron-down dropdown-icon"></i></a>
                         <div class="mega-menu">
@@ -276,7 +276,9 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li> --}}
+
+
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('rental-services') ? 'active' : '' }}"
                             href="{{ route('rental-services') }}">
@@ -302,6 +304,13 @@
                         <a class="nav-link {{ request()->routeIs('about-us') ? 'active' : '' }}"
                             href="{{ route('about-us') }}">
                             About
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('faqs') ? 'active' : '' }}"
+                            href="{{ route('faqs') }}">
+                            FAQs
                         </a>
                     </li>
 

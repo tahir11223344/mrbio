@@ -315,19 +315,19 @@
 
                 <!-- Column 1 -->
                 <div class="col-md-4 team-box ">
-                    <h2 class="team-title fade-left">Team Member</h2>
-                    <p class="team-sub fade-right">Expert</p>
+                    <h2 class="team-title fade-left">Expert</h2>
+                    <p class="team-sub fade-right">BMETs</p>
                 </div>
 
                 <!-- Column 2 (with borders left & right + top-bottom) -->
                 <div class="col-md-4 team-box middle-box">
-                    <h2 class="team-title fade-left">Result-Driven</h2>
-                    <p class="team-sub fade-right">Approach</p>
+                    <h2 class="team-title fade-left">Accessible</h2>
+                    <p class="team-sub fade-right">And Reliable Approach</p>
                 </div>
 
                 <!-- Column 3 -->
                 <div class="col-md-4 team-box">
-                    <h2 class="team-title fade-left">Streamlined</h2>
+                    <h2 class="team-title fade-left">Sleek</h2>
                     <p class="team-sub fade-right">Execution</p>
                 </div>
 
@@ -395,8 +395,8 @@
     </section>
 
     {{-- ================faqs section ================ --}}
-    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="About Our Profile?"
-        subtext="We provide sales, rental, and repair services for medical equipment with ISO certified"
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading=""
+        subtext=""
         image="frontend/images/hero-main-img.png" :visible="4" />
 
 

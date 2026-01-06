@@ -419,7 +419,7 @@
                     <div class="contactt-card">
 
                         <h4 class="card-title">
-                            Do you have any other unanswered question?
+                            Got Unanswered Questions? We’re Here to Help!
                         </h4>
 
                         <div class="divider"></div>
@@ -427,9 +427,8 @@
                         <!-- EMAIL -->
                         <h5 class="card-title">Email Us</h5>
                         <p class="cardd-desc">
-                            Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit nulla. Nullam vitae
-                            sit tempus diam.Libero diam auctor tristique hendrerit in eu vel id. Nec leo amet suscipit
-                            nulla. Nullam vitae sit tempus diam. eu vel id
+                            Have questions or need assistance? Our team is ready to respond with quick and helpful
+                            solutions. Whether it's a general inquiry or a more detailed request, we’re just an email away!
                         </p>
 
                         <div class="d-flex justify-content-center">
@@ -533,44 +532,8 @@
             </div>
         </section>
     </section>
-    <section class="cta-contact-section">
-        <div class="container ">
-
-            <div class="row">
-                <div class="col-lg-8">
-                    <h2 class="cta-contact-heading">
-                        Have a question? we’d love to hear from you.
-                    </h2>
-                    <div class="d-flex gap-5">
-
-                        <div class="cta-contact-box">
-                            <span class="cta-contact-sp">|</span>
-
-                            <a href="{{ route('contact-us') }}">
-                                <span class="cta-contact-text">
-                                    Get In Touch With Mr-Biomed Tech Today!
-                                </span>
-                            </a>
-
-                            <div class="cta-img-wraper">
-                                <img src="/frontend/images/rental/contact-img2.png" alt="right icon"
-                                    class="cta-contact-icon">
-                                <img src="/frontend/images/rental/contact-img4.png" alt="" class="cta-phone">
-                                <span class="cta-line">|</span>
-                            </div>
-                        </div>
-                        <img src="/frontend/images/rental/contact-img1.png" alt=""
-                            class="img-fluid cta-contact-img1">
-                    </div>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <img src="{{ asset('frontend/images/rental/contact-img3.png') }}" alt="cta img"
-                        class="cta-image img-fluid">
-                </div>
-            </div>
-
-        </div>
-    </section>
+    {{-- ================= CTA Section ================= --}}
+    <x-cta-section />
 
 
     {{-- ================= pruduct sectiion ============= --}}
