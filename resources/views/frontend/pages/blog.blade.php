@@ -96,6 +96,11 @@
             background: #005f87;
         }
 
+        .cat-item.active {
+            background: #005884;
+            color: #fff;
+        }
+
         .boddy {
             background: #E5F0F5;
             height: 235px;
