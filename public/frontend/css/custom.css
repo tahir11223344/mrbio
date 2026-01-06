@@ -2107,12 +2107,12 @@
  .choose-card {
      position: relative;
      background: #fff;
-     padding: 10px;
+     padding: 5px;
      border-radius: 12px;
      text-align: center;
      /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
      overflow: hidden;
-     height: 117px;
+     height: 145px;
      width: 323px;
      border: 1px solid #046DA0;
  }

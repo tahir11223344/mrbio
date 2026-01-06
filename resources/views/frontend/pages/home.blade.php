@@ -1,6 +1,9 @@
 @extends('frontend.layouts.frontend')
 
-@section('title', 'Home')
+{{-- @section('title', 'Home') --}}
+@section('meta_title', $data->meta_title ?? 'Mr. Biomed Tech Services')
+@section('meta_keywords', $data->meta_keywords ?? '')
+@section('meta_description', $data->meta_description ?? '')
 
 @push('frontend-styles')
     <style>
@@ -191,9 +194,7 @@
                 <div class="col-lg-6 text-white">
 
                     <!-- Heading -->
-                    <h1 class="hero-heading fade-left">
-                        {{ $heading['first_text'] }} <span> {{ $heading['second_text'] }}</span>
-                    </h1>
+                    <h1 class="hero-heading fade-left">{!! highlightBracketText($data?->hero_heading ?? '', ['#000000']) !!}</h1>
 
                     <!-- Paragraph -->
                     <p class="hero-para mt-3 fade-right">
@@ -297,7 +298,7 @@
             <div class="row align-items-stretch">
                 <!-- LEFT COLUMN -->
                 <div class="col-lg-6 col-md-6 animate-card">
-                    <h2 class="info-heading fade-left">{{ $c['first_text'] }} <span>{{ $c['second_text'] }}</span> </h2>
+                    <h2 class="info-heading fade-left">{!! highlightBracketText($data?->content_heading ?? '') !!} </h2>
 
                     <div class="info-para fade-right">
                         {!! $data->content_description !!}
@@ -402,79 +403,6 @@
 
     <x-best-selling-products-section />
 
-    {{-- <section class="best-selling-section mt-5 py-3">
-        <div class="container">
-
-            <!-- Heading -->
-            <h2 class="section-title mb-4 fade-left">Best <span>Selling</span> Medical Equipment Essentials</h2>
-
-            <!-- Search Input -->
-            <div class="search-wrapper mb-4">
-                <input type="text" class="search-input" placeholder="Search the store">
-
-                <button class="search-btn">
-                    <i class="bi bi-search"></i>
-                </button>
-            </div>
-
-
-            <!-- Buttons -->
-            <div class="row g-4 justify-content-center">
-                @foreach ($categories as $category)
-                    <div class="col-auto">
-                        <button class="cat-btn">{{ $category->name ?? '' }}</button>
-                    </div>
-                @endforeach
-            </div>
-
-        </div>
-
-        <section class="best-products  mt-5">
-            <div class="container">
-                <div class="row g-4 justify-content-center">
-                    @foreach ($products as $product)
-                        <div class="col-lg-3 col-md-6 animate-card">
-                            <div class="product-card position-relative">
-
-                                <!-- Discount Badge -->
-                                @if (!empty($product->discount_percent) && $product->discount_percent > 0)
-                                    <span class="discount-badge">{{ $product->discount_percent }}% OFF</span>
-                                @endif
-
-                                <img src="{{ asset('storage/products/thumbnails/' . $product->thumbnail) }}"
-                                    alt="{{ $product->image_alt ?? '' }}" class="product-img img-fluid">
-
-                                <!-- Stars -->
-                                <div class="stars">
-                                    <i class="bi bi-star-fill gold"></i>
-                                    <i class="bi bi-star-fill gold"></i>
-                                    <i class="bi bi-star-fill gold"></i>
-                                    <i class="bi bi-star-fill gold"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </div>
-
-                                <h4 class="product-title">{{ $product->name ?? '' }}</h4>
-                                <p class="product-desc">{{ $product->short_description ?? '' }}</p>
-
-                                <div class="d-flex justify-content-between align-items-center price-box">
-                                    <span class="old-price">${{ number_format($product->price, 0, '.', ',') }}</span>
-                                    <span class="new-price">${{ number_format($product->sale_price, 0, '.', ',') }}</span>
-
-                                    <button class="buy-btn">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-                <div class="text-center mt-5">
-                    <button class="all-products-btn">All Products</button>
-                </div>
-            </div>
-        </section>
-
-    </section> --}}
-
 
     {{-- Offer Slider Component --}}
     <x-offers-section />
@@ -503,10 +431,9 @@
                             <div class="equipment-block mb-3">
                                 <h4 class="equipment-title">Anesthesia Machines</h4>
                                 <ul class="equipment-list">
-                                    <li>Anesthesia Monitors</li>
-                                    <li>Vaporizers</li>
                                     <li>Anesthesia Machines</li>
-                                    <li>Portable Ultrasound</li>
+                                    <li>Vaporizers</li>
+                                    <li>Anesthesia Monitors</li>
                                 </ul>
                             </div>
 
@@ -515,8 +442,8 @@
                                 <ul class="equipment-list">
                                     <li>Cameras</li>
                                     <li>Insufflators</li>
-                                    <li>Pulse Oximeters</li>
-                                    <li>Scopes - Gastroscopes, Colonoscopes, Bronchoscopes, Laparoscopes…</li>
+                                    <li>Scopes – (Including Gastroscopes, Colonoscopes, Bronchoscopes, Laparoscopes,
+                                        Cystoscopes, Duodenoscopes)</li>
                                 </ul>
                             </div>
 
@@ -525,7 +452,7 @@
                                 <ul class="equipment-list">
                                     <li>Patient Monitors</li>
                                     <li>Vital Sign Monitors</li>
-                                    <li>High-Precision Instruments</li>
+                                    <li>Exam Tables</li>
                                     <li>AEDs/Defibrillators</li>
                                     <li>Infusion Pumps</li>
                                     <li>SCD Pumps</li>
@@ -554,21 +481,21 @@
                             <div class="equipment-block mb-3">
                                 <h4 class="equipment-title">Surgical Equipment</h4>
                                 <ul class="equipment-list">
-                                    <li>Operation Lights</li>
+                                    <li>Operation Lights/Surgical Lights</li>
                                     <li>Surgical Tables</li>
                                     <li>Electrosurgical Units (ESU)</li>
                                     <li>Hypothermia Units</li>
-                                    <li>Stretchers / Gurneys / Hospital Beds</li>
-                                    <li>COVID-19 Testing</li>
+                                    <li>Stretchers/Gurneys/Hospital Beds</li>
                                 </ul>
                             </div>
 
                             <div class="equipment-block mb-3">
                                 <h4 class="equipment-title">Sterilizers</h4>
                                 <ul class="equipment-list">
-                                    <li>Tabletop Autoclaves – Tuttnauer, Midmark, M11</li>
-                                    <li>Free-Standing Autoclaves – Steris, Getinge, Belimed</li>
-                                    <li>Physiotherapy Tools</li>
+                                    <li>Tabletop Autoclaves (Including Tuttnauer Autoclave, Midmark Autoclave and M11
+                                        Autoclave)</li>
+                                    <li>Free-standing autoclaves (Including Tuttnauer, Midmark, Steris, Getinge and Belimed
+                                        Autoclave)</li>
                                 </ul>
                             </div>
 
@@ -576,10 +503,10 @@
                                 <h4 class="equipment-title">Ultrasound</h4>
                                 <ul class="equipment-list">
                                     <li>Ultrasound Machines</li>
-                                    <li>Portable X-Ray Systems</li>
-                                    <li>C-Arms</li>
+                                    <li>Portable X-ray Systems</li>
+                                    <li>C-arms</li>
                                     <li>Bone Density Machines</li>
-                                    <li>Radiology Rooms</li>
+                                    <li>Radiology Rooms (Rad Room)</li>
                                 </ul>
                             </div>
 
@@ -590,9 +517,11 @@
 
                 <div class="col-8 mx-auto">
                     <p class="bottom-text fade-left">
-                        We cover a full spectrum of medical equipment, ensuring you have access to everything you need.
-                        Hospitals and healthcare providers trust Mr. Biomed Tech Services for clear, precise agreements and
-                        targeted financing solutions.
+                        We cover a full spectrum of medical equipment over various rental and purchasing plans. This
+                        includes diagnostic equipment, advanced therapeutic devices, sterilization machines, IV pumps, beds,
+                        stretchers, and your routine operating room tools. Our products are available for small clinics and
+                        large independent medical practices with the added bonus of continuous support over the course of
+                        the ownership period.
                     </p>
 
                     <div class="text-start mt-4">
