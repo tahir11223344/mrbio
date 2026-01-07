@@ -1,3 +1,26 @@
+document.addEventListener('DOMContentLoaded', () => {
+
+    const servicesBtn = document.querySelector('.services-btn');
+    const panel = document.querySelector('.services-panel');
+
+    // Button click → toggle panel
+    servicesBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // 👈 bahir wale click se roko
+        panel.classList.toggle('active');
+    });
+
+    // Panel ke andar click → panel close na ho
+    panel.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    // Bahir kahin bhi click → panel hide
+    document.addEventListener('click', () => {
+        panel.classList.remove('active');
+    });
+
+});
+
 let footerCaptchaWidgetId = null;
 
 document.addEventListener('DOMContentLoaded', function () {

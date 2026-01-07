@@ -10,7 +10,7 @@
             height: 583px;
             overflow: hidden;
             /* display: flex;
-                                                                                                                                                                                                                    align-items: center; */
+                                                                                                                                                                                                                            align-items: center; */
             /* padding-left: 60px;  */
             color: #fff;
         }
@@ -367,7 +367,7 @@
     {{-- ================= Why Choose Biomed Section ================= --}}
     <x-why-choice-biomed />
 
-     {{-- ================= CTA Section ================= --}}
+    {{-- ================= CTA Section ================= --}}
     <x-cta-section />
 
 
@@ -375,11 +375,11 @@
 
     {{-- ================faqs section ================ --}}
 
-    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading=""
-        subtext=""
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
         image="frontend/images/hero-main-img.png" :visible="4" />
 
-
+    <!-- BUTTON + ICON GROUP -->
+    <x-service-btn />
 
     {{-- ================= pruduct sectiion ============= --}}
     <x-our-latest-products />

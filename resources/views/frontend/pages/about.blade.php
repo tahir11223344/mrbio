@@ -488,8 +488,10 @@
             </div>
 
         </div>
-    </section>
 
+    </section>
+    <!-- BUTTON + ICON GROUP -->
+    <x-service-btn />
     <section class="company-overview">
         <div class="container">
             <div class="row g-5">
@@ -733,8 +735,7 @@
     <x-cta-section />
 
     {{-- ================faqs section ================ --}}
-    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading=""
-        subtext=""
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
         image="frontend/images/hero-main-img.png" :visible="4" />
 
 

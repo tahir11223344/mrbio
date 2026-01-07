@@ -394,9 +394,11 @@
         </div>
     </section>
 
+    <!-- BUTTON + ICON GROUP -->
+    <x-service-btn />
+
     {{-- ================faqs section ================ --}}
-    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading=""
-        subtext=""
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
         image="frontend/images/hero-main-img.png" :visible="4" />
 
 

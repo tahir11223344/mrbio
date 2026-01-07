@@ -175,6 +175,10 @@
 
         </div>
     </section>
+
+    <!-- BUTTON + ICON GROUP -->
+    <x-service-btn />
+
     <section class="biomed-section">
         <div class="container">
             <div class="row justify-content-cente mt-2">
@@ -385,8 +389,7 @@
 
     {{-- ================faqs section ================ --}}
 
-    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading=""
-        subtext=""
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
         image="frontend/images/hero-main-img.png" :visible="4" />
 
 

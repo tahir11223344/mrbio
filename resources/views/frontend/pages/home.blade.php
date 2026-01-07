@@ -25,154 +25,9 @@
 
         /* WRAPPER */
 
-        /* SERVICE BUTTON */
-        .services-wrapper {
-            position: fixed;
-            top: 340px;
-            right: 0;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-        }
 
-        /* TOGGLE GROUP */
-        .services-toggle {
-            position: relative;
-            width: 48px;
-            height: 180px;
-        }
-
-        /* SERVICES BUTTON */
-        .services-btn {
-            width: 48px;
-            height: 120px;
-            background: #FFFFFF;
-            border: 1px solid #FE0000;
-            border-top-right-radius: 10px;
-            border-bottom-right-radius: 10px;
-            cursor: pointer;
-
-            /* 🔥 ROTATE */
-            transform: rotate(180deg);
-            writing-mode: vertical-rl;
-            text-align: center;
-            font-weight: 600;
-            font-family: Inter;
-            font-size: 20px;
-            line-height: 100%;
-            color: #0071A8;
-
-        }
-
-        /* ARROW ICON (BOTTOM RIGHT) */
-        .arrow-icon {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 48px;
-            height: 48px;
-            background: #FFFFFF;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom-right-radius: 10px;
-            border-bottom-left-radius: 10px;
-            font-size: 18px;
-            cursor: pointer;
-            transform: rotate(89deg);
-            border: 1px solid #FE0000;
-        }
-
-        .arrow-icon img {
-            width: 35px;
-            height: 37px;
-            transform: rotate(271deg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-        }
 
         /* SLIDE PANEL */
-        .services-panel {
-            position: absolute;
-            right: 48px;
-            width: 191px;
-            /* height: 207px; */
-            background: #fff;
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            display: none;
-            top: 3px;
-        }
-
-        .services-panel h4 {
-            font-size: 12px;
-            font-weight: 500;
-            font-family: Inter;
-            line-height: 100%;
-            color: #000000;
-            margin-bottom: 10px;
-        }
-
-
-        .services-panel p {
-            margin-bottom: 10px;
-            font-size: 11px;
-            font-weight: 400;
-            font-family: Inter;
-            line-height: 100%;
-            color: #000000;
-        }
-
-        .services-panel p a {
-            color: #000000 !important;
-
-        }
-
-        .explore-btn {
-            margin-top: 10px;
-            width: 109px;
-            height: 24px;
-            /* padding: 8px; */
-            background: #FFFFFF;
-            border-radius: 10px;
-            border: 2px solid #0071A8;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 400;
-            font-family: Inter;
-            line-height: 100%;
-            color: #000000;
-            transition: all 0.4s ease-in-out;
-            clip-path: polygon(0% 0%,
-                    100% 0%,
-                    100% 100%,
-                    0% 100%);
-        }
-
-        .explore-btn:hover {
-            background: #0071A8;
-            border: none;
-            color: #FFFFFF;
-            /* transform: scale(1.05) */
-            clip-path: polygon(12% 0%,
-                    100% 0%,
-                    88% 100%,
-                    0% 100%);
-            border-radius: 0px;
-
-        }
-
-        .services-panel {
-            display: none;
-        }
-
-        .services-panel.active {
-            display: block;
-        }
     </style>
 @endpush
 
@@ -599,8 +454,7 @@
 
     {{-- ================faqs section ================ --}}
 
-    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading=""
-        subtext=""
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
         image="frontend/images/hero-main-img.png" :visible="4" />
 
 
@@ -619,40 +473,8 @@
 
 
     <!-- SERVICES TOGGLE WRAPPER -->
-    <div class="services-wrapper">
+    <x-service-btn />
 
-        <!-- SLIDE PANEL -->
-        <div class="services-panel">
-            <h4>Choose Your Rental Services</h4>
-
-            @foreach (getServicesList() as $service)
-                <p class="mb-1">
-                    <a href="{{ route('biomed-services') }}" class="text-decoration-none">
-                        {{ $service }}
-                    </a>
-                </p>
-            @endforeach
-
-            <a href="{{ route('biomed-services') }}">
-                <button type="button" class="explore-btn">
-                    Explore More
-                </button>
-            </a>
-
-        </div>
-
-        <!-- BUTTON + ICON GROUP -->
-        <div class="services-toggle">
-
-            <button class="services-btn">Services</button>
-
-            <div class="arrow-icon">
-                <img src="{{ asset('frontend/images/icon-img.png') }}" alt="">
-
-            </div>
-
-        </div>
-    </div>
 
 @endsection
 
@@ -690,34 +512,6 @@
 
         });
     </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            const servicesBtn = document.querySelector('.services-btn');
-            const panel = document.querySelector('.services-panel');
-
-            // Button click → toggle panel
-            servicesBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // 👈 bahir wale click se roko
-                panel.classList.toggle('active');
-            });
-
-            // Panel ke andar click → panel close na ho
-            panel.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
-
-            // Bahir kahin bhi click → panel hide
-            document.addEventListener('click', () => {
-                panel.classList.remove('active');
-            });
-
-        });
-    </script>
-
-
-
 
     <script>
         document.querySelectorAll(".nav-item.dropdown").forEach(drop => {

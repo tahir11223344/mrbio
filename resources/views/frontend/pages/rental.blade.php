@@ -51,10 +51,10 @@
         }
 
         /*
-                                                                                                                                                                                                .equip-list {
-                                                                                                                                                                                                    margin-top: 30px;
+                                                                                                                                                                                                        .equip-list {
+                                                                                                                                                                                                            margin-top: 30px;
 
-                                                                                                                                                                                                } */
+                                                                                                                                                                                                        } */
 
         .li {
             /* padding-left: 18px; */
@@ -464,10 +464,10 @@
         /* =============== four-column-section ======================= */
 
         /*
-                                                                                                                                                                                                                                                                                        * Background Color Calculation:
-                                                                                                                                                                                                                                                                                        * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
-                                                                                                                                                                                                                                                                                        * This translates to a light grey color with low opacity.
-                                                                                                                                                                                                                                                                                        */
+                                                                                                                                                                                                                                                                                                * Background Color Calculation:
+                                                                                                                                                                                                                                                                                                * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
+                                                                                                                                                                                                                                                                                                * This translates to a light grey color with low opacity.
+                                                                                                                                                                                                                                                                                                */
         .four-column-section {
             background-color: #D9D9D938;
             padding: 40px 20px;
@@ -694,7 +694,8 @@
 
     </section>
 
-
+    <!-- BUTTON + ICON GROUP -->
+    <x-service-btn />
 
 
 
@@ -737,7 +738,8 @@
                     </div>
                     <h3 class="title">Delivery</h3>
                     <p class="description">
-                        Within 24 hours or less, your equipment will be delivered, installed, and tested to ensure proper functionality.
+                        Within 24 hours or less, your equipment will be delivered, installed, and tested to ensure proper
+                        functionality.
                     </p>
                 </div>
             </div>
@@ -759,8 +761,7 @@
 
     {{-- ================faqs section ================ --}}
 
-    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading=""
-        subtext=""
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
         image="frontend/images/hero-main-img.png" :visible="4" />
 
 

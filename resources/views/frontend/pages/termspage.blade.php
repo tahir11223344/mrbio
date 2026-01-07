@@ -193,6 +193,8 @@
         </div>
     </section>
 
+    <!-- BUTTON + ICON GROUP -->
+    <x-service-btn />
 
     <!-- Terms & Conditions Page -->
     <x-important-links :for_page="'terms_conditions'" />

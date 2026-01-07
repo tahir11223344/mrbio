@@ -199,21 +199,47 @@
     /* Social Icons */
     .social-icons {
         background-color: #ffffff;
-        display: inline-block;
-        padding: 12px;
+        display: flex;
+        /* 🔥 IMPORTANT */
+        align-items: center;
+        /* vertical center */
+        justify-content: center;
+        /* horizontal center */
+        gap: 14px;
+        /* space between icons */
         border-radius: 5px;
-        /* width: 12rem; */
+        width: 228px;
+        height: 48px;
     }
+
 
     .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: #E9A426;
-        transition: color 0.3s;
+        text-decoration: none;
     }
 
-    .social-icons a:hover {
-        color: #E9A426;
-        /* Hover color */
+
+
+    .social-icons i {
+        font-size: 24px;
+        color: #E9A426 !important;
+
     }
+
+    .social-icons i:hover {
+        transform: scale(1.3) !important;
+    }
+
+    .sepparator {
+        width: 2px;
+        height: 41px;
+        background-color: #0071A8;
+    }
+
+
 
     /* Footer Links and Copyright */
     .footer-links-copyright {
@@ -356,7 +382,7 @@
         border-bottom-right-radius: 40px;
         height: 184px;
         width: 184px;
-
+        margin-left: 29px;
     }
 
     .footer-p {
@@ -481,23 +507,45 @@
                 {{-- Social Icons - Only show if link exists --}}
 
                 <div class="social-icons mb-3">
+
                     @if (setting('facebook'))
-                        <a href="{{ setting('facebook') }}" target="_blank"><i
-                                class="fab fa-facebook-f me-3 fa-lg"></i></a>
-                    @endif
-                    @if (setting('instagram'))
-                        <a href="{{ setting('instagram') }}" target="_blank"><i
-                                class="fab fa-instagram me-3 fa-lg"></i></a>
+                        <a href="{{ setting('facebook') }}" target="_blank">
+                            <i class="fab fa-facebook-f fa-lg"></i>
+                        </a>
                     @endif
 
-                    @if (setting('twitter'))
-                        <a href="{{ setting('twitter') }}" target="_blank"><i class="fab fa-twitter me-3 fa-lg"></i></a>
+                    @if (setting('facebook') && (setting('instagram') || setting('linkedin') || setting('twitter')))
+                        <span class="sepparator"></span>
+                    @endif
+
+                    @if (setting('instagram'))
+                        <a href="{{ setting('instagram') }}" target="_blank">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                    @endif
+
+                    @if (setting('instagram') && (setting('linkedin') || setting('twitter')))
+                        <span class="sepparator"></span>
                     @endif
 
                     @if (setting('linkedin'))
-                        <a href="{{ setting('linkedin') }}" target="_blank"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                        <a href="{{ setting('linkedin') }}" target="_blank">
+                            <i class="fab fa-linkedin-in fa-lg"></i>
+                        </a>
                     @endif
+
+                    @if (setting('linkedin') && setting('twitter'))
+                        <span class="sepparator"></span>
+                    @endif
+
+                    @if (setting('twitter'))
+                        <a href="{{ setting('twitter') }}" target="_blank">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                    @endif
+
                 </div>
+
                 {{-- Address --}}
                 @if (setting('address'))
                     <p class="footer-p"><i class="fas fa-map-marker-alt me-2 text-white"></i> {{ setting('address') }}
@@ -582,7 +630,8 @@
 
                     <div class="form-group mb-3">
                         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                        <div class="g-recaptcha w-100" id="footerCaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}">
+                        <div class="g-recaptcha w-100" id="footerCaptcha"
+                            data-sitekey="{{ config('services.recaptcha.sitekey') }}">
                         </div>
                         <span class="text-danger error-text g-recaptcha-response_error"></span>
                     </div>

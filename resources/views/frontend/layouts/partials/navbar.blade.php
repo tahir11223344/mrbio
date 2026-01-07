@@ -28,23 +28,28 @@
     }
 
     /* ===== FORCE STICKY HEADER ===== */
+
+
     .site-header {
         position: fixed;
-
+        top: 0;
+        left: 0;
         width: 100%;
-        z-index: 9999;
+        z-index: 10000;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .site-header.hide-header {
+        transform: translateY(-100%);
+    }
+
+    .site-header.show-header {
+        transform: translateY(0);
     }
 
 
 
 
-    body {
-        padding-top: 0;
-    }
-
-    body.header-fixed {
-        padding-top: 180px;
-    }
 
 
     .mega-menu {
@@ -57,7 +62,7 @@
         <div class="container-fluid d-flex align-items-center p-0 position-relative">
 
             <!-- Logo -->
-            <a class="navbar-brand px-3 py-2" href="#">
+            <a class="navbar-brand px-3 " href="#">
                 <img src="{{ asset('storage/' . setting('site_logo', 'frontend/images/logo.png')) }}" height=""
                     alt="{{ setting('site_name') }}" class="img-fluid nav-logo">
             </a>
@@ -314,46 +319,41 @@
                         </a>
                     </li>
 
-                    <li class="nav-item d-flex flex-column align-items-center ms-lg-4 mt-2 mt-lg-0 ">
-                        <div class="d-flex align-items-center gap-2 mb-1 contact-icons-wrapper ">
 
-                            {{-- Email Icon --}}
+
+                    <li class="nav-item ms-auto d-flex flex-column align-items-center mt-2 mt-lg-0">
+                        <div class="d-flex align-items-center gap-2 mb-1 contact-icons-wrapper">
+
                             @if (setting('email'))
-                                <a href="mailto:{{ setting('email') }}" target="_blank" title="Send us an Email">
-                                    <img src="{{ asset('frontend/images/nav-icon-img-1.png') }}" alt="Email"
-                                        class="icon-image">
+                                <a href="mailto:{{ setting('email') }}" target="_blank">
+                                    <img src="{{ asset('frontend/images/nav-icon-img-1.png') }}" class="icon-image">
                                 </a>
                             @endif
 
-                            {{-- Separator - only show if previous icon exists --}}
                             @if (setting('email') && (setting('phone') || setting('whatsapp')))
                                 <span class="separator text-white fw-bold">|</span>
                             @endif
 
-                            {{-- Phone Icon --}}
                             @if (setting('phone'))
-                                <a href="tel:{{ cleanPhone(setting('phone')) }}" title="Call Us">
-                                    <img src="{{ asset('frontend/images/nav-icon-mg-2.png') }}" alt="Call"
-                                        class="icon-image">
+                                <a href="tel:{{ cleanPhone(setting('phone')) }}">
+                                    <img src="{{ asset('frontend/images/nav-icon-mg-2.png') }}" class="icon-image">
                                 </a>
                             @endif
 
-                            {{-- Separator - only show if phone exists and whatsapp exists --}}
                             @if (setting('phone') && setting('whatsapp'))
                                 <span class="separator text-white fw-bold">|</span>
                             @endif
 
-                            {{-- WhatsApp Icon --}}
                             @if (setting('whatsapp'))
-                                <a href="https://wa.me/{{ cleanPhone(setting('whatsapp')) }}" target="_blank"
-                                    title="Chat on WhatsApp">
-                                    <img src="{{ asset('frontend/images/nav-icon-img-3.png') }}" alt="WhatsApp"
-                                        class="icon-image">
+                                <a href="https://wa.me/{{ cleanPhone(setting('whatsapp')) }}" target="_blank">
+                                    <img src="{{ asset('frontend/images/nav-icon-img-3.png') }}" class="icon-image">
                                 </a>
                             @endif
-
                         </div>
-                        <a href="{{ route('contact-us') }}" class="btn contact-btn mt-2 px-3 py-1">CONTACT</a>
+
+                        <a href="{{ route('contact-us') }}" class="btn contact-btn mt-2 px-3 py-1">
+                            CONTACT
+                        </a>
                     </li>
 
                     {{-- <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
@@ -392,6 +392,33 @@
 </header>
 
 
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const header = document.getElementById('siteHeader');
+        let lastScrollTop = 0;
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // small scroll ignore
+            if (Math.abs(scrollTop - lastScrollTop) < 10) return;
+
+            if (scrollTop > lastScrollTop && scrollTop > 150) {
+                // SCROLL DOWN → hide
+                header.classList.add('hide-header');
+                header.classList.remove('show-header');
+            } else {
+                // SCROLL UP → show
+                header.classList.remove('hide-header');
+                header.classList.add('show-header');
+            }
+
+            lastScrollTop = scrollTop;
+        });
+    });
+</script>
 
 
 <script>

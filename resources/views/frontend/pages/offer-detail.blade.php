@@ -429,6 +429,9 @@
         </div>
     </section>
 
+    <!-- BUTTON + ICON GROUP -->
+    <x-service-btn />
+
     <section class="biomed-section">
         <div class="container">
             <div class="row justify-content-cente">
@@ -527,7 +530,7 @@
                     <div class="section-text">
                         {!! $data->challenges_description ?? '' !!}
                     </div>
-    
+
                 </div>
 
                 <!-- RIGHT COLUMN -->
@@ -555,7 +558,7 @@
                         {!! $data->cta_description ?? '' !!}
 
                     </div>
-                    
+
                     <h4 class="appointment-title">Make an Appointment</h4>
 
                     @if (setting('phone'))
@@ -584,7 +587,7 @@
         </div>
     </section>
 
-     {{-- ================= CTA Section ================= --}}
+    {{-- ================= CTA Section ================= --}}
     <x-cta-section />
 
 
@@ -592,8 +595,7 @@
 
     {{-- ================faqs section ================ --}}
 
-    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading=""
-        subtext=""
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
         image="frontend/images/hero-main-img.png" :visible="4" />
 
 
@@ -611,5 +613,4 @@
 
 @endsection
 @push('frontend-scripts')
-    
 @endpush

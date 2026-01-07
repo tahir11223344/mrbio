@@ -378,6 +378,8 @@
 
         </div>
     </section>
+    <!-- BUTTON + ICON GROUP -->
+    <x-service-btn />
     <section class="faq-section py-5">
         <div class="container">
             <div class="row g-4">
