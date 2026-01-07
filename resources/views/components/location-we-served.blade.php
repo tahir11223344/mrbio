@@ -2,11 +2,13 @@
     <div class="container">
 
         <!-- MAIN HEADING -->
-        <h2 class="section-title text-center mt-5 fade-left">The Location <span>We Served</span> </h2>
+        <h2 class="section-title text-center mt-5 fade-left">Everything’s Bigger In <span>Texas </span>-- Including Our
+            Reach </h2>
         <p class="section-desc text-center fade-right">
-            We cover a full spectrum of medical equipment, ensuring you have access to everything you need.
-            This is the fact that hospitals and healthcare providers trust Mr. Biomed Tech Services for clear,
-            precise agreements and targeted financing solutions.
+            Texas-based hospitals and healthcare providers trust Mr Biomed Tech Services for our precise and targeted
+            biomedical equipment solutions. We cover it all and at a cost-effective rate: Biomed/Clinical Engineering
+            Repair Services, Medical and Surgical Equipment Rental Services, New/Refurbished Medical and Surgical
+            Equipment Sales, Disposition Services, and Consultancy Services.
         </p>
 
         <div class="row align-items-center ">
@@ -29,19 +31,18 @@
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <ul class="primary-list">
-                                <li>Texas</li>
-                                {{-- <li>Florida</li>
-                                <li>Arkansas</li> --}}
+                                <li>San Antonio</li>
+                                <li>Austin</li>
+                                <li>Houston</li>
                             </ul>
                         </div>
 
-                        {{-- <div class="col-md-4">
+                        <div class="col-md-4">
                             <ul class="primary-list">
-                                <li>Georgia</li>
-                                <li>Alabama</li>
-                                <li>Tennessee</li>
+                                <li>Dallas</li>
+                                <li>Garland</li>
                             </ul>
-                        </div> --}}
+                        </div>
 
                         {{-- <div class="col-md-4">
                             <ul class="primary-list">

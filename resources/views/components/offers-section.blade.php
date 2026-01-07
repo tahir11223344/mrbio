@@ -5,7 +5,7 @@
             <!-- Heading -->
             <h2 class="text-center offer-title fade-left">What We <span>Offer</span></h2>
             <p class="text-center offer-desc mb-5 fade-right">
-                We provide top-quality medical equipment & services to meet all your healthcare needs.
+                Hospitals in the Texas area trust Mr Biomed Tech to provide cost-effective  medical equipment rentals so they can focus on surging patient care. Signing a lease with us means an organized documentation system and the latest in machinery.
             </p>
 
             <!-- Slider Wrapper -->

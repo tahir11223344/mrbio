@@ -642,12 +642,12 @@ if (!function_exists('getFaqs')) {
      * @param  int     $limit
      * @return \Illuminate\Support\Collection
      */
-    function getFaqs($pageName, $limit = 4)
+    function getFaqs($pageName)
     {
         return Faq::where('page_name', $pageName)
             ->select(['question', 'answer'])
             ->latest()
-            ->take($limit)
+            // ->take($limit)
             ->get();
     }
 }

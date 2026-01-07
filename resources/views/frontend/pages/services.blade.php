@@ -245,7 +245,7 @@
         /* ==== biomed-section ==============*/
         .biomed-section {
             /* padding: 80px 0;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        font-family: Arial, sans-serif; */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-family: Arial, sans-serif; */
         }
 
         .service-main-heading {
@@ -455,10 +455,10 @@
         }
 
         /* .top-bg {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    width: 100%;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    height: 60px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background: #ACD5D5;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        width: 100%;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        height: 60px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        background: #ACD5D5;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } */
         .top-bg {
             width: 100%;
             height: 10px;
@@ -506,7 +506,7 @@
         .contact-content {
             max-width: 600px;
             /* display: flex;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        flex-direction: column; */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            flex-direction: column; */
             gap: 20px;
             margin-top: 70px;
             margin-left: 0px !important;
@@ -649,6 +649,8 @@
         </div>
     </section>
 
+    <!-- BUTTON + ICON GROUP -->
+    <x-service-btn />
 
     <section class="hero-circles-section position-relative overflow-hidden">
 
@@ -789,7 +791,7 @@
                         <div class="contact-content text-cente">
                             <h2 class="contact-heading text-center">Get in Touch with Our Experts</h2>
                             <div class="d-flex justify-content-center">
-                                <a href="{{route('location')}}">
+                                <a href="{{ route('location') }}">
                                     <button class="btn-contact">Find your local point of contact</button>
                                 </a>
                             </div>
@@ -816,8 +818,7 @@
 
     {{-- ================faqs section ================ --}}
 
-    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="About Our Profile?"
-        subtext="We provide sales, rental, and repair services for medical equipment with ISO certified"
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
         image="frontend/images/hero-main-img.png" :visible="4" />
 
     {{-- ================= pruduct sectiion ============= --}}

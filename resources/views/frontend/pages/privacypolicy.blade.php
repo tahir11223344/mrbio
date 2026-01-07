@@ -7,9 +7,9 @@
 @section('meta_description', $data->meta_description ?? '')
 
 @push('frontend-styles')
-   <style>
-    
-   </style>
+    <style>
+
+    </style>
 @endpush
 
 
@@ -124,6 +124,9 @@
 
         </div>
     </section>
+
+    <!-- BUTTON + ICON GROUP -->
+    <x-service-btn />
 
     <!-- Privacy Policy Page -->
     <x-important-links :for_page="'privacy_policy'" />

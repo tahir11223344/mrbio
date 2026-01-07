@@ -14,16 +14,12 @@
              <!-- RIGHT COLUMN -->
              <div class="col-lg-8">
                  <p class="mission-text ">
-                     Our mission is to sell and rent professional devices with added value & services
-                     for our customers. We facilitate by scanning the globe to create long-lasting
-                     relationships with reputable manufacturers who, in turn, allow us to represent
-                     their equipment. We also offer additional value that you cannot find from other
-                     companies.
-                     Our mission is to sell and rent professional devices with added value & services
-                     for our customers. We facilitate by scanning the globe to create long-lasting
-                     relationships with reputable manufacturers who, in turn, allow us to represent
-                     their equipment. We also offer additional value that you cannot find from other
-                     companies.
+                     With Mr Biomed Tech, you find a partner who is interested in forging long-lasting relationships
+                     with our manufacturers and clients. Our passion for patient care, coupled with the stringency it
+                     takes to ensure the reliability of medical rental equipment​, is what makes us so valuable to our
+                     clients. We are ever-growing to align with the latest trends in healthcare. We continue to prove
+                     our dedication to precision in offering the best financial solutions in medical equipment rentals,
+                     repairs, and dispositions.
                  </p>
 
                  <a href="{{ route('about-us') }}">

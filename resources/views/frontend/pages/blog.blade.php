@@ -483,7 +483,8 @@
         </div>
     </section> --}}
 
-
+    <!-- BUTTON + ICON GROUP -->
+    <x-service-btn />
 
     {{-- =============== feature section ===================== --}}
     <x-featured-blogs-section :limit="4" />
@@ -602,8 +603,7 @@
 
     {{-- ================faqs section ================ --}}
 
-    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="About Our Profile?"
-        subtext="We provide sales, rental, and repair services for medical equipment with ISO certified"
+    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
         image="frontend/images/hero-main-img.png" :visible="4" />
 
 @endsection

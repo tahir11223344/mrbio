@@ -189,7 +189,8 @@
 
         </div>
     </section>
-
+    <!-- BUTTON + ICON GROUP -->
+    <x-service-btn />
     <!-- Disclaimer Page -->
     <x-important-links :for_page="'disclaimer'" />
 

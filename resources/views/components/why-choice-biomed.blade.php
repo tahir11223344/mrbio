@@ -2,7 +2,7 @@
      <div class="container">
 
          <!-- Section Title -->
-         <h2 class="choose-title fade-left">Why Chose <span>Mr Biomed Tech</span> </h2>
+         <h2 class="choose-title fade-left">Why Choose <span>Mr BioMed Tech</span> </h2>
 
          <div class="row g-4 justify-content-center mt-4">
 
@@ -14,11 +14,11 @@
 
                          <!-- <div class="choose-icon">
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </div> -->
-                         <h4 class="choose-heading">20 Years Experience</h4>
+                         <h4 class="choose-heading">Since 2012</h4>
                      </div>
                      <p class="choose-desc">
-                         With two decades of industry expertise, we provide reliable medical equipment solutions.
-                     </p>
+                         Industry-gold BMEs with years of hands-on experience with manufacturers and healthcare
+                         providers.</p>
                  </div>
              </div>
 
@@ -31,7 +31,7 @@
                          <h4 class="choose-heading">100% Availability</h4>
                      </div>
                      <p class="choose-desc">
-                         Our equipment and support services are always available when you need them the most.
+                         Operational flexibility with on-demand rent and repair solutions.
                      </p>
                  </div>
              </div>
@@ -42,10 +42,10 @@
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
 
-                         <h4 class="choose-heading">Up-to-date Catalogue</h4>
+                         <h4 class="choose-heading">Regular Checks</h4>
                      </div>
                      <p class="choose-desc">
-                         We keep our product catalog updated with the latest medical equipment and technologies.
+                         Routine checks allow us to identify minor issues before they lead to expensive downtime.
                      </p>
                  </div>
              </div>
@@ -56,10 +56,11 @@
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
 
-                         <h4 class="choose-heading">Regular Checks</h4>
+                         <h4 class="choose-heading">ISO 13485 Certification</h4>
                      </div>
                      <p class="choose-desc">
-                         All rental and purchased devices are regularly inspected for performance & safety.
+                         Verified by the International Organization for Standardization (ISO 13485), Joint Commission
+                         standards (TJC), and Texas state law regulations.
                      </p>
                  </div>
              </div>
@@ -70,10 +71,10 @@
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
 
-                         <h4 class="choose-heading">ISO Certification</h4>
+                         <h4 class="choose-heading">Annual Inspection</h4>
                      </div>
                      <p class="choose-desc">
-                         We follow ISO standards to ensure top-quality products and safe biomedical practices.
+                         Inspections are backed by data-driven equipment management strategies.
                      </p>
                  </div>
              </div>
@@ -84,28 +85,13 @@
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
 
-                         <h4 class="choose-heading">24/7 Support</h4>
+                         <h4 class="choose-heading">Up-to-date Catalogue</h4>
                      </div>
                      <p class="choose-desc">
-                         Our dedicated support team is available around the clock for assistance & troubleshooting.
+                         Listings are always patient-ready and suitable for around-the-clock support.
                      </p>
                  </div>
              </div>
-
-             <!-- CARD 7 -->
-             <div class="col-md-6 col-lg-4 animate-card">
-                 <div class="choose-card">
-                     <div class="choose-top">
-                         <i class="bi bi-check choose-icon"></i>
-
-                         <h4 class="choose-heading">Annual Inspection</h4>
-                     </div>
-                     <p class="choose-desc">
-                         We provide yearly inspections to maintain equipment performance and extend lifespan.
-                     </p>
-                 </div>
-             </div>
-
          </div>
      </div>
  </section>

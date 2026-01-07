@@ -28,41 +28,28 @@
     }
 
     /* ===== FORCE STICKY HEADER ===== */
-    /* .site-header {
-        position: fixed;
 
-        width: 100%;
-        z-index: 10000;
-    } */
 
     .site-header {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 9999;
+        z-index: 10000;
         transition: transform 0.3s ease-in-out;
     }
 
-    /* hide state */
     .site-header.hide-header {
         transform: translateY(-100%);
     }
 
-    /* show state */
     .site-header.show-header {
         transform: translateY(0);
     }
 
 
 
-    /* body {
-        padding-top: 0;
-    }
 
-    body.header-fixed {
-        padding-top: 180px;
-    } */
 
 
     .mega-menu {
@@ -267,7 +254,7 @@
                         </div>
                     </li>
 
-                    <li class="nav-item dropdown has-mega">
+                    {{-- <li class="nav-item dropdown has-mega">
                         <a class="nav-link mega-toggle" href="#">Product Store <i
                                 class="bi bi-chevron-down dropdown-icon"></i></a>
                         <div class="mega-menu">
@@ -294,7 +281,9 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li> --}}
+
+
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('rental-services') ? 'active' : '' }}"
                             href="{{ route('rental-services') }}">
@@ -323,42 +312,14 @@
                         </a>
                     </li>
 
-                    {{-- <li class="nav-item d-flex flex-column align-items-center ms-lg-4 mt-2 mt-lg-0 ">
-                        <div class="d-flex align-items-center gap-2 mb-1 contact-icons-wrapper ">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('faqs') ? 'active' : '' }}"
+                            href="{{ route('faqs') }}">
+                            FAQs
+                        </a>
+                    </li>
 
-                            @if (setting('email'))
-                                <a href="mailto:{{ setting('email') }}" target="_blank" title="Send us an Email">
-                                    <img src="{{ asset('frontend/images/nav-icon-img-1.png') }}" alt="Email"
-                                        class="icon-image">
-                                </a>
-                            @endif
 
-                            @if (setting('email') && (setting('phone') || setting('whatsapp')))
-                                <span class="separator text-white fw-bold">|</span>
-                            @endif
-
-                            @if (setting('phone'))
-                                <a href="tel:{{ cleanPhone(setting('phone')) }}" title="Call Us">
-                                    <img src="{{ asset('frontend/images/nav-icon-mg-2.png') }}" alt="Call"
-                                        class="icon-image">
-                                </a>
-                            @endif
-
-                            @if (setting('phone') && setting('whatsapp'))
-                                <span class="separator text-white fw-bold">|</span>
-                            @endif
-
-                            @if (setting('whatsapp'))
-                                <a href="https://wa.me/{{ cleanPhone(setting('whatsapp')) }}" target="_blank"
-                                    title="Chat on WhatsApp">
-                                    <img src="{{ asset('frontend/images/nav-icon-img-3.png') }}" alt="WhatsApp"
-                                        class="icon-image">
-                                </a>
-                            @endif
-
-                        </div>
-                        <a href="{{ route('contact-us') }}" class="btn contact-btn mt-2 px-3 py-1">CONTACT</a>
-                    </li> --}}
 
                     <li class="nav-item ms-auto d-flex flex-column align-items-center mt-2 mt-lg-0">
                         <div class="d-flex align-items-center gap-2 mb-1 contact-icons-wrapper">
@@ -380,7 +341,6 @@
                             @endif
 
                             @if (setting('phone') && setting('whatsapp'))
-                                )
                                 <span class="separator text-white fw-bold">|</span>
                             @endif
 
