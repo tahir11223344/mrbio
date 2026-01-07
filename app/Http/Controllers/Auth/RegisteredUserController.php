@@ -52,11 +52,18 @@ class RegisteredUserController extends Controller
             'last_login_ip' => $request->getClientIp()
         ]);
 
+        // Assign USER role
+        $user->assignRole('user');
+
+        // Send verification email
         event(new Registered($user));
 
         // Auth::login($user);
 
         // return redirect(RouteServiceProvider::HOME);
+        return response()->json([
+            'message' => 'Please check your email to verify your account.'
+        ]);
     }
 
     public function changePassword()

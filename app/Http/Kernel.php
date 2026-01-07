@@ -3,6 +3,12 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Spatie\Permission\Middleware\PermissionMiddleware as MiddlewarePermissionMiddleware;
+use Spatie\Permission\Middleware\RoleMiddleware as MiddlewareRoleMiddleware;
+use Spatie\Permission\Middleware\RoleOrPermissionMiddleware as MiddlewareRoleOrPermissionMiddleware;
+use Spatie\Permission\Middlewares\PermissionMiddleware;
+use Spatie\Permission\Middlewares\RoleMiddleware;
+use Spatie\Permission\Middlewares\RoleOrPermissionMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -63,5 +69,9 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'role' => MiddlewareRoleMiddleware::class,
+        'permission' => MiddlewarePermissionMiddleware::class,
+        'role_or_permission' => MiddlewareRoleOrPermissionMiddleware::class,
+        'admin_or_redirect' => \App\Http\Middleware\AdminOrRedirect::class,
     ];
 }

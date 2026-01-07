@@ -36,12 +36,28 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = $request->user();
+
+        // Email verified check
+        if (! $user->hasVerifiedEmail()) {
+            Auth::logout();
+            return redirect()->route('verification.notice');
+        }
+
         $request->user()->update([
             'last_login_at' => Carbon::now()->toDateTimeString(),
             'last_login_ip' => $request->getClientIp()
         ]);
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // Role based redirect
+        if ($user->hasRole('administrator')) {
+            // Admins go to dashboard
+            return redirect()->intended(route('dashboard'));
+        }
+
+        // Normal users go to home page
+        return redirect()->intended(route('home'));
+        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

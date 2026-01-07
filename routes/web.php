@@ -46,9 +46,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth', 'verified'])->group(function () {
+require __DIR__ . '/frontend-routes.php';
 
-    Route::get('/', [DashboardController::class, 'index']);
+Route::middleware(['admin_or_redirect'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -403,4 +403,3 @@ Route::get('/error', function () {
 Route::get('/auth/redirect/{provider}', [SocialiteController::class, 'redirect']);
 
 require __DIR__ . '/auth.php';
-require __DIR__ . '/frontend-routes.php';

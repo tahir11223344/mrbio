@@ -356,6 +356,34 @@
                         <a href="{{ route('contact-us') }}" class="btn contact-btn mt-2 px-3 py-1">CONTACT</a>
                     </li>
 
+                    {{-- <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        @guest
+                            <a href="{{ route('login') }}" class="btn btn-outline-primary">Login</a>
+                        @endguest
+
+                        @auth
+                           
+                            <div class="dropdown">
+                                <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button"
+                                    id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ auth()->user()->name ?? auth()->user()->email }}
+
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="userMenu">
+                                    @if (auth()->user()->hasRole('administrator'))
+                                        <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+                                    @endif
+                                    <li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endauth
+                    </li> --}}
+
                 </ul>
             </div>
 

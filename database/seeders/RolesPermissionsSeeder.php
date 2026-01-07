@@ -70,12 +70,21 @@ class RolesPermissionsSeeder extends Seeder
             }
         }
 
+        Role::firstOrCreate([
+            'name' => 'user',
+            'guard_name' => 'web',
+        ]);
+
+        // Assign admin role to specific users
+        $adminEmails = [
+            'mubeenmetait@gmail.com',
+            'demo@demo.com',
+        ];
+        
         // Step 3: Assign default roles
-        // Admin → all users
-        User::all()->each(function ($user) {
-            if (! $user->hasRole('administrator')) {
-                $user->assignRole('administrator');
-            }
+        // Admin
+        User::whereIn('email', $adminEmails)->get()->each(function ($user) {
+            $user->assignRole('administrator');
         });
     }
 }
