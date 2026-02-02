@@ -13,7 +13,7 @@
             height: 583px;
             overflow: hidden;
             /* display: flex;
-                                                                                                                                                                                                                            align-items: center; */
+                                                                                                                                                                                                                                align-items: center; */
             /* padding-left: 60px;  */
             color: #fff;
         }
@@ -298,10 +298,25 @@
     <section class="service-video-section">
         <div class="video-overlay"></div>
 
-        <!-- Background Video -->
-        <video class="bg-video" autoplay muted loop playsinline>
-            <source src="{{ asset('storage/repair_services/' . $data->banner_image) }}" type="video/mp4">
-        </video>
+        @php
+            $banner = $data->banner_image ?? null;
+            $extension = $banner ? strtolower(pathinfo($banner, PATHINFO_EXTENSION)) : null;
+        @endphp
+
+        @if ($banner)
+            @if (in_array($extension, ['mp4', 'webm', 'mov']))
+                <!-- Background Video -->
+                <video class="bg-video" autoplay muted loop playsinline>
+                    <source src="{{ asset('storage/repair_services/' . $banner) }}" type="video/{{ $extension }}">
+                    Your browser does not support the video tag.
+                </video>
+            @else
+                <!-- Background Image -->
+                <div class="bg-image" style="background-image: url('{{ asset('storage/repair_services/' . $banner) }}');">
+                </div>
+            @endif
+        @endif
+
         <div class="container">
             <div class="row">
                 <div class="col-md-6 mx-auto ">

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\RepairServicesSubPageDataTable;
-use App\Models\Faq;
 use App\Models\RepairService;
 use App\Models\RepairServiceSubPage;
 use App\Traits\UploadImageTrait;
@@ -29,8 +28,8 @@ class RepairServiceController extends Controller
 
             return view('pages.repair-service.index', compact('data'));
         } catch (\Throwable $e) {
-            Log::error('Repair Service Index Error: ' . $e->getMessage(), [
-                'trace' => $e->getTraceAsString()
+            Log::error('Repair Service Index Error: '.$e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
             ]);
 
             return redirect()
@@ -47,7 +46,13 @@ class RepairServiceController extends Controller
             'main_short_description' => 'nullable|string',
             'banner_heading' => 'nullable|string|max:255',
             'banner_short_description' => 'nullable|string',
-            'banner_image' => 'nullable|file|max:10240', // any file up to 10MB
+            'banner_image' => [
+                'nullable',
+                'file',
+                'mimes:jpg,jpeg,png,webp,mp4,mov,avi,webm',
+                'max:10240', // 10MB
+            ],
+
             'banner_image_alt' => 'nullable|string|max:255',
 
             'repair_service_heading' => 'nullable|string|max:255',
@@ -72,10 +77,10 @@ class RepairServiceController extends Controller
             // Get first entry or create new
             $repairService = RepairService::first();
 
-            if (!$repairService) {
+            if (! $repairService) {
                 $this->authorize('create repair service');
                 // Create fresh entry
-                $repairService = new RepairService();
+                $repairService = new RepairService;
                 $repairService->created_by = Auth::id(); // set created_by on create
             } else {
                 $this->authorize('write repair service');
@@ -102,9 +107,9 @@ class RepairServiceController extends Controller
             DB::rollBack();
 
             // Log the error
-            Log::error('RepairService store error: ' . $e->getMessage(), [
+            Log::error('RepairService store error: '.$e->getMessage(), [
                 'trace' => $e->getTraceAsString(),
-                'request' => $request->all()
+                'request' => $request->all(),
             ]);
 
             // Return back with input and show error under the form
@@ -121,8 +126,8 @@ class RepairServiceController extends Controller
 
             return $dataTable->render('pages.repair-service.sub-pages.list');
         } catch (\Throwable $e) {
-            Log::error('Repair Service SubPages List Error: ' . $e->getMessage(), [
-                'trace' => $e->getTraceAsString()
+            Log::error('Repair Service SubPages List Error: '.$e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
             ]);
 
             return redirect()
@@ -138,8 +143,8 @@ class RepairServiceController extends Controller
 
             return view('pages.repair-service.sub-pages.create');
         } catch (\Throwable $e) {
-            Log::error('Repair Service SubPages Create Error: ' . $e->getMessage(), [
-                'trace' => $e->getTraceAsString()
+            Log::error('Repair Service SubPages Create Error: '.$e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
             ]);
 
             return redirect()
@@ -156,39 +161,39 @@ class RepairServiceController extends Controller
         // VALIDATION
         // -------------------------
         $validated = $request->validate([
-            'page_category'       => 'required|string',
-            'title'              => 'required|string|max:255',
-            'slug'               => 'required|string|max:255|unique:repair_service_sub_pages,slug',
-            'is_active'          => 'required|boolean',
+            'page_category' => 'required|string',
+            'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:repair_service_sub_pages,slug',
+            'is_active' => 'required|boolean',
 
-            'short_description'  => 'nullable|string',
+            'short_description' => 'nullable|string',
 
-            'content_title'      => 'required|string|max:255',
-            'content_thumbnail'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:512',
-            'content_image_alt'  => 'nullable|string|max:255',
+            'content_title' => 'required|string|max:255',
+            'content_thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:512',
+            'content_image_alt' => 'nullable|string|max:255',
 
-            'gallery_images.*'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:512',
+            'gallery_images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:512',
 
             'content_description' => 'nullable|string',
 
-            'serve_heading'       => 'nullable|string',
-            'serve_description'   => 'nullable|string',
+            'serve_heading' => 'nullable|string',
+            'serve_description' => 'nullable|string',
 
-            'benefits_heading'    => 'nullable|string',
+            'benefits_heading' => 'nullable|string',
             'benefits_description' => 'nullable|string',
 
-            'challenges_image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'challenges_image_alt'    => 'nullable|string|max:255',
-            'challenges_description'  => 'nullable|string',
+            'challenges_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'challenges_image_alt' => 'nullable|string|max:255',
+            'challenges_description' => 'nullable|string',
 
-            'cta_thumbnail'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'cta_image_alt'       => 'nullable|string|max:255',
-            'cta_description'     => 'nullable|string',
+            'cta_thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'cta_image_alt' => 'nullable|string|max:255',
+            'cta_description' => 'nullable|string',
 
             // SEO
-            'meta_title'        => 'nullable|string|max:255',
-            'meta_keywords'     => 'nullable|string|max:255',
-            'meta_description'  => 'nullable|string',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_keywords' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string',
         ]);
 
         try {
@@ -226,40 +231,40 @@ class RepairServiceController extends Controller
             // INSERT INTO DB
             // -------------------------
             $page = RepairServiceSubPage::create([
-                'page_category'        => $validated['page_category'],
-                'title'                => $validated['title'],
-                'slug'                 => Str::slug($validated['slug']),
-                'is_active'            => $validated['is_active'] ?? 1,
+                'page_category' => $validated['page_category'],
+                'title' => $validated['title'],
+                'slug' => Str::slug($validated['slug']),
+                'is_active' => $validated['is_active'] ?? 1,
 
-                'short_description'    => $validated['short_description'] ?? null,
+                'short_description' => $validated['short_description'] ?? null,
 
-                'content_title'        => $validated['content_title'],
-                'content_thumbnail'    => $contentThumbnail,
-                'content_image_alt'    => $validated['content_image_alt'] ?? null,
+                'content_title' => $validated['content_title'],
+                'content_thumbnail' => $contentThumbnail,
+                'content_image_alt' => $validated['content_image_alt'] ?? null,
 
-                'gallery_images'       => json_encode($galleryImages),
+                'gallery_images' => json_encode($galleryImages),
 
-                'content_description'  => $validated['content_description'] ?? null,
+                'content_description' => $validated['content_description'] ?? null,
 
-                'serve_heading'        => $validated['serve_heading'] ?? null,
-                'serve_description'    => $validated['serve_description'] ?? null,
+                'serve_heading' => $validated['serve_heading'] ?? null,
+                'serve_description' => $validated['serve_description'] ?? null,
 
-                'benefits_heading'     => $validated['benefits_heading'] ?? null,
+                'benefits_heading' => $validated['benefits_heading'] ?? null,
                 'benefits_description' => $validated['benefits_description'] ?? null,
 
-                'challenges_image'            => $challengesImage,
-                'challenges_image_alt'        => $validated['challenges_image_alt'] ?? null,
-                'challenges_description'      => $validated['challenges_description'] ?? null,
+                'challenges_image' => $challengesImage,
+                'challenges_image_alt' => $validated['challenges_image_alt'] ?? null,
+                'challenges_description' => $validated['challenges_description'] ?? null,
 
-                'cta_thumbnail'        => $ctaThumbnail,
-                'cta_image_alt'        => $validated['cta_image_alt'] ?? null,
-                'cta_description'      => $validated['cta_description'] ?? null,
+                'cta_thumbnail' => $ctaThumbnail,
+                'cta_image_alt' => $validated['cta_image_alt'] ?? null,
+                'cta_description' => $validated['cta_description'] ?? null,
 
-                'meta_title'           => $validated['meta_title'] ?? null,
-                'meta_keywords'        => $validated['meta_keywords'] ?? null,
-                'meta_description'     => $validated['meta_description'] ?? null,
+                'meta_title' => $validated['meta_title'] ?? null,
+                'meta_keywords' => $validated['meta_keywords'] ?? null,
+                'meta_description' => $validated['meta_description'] ?? null,
 
-                'created_by'           => Auth::id(),
+                'created_by' => Auth::id(),
             ]);
 
             DB::commit();
@@ -272,7 +277,7 @@ class RepairServiceController extends Controller
             DB::rollBack();
 
             return redirect()->back()
-                ->withErrors(['error' => 'Something went wrong: ' . $e->getMessage()])
+                ->withErrors(['error' => 'Something went wrong: '.$e->getMessage()])
                 ->withInput();
         }
     }
@@ -313,29 +318,29 @@ class RepairServiceController extends Controller
         // Decode existing gallery images
         $galleryImages = json_decode($subPage->gallery_images, true) ?? [];
 
-        if (!in_array($request->image, $galleryImages)) {
+        if (! in_array($request->image, $galleryImages)) {
             return response()->json([
                 'success' => false,
-                'message' => 'Image not found in this Repair Sub Page.'
+                'message' => 'Image not found in this Repair Sub Page.',
             ]);
         }
 
         // Remove image from array
-        $galleryImages = array_filter($galleryImages, fn($img) => $img !== $request->image);
+        $galleryImages = array_filter($galleryImages, fn ($img) => $img !== $request->image);
 
         // Save updated JSON
         $subPage->gallery_images = json_encode(array_values($galleryImages));
         $subPage->save();
 
         // Delete image from storage
-        if (Storage::exists('public/repair-pages/gallery/' . $request->image)) {
-            Storage::delete('public/repair-pages/gallery/' . $request->image);
+        if (Storage::exists('public/repair-pages/gallery/'.$request->image)) {
+            Storage::delete('public/repair-pages/gallery/'.$request->image);
         }
 
         // Return JSON with success message
         return response()->json([
             'success' => true,
-            'message' => 'Image has been removed successfully.'
+            'message' => 'Image has been removed successfully.',
         ]);
     }
 
@@ -343,13 +348,13 @@ class RepairServiceController extends Controller
     {
         $this->authorize('write repair service sub page');
 
-        // ------------------------- 
-        // VALIDATION 
-        // ------------------------- 
+        // -------------------------
+        // VALIDATION
+        // -------------------------
         $validated = $request->validate([
             'page_category' => 'required|string',
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:repair_service_sub_pages,slug,' . $id,
+            'slug' => 'required|string|max:255|unique:repair_service_sub_pages,slug,'.$id,
             'is_active' => 'required|boolean',
             'short_description' => 'nullable|string',
             'content_title' => 'required|string|max:255',
@@ -362,79 +367,81 @@ class RepairServiceController extends Controller
             'benefits_heading' => 'nullable|string',
             'benefits_description' => 'nullable|string',
 
-            'challenges_image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'challenges_image_alt'    => 'nullable|string|max:255',
-            'challenges_description'  => 'nullable|string',
+            'challenges_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'challenges_image_alt' => 'nullable|string|max:255',
+            'challenges_description' => 'nullable|string',
 
             'cta_thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'cta_image_alt' => 'nullable|string|max:255',
             'cta_description' => 'nullable|string',
-            // SEO 
+            // SEO
             'meta_title' => 'nullable|string|max:255',
             'meta_keywords' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string',
         ]);
         try {
             DB::beginTransaction();
-            // ------------------------- 
-            // Find existing page 
-            // ------------------------- 
+            // -------------------------
+            // Find existing page
+            // -------------------------
 
             $page = RepairServiceSubPage::findOrFail($id);
 
-            // ------------------------- 
-            // IMAGE UPDATES 
-            // ------------------------- 
+            // -------------------------
+            // IMAGE UPDATES
+            // -------------------------
 
             $contentThumbnail = $this->updateImage($request, 'content_thumbnail', 'repair-pages', $page->content_thumbnail);
             $challengesImage = $this->updateImage($request, 'challenges_image', 'repair-pages', $page->challenges_image);
             $ctaThumbnail = $this->updateImage($request, 'cta_thumbnail', 'repair-pages', $page->cta_thumbnail);
 
-            // ------------------------- 
-            // MULTIPLE GALLERY IMAGES 
-            // ------------------------- 
+            // -------------------------
+            // MULTIPLE GALLERY IMAGES
+            // -------------------------
 
             $existingGallery = json_decode($page->gallery_images, true) ?? [];
             if ($request->hasFile('gallery_images')) {
                 $existingGallery = $this->uploadMultipleImages($existingGallery, $request->file('gallery_images'), 'repair-pages/gallery');
             }
 
-            // ------------------------- 
-            // UPDATE DB 
-            // ------------------------- 
+            // -------------------------
+            // UPDATE DB
+            // -------------------------
             $page->update([
-                'page_category'         => $validated['page_category'],
-                'title'                 => $validated['title'],
-                'slug'                  => Str::slug($validated['slug']),
-                'is_active'             => $validated['is_active'] ?? 1,
-                'short_description'     => $validated['short_description'] ?? null,
-                'content_title'         => $validated['content_title'],
-                'content_thumbnail'     => $contentThumbnail,
-                'content_image_alt'     => $validated['content_image_alt'] ?? null,
-                'gallery_images'        => json_encode($existingGallery),
-                'content_description'   => $validated['content_description'] ?? null,
-                'serve_heading'         => $validated['serve_heading'] ?? null,
-                'serve_description'     => $validated['serve_description'] ?? null,
-                'benefits_heading'      => $validated['benefits_heading'] ?? null,
-                'benefits_description'  => $validated['benefits_description'] ?? null,
+                'page_category' => $validated['page_category'],
+                'title' => $validated['title'],
+                'slug' => Str::slug($validated['slug']),
+                'is_active' => $validated['is_active'] ?? 1,
+                'short_description' => $validated['short_description'] ?? null,
+                'content_title' => $validated['content_title'],
+                'content_thumbnail' => $contentThumbnail,
+                'content_image_alt' => $validated['content_image_alt'] ?? null,
+                'gallery_images' => json_encode($existingGallery),
+                'content_description' => $validated['content_description'] ?? null,
+                'serve_heading' => $validated['serve_heading'] ?? null,
+                'serve_description' => $validated['serve_description'] ?? null,
+                'benefits_heading' => $validated['benefits_heading'] ?? null,
+                'benefits_description' => $validated['benefits_description'] ?? null,
 
-                'challenges_image'            => $challengesImage,
-                'challenges_image_alt'        => $validated['challenges_image_alt'] ?? null,
-                'challenges_description'      => $validated['challenges_description'] ?? null,
+                'challenges_image' => $challengesImage,
+                'challenges_image_alt' => $validated['challenges_image_alt'] ?? null,
+                'challenges_description' => $validated['challenges_description'] ?? null,
 
-                'cta_thumbnail'         => $ctaThumbnail,
-                'cta_image_alt'         => $validated['cta_image_alt'] ?? null,
-                'cta_description'       => $validated['cta_description'] ?? null,
-                'meta_title'            => $validated['meta_title'] ?? null,
-                'meta_keywords'         => $validated['meta_keywords'] ?? null,
-                'meta_description'      => $validated['meta_description'] ?? null,
-                'updated_by'            => Auth::id(),
+                'cta_thumbnail' => $ctaThumbnail,
+                'cta_image_alt' => $validated['cta_image_alt'] ?? null,
+                'cta_description' => $validated['cta_description'] ?? null,
+                'meta_title' => $validated['meta_title'] ?? null,
+                'meta_keywords' => $validated['meta_keywords'] ?? null,
+                'meta_description' => $validated['meta_description'] ?? null,
+                'updated_by' => Auth::id(),
             ]);
             DB::commit();
+
             return redirect()->route('admin-repair-service.sub-pages.list')->with('success', 'Page updated successfully!');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->withErrors(['error' => 'Something went wrong: ' . $e->getMessage()])->withInput();
+
+            return redirect()->back()->withErrors(['error' => 'Something went wrong: '.$e->getMessage()])->withInput();
         }
     }
 
@@ -472,7 +479,7 @@ class RepairServiceController extends Controller
 
             return redirect()
                 ->back()
-                ->withErrors(['error' => 'Unable to delete the page: ' . $e->getMessage()]);
+                ->withErrors(['error' => 'Unable to delete the page: '.$e->getMessage()]);
         }
     }
 
@@ -481,6 +488,7 @@ class RepairServiceController extends Controller
         // Fetch data
         $data = RepairService::first();
         $faqs = getFaqs('repair');
+
         return view('frontend.pages.repaire', compact('data', 'faqs'));
     }
 
@@ -516,7 +524,7 @@ class RepairServiceController extends Controller
         );
 
         // If page not found → 404
-        if (!$data) {
+        if (! $data) {
             abort(404, 'The requested service page was not found.');
         }
 

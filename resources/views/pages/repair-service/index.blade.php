@@ -66,13 +66,25 @@
                             <div class="col-lg-6">
                                 <label for="banner_image"
                                     class="form-label fw-semibold">{{ __('Banner Image/Video') }}</label>
-                                <input type="file" name="banner_image" id="banner_image"
+                                <input type="file" name="banner_image" id="banner_image" accept="image/*,video/*"
                                     class="form-control form-control-lg @error('banner_image') is-invalid @enderror">
                                 @if (!empty($data->banner_image))
-                                    <img src="{{ asset('storage/repair_services/' . $data->banner_image) }}"
-                                        alt="{{ $data->banner_image_alt ?? '' }}" class="mt-2"
-                                        style="max-height:80px;">
+                                    @php
+                                        $extension = pathinfo($data->banner_image, PATHINFO_EXTENSION);
+                                    @endphp
+
+                                    @if (in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'webp']))
+                                        <img src="{{ asset('storage/repair_services/' . $data->banner_image) }}"
+                                            alt="{{ $data->banner_image_alt ?? '' }}" class="mt-2"
+                                            style="max-height:80px;">
+                                    @elseif (in_array(strtolower($extension), ['mp4', 'webm', 'mov']))
+                                        <video class="mt-2" style="max-height:80px;" controls>
+                                            <source src="{{ asset('storage/repair_services/' . $data->banner_image) }}"
+                                                type="video/{{ $extension }}">
+                                        </video>
+                                    @endif
                                 @endif
+
                                 @error('banner_image')
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
