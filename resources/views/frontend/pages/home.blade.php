@@ -97,10 +97,10 @@
                         </div>
 
                         <!-- Login -->
-                        <div class="d-flex align-items-center gap-2 fade-right">
+                        {{-- <div class="d-flex align-items-center gap-2 fade-right">
                             <i class="bi bi-person-fill" id="login-icon"></i>
                             <button class="hero-btn">Medrad Login</button>
-                        </div>
+                        </div> --}}
 
                     </div>
 
