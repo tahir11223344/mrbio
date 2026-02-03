@@ -94,9 +94,11 @@ class ImportBlogsFromApiSeeder extends Seeder
     private function downloadImage($imageUrl, $directory): ?string
     {
         try {
-            $response = Http::timeout(30)->get($imageUrl);
+            // Disable SSL verification for external URLs
+            $response = Http::timeout(30)->withoutVerifying()->get($imageUrl);
 
             if (!$response->successful()) {
+                $this->command->warn("Image download failed for URL: {$imageUrl} - Status: {$response->status()}");
                 return null;
             }
 
@@ -118,7 +120,7 @@ class ImportBlogsFromApiSeeder extends Seeder
             return $filename;
 
         } catch (\Exception $e) {
-            $this->command->warn("Image download failed for URL: {$imageUrl}");
+            $this->command->warn("Image download failed for URL: {$imageUrl} - Error: {$e->getMessage()}");
             return null;
         }
     }
