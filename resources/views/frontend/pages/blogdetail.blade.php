@@ -329,9 +329,9 @@
 
             <h1 class="hero-title mb-3">{!! highlightBracketText($blog->title ?? '', ['#000000']) !!}</h1>
 
-            <p class="hero-description mx-auto mb-4">
+            {{-- <p class="hero-description mx-auto mb-4">
                 {{ $blog->short_description ?? '' }}
-            </p>
+            </p> --}}
 
             <div class="container py-5 text-center text-white">
                 <div class="simple-breadcrumb-container text-start mx-auto">
@@ -374,123 +374,6 @@
                     <div class="blog-content">
                         {!! $blog->description !!}
                     </div>
-
-                    {{-- <p class="blog-desc mb-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis magnam,
-                        temporibus asperiores, deleniti tempora possimus dolores incidunt ratione
-                        consectetur culpa veniam impedit illum voluptatum fuga laboriosam nam minus,
-                        blanditiis voluptas. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Dolores, incidunt quos nobis modi perspiciatis consequuntur?
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                    </p>
-
-                    <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid blog-sub-img mb-4"
-                        alt="News Image">
-                    <h3 class="blog-subtitle mb-3">Top Key Highlights of Future Technologies</h3>
-
-                    <p class="blog-desc mb-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-                        officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                    </p>
-
-                    <ul class="blog-list mb-4">
-                        <li>Artificial Intelligence and Machine Learning Improvements</li>
-                        <li>Cloud Transformation for Enterprise Infrastructure</li>
-                        <li>5G Networks Enabling Ultra-Fast Communications</li>
-                        <li>Robotics and Automation in Business Operations</li>
-                        <li>Cybersecurity Enhancements to Protect Data</li>
-                        <li>IoT Devices Improving Industrial Performance</li>
-                        <li>Blockchain Use in Financial and Supply-Chain Systems</li>
-                        <li>Data Analytics for Smarter Decision Making</li>
-                        <li>AR/VR for Training and Virtual Simulations</li>
-                        <li>Quantum Computing Advancements</li>
-                        <li>Green Technology for Sustainable Growth</li>
-                        <li>Digital Workspaces for Remote Teams</li>
-                        <li>Innovations in Medical Tech and Healthcare</li>
-                        <li>Smart Cities Powered by Integrated Systems</li>
-                        <li>Automation Tools to Reduce Manual Load</li>
-                    </ul>
-
-                    <h3 class="blog-subtitle mb-4">Conclusion</h3>
-                    <p class="blog-desc mb-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                    </p>
-
-                    <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid blog-sub-img mb-4"
-                        alt="News Image">
-                    <h3 class="blog-subtitle mb-3">Top Key Highlights of Future Technologies</h3>
-
-                    <p class="blog-desc mb-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                    </p>
-                    <img src="{{ asset('frontend/images/recent-news-img.png') }}" class="img-fluid blog-sub-img mb-4"
-                        alt="News Image">
-                    <h3 class="blog-subtitle mb-3">Top Key Highlights of Future Technologies</h3>
-
-                    <p class="blog-desc mb-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates officiis
-                        saepe molestias asperiores dolor fuga, repellendus commodi praesentium eveniet
-                        voluptatibus porro corporis.
-                    </p> --}}
-
                 </div>
 
                 <!-- ================== RIGHT SIDEBAR ================== -->
@@ -543,11 +426,11 @@
     <!-- BUTTON + ICON GROUP -->
     <x-service-btn />
     <!-- ============================================================
-                                                LEAVE A COMMENT + COMMENTS SECTION
-                                                Background: #006A9E1A
-                                                Left: Comment Form
-                                                Right: Comments Box
-                                                =============================================================== -->
+        LEAVE A COMMENT + COMMENTS SECTION
+        Background: #006A9E1A
+        Left: Comment Form
+        Right: Comments Box
+        =============================================================== -->
 
     <section class="comment-section py-5">
         <div class="container">

@@ -93,27 +93,29 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <h6 class="nav-repair-title">
-                                                Repair Services
-                                                <i class="fa-solid fa-angle-right"></i>
-                                            </h6>
+                                            <a href="{{ route('repair') }}">
+                                                <h6 class="nav-repair-title">
+                                                    Repair Services
+                                                    <i class="fa-solid fa-angle-right"></i>
+                                                </h6>
+                                            </a>
                                             <h6 class="nav-title">
                                                 Biomedical Equipment Repair and Maintenance ›
                                                 {{-- <i class="fa-solid fa-angle-right"></i> --}}
                                             </h6>
 
                                             <ul class="list-unstyled">
-                                                <li><a href="#" class="bottomm"> Beds and Surfaces ›</a></li>
-                                                <li><a href="#" class="bottomm">Infusion ›</a></li>
-                                                <li><a href="#" class="bottomm"> Anesthesia ›</a></li>
-                                                <li><a href="#" class="bottomm"> Monitors ›</a></li>
+                                                <li><a href="{{ url('repairing-services/houston') }}" class="bottomm">Rowlett ›</a></li>
+                                                <li><a href="{{ url('repairing-services/dallas') }}" class="bottomm">Sachse ›</a></li>
+                                                <li><a href="{{ url('repairing-services/austin') }}" class="bottomm">Mesquite ›</a></li>
+                                                <li><a href="{{ url('repairing-services/garland') }}" class="bottomm">Wylie ›</a></li>
 
 
 
                                             </ul>
-                                            <h6 class="nav-title">
+                                            {{-- <h6 class="nav-title">
                                                 Medical Imaging
-                                                Repair and Maintenance › {{-- <i class="fa-solid fa-angle-right"></i> --}}
+                                                Repair and Maintenance ›
                                             </h6>
 
                                             <ul class="list-unstyled">
@@ -124,30 +126,31 @@
 
 
 
-                                            </ul>
+                                            </ul> --}}
                                         </div>
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <h6 class="nav-repair-title">
-                                                Surgical Equipment
-                                                <i class="fa-solid fa-angle-right"></i>
-                                            </h6>
+                                            <a href="{{ url('repairing-services/texas-medical-equipment') }}">
+                                                <h6 class="nav-repair-title">
+                                                    Surgical Equipment
+                                                    <i class="fa-solid fa-angle-right"></i>
+                                                </h6>
+                                            </a>
                                             <h6 class="nav-title">
                                                 Surgical Equipment Repair and Maintenance ›
                                                 {{-- <i class="fa-solid fa-angle-right"></i> --}}
                                             </h6>
 
                                             <ul class="list-unstyled">
-                                                <li><a href="#" class="bottomm"> Beds and Surfaces ›</a></li>
-                                                <li><a href="#" class="bottomm">Infusion ›</a></li>
-                                                <li><a href="#" class="bottomm"> Anesthesia ›</a></li>
-                                                <li><a href="#" class="bottomm"> Monitors ›</a></li>
+                                                <li><a href="{{ url('repairing-services/texas-medical-equipment') }}" class="bottomm">X-Ray Repair in Texas ›</a></li>
+                                                <li><a href="{{ url('x-ray-repairing/x-ray-in-dallas') }}" class="bottomm">X-Ray Repair in Dallas ›</a></li>
+                                                <li><a href="{{ url('x-ray-repairing/x-ray-in-houston') }}" class="bottomm">X-Ray Repair in Houston ›</a></li>
+                                                <li><a href="{{ url('x-ray-repairing/x-ray-in-san-antonio') }}" class="bottomm">X-Ray Repair in San-Antonio ›</a></li>
 
 
 
                                             </ul>
-                                            <h6 class="nav-title">
+                                            {{-- <h6 class="nav-title">
                                                 Surgical Laser and Technology Services ›
-                                                {{-- <i class="fa-solid fa-angle-right"></i> --}}
                                             </h6>
 
                                             <ul class="list-unstyled">
@@ -156,15 +159,15 @@
                                                 <li><a href="#" class="bottomm"> Anesthesia ›</a></li>
                                                 <li><a href="#" class="bottomm"> Monitors ›</a></li>
 
-
-
-                                            </ul>
+                                            </ul> --}}
                                         </div>
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <h6 class="nav-repair-title">
-                                                Medical Equipment
-                                                <i class="fa-solid fa-angle-right"></i>
-                                            </h6>
+                                            <a href="{{ url('medical-equipment') }}">
+                                                <h6 class="nav-repair-title">
+                                                    Medical Equipment
+                                                    <i class="fa-solid fa-angle-right"></i>
+                                                </h6>
+                                            </a>
                                             <h6 class="nav-title">
                                                 Onsite Medical Equipment Management ›
 
@@ -172,20 +175,21 @@
                                             </h6>
 
                                             <ul class="list-unstyled">
-                                                <li><a href="#" class="bottomm"> Beds and Surfaces ›</a></li>
-                                                <li><a href="#" class="bottomm">Infusion ›</a></li>
-
-
-
-
+                                                <li><a href="{{ route('rental-services') }}" class="bottomm"> Rental Products ›</a></li>
+                                                <li><a href="{{ url('c-arm-repairing/repairing-in-texas') }}" class="bottomm">C-Arm Repair in Texas ›</a></li>
+                                                <li><a href="{{ url('c-arm-repairing/c-arm-in-dallas') }}" class="bottomm">C-Arm Repair in Dallas ›</a></li>
+                                                <li><a href="{{ url('c-arm-repairing/c-arm-in-houston') }}" class="bottomm">C-Arm Repair in Houston ›</a></li>
+                                                <li><a href="{{ url('c-arm-repairing/c-arm-in-san-antonio') }}" class="bottomm">C-Arm Repair in San-Antonio ›</a></li>
                                             </ul>
 
                                         </div>
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <h6 class="nav-repair-title">
-                                                Retired assets
-                                                <i class="fa-solid fa-angle-right"></i>
-                                            </h6>
+                                            <a href="{{ url('retired-assets-services') }}">
+                                                <h6 class="nav-repair-title">
+                                                    Retired assets
+                                                    <i class="fa-solid fa-angle-right"></i>
+                                                </h6>
+                                            </a>
                                             <div class="nav-div">
                                                 <p>Our reputation is based on integrity, honesty, and reliability for
                                                     selling new medical equipment, pre-owned medical equipment, and
@@ -194,18 +198,12 @@
                                                     <button class="nav-mega-btn">Talk To Expert</button>
                                                 </a>
                                             </div>
-
-                                            <h6 class="nav-repair-title mt-4">
-                                                Consultancy
-                                                <i class="fa-solid fa-angle-right"></i>
-                                            </h6>
-
-                                            <ul class="list-unstyled">
-                                                <li><a href="#" class="bottomm"> Beds and Surfaces ›</a></li>
-                                                <li><a href="#" class="bottomm">Infusion ›</a></li>
-                                                <li><a href="#" class="bottomm"> Anesthesia ›</a></li>
-                                                <li><a href="#" class="bottomm"> Monitors ›</a></li>
-                                            </ul>
+                                            <a href="{{ url('consultancy-services') }}">
+                                                <h6 class="nav-repair-title mt-4">
+                                                    Consultancy
+                                                    <i class="fa-solid fa-angle-right"></i>
+                                                </h6>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

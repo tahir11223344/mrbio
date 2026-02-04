@@ -13,11 +13,13 @@
             <span class="btn-label" data-slug="{{ $product->slug ?? '' }}">Get Service</span>
             {{-- <button class="buy-btn" data-slug="{{ $product->slug ?? '' }}" data-open-form>Get A Quote</button> --}}
         </button>
-
-        <button class="btn-call">
-            <i class="bi bi-telephone"></i>
-            <span class="btn-label">Call Us</span>
-        </button>
+    
+        <a href="tel:{{ cleanPhone(setting('phone')) }}">
+            <button class="btn-call">
+                <i class="bi bi-telephone"></i>
+                <span class="btn-label">Call Us</span>
+            </button>
+        </a>
     </div>
 </div>
 

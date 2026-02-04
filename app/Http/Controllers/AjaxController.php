@@ -16,8 +16,8 @@ class AjaxController extends Controller
         $map = [
             'featured'          => 'Featured',
             'medical-equipment' => 'Medical Equipment',
-            'supplies'          => 'Supplies',
-            'parts'             => 'Parts',
+            'hospital-beds'     => 'Hospital Beds',
+            'c-arm'             => 'C Arm',
         ];
 
         $name = $map[$slug] ?? null;

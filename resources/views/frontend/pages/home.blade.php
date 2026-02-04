@@ -98,10 +98,10 @@
                         </div>
 
                         <!-- Login -->
-                        <div class="d-flex align-items-center gap-2 fade-right">
+                        {{-- <div class="d-flex align-items-center gap-2 fade-right">
                             <i class="bi bi-person-fill" id="login-icon"></i>
                             <button class="hero-btn">Medrad Login</button>
-                        </div>
+                        </div> --}}
 
                     </div>
 
@@ -257,7 +257,8 @@
         </div>
     </section>
 
-    <x-best-selling-products-section />
+    {{-- Best Selling Products Section - Fetches products and categories from API/database store --}}
+    {{-- <x-best-selling-products-section /> --}}
 
 
     {{-- Offer Slider Component --}}

@@ -1,2 +1,42 @@
+# Robots.txt for Mr. Biomed Tech Services
+
 User-agent: *
-Disallow:
+Allow: /
+
+# Allow all public routes
+Allow: /$
+Allow: /services
+Allow: /rental-services
+Allow: /about-us
+Allow: /locations
+Allow: /locations/
+Allow: /contact-us
+Allow: /privacy-policy
+Allow: /terms-and-conditions
+Allow: /disclaimer
+Allow: /blog
+Allow: /blog/
+Allow: /faqs
+Allow: /medical-equipment-repair
+Allow: /repairing-services/
+Allow: /c-arm-repairing/
+Allow: /x-ray-repairing/
+Allow: /feedback
+Allow: /rentals/filter
+Allow: /sitemap.xml
+
+# Disallow admin and private routes
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /login
+Disallow: /register
+Disallow: /password/
+Disallow: /api/
+Disallow: /storage/
+Disallow: /vendor/
+
+# Disallow query parameters (except for public filters)
+Disallow: /*?*
+
+# Sitemap location
+Sitemap: https://www.mrbiomedtechservices.com/sitemap.xml

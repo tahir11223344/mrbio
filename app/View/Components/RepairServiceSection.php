@@ -6,24 +6,40 @@ use App\Models\RepairService;
 use App\Models\RepairServiceSubPage;
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
 use Illuminate\Support\Collection;
+use Illuminate\View\Component;
 
 class RepairServiceSection extends Component
 {
     public Collection $sections;
 
-    // Mapping: DB page_category value → Clean URL segment
-    private array $urlMap = [
-        'repair-service' => 'repairing-services',  // DB: repair-service → URL: repairing-services
-        'x-ray-repairing'          => 'x-ray-repairing',
-        'c-arm-repairing'          => 'c-arm-repairing',
-        // Add more in future: 'ct-scan' => 'ct-scan-services',
+    /**
+     * Central config:
+     * - fieldPrefix   → RepairService table fields
+     * - page_category → RepairServiceSubPage table
+     * - url           → frontend URL segment
+     */
+    private array $typeConfig = [
+        'repair-service' => [
+            'fieldPrefix' => 'repair_service',
+            'page_category' => 'repair-service',
+            'url' => 'repairing-services',
+        ],
+        'x-ray-repairing' => [
+            'fieldPrefix' => 'x_ray',
+            'page_category' => 'x-ray-repairing', // ✅ DB MATCH
+            'url' => 'x-ray-repairing',
+        ],
+        'c-arm-repairing' => [
+            'fieldPrefix' => 'c_arm',
+            'page_category' => 'c-arm-repairing', // ✅ DB MATCH
+            'url' => 'c-arm-repairing',
+        ],
     ];
 
     /**
-     * @param string|array $types  e.g. 'x-ray-repairing' or ['x-ray-repairing', 'c-arm-repairing', 'repairing']
-     * @param array $types        Order will be preserved exactly as passed
+     * @param  string|array  $types  e.g. 'x-ray-repairing' or ['x-ray-repairing', 'c-arm-repairing', 'repairing']
+     * @param  array  $types  Order will be preserved exactly as passed
      */
     public function __construct(string|array $types = ['x-ray-repairing', 'c-arm-repairing'])
     {
@@ -37,38 +53,37 @@ class RepairServiceSection extends Component
             'x_ray_short_description',
             'c_arm_heading',
             'c_arm_short_description',
-            // Future mein aur categories add ho to yahan daal dena
         ])->first();
-
 
         $this->sections = collect();
 
         foreach ($typeList as $type) {
-            $type = trim(strtolower($type)); // 'x-ray' ya 'c-arm'
 
-            // Yeh rakhna hai page_category ke liye (DB mein hyphen hai)
-            $categoryType = $type; // 'x-ray'
+            $type = trim(strtolower($type));
 
-            // Field name ke liye hyphen ko underscore kar do
-            $fieldType = str_replace('-', '_', $type); // 'x_ray', 'c_arm'
+            // Safety check
+            if (! isset($this->typeConfig[$type])) {
+                continue;
+            }
 
-            $headingField = $fieldType . '_heading';         // 'x_ray_heading'
-            $descField    = $fieldType . '_short_description'; // 'x_ray_short_description'
+            $config = $this->typeConfig[$type];
+
+            $headingField = $config['fieldPrefix'].'_heading';
+            $descField = $config['fieldPrefix'].'_short_description';
 
             $heading = $repairService?->{$headingField} ?? '';
             $description = $repairService?->{$descField} ?? '';
 
-            $items = RepairServiceSubPage::where('page_category', $categoryType) // hyphen wala
+            $items = RepairServiceSubPage::where('page_category', $config['page_category'])
                 ->where('is_active', true)
                 ->select(['title', 'slug', 'short_description'])
                 ->get();
 
-            // dd($type, $categoryType , $fieldType , $headingField , $descField , $heading , $description , $items);
-
+            // Push section only if something exists
             if ($items->isNotEmpty() || filled($heading) || filled($description)) {
                 $this->sections->push([
-                    'type' => $categoryType,
-                    'urlSegment' => $this->urlMap[$categoryType] ?? $categoryType, // Clean URL part
+                    'type' => $type,
+                    'urlSegment' => $config['url'],
                     'headingData' => split_heading($heading),
                     'shortDescription' => $description,
                     'items' => $items,
@@ -76,6 +91,7 @@ class RepairServiceSection extends Component
             }
         }
     }
+
     /**
      * Get the view / contents that represent the component.
      */
