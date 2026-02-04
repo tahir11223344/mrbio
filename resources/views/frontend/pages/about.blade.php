@@ -292,7 +292,8 @@
             position: absolute;
             border-top-right-radius: 5px;
             border-bottom-right-radius: 5px;
-
+            overflow-y: auto;
+            overflow-x: hidden;
 
         }
 
@@ -302,24 +303,29 @@
             background: #004A6D99;
             color: #fff;
             padding: 30px;
-            /* backdrop-filter: blur(3px); */
             position: absolute;
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
 
-
+            overflow-y: auto;
+            overflow-x: hidden;
         }
+
 
         /* Bottom Left Card */
         .card-left {
             bottom: 20px;
             left: 0px;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         /* Top Right Card */
         .card-right {
             top: 20px;
             right: 0px;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .info-card h2 {

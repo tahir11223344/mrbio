@@ -5,7 +5,69 @@
  /* Default cursor ON rehne dein */
  * {
      text-decoration: none !important;
+     /* font-family: Inter; */
+     font-family: Saira !important;
 
+ }
+
+ body {
+     padding-right: 0px !important;
+ }
+
+ h1 {
+     font-size: 44px !important;
+     line-height: 1.25 !important;
+     font-weight: 700 !important;
+     word-spacing: 6px;
+
+
+ }
+
+ h2 {
+     font-size: 30px !important;
+     line-height: 1.35 !important;
+     font-weight: 600 !important;
+     word-spacing: 6px;
+
+ }
+
+ h3 {
+     font-size: 20px !important;
+     line-height: 1.45 !important;
+     font-weight: 600 !important;
+     word-spacing: 6px;
+
+ }
+
+ li {
+     font-size: 16px !important;
+     font-weight: 500 !important;
+     line-height: 1.7 !important;
+     word-spacing: 6px;
+ }
+
+ h4 {
+     font-size: 18px !important;
+     line-height: 1.55 !important;
+     font-weight: 600 !important;
+     word-spacing: 6px
+ }
+
+ h5 {
+     font-size: 16px !important;
+     line-height: 1.6 !important;
+     font-weight: 500 !important;
+     word-spacing: 6px
+ }
+
+ p {
+     font-size: 16px !important;
+     max-width: 900px;
+     margin: auto;
+     line-height: 1.75 !important;
+     font-weight: 400 !important;
+     font-family: Inter;
+     word-spacing: 6px
  }
 
  @media (max-width: 767px) {
@@ -367,7 +429,7 @@
      top: 119px;
      left: 50.5%;
      transform: translateX(-50%);
-     width: 85vw;
+     width: 80vw;
      background: linear-gradient(90deg, #006A9E, #658392);
      color: white;
      padding: 30px;
@@ -719,7 +781,7 @@
          overflow: hidden !important;
 
          position: absolute;
-         top: 164px;
+         top: 100px;
          left: 0;
          width: 100%;
          z-index: 1040;
@@ -878,6 +940,12 @@
  .hero-section {
      background: #0071A8;
      margin-top: 180px;
+ }
+
+ @media(max-width:768px) {
+     .hero-section {
+         margin-top: 150px;
+     }
  }
 
  /* HEADING */
@@ -1047,7 +1115,8 @@
  }
 
  .slider-img {
-     width: 500px;
+     width: 100%;
+     max-width: 500px;
      height: 500px;
      object-fit: contain;
      /* ⭐⭐ Full image show */
@@ -1121,7 +1190,8 @@
  /* --- 2. Image Styles --- */
  .info-img {
      height: 532px;
-     width: 436px;
+     width: 100%;
+     max-width: 436px;
      object-fit: cover;
      border-radius: 15px;
      border: 5px solid #0071A8;
@@ -1599,7 +1669,7 @@
      }
 
      .navbar {
-         height: 200px !important;
+         height: 170px !important;
 
      }
 
@@ -1636,7 +1706,7 @@
      }
 
      .navbar {
-         height: 198px !important;
+         height: 150px !important;
 
      }
 
@@ -1927,12 +1997,12 @@
 
  /* Lists */
  .equipment-list li {
-     padding-left: 20px;
+     /* padding-left: 20px; */
      line-height: 104%;
      font-weight: 600;
      font-family: Inter, sans-serif;
      color: #0D0D0D;
-     margin-top: 20px;
+     /* margin-top: 20px; */
  }
 
  /* Bottom Description */
@@ -3292,7 +3362,7 @@
      padding-top: 50px;
      padding-bottom: 80px;
      height: 351px;
-     margin-top: 180px;
+     margin-top: 140px;
  }
 
  .hero-detail-section .hero-title {

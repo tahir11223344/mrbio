@@ -46,12 +46,12 @@
 
 
     .contact-left h3 {
-        font-size: 32px;
+        font-size: 32px !important;
         color: #000000;
-        font-weight: 400;
-        font-family: 'Saira Stencil One', sans-serif;
-        letter-spacing: 0.52em;
-        line-height: 132%;
+        font-weight: 400 !important;
+        font-family: 'Saira Stencil One', sans-serif !important;
+        letter-spacing: 0.52em !important;
+        line-height: 132% !important;
     }
 
     .contact-left p {
@@ -69,13 +69,13 @@
     .quote-button {
         background-color: #0071A8;
         color: white;
-        font-weight: 400;
+        font-weight: 400 !important;
         border: none;
         /* padding: 10px 20px; */
         transition: background-color 0.3s;
         box-shadow: 0px 4px 4px #00000040;
-        font-family: 'Saira Stencil One', sans-serif;
-        font-size: 24px;
+        font-family: 'Saira Stencil One', sans-serif !important;
+        font-size: 24px !important;
     }
 
     .quote-button:hover {
@@ -205,10 +205,10 @@
         /* vertical center */
         justify-content: center;
         /* horizontal center */
-        gap: 14px;
+        gap: 8px;
         /* space between icons */
         border-radius: 5px;
-        width: 228px;
+        width: 246px;
         height: 48px;
     }
 
@@ -472,6 +472,12 @@
             transform: translateY(0);
         }
     }
+
+    .social-icons img {
+        width: 50px;
+        height: 40px;
+        object-fit: contain;
+    }
 </style>
 
 
@@ -544,6 +550,17 @@
                         </a>
                     @endif
 
+                    @if (setting('linkedin') && setting('twitter'))
+                        <span class="sepparator"></span>
+                    @endif
+
+                    <a href="#" target="_blank">
+                        <img src="{{ asset('frontend/images/yelp.svg') }}" alt="Yelp">
+                    </a>
+
+
+
+
                 </div>
 
                 {{-- Address --}}
@@ -572,10 +589,10 @@
             </div>
 
             <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                <h4 class="footer-h4 mb-2">
+                <h2 class="footer-h4 mb-2">
                     Do You Want
                     <span class="rotate-text"></span>
-                </h4>
+                </h2>
 
                 <p class="footer-p">Fill out the form below and we'll get back to you as soon as possible.
                 </p>
