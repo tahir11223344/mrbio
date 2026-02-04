@@ -32,13 +32,16 @@
                                         {{ \Illuminate\Support\Str::limit($item->short_description ?? '', 150) }}
                                     </p>
 
-                                    {{-- <button class="xray-btn">Read More</button> --}}
-
                                     <!-- Dynamic URL based on section type -->
-                                    <a href="{{ route('repair.service.detail', [
-                                        'category' => $section['urlSegment'],
-                                        'slug' => $item->slug,
-                                    ]) }}"
+                                    @php
+                                        $routeMap = [
+                                            'repairing-services' => 'repair.service.repairing',
+                                            'x-ray-repairing' => 'repair.service.xray',
+                                            'c-arm-repairing' => 'repair.service.carm',
+                                        ];
+                                        $routeName = $routeMap[$section['urlSegment']] ?? 'repair.service.detail';
+                                    @endphp
+                                    <a href="{{ route($routeName, ['slug' => $item->slug]) }}"
                                         class="xray-btn ">
                                         Read More
                                     </a>

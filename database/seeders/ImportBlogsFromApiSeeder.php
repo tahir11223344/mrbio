@@ -39,11 +39,11 @@ class ImportBlogsFromApiSeeder extends Seeder
             $skipped = 0;
 
             foreach ($blogs as $blogData) {
-                // Check if blog already exists
+                // Check if blog already exists by slug
                 $existingBlog = Blog::where('slug', $blogData['slug'])->first();
 
                 if ($existingBlog) {
-                    $this->command->warn("Blog '{$blogData['title']}' already exists - skipping");
+                    $this->command->warn("Blog '{$blogData['title']}' (slug: {$blogData['slug']}) already exists - skipping");
                     $skipped++;
                     continue;
                 }
@@ -81,6 +81,10 @@ class ImportBlogsFromApiSeeder extends Seeder
 
             $this->command->info("\n✓ Import completed!");
             $this->command->info("Imported: {$imported}, Skipped: {$skipped}");
+            
+            // Show total blogs in database
+            $totalBlogs = Blog::count();
+            $this->command->info("Total blogs in database: {$totalBlogs}");
 
         } catch (\Exception $e) {
             $this->command->error('Error: ' . $e->getMessage());

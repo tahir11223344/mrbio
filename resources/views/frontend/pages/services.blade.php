@@ -715,9 +715,11 @@
                 {{ $data->banner_text ?? '' }}
             </p>
 
-            <button class="access-btn">
-                View all Accessories
-            </button>
+            <a href="{{ route('rental-services') }}">
+                <button class="access-btn">
+                    View all Rental Products
+                </button>
+            </a>
 
         </div>
     </section>

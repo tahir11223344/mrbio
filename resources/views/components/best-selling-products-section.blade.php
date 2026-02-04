@@ -157,13 +157,14 @@
         const searchInput = document.getElementById('bestSearchInput');
 
         /* ===============================
-            LOAD CATEGORIES (API)
+            LOAD CATEGORIES FROM API
         =============================== */
         fetch(`${API_BASE}/api/categories`)
             .then(res => res.json())
             .then(res => {
                 if (!res.data) return;
 
+                // Populate category buttons from database
                 res.data.forEach(cat => {
                     categorySlider.innerHTML += `
                     <div class="col-auto">
@@ -179,7 +180,7 @@
             });
 
         /* ===============================
-            LOAD PRODUCTS (API)
+            LOAD PRODUCTS FROM API
         =============================== */
         function loadProducts(params = {}) {
 
@@ -192,6 +193,7 @@
 
             const query = new URLSearchParams(params).toString();
 
+            // Fetch products from database with filters
             fetch(`${API_BASE}/api/products?${query}`)
                 .then(res => res.json())
                 .then(res => {
@@ -207,7 +209,7 @@
         }
 
         /* ===============================
-            RENDER PRODUCTS (UI)
+            RENDER PRODUCTS ON UI
         =============================== */
         function renderProducts(products) {
 
@@ -221,6 +223,7 @@
                 return;
             }
 
+            // Display each product from database
             products.forEach(product => {
 
                 const discountBadge = product.discount_percent > 0 ?
@@ -269,24 +272,26 @@
         }
 
         /* ===============================
-            PAGE LOAD → ALL PRODUCTS
+            INITIAL LOAD - ALL PRODUCTS
         =============================== */
         loadProducts({
             category: 'all'
         });
 
         /* ===============================
-            CATEGORY CLICK
+            CATEGORY FILTER CLICK
         =============================== */
         document.addEventListener('click', function(e) {
 
             if (!e.target.classList.contains('cat-btn')) return;
 
+            // Update active category button
             document.querySelectorAll('.cat-btn')
                 .forEach(btn => btn.classList.remove('active'));
 
             e.target.classList.add('active');
 
+            // Load products for selected category
             loadProducts({
                 category: e.target.dataset.slug,
                 search: searchInput.value
@@ -305,6 +310,7 @@
                 const slug = e.target.dataset.slug;
                 if (!slug) return;
 
+                // Redirect to product detail page
                 window.location.href = `${API_BASE}/product/${slug}`;
             }
         });
@@ -316,13 +322,13 @@
         document.querySelector('.all-products-btn')
             .addEventListener('click', function() {
 
-                // Redirect to full products API page
+                // Redirect to full products page
                 window.location.href = `${API_BASE}/products`;
             });
 
 
         /* ===============================
-            SEARCH
+            SEARCH FUNCTIONALITY
         =============================== */
         document.querySelector('.search-btn')
             .addEventListener('click', function() {
@@ -330,6 +336,7 @@
                 const activeCategory =
                     document.querySelector('.cat-btn.active')?.dataset.slug || 'all';
 
+                // Load products with search filter
                 loadProducts({
                     category: activeCategory,
                     search: searchInput.value.trim()

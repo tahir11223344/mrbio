@@ -492,16 +492,17 @@ class RepairServiceController extends Controller
         return view('frontend.pages.repaire', compact('data', 'faqs'));
     }
 
-    public function repairServiceDetail($category, $slug)
+    public function repairServiceDetail($slug, $category = null)
     {
-        // dd($category, $slug);
+        // Handle new routes where category is passed via route defaults
+        // If called from new routes, $category will be set via defaults()
+        // If called from old generic route, both parameters will be in URL
 
         // Mapping: URL segment → Actual DB page_category value
         $categoryMap = [
-            'repairing-services' => 'repair-service',  // URL: repairing-services → DB: repair-service
+            'repairing-services' => 'repair-service',
             'x-ray-repairing' => 'x-ray-repairing',
             'c-arm-repairing' => 'c-arm-repairing',
-
         ];
 
         // Get the actual DB category from URL segment
@@ -519,12 +520,12 @@ class RepairServiceController extends Controller
             'content_thumbnail',
             'gallery_images',
             'all_images',
-            'storage/repair-pages',          // thumbnail path
-            'storage/repair-pages/gallery'   // gallery path
+            'storage/repair-pages',
+            'storage/repair-pages/gallery'
         );
 
         // If page not found → 404
-        if (! $data) {
+        if (!$data) {
             abort(404, 'The requested service page was not found.');
         }
 

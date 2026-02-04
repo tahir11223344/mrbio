@@ -256,7 +256,8 @@
         </div>
     </section>
 
-    <x-best-selling-products-section />
+    {{-- Best Selling Products Section - Fetches products and categories from API/database store --}}
+    {{-- <x-best-selling-products-section /> --}}
 
 
     {{-- Offer Slider Component --}}

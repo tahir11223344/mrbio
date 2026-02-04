@@ -16,10 +16,12 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <ul class="equipment-list">
                         @foreach ($column as $item)
-                            <li>
-                                <i class="bi bi-check yes-icon"></i>
-                                <span>{{ $item->name }}</span>
-                            </li>
+                            <a href="{{ route('rental-services') }}">
+                                <li>
+                                    <i class="bi bi-check yes-icon"></i>
+                                    <span>{!! plainBracketText($item->name ?? '') !!}</span>
+                                </li>
+                            </a>
                         @endforeach
                     </ul>
                 </div>

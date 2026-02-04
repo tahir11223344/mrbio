@@ -4,7 +4,7 @@
     @endif
     <div class="col-lg-6 col-md-6 animate-card">
         <div class="rental-card">
-            <h4 class="rental-h4">{{ $product->name }}</h4>
+            <h4 class="rental-h4">{!! plainBracketText($product->name ?? '') !!}</h4>
             @if ($product->thumbnail)
                 <img src="{{ asset('storage/products/thumbnails/' . $product->thumbnail) }}" class="rental-img"
                     alt="{{ $product->image_alt ?? $product->name }}">
