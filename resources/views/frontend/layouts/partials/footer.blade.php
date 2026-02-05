@@ -673,7 +673,7 @@
                     </div>
                     <span class="text-white fw-bold fs-5">4.3</span>
                 </div>
-                <a href="#" class="review-link ">Leave Us a Review On
+                <a href="https://maps.app.goo.gl/wvVEdynFgvQnhsbg9" target="_blank" class="review-link ">Leave Us a Review On
                     <span>Google</span> </a>
             </div>
         </div>
