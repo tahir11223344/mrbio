@@ -50,21 +50,7 @@
                  </div>
              </div>
 
-             <!-- CARD 4 -->
-             <div class="col-md-6 col-lg-4 animate-card">
-                 <div class="choose-card">
-                     <div class="choose-top">
-                         <i class="bi bi-check choose-icon"></i>
-
-                         <h4 class="choose-heading">ISO 13485 Certification</h4>
-                     </div>
-                     <p class="choose-desc">
-                         Verified by the International Organization for Standardization (ISO 13485), Joint Commission
-                         standards (TJC), and Texas state law regulations.
-                     </p>
-                 </div>
-             </div>
-
+             
              <!-- CARD 5 -->
              <div class="col-md-6 col-lg-4 animate-card">
                  <div class="choose-card">

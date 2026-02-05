@@ -35,6 +35,7 @@ class ServiceRequestDataTable extends DataTable
                 // Return as bullet points
                 return '<ul class="mb-0">' . collect($categoryNames)->map(fn($name) => "<li>{$name}</li>")->implode('') . '</ul>';
             })
+            ->editColumn('looking_for', fn($sr) => $sr->looking_for)
             ->editColumn('preferred_contact', fn($sr) => ucfirst($sr->preferred_contact)) // first letter caps
             ->editColumn('created_at', fn($sr) => Carbon::parse($sr->created_at)->format('d-M-Y'))
             ->editColumn('updated_at', fn($sr) => $sr->updated_at ? Carbon::parse($sr->updated_at)->format('d-M-Y') : '-')
@@ -90,7 +91,7 @@ class ServiceRequestDataTable extends DataTable
             Column::make('phone')->title('Phone'),
             Column::make('company')->title('Company'),
             Column::make('service')->title('Service'),
-            Column::make('categories')->title('Category'),
+            Column::make('looking_for')->title('Looking For'),
             Column::make('preferred_contact')->title('Preferred Contact'),
             Column::make('message')->title('Message'),
 

@@ -412,10 +412,10 @@
     <x-why-choice-biomed />
 
 
-    <section class="bg-section">
+    {{-- <section class="bg-section">
         <div class="overlay"></div>
 
-        <div class="content-wrapper text-center">
+        <div class="content-wrapper text-center"> --}}
 
             <!-- 10+ Years -->
             {{-- <div class="shadow-div">
@@ -449,14 +449,14 @@
                 </div>
 
             </div> --}}
-        </div>
-    </section>
+        {{-- </div>
+    </section> --}}
 
 
     {{-- ================faqs section ================ --}}
 
     <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
-        image="frontend/images/hero-main-img.png" :visible="4" />
+        image="frontend/images/faq-image.png" :visible="4" />
 
 
 

@@ -71,8 +71,8 @@
 
                 <!-- Equipment Category (Full Width) -->
                 <div class="col-12">
-                    <label class="form-label mb-1">Equipment Category</label>
-                    <div class="checkbox-group d-flex flex-wrap gap-2">
+                    <label class="form-label mb-1">What You Looking For ?</label>
+                    {{-- <div class="checkbox-group d-flex flex-wrap gap-2">
                         @foreach ($all_categories as $category)
                             <label class="form-check form-check-inline m-0">
                                 <input class="form-check-input" type="checkbox" name="categories[]"
@@ -81,7 +81,11 @@
                             </label>
                         @endforeach
                     </div>
-                    <span class="text-danger error-text categories_error"></span>
+                    <span class="text-danger error-text categories_error"></span> --}}
+
+                    <input type="text" name="looking_for" class="form-control form-control-sm"
+                        required>
+                    <span class="text-danger error-text looking_for_error"></span>
                 </div>
 
                 <!-- Message (Full Width) -->
