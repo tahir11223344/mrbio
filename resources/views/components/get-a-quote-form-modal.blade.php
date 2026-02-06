@@ -8,7 +8,11 @@
             @csrf
             <div>
                 <input type="text" name="name" placeholder="Full Name" required>
-                <span class="text-danger error-text name_error"></span>
+                <span class="close-form">&times;</span>
+                {{-- <span class="close-form">
+                    <i class="fa-solid fa-xmark"></i>
+                </span> --}}
+
             </div>
             <div>
                 <input type="email" name="email" placeholder="Email Address" required>
@@ -42,7 +46,8 @@
             </div>
 
             <div class="col-12">
-                <div class="g-recaptcha" id="getQuoteCaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>
+                <div class="g-recaptcha" id="getQuoteCaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}">
+                </div>
                 <span class="text-danger error-text g-recaptcha-response_error"></span>
             </div>
 
