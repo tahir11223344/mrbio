@@ -31,11 +31,11 @@
         }
 
         .rental-main-desc {
-            font-size: 16px;
+            font-size: 20px;
             color: #000000;
-            line-height: 1.75 !important;
-            font-weight: 400 !important;
-            font-family: Inter;
+            line-height: 160%;
+            font-weight: 400;
+            font-family: Arial;
             margin-bottom: 25px;
             width: 100%;
             max-width: 408px;
@@ -54,10 +54,10 @@
         }
 
         /*
-                                                                                                                                                                                                                        .equip-list {
-                                                                                                                                                                                                                            margin-top: 30px;
+                                                                                                                                                                                                        .equip-list {
+                                                                                                                                                                                                            margin-top: 30px;
 
-                                                                                                                                                                                                                        } */
+                                                                                                                                                                                                        } */
 
         .li {
             /* padding-left: 18px; */
@@ -467,10 +467,10 @@
         /* =============== four-column-section ======================= */
 
         /*
-                                                                                                                                                                                                                                                                                                                * Background Color Calculation:
-                                                                                                                                                                                                                                                                                                                * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
-                                                                                                                                                                                                                                                                                                                * This translates to a light grey color with low opacity.
-                                                                                                                                                                                                                                                                                                                */
+                                                                                                                                                                                                                                                                                                * Background Color Calculation:
+                                                                                                                                                                                                                                                                                                * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
+                                                                                                                                                                                                                                                                                                * This translates to a light grey color with low opacity.
+                                                                                                                                                                                                                                                                                                */
         .four-column-section {
             background-color: #D9D9D938;
             padding: 40px 20px;

@@ -14,6 +14,7 @@ class ServiceRequest extends Model
         'service',
         'categories', // JSON
         'message',
+        'looking_for',
         'preferred_contact',
     ];
 

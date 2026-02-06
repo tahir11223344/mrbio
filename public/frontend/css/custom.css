@@ -75,6 +75,9 @@
      word-spacing: 6px;
  } */
 
+
+
+
  @media (max-width: 767px) {
 
      .product-section,
@@ -437,7 +440,7 @@
      top: 119px;
      left: 50.5%;
      transform: translateX(-50%);
-     width: 80vw;
+     width: 85vw;
      background: linear-gradient(90deg, #006A9E, #658392);
      color: white;
      padding: 30px;
@@ -789,7 +792,7 @@
          overflow: hidden !important;
 
          position: absolute;
-         top: 100px;
+         top: 164px;
          left: 0;
          width: 100%;
          z-index: 1040;
@@ -948,12 +951,6 @@
  .hero-section {
      background: #0071A8;
      margin-top: 180px;
- }
-
- @media(max-width:768px) {
-     .hero-section {
-         margin-top: 150px;
-     }
  }
 
  /* HEADING */
@@ -1201,8 +1198,7 @@
  /* --- 2. Image Styles --- */
  .info-img {
      height: 532px;
-     width: 100%;
-     max-width: 436px;
+     width: 436px;
      object-fit: cover;
      border-radius: 15px;
      border: 5px solid #0071A8;
@@ -1698,7 +1694,7 @@
      }
 
      .navbar {
-         height: 170px !important;
+         height: 200px !important;
 
      }
 
@@ -1745,7 +1741,7 @@
      }
 
      .navbar {
-         height: 150px !important;
+         height: 198px !important;
 
      }
 
@@ -2037,12 +2033,12 @@
 
  /* Lists */
  .equipment-list li {
-     /* padding-left: 20px; */
+     padding-left: 20px;
      line-height: 104%;
      font-weight: 600;
      font-family: Inter, sans-serif;
      color: #0D0D0D;
-     /* margin-top: 20px; */
+     margin-top: 20px;
  }
 
  /* Bottom Description */
@@ -3406,7 +3402,7 @@
      padding-top: 50px;
      padding-bottom: 80px;
      height: 351px;
-     margin-top: 140px;
+     margin-top: 180px;
  }
 
  .hero-detail-section .hero-title {

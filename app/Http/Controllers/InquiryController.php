@@ -173,6 +173,7 @@ class InquiryController extends Controller
             'service'           => 'required|string|max:255',
             'categories'        => 'nullable|array',
             'categories.*'      => 'string|max:255',
+            'looking_for'       => 'nullable|string',
             'message'           => 'required|string|max:2000',
             'preferred_contact' => 'required|in:email,phone',
             'g-recaptcha-response' => 'required',
@@ -214,6 +215,7 @@ class InquiryController extends Controller
                 'service'           => $validated['service'],
                 'categories'        => $categoryIds, // JSON of IDs
                 'message'           => $validated['message'] ?? null,
+                'looking_for'       => $validated['looking_for'] ?? null,
                 'preferred_contact' => $validated['preferred_contact'],
             ]);
 

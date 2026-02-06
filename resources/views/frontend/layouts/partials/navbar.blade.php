@@ -40,7 +40,7 @@
     }
 
     .site-header.hide-header {
-        transform: translateY(-180PX);
+        transform: translateY(-100%);
     }
 
     .site-header.show-header {

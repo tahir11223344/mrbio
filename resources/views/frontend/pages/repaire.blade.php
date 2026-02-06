@@ -13,7 +13,7 @@
             height: 583px;
             overflow: hidden;
             /* display: flex;
-                                                                                                                                                                                                                                                                align-items: center; */
+                                                                                                                                                                                                                                align-items: center; */
             /* padding-left: 60px;  */
             color: #fff;
         }
@@ -44,7 +44,7 @@
             z-index: 2;
             /* max-width: 800px; */
             /* margin: 0 auto; */
-            margin-top: 35px;
+            margin-top: 80px;
         }
 
         .service-video-section h2 {
@@ -78,7 +78,7 @@
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
-            margin-top: 0px !important;
+            margin-top: 30px;
         }
 
         .service-btn:hover {
