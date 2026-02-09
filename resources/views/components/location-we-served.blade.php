@@ -28,19 +28,19 @@
                     <h4 class="sub-title">Mr Biomed Tech, Primarily Service The Below States:</h4>
 
                     <!-- 3 COLUMN LIST -->
-                    <div class="row mt-3">
+                     <div class="row mt-3">
                         <div class="col-md-4">
                             <ul class="primary-list">
-                                <li>San Antonio</li>
-                                <li>Austin</li>
-                                <li>Houston</li>
+                                <li> <a href="/locations/san-antonio-tx">San Antonio</a> </li>
+                                <li><a href="/locations/austin-tx">Austin</a></li>
+                                <li><a href="/locations/houston-tx">Houston</a></li>
                             </ul>
                         </div>
 
                         <div class="col-md-4">
                             <ul class="primary-list">
-                                <li>Dallas</li>
-                                <li>Garland</li>
+                                <li><a href="/locations/dallas-tx">Dallas</a></li>
+                                <li><a href="/locations/garland-tx">Garland</a></li>
                             </ul>
                         </div>
 
