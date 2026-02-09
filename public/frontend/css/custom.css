@@ -8,12 +8,49 @@
 
  }
 
- @media (max-width: 767px) {
+ .left-img {
+     height: 656px;
+     width: 100% !important;
+     max-width: 511px !important;
+     object-fit: cover;
+ }
 
-     .product-section,
-     .product-section * {
-         /* position: static !important; */
+ @media (max-width: 1024px) {
+     .description {
+
+         font-size: 34px !important;
+
      }
+
+     .cta-contact-text {
+
+         font-size: 14px !important;
+
+     }
+
+     .cta-contact-heading {
+
+         font-size: 38px !important;
+
+     }
+ }
+
+ @media (max-width: 768px) {
+     .description {
+
+         font-size: 28px !important;
+
+     }
+
+ }
+
+ @media (max-width: 767px) {
+     .description {
+
+         font-size: 20px !important;
+
+     }
+
  }
 
  /* SERVICE BUTTON */
@@ -345,6 +382,9 @@
              100% 100%,
              0% 100%);
      transition: all 0.4s ease-in-out;
+     display: flex;
+     justify-content: center;
+     align-items: center;
  }
 
  .contact-btn:hover {
@@ -362,34 +402,70 @@
  }
 
 
+
+
+
+
  .mega-menu {
      position: fixed;
-     top: 119px;
-     left: 50.5%;
+     top: 130px;
+     left: 58%;
      transform: translateX(-50%);
-     width: 85vw;
+     width: 83vw;
      background: linear-gradient(90deg, #006A9E, #658392);
      color: white;
      padding: 30px;
      border-radius: 15px;
      z-index: 9999;
-
      display: none;
-     /* 👈 no animation */
+     max-height: 80vh;
+     overflow-y: auto;
+ }
+
+ /* Mobile/Tablet: Dropdown below nav item */
+ @media (max-width: 991px) {
+     .mega-menu {
+         position: absolute;
+         top: 100%;
+         left: 0;
+         right: 0;
+         transform: none;
+         width: 100%;
+         margin-top: 0;
+         padding: 20px 15px;
+         border-radius: 10px;
+         max-height: 70vh;
+     }
+
+     .has-mega {
+         position: relative;
+     }
+ }
+
+ /* Small mobile screens */
+ @media (max-width: 576px) {
+     .mega-menu {
+         padding: 15px 10px;
+         border-radius: 8px;
+     }
  }
 
 
- /* SHOW STATE */
- .has-mega.show .mega-menu {
+ @media (min-width: 992px) {
+     .has-mega:hover>.mega-menu {
+         display: block;
+     }
+ }
+
+ .has-mega.show>.mega-menu {
      display: block;
-     /* 👈 instant show */
  }
 
  .mega-force-hide .mega-menu {
      display: none !important;
  }
 
- /* icon rotate */
+
  .dropdown-icon {
      transition: transform 0.3s ease;
  }
@@ -671,6 +747,10 @@
      text-decoration: none;
  }
 
+ .navbar-brand {
+     padding-left: 20px;
+ }
+
  /* Responsive */
  @media (max-width: 1200px) {
      .city-grid {
@@ -719,7 +799,7 @@
          overflow: hidden !important;
 
          position: absolute;
-         top: 164px;
+         top: 20px;
          left: 0;
          width: 100%;
          z-index: 1040;
@@ -788,8 +868,8 @@
 
  @media (max-width: 1024px) {
      .nav-logo {
-         width: 120px;
-         height: 145px;
+         width: 100px;
+         height: 100px;
      }
 
      .blue-block {
@@ -877,10 +957,10 @@
  /*============== HERO SECTION css ===============================css */
  .hero-section {
      background: #0071A8;
-     margin-top: 180px;
+     margin-top: 0px;
+
  }
 
- /* HEADING */
  .hero-heading {
      font-size: 50px;
      font-family: Arial, sans-serif;
@@ -1049,8 +1129,16 @@
  .slider-img {
      width: 500px;
      height: 500px;
-     object-fit: contain;
-     /* ⭐⭐ Full image show */
+     object-fit: cover;
+     border-radius: 10px;
+ }
+
+ @media(max-width:767px) {
+     .slider-img {
+         width: 300px !important;
+         height: 400px !important;
+
+     }
  }
 
  /*=======================info Section Styling  =============================== */
@@ -1156,10 +1244,19 @@
  }
 
  .feature-icon {
-     font-size: 40px;
-     /* padding: 12px; */
-     /* border-radius: 50%; */
-     /* background: rgba(255, 255, 255, 0.2); */
+     font-size: 34px;
+     margin-top: 1px;
+ }
+
+ @media(max-width:1024px) {
+     .features-section h5 {
+         font-size: 20px;
+     }
+
+     .feature-icon {
+         font-size: 24px;
+         margin-top: 3px;
+     }
  }
 
  /* input section */
@@ -1366,8 +1463,8 @@
 
  .discount-badge {
      position: absolute;
-     top: -53px;
-     right: -14px;
+     top: -50px;
+     right: -8px;
      background: #EF1616;
      color: white;
      width: 40px;
@@ -1402,7 +1499,76 @@
 
  }
 
- /* card slider css */
+ /* offer card slider css */
+
+ .offer-slider-wrapper {
+     position: relative;
+ }
+
+ .swiper {
+     padding: 20px 0;
+ }
+
+ /* REMOVE flex width logic */
+ .offer-card {
+     background: #fff;
+     border-radius: 30px;
+     padding: 10px;
+     text-align: center;
+     border: 3px solid #076FA1;
+     height: 436px;
+     position: relative;
+     width: 100%;
+     max-width: 276px;
+ }
+
+ /* Swiper arrows styling */
+ .offer-prev,
+ .offer-next {
+     width: 40px;
+     height: 40px;
+     background: #004A6D;
+     border-radius: 50%;
+     color: #fff;
+ }
+
+ .offer-prev::after,
+ .offer-next::after {
+     font-size: 16px;
+ }
+
+ /* Pagination dots */
+ .swiper-pagination-bullet {
+     background: #bbb;
+     opacity: 1;
+ }
+
+ .swiper-pagination-bullet-active {
+     background: #076FA1;
+     transform: scale(1.3);
+ }
+
+ @media (max-width: 767px) {
+     .swiper {
+         padding-left: 10px;
+         padding-right: 10px;
+     }
+
+     .offer-card {
+         max-width: none;
+         /* max-width remove kar do */
+         width: 100%;
+         /* ya 95% of screen width */
+         margin: 0 auto;
+     }
+
+     /* .offer-prev,
+     .offer-next {
+         display: none !important;
+     } */
+
+ }
+
 
  .offer-title {
      font-size: 48px;
@@ -1415,7 +1581,6 @@
      color: #444;
  }
 
- /* SLIDER MAIN */
  .offer-title {
      font-size: 48px;
      font-weight: 700;
@@ -1432,7 +1597,6 @@
      color: #444;
  }
 
- /* SLIDER MAIN */
  .offer-slider-wrapper {
      position: relative;
      overflow: visible;
@@ -1444,7 +1608,6 @@
      padding: 15px 0px;
  }
 
- /* pagination */
 
  .offer-pagination {
      display: flex;
@@ -1474,9 +1637,8 @@
      transition: transform 1s ease-in-out;
  }
 
- .offer-card {
-     min-width: 23.6%;
-     width: 273px;
+ /* .offer-card {
+     flex: 0 0 calc(25% - 15px);
      background: #fff;
      border-radius: 30px;
      padding: 10px;
@@ -1484,7 +1646,7 @@
      border: 3px solid #076FA1;
      height: 436px;
      position: relative;
- }
+ } */
 
  .offer-card hr {
      color: #000000;
@@ -1543,7 +1705,6 @@
 
  }
 
- /* BUTTONS */
  .offer-prev,
  .offer-next {
      position: absolute;
@@ -1558,11 +1719,11 @@
  }
 
  .offer-prev {
-     left: -58px;
+     left: -42px;
  }
 
  .offer-next {
-     right: -50px;
+     right: -42px;
  }
 
  .offer-prev i,
@@ -1572,12 +1733,16 @@
 
  /* RESPONSIVE */
  @media(max-width:991px) {
-     .offer-card {
+
+     /* .offer-card {
          min-width: 49.4%;
-     }
+     } */
+     /* .offer-card {
+         flex: 0 0 calc(50% - 10px);
+     } */
 
      .offer-prev {
-         left: -21px;
+         left: -32px;
      }
 
      .offer-prev,
@@ -1599,7 +1764,7 @@
      }
 
      .navbar {
-         height: 200px !important;
+         height: 100px !important;
 
      }
 
@@ -1614,7 +1779,7 @@
 
      .hero-detail-section {
 
-         height: 440px !important;
+         height: 100% !important;
      }
 
      .reviewSwiper::after {
@@ -1631,12 +1796,17 @@
  }
 
  @media(max-width:575px) {
-     .offer-card {
+     /* .offer-card {
          min-width: 96% !important;
-     }
+     } */
+
+     /* .offer-card {
+         flex: 0 0 100%;
+         height: 382px !important;
+     } */
 
      .navbar {
-         height: 198px !important;
+         height: 100px !important;
 
      }
 
@@ -1649,7 +1819,7 @@
      }
 
      .offer-prev {
-         left: -4px;
+         left: -18px;
      }
 
      .offer-prev,
@@ -1657,8 +1827,8 @@
 
          border: none;
          padding: 4px 7px;
-         /* border-radius: 50%;
-                z-index: 10; */
+         width: 30px;
+         height: 30px;
      }
 
      .choose-title {
@@ -1689,7 +1859,7 @@
      }
 
      .offer-next {
-         right: 5px;
+         right: -18px;
      }
 
      .offer-slider-track {
@@ -1701,9 +1871,9 @@
          font-size: 16px;
      }
 
-     .offer-slider-wrapper {
+     /* .offer-slider-wrapper {
          padding: 44px;
-     }
+     } */
 
      .hero-heading {
          font-size: 32px !important;
@@ -1723,6 +1893,11 @@
          font-size: 14px !important;
      }
 
+     .offer-card .card-desc {
+         font-size: 14px !important;
+
+     }
+
      .offer-title {
          font-size: 29px !important;
 
@@ -1735,7 +1910,7 @@
 
      .hero-detail-section {
 
-         height: 400px !important;
+         height: 100% !important;
      }
 
      .offer-card .read-btn {
@@ -2850,7 +3025,8 @@
      left: 50%;
      transform: translateX(-50%);
      width: 894px;
-     height: 133px;
+     /* height: 133px; */
+     height: 100%;
      padding: 14px;
      background: #000000AD;
      color: #fff;
@@ -2995,13 +3171,14 @@
      border-radius: 12px;
      /* overflow: hidden; */
      height: 380px;
-     width: 250px;
-     margin-top: 30px;
+     width: 100%;
+     max-width: 250px;
+     margin: 30px auto;
      transition: all 0.6s ease-in-out;
  }
 
  .custom-card:hover {
-     transform: scale(1.08);
+     transform: scale(1.04);
  }
 
  .custom-card img {
@@ -3053,7 +3230,7 @@
  .product-discount-badge {
      position: absolute;
      top: 10px;
-     right: 10px;
+     right: 10px !important;
      background-color: #f30f1b;
      color: white;
      font-weight: bold;
@@ -3138,6 +3315,11 @@
 
          font-size: 16px;
 
+     }
+
+     .info-img {
+         height: 410px !important;
+         width: 320px !important;
      }
 
      .container,
@@ -3289,10 +3471,10 @@
 
  .hero-detail-section {
      background: linear-gradient(to right, #006A9E 60%, #A5CDE0);
-     padding-top: 50px;
-     padding-bottom: 80px;
+     padding-top: 30px;
+     /* padding-bottom: 80px; */
      height: 351px;
-     margin-top: 180px;
+     margin-top: 140px;
  }
 
  .hero-detail-section .hero-title {
@@ -3326,7 +3508,6 @@
      display: flex;
      align-items: center;
      font-family: Inter, sans-serif;
-     font-size: 12px;
      font-weight: 500;
  }
 
@@ -3334,10 +3515,13 @@
      color: #0D0D0D;
      text-decoration: none;
      transition: color 0.3s;
+     font-size: 12px;
+
  }
 
  .breadcrumb-link:hover {
      color: #e3eff4;
+
  }
 
  .breadcrumb-separator {
@@ -3349,6 +3533,8 @@
  .breadcrumb-active {
      color: #ffffff;
      font-weight: 600;
+     font-size: 12px;
+
  }
 
 
@@ -3513,13 +3699,13 @@
      }
 
      .hero-detail-section .hero-title {
-         font-size: 37px !important;
+         font-size: 25px !important;
 
      }
 
      .hero-detail-section .hero-description {
-         font-size: 14px !important;
-         font-weight: 600 !important;
+         font-size: 13px !important;
+         text-align: center;
 
      }
 
@@ -3594,7 +3780,7 @@
  @media(max-width:768px) {
      .cta-contact-section {
 
-         height: 682px;
+         height: 633px;
      }
 
      .cta-contact-text {
@@ -3625,7 +3811,9 @@
      }
 
      .cta-contact-text {
-         font-size: 10px !important;
+         font-size: 8px !important;
+         font-weight: 500 !important;
+
      }
 
      .cta-contact-section {
@@ -3663,6 +3851,14 @@
      padding: 0 18px;
      gap: 15px;
      margin-top: 50px;
+     cursor: pointer;
+     transition: all 0.3s ease;
+ }
+
+ .cta-contact-box:hover {
+     background: #e62e2e;
+     transform: translateY(-3px);
+     box-shadow: 0 10px 25px rgba(255, 53, 53, 0.35);
  }
 
  .cta-contact-text {
@@ -4293,6 +4489,27 @@
      margin-right: 15px;
  }
 
+ @media (max-width: 1024px) {
+     .featured-card {
+         /* height: auto; */
+         /* 🔥 auto height */
+         align-items: flex-start;
+     }
+
+     .featured-img {
+         width: 150px;
+         height: 95px;
+     }
+
+     .featured-title {
+         font-size: 17px;
+     }
+
+     .featured-desc {
+         font-size: 13.5px;
+     }
+ }
+
  .cate-btn {
      background: #0168A4;
      border: none;
@@ -4351,7 +4568,7 @@
  }
 
  .social-icons i {
-     font-size: 16px;
+     font-size: 16px !important;
      margin-left: 10px;
      cursor: pointer;
      color: #FE0000;
@@ -4759,7 +4976,7 @@
  .buy-form textarea {
      width: 100%;
      padding: 10px;
-     margin-bottom: 12px;
+     margin-bottom: 7px;
      border-radius: 6px;
      border: 1px solid #ccc;
  }

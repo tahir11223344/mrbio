@@ -20,8 +20,7 @@
         .middle-box {
             border-left: 2px solid #000000;
             border-right: 2px solid #000000;
-            /* border-top: 2px solid #0071A8; */
-            /* border-bottom: 2px solid #0071A8; */
+
         }
 
         /* Titles */
@@ -47,8 +46,8 @@
         @media(max-width: 767px) {
             .middle-box {
                 border: none;
-                border-top: 2px solid #0071A8;
-                border-bottom: 2px solid #0071A8;
+                border-top: 2px solid #000000;
+                border-bottom: 2px solid #000000;
                 margin: 20px 0;
                 padding: 20px 0;
             }
@@ -157,7 +156,7 @@
 
 
             .map-section {
-                margin-top: 233% !important;
+                margin-top: 1060px !important;
             }
         }
 
@@ -220,7 +219,6 @@
             background: #0071A8;
             padding: 18px 16px;
             border-top-left-radius: 25px;
-            /* slightly less than overall radius so header fits */
             border-top-right-radius: 25px;
             flex: 0 0 auto;
             display: flex;
@@ -285,7 +283,7 @@
 
 @section('frontend-content')
     <section class="hero-detail-section">
-        <div class="container py-5 text-center text-white">
+        <div class="container py-1 text-center text-white">
 
             <h1 class="hero-title mb-3 fade-left">{!! highlightBracketText($data->hero_title ?? '', ['#000000']) !!}</h1>
 

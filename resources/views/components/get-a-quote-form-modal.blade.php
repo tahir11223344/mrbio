@@ -1,6 +1,9 @@
 <div class="buy-form-overlay" id="getAQuoteFormOverlay">
     <div class="buy-form-box">
-        <span class="close-form text-danger">&times;</span>
+        {{-- <span class="close-form">&times;</span> --}}
+        <span class="close-form">
+            <i class="fa-solid fa-xmark"></i>
+        </span>
 
         <h3>Get A <span>Quote</span></h3>
 
@@ -42,7 +45,8 @@
             </div>
 
             <div class="col-12">
-                <div class="g-recaptcha" id="getQuoteCaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>
+                <div class="g-recaptcha" id="getQuoteCaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}">
+                </div>
                 <span class="text-danger error-text g-recaptcha-response_error"></span>
             </div>
 

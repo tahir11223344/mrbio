@@ -1,4 +1,4 @@
-<section class="medical-equipment-section py-5">
+<section class="medical-equipment-section ">
     <div class="container">
 
         <!-- Heading – Hamesha DB se aayega -->

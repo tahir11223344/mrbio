@@ -89,7 +89,8 @@
 
                         <!-- Service Request -->
                         <div class="d-flex align-items-center gap-2 fade-left">
-                            <i class="bi bi-key" id="service-icon"></i>
+                            {{-- <i class="bi bi-key" id="service-icon"></i> --}}
+                            <img src="{{ asset('frontend/images/home-icon.png') }}" alt="" class="me-2">
                             <button class="hero-btn" data-open-service-modal>
                                 Service Request
                             </button>
@@ -109,7 +110,7 @@
 
                 <!-- RIGHT COLUMN -->
                 @if (!empty($data->hero_slider_images) && count($data->hero_slider_images) > 0)
-                    <div class="col-lg-6  text-center fade-right">
+                    <div class="col-lg-6   fade-right">
                         <div class="slider-container">
                             <div class="slider-track">
 
@@ -417,8 +418,8 @@
 
         <div class="content-wrapper text-center"> --}}
 
-            <!-- 10+ Years -->
-            {{-- <div class="shadow-div">
+    <!-- 10+ Years -->
+    {{-- <div class="shadow-div">
                 <h2 class="years-text">10+ Years.</h2>
 
 
@@ -431,8 +432,8 @@
 
 
 
-            <!-- Review Box -->
-            {{-- <div class="review-box mx-auto">
+    <!-- Review Box -->
+    {{-- <div class="review-box mx-auto">
 
                 <!-- Left Box (4.9 + star) -->
                 <div class="rating-box d-flex g-1 justify-content-center align-items-center">
@@ -449,7 +450,7 @@
                 </div>
 
             </div> --}}
-        {{-- </div>
+    {{-- </div>
     </section> --}}
 
 

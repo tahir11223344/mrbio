@@ -296,7 +296,8 @@
         /* Image Left Side */
         .left-img {
             height: 656px;
-            width: 511px;
+            width: 100%;
+            max-width: 511px;
             object-fit: cover;
         }
 
@@ -373,6 +374,11 @@
                 height: auto;
                 margin-bottom: 20px;
             }
+
+            .description {
+                font-size: 28px !important;
+
+            }
         }
 
         @media(max-width: 767px) {
@@ -399,13 +405,18 @@
                 font-size: 16px !important;
 
             }
+
+            .description {
+                font-size: 20px !important;
+
+            }
         }
     </style>
 @endpush
 
 @section('frontend-content')
     <section class="hero-detail-section">
-        <div class="container py-5 text-center text-white">
+        <div class="container py-1 text-center text-white">
 
             <h1 class="hero-title mb-3 fade-right">{!! highlightBracketText($data->title ?? '', ['#000000']) !!}</h1>
             <p class="hero-description mx-auto mb-4 fade-left">{{ $data->short_description ?? '' }}</p>

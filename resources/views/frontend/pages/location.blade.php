@@ -60,6 +60,8 @@
             margin: 0;
         }
 
+
+
         /* Image styling */
         .city-img {
             width: 256px;
@@ -75,8 +77,8 @@
             font-size: 25px;
             font-weight: 700;
             color: #026B9F;
-            text-align: start;
-            padding-left: 78px;
+            text-align: center;
+            /* padding-left: 78px; */
             font-family: Arial, ;
             line-height: 100%;
         }
@@ -139,7 +141,7 @@
 
             .cities-heading {
                 color: #ffffff;
-                font-size: 40px !important;
+                font-size: 26px !important;
 
             }
 
@@ -156,10 +158,15 @@
 
         @media (max-width: 767px) {
             .latest-products-wrapper {
-                margin-top: 850px;
+                margin-top: 1002px;
             }
         }
 
+        @media(max-width:767px) {
+            .margin-top {
+                margin-top: 850px;
+            }
+        }
 
         /* @media(max-width:767px) {} */
     </style>
@@ -167,7 +174,7 @@
 
 @section('frontend-content')
     <section class="hero-detail-section">
-        <div class="container py-5 text-center text-white">
+        <div class="container py-1 text-center text-white">
 
             <h1 class="hero-title mb-3 fade-right">{!! highlightBracketText($data->hero_title ?? '', ['#000000']) !!}</h1>
             <p class="hero-description mx-auto mb-4 fade-left">
@@ -398,9 +405,11 @@
 
 
     {{-- ================faqs section ================ --}}
-    <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
-        image="frontend/images/hero-main-img.png" :visible="4" />
 
+    <div class="margin-top">
+        <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
+            image="frontend/images/hero-main-img.png" :visible="4" />
+    </div>
 
 
     {{-- ================= pruduct sectiion ============= --}}

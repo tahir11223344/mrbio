@@ -25,10 +25,25 @@
         </div>
 
         <div class="container mt-4">
-            <div class="row g-4" id="latest-products-container">
+
+            <!-- 🔹 Mobile + MD Slider -->
+            <div class="swiper latestProductSwiper d-lg-none">
+                <div class="swiper-wrapper">
+                    @foreach ($initialProducts as $product)
+                        <div class="swiper-slide">
+                            @include('components.product-card', ['product' => $product])
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <!-- 🔹 LG Screen Normal Grid -->
+            <div class="row g-4 d-none d-lg-flex" id="latest-products-container">
                 @include('partials.latest-products', ['products' => $initialProducts])
             </div>
+
         </div>
+
     </div>
 </section>
 
@@ -36,34 +51,29 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        // prevent double init
         if (window.latestProductsInitialized) return;
         window.latestProductsInitialized = true;
 
         const section = document.querySelector('.products-series-section');
         const tabsWrapper = section?.querySelector('.product-filter-tabs');
-        const container = section?.querySelector('#latest-products-container');
+        const lgContainer = section?.querySelector('#latest-products-container');
+        const sliderContainer = section?.querySelector('.latestProductSwiper .swiper-wrapper');
         const filterUrl = "{{ route('latest.products.filter') }}";
 
-        if (!section || !tabsWrapper || !container) return;
+        if (!section || !tabsWrapper || !lgContainer || !sliderContainer) return;
 
-        // ✅ EVENT DELEGATION (SCOPED)
         tabsWrapper.addEventListener('click', function(e) {
-
             const btn = e.target.closest('button.filter-btn');
             if (!btn) return;
 
             const slug = btn.dataset.slug;
             if (!slug) return;
 
-            // Active state only inside latest component
-            tabsWrapper.querySelectorAll('.filter-btn').forEach(b => {
-                b.classList.remove('active');
-            });
+            tabsWrapper.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Loader
-            container.innerHTML = `
+            // Loader for both LG and slider
+            lgContainer.innerHTML = sliderContainer.innerHTML = `
             <div class="col-12 text-center py-5">
                 <div class="spinner-border"></div>
                 <p class="mt-2">Loading...</p>
@@ -81,15 +91,43 @@
                     return res.json();
                 })
                 .then(data => {
-                    container.innerHTML = data.html;
+                    // ✅ Update LG Grid
+                    lgContainer.innerHTML = data.html;
 
-                    // remove animation on ajax load
-                    container.querySelectorAll('.animate-card').forEach(card => {
-                        card.classList.remove('animate-card');
+                    // ✅ Update Swiper Slider
+                    sliderContainer.innerHTML = data.html;
+
+                    // Destroy old Swiper instance (if exists)
+                    if (window.latestSwiper) {
+                        window.latestSwiper.destroy(true, true);
+                    }
+
+                    // Re-initialize Swiper
+                    window.latestSwiper = new Swiper(".latestProductSwiper", {
+                        loop: true,
+                        slidesPerView: 1,
+                        spaceBetween: 15,
+                        speed: 1000,
+                        autoplay: {
+                            delay: 3000,
+                            disableOnInteraction: false,
+                            pauseOnMouseEnter: true,
+                        },
+                        breakpoints: {
+                            0: {
+                                slidesPerView: 1,
+                                spaceBetween: 10
+                            },
+                            768: {
+                                slidesPerView: 2,
+                                spaceBetween: 15
+                            },
+                        },
                     });
+
                 })
                 .catch(() => {
-                    container.innerHTML = `
+                    lgContainer.innerHTML = sliderContainer.innerHTML = `
                 <div class="col-12 text-center text-danger py-5">
                     Failed to load products
                 </div>

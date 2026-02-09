@@ -11,7 +11,7 @@
                 <div class="col-lg-6">
 
                     <a href="{{ route('blog.detail', $featuredBlog->slug) }}" class="text-decoration-none">
-                        <div class="featured-card d-flex">
+                        <div class="featured-card d-flex gap-2">
 
                             <!-- Image -->
                             <img src="{{ $featuredBlog->image ? asset('storage/blog/images/' . $featuredBlog->image) : asset('frontend/images/placeholder.jpg') }}"

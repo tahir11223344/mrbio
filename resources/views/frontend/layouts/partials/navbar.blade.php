@@ -29,7 +29,6 @@
 
     /* ===== FORCE STICKY HEADER ===== */
 
-
     .site-header {
         position: fixed;
         top: 0;
@@ -46,15 +45,110 @@
     .site-header.show-header {
         transform: translateY(0);
     }
+    
+    /* Mobile: Remove fixed when navbar is open */
+    @media (max-width: 991px) {
+        .site-header {
+            position: relative;
+        }
+        
+        body {
+            padding-top: 0;
+        }
+        
+        .navbar-collapse {
+            width: 100%;
+        }
+        
+        .navbar-nav {
+            width: 100%;
+        }
+    }
 
 
 
 
 
 
-    .mega-menu {
-        position: absolute;
+    /* .mega-menu {
+        position: fixed;
+        top: 119px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 85vw;
         z-index: 99999;
+    } */
+
+    /* Dropdown toggle icon styling */
+    .has-mega {
+        position: relative;
+    }
+
+    .mega-toggle {
+        cursor: pointer;
+        padding: 0.5rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+    }
+
+    .has-mega.show .mega-toggle i {
+        transform: rotate(180deg);
+    }
+
+    /* Desktop: icon inline with link */
+    @media (min-width: 992px) {
+        .nav-main-link {
+            display: inline;
+        }
+
+        .mega-toggle {
+            display: inline-flex;
+            padding: 0 0.25rem;
+        }
+    }
+
+    /* Mobile/Tablet: icon on the right */
+    @media (max-width: 991px) {
+        .has-mega {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            gap: 5px;
+        }
+
+        .nav-main-link {
+            flex: 0 0 auto;
+            padding-right: 0;
+        }
+
+        .mega-toggle {
+            padding: 0.5rem 0.5rem 0.5rem 0;
+            margin-left: 0;
+            flex-shrink: 0;
+        }
+
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            width: 100%;
+            transform: none;
+            margin-top: 5px;
+        }
+
+        /* Ensure navbar collapse can show dropdown */
+        .navbar-collapse {
+            position: relative;
+        }
+
+        .navbar-nav {
+            position: relative;
+        }
     }
 </style>
 <header class="site-header " id="siteHeader">
@@ -62,7 +156,7 @@
         <div class="container-fluid d-flex align-items-center p-0 position-relative">
 
             <!-- Logo -->
-            <a class="navbar-brand px-3 " href="#">
+            <a class="navbar-brand  " href="#">
                 <img src="{{ asset('storage/' . setting('site_logo', 'frontend/images/logo.png')) }}" height=""
                     alt="{{ setting('site_name') }}" class="img-fluid nav-logo">
             </a>
@@ -82,7 +176,7 @@
                             href="{{ route('home') }}">Home</a>
                     </li>
 
-                    <li class="nav-item dropdown  has-mega">
+                    {{-- <li class="nav-item dropdown  has-mega">
                         <a class="nav-link mega-toggle {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
                             href="{{ route('biomed-services') }}">
                             Mr Biomed Service
@@ -101,32 +195,22 @@
                                             </a>
                                             <h6 class="nav-title">
                                                 Biomedical Equipment Repair and Maintenance ›
-                                                {{-- <i class="fa-solid fa-angle-right"></i> --}}
                                             </h6>
 
                                             <ul class="list-unstyled">
-                                                <li><a href="{{ url('repairing-services/houston') }}" class="bottomm">Rowlett ›</a></li>
-                                                <li><a href="{{ url('repairing-services/dallas') }}" class="bottomm">Sachse ›</a></li>
-                                                <li><a href="{{ url('repairing-services/austin') }}" class="bottomm">Mesquite ›</a></li>
-                                                <li><a href="{{ url('repairing-services/garland') }}" class="bottomm">Wylie ›</a></li>
+                                                <li><a href="{{ url('repairing-services/houston') }}"
+                                                        class="bottomm">Rowlett ›</a></li>
+                                                <li><a href="{{ url('repairing-services/dallas') }}"
+                                                        class="bottomm">Sachse ›</a></li>
+                                                <li><a href="{{ url('repairing-services/austin') }}"
+                                                        class="bottomm">Mesquite ›</a></li>
+                                                <li><a href="{{ url('repairing-services/garland') }}"
+                                                        class="bottomm">Wylie ›</a></li>
 
 
 
                                             </ul>
-                                            {{-- <h6 class="nav-title">
-                                                Medical Imaging
-                                                Repair and Maintenance ›
-                                            </h6>
-
-                                            <ul class="list-unstyled">
-                                                <li><a href="#" class="bottomm"> Beds and Surfaces ›</a></li>
-                                                <li><a href="#" class="bottomm">Infusion ›</a></li>
-                                                <li><a href="#" class="bottomm"> Anesthesia ›</a></li>
-                                                <li><a href="#" class="bottomm"> Monitors ›</a></li>
-
-
-
-                                            </ul> --}}
+                                      
                                         </div>
                                         <div class="col-lg-3 col-md-6 mb-3">
                                             <a href="{{ url('repairing-services/texas-medical-equipment') }}">
@@ -137,29 +221,22 @@
                                             </a>
                                             <h6 class="nav-title">
                                                 Surgical Equipment Repair and Maintenance ›
-                                                {{-- <i class="fa-solid fa-angle-right"></i> --}}
                                             </h6>
 
                                             <ul class="list-unstyled">
-                                                <li><a href="{{ url('repairing-services/texas-medical-equipment') }}" class="bottomm">X-Ray Repair in Texas ›</a></li>
-                                                <li><a href="{{ url('x-ray-repairing/x-ray-in-dallas') }}" class="bottomm">X-Ray Repair in Dallas ›</a></li>
-                                                <li><a href="{{ url('x-ray-repairing/x-ray-in-houston') }}" class="bottomm">X-Ray Repair in Houston ›</a></li>
-                                                <li><a href="{{ url('x-ray-repairing/x-ray-in-san-antonio') }}" class="bottomm">X-Ray Repair in San-Antonio ›</a></li>
+                                                <li><a href="{{ url('repairing-services/texas-medical-equipment') }}"
+                                                        class="bottomm">X-Ray Repair in Texas ›</a></li>
+                                                <li><a href="{{ url('x-ray-repairing/x-ray-in-dallas') }}"
+                                                        class="bottomm">X-Ray Repair in Dallas ›</a></li>
+                                                <li><a href="{{ url('x-ray-repairing/x-ray-in-houston') }}"
+                                                        class="bottomm">X-Ray Repair in Houston ›</a></li>
+                                                <li><a href="{{ url('x-ray-repairing/x-ray-in-san-antonio') }}"
+                                                        class="bottomm">X-Ray Repair in San-Antonio ›</a></li>
 
 
 
                                             </ul>
-                                            {{-- <h6 class="nav-title">
-                                                Surgical Laser and Technology Services ›
-                                            </h6>
-
-                                            <ul class="list-unstyled">
-                                                <li><a href="#" class="bottomm"> Beds and Surfaces ›</a></li>
-                                                <li><a href="#" class="bottomm">Infusion ›</a></li>
-                                                <li><a href="#" class="bottomm"> Anesthesia ›</a></li>
-                                                <li><a href="#" class="bottomm"> Monitors ›</a></li>
-
-                                            </ul> --}}
+                                      
                                         </div>
                                         <div class="col-lg-3 col-md-6 mb-3">
                                             <a href="{{ url('medical-equipment') }}">
@@ -171,15 +248,19 @@
                                             <h6 class="nav-title">
                                                 Onsite Medical Equipment Management ›
 
-                                                {{-- <i class="fa-solid fa-angle-right"></i> --}}
                                             </h6>
 
                                             <ul class="list-unstyled">
-                                                <li><a href="{{ route('rental-services') }}" class="bottomm"> Rental Products ›</a></li>
-                                                <li><a href="{{ url('c-arm-repairing/repairing-in-texas') }}" class="bottomm">C-Arm Repair in Texas ›</a></li>
-                                                <li><a href="{{ url('c-arm-repairing/c-arm-in-dallas') }}" class="bottomm">C-Arm Repair in Dallas ›</a></li>
-                                                <li><a href="{{ url('c-arm-repairing/c-arm-in-houston') }}" class="bottomm">C-Arm Repair in Houston ›</a></li>
-                                                <li><a href="{{ url('c-arm-repairing/c-arm-in-san-antonio') }}" class="bottomm">C-Arm Repair in San-Antonio ›</a></li>
+                                                <li><a href="{{ route('rental-services') }}" class="bottomm"> Rental
+                                                        Products ›</a></li>
+                                                <li><a href="{{ url('c-arm-repairing/repairing-in-texas') }}"
+                                                        class="bottomm">C-Arm Repair in Texas ›</a></li>
+                                                <li><a href="{{ url('c-arm-repairing/c-arm-in-dallas') }}"
+                                                        class="bottomm">C-Arm Repair in Dallas ›</a></li>
+                                                <li><a href="{{ url('c-arm-repairing/c-arm-in-houston') }}"
+                                                        class="bottomm">C-Arm Repair in Houston ›</a></li>
+                                                <li><a href="{{ url('c-arm-repairing/c-arm-in-san-antonio') }}"
+                                                        class="bottomm">C-Arm Repair in San-Antonio ›</a></li>
                                             </ul>
 
                                         </div>
@@ -209,12 +290,69 @@
                                 </div>
                             </div>
                         </div>
+                    </li> --}}
+
+                    <li class="nav-item has-mega">
+                        <a class="nav-link nav-main-link {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
+                            href="{{ route('biomed-services') }}">
+                            Mr Biomed Service
+                        </a>
+                        <span class="mega-toggle">
+                            <i class="bi bi-chevron-down dropdown-icon"></i>
+                        </span>
+
+                        <div class="mega-menu">
+                            <div class="container">
+                                <div class="row">
+
+                                    <div class="col-lg-3 col-md-6 mb-3">
+                                        <a href="{{ route('repair') }}">
+                                            <h6 class="nav-repair-title">
+                                                Repair Services <i class="fa-solid fa-angle-right"></i>
+                                            </h6>
+                                        </a>
+                                        <ul class="list-unstyled">
+                                            <li><a href="{{ url('repairing-services/houston') }}">Rowlett ›</a></li>
+                                            <li><a href="{{ url('repairing-services/dallas') }}">Sachse ›</a></li>
+                                            <li><a href="{{ url('repairing-services/austin') }}">Mesquite ›</a></li>
+                                            <li><a href="{{ url('repairing-services/garland') }}">Wylie ›</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-6 mb-3">
+                                        <a href="{{ url('repairing-services/texas-medical-equipment') }}">
+                                            <h6 class="nav-repair-title">
+                                                Surgical Equipment <i class="fa-solid fa-angle-right"></i>
+                                            </h6>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-6 mb-3">
+                                        <a href="{{ url('medical-equipment') }}">
+                                            <h6 class="nav-repair-title">
+                                                Medical Equipment <i class="fa-solid fa-angle-right"></i>
+                                            </h6>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-6 mb-3">
+                                        <a href="{{ route('contact-us') }}">
+                                            <button class="nav-mega-btn">Talk To Expert</button>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </li>
 
+
                     <li class="nav-item dropdown has-mega">
-                        <a class="nav-link mega-toggle {{ request()->routeIs('location') ? 'active' : '' }}"
-                            href="{{ route('location') }}">Locations <i
-                                class="bi bi-chevron-down dropdown-icon"></i></a>
+                        <a class="nav-link nav-main-link {{ request()->routeIs('location') ? 'active' : '' }}"
+                            href="{{ route('location') }}">Locations</a>
+                        <span class="mega-toggle">
+                            <i class="bi bi-chevron-down dropdown-icon"></i>
+                        </span>
                         <div class="mega-menu">
                             <div class="container-fluid">
                                 <div class="city-grid">
@@ -425,7 +563,6 @@
         const mainNav = document.getElementById('mainNav');
         const isDesktop = () => window.innerWidth >= 992;
 
-        // Toggler click → open/close menu
         toggler.addEventListener('click', function(e) {
             if (!isDesktop()) {
                 mainNav.classList.toggle('show');
@@ -434,7 +571,6 @@
             }
         });
 
-        // Window resize → close menu on desktop
         window.addEventListener('resize', function() {
             if (isDesktop() && mainNav.classList.contains('show')) {
                 mainNav.classList.remove('show');

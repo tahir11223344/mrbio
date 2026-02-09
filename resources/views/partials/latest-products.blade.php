@@ -21,7 +21,8 @@
                          <i class="fas fa-star text-warning"></i>
                      </div>
                      <h5 class="product-title fw-bold">{!! plainBracketText($product->name ?? '') !!}</h5>
-                     <p class="card-text small mb-3">{{ \Illuminate\Support\Str::limit($product->short_description ?? '', 35) }}</p>
+                     <p class="card-text small mb-3">
+                         {{ \Illuminate\Support\Str::limit($product->short_description ?? '', 35) }}</p>
 
                      <div class="price-action-row d-flex justify-content-between align-items-center">
 
@@ -33,7 +34,8 @@
                              <span
                                  class="new-price fw-bolder fs-5 text-primary">${{ number_format($product->sale_price) }}</span>
                          @endif
-                         <a href="javascript:void(0)" class="btn buy-now-btn btn-sm" data-slug="{{ $product->slug ?? '' }}" data-open-form>Get A Quote</a>
+                         <a href="javascript:void(0)" class="btn buy-now-btn btn-sm"
+                             data-slug="{{ $product->slug ?? '' }}" data-open-form>Get A Quote</a>
                      </div>
                  </div>
              </div>
