@@ -957,9 +957,17 @@
  /*============== HERO SECTION css ===============================css */
  .hero-section {
      background: #0071A8;
-     margin-top: 0px;
+     margin-top: 150px;
 
  }
+
+ @media (max-width: 991px) {
+     .hero-section {
+         margin-top: 0px;
+
+     }
+ }
+
 
  .hero-heading {
      font-size: 50px;
