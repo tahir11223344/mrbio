@@ -38,6 +38,12 @@
         transition: transform 0.3s ease-in-out;
     }
 
+    @media(max-width:767px) {
+        .site-header {
+            box-shadow: 0 0 10px #000000;
+        }
+    }
+
     .site-header.hide-header {
         transform: translateY(-100%);
     }
@@ -173,96 +179,104 @@
                         href="{{ route('home') }}">Home</a>
                 </li>
 
-                 <li class="nav-item dropdown  has-mega">
-                        <a class="nav-link mega-toggle {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
-                            href="{{ route('biomed-services') }}">
-                            Services We Offer
-                            <i class="bi bi-chevron-down dropdown-icon"></i>
-                        </a>
-                        <div class="mega-menu">
-                            <div class="container-fluid">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-6 mb-3">
-                                            <a href="{{ route('repair') }}">
-                                                <h6 class="nav-repair-title">
-                                                    Repair Services
-                                                    <i class="fa-solid fa-angle-right"></i>
-                                                </h6>
-                                            </a>
-                                            <h6 class="nav-title">
-                                                Biomedical Equipment Repair and Maintenance ›
+                <li class="nav-item dropdown  has-mega">
+                    {{-- <a class="nav-link nav-main-link {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
+                        href="{{ route('biomed-services') }}">
+                        Services We Offer
+                        <i class="bi bi-chevron-down dropdown-icon"></i>
+                    </a> --}}
+
+                    <a class="nav-link nav-main-link {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
+                        href="{{ route('biomed-services') }}">
+                        Services We Offer
+                    </a>
+                    <span class="mega-toggle">
+                        <i class="bi bi-chevron-down dropdown-icon"></i>
+                    </span>
+                    <div class="mega-menu">
+                        <div class="container-fluid">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 mb-3">
+                                        <a href="{{ route('repair') }}">
+                                            <h6 class="nav-repair-title">
+                                                Repair Services
+                                                <i class="fa-solid fa-angle-right"></i>
                                             </h6>
+                                        </a>
+                                        <h6 class="nav-title">
+                                            Biomedical Equipment Repair and Maintenance ›
+                                        </h6>
 
-                                            <ul class="list-unstyled">
-                                                <li><a href="{{ url('repairing-services/houston') }}"
-                                                        class="bottomm">Rowlett ›</a></li>
-                                                <li><a href="{{ url('repairing-services/dallas') }}"
-                                                        class="bottomm">Sachse ›</a></li>
-                                                <li><a href="{{ url('repairing-services/austin') }}"
-                                                        class="bottomm">Mesquite ›</a></li>
-                                                <li><a href="{{ url('repairing-services/garland') }}"
-                                                        class="bottomm">Wylie ›</a></li>
+                                        <ul class="list-unstyled">
+                                            <li><a href="{{ url('repairing-services/houston') }}"
+                                                    class="bottomm">Rowlett ›</a></li>
+                                            <li><a href="{{ url('repairing-services/dallas') }}" class="bottomm">Sachse
+                                                    ›</a></li>
+                                            <li><a href="{{ url('repairing-services/austin') }}"
+                                                    class="bottomm">Mesquite ›</a></li>
+                                            <li><a href="{{ url('repairing-services/garland') }}" class="bottomm">Wylie
+                                                    ›</a></li>
 
 
 
-                                            </ul>
-                                      
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 mb-3">
-                                            <a href="{{ url('repairing-services/texas-medical-equipment') }}">
-                                                <h6 class="nav-repair-title">
-                                                    Surgical Equipment
-                                                    <i class="fa-solid fa-angle-right"></i>
-                                                </h6>
-                                            </a>
-                                            <h6 class="nav-title">
-                                                Surgical Equipment Repair and Maintenance ›
+                                        </ul>
+
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 mb-3">
+                                        <a href="{{ url('repairing-services/texas-medical-equipment') }}">
+                                            <h6 class="nav-repair-title">
+                                                Surgical Equipment
+                                                <i class="fa-solid fa-angle-right"></i>
                                             </h6>
+                                        </a>
+                                        <h6 class="nav-title">
+                                            Surgical Equipment Repair and Maintenance ›
+                                        </h6>
 
-                                            <ul class="list-unstyled">
-                                                <li><a href="{{ url('repairing-services/texas-medical-equipment') }}"
-                                                        class="bottomm">X-Ray Repair in Texas ›</a></li>
-                                                <li><a href="{{ url('x-ray-repairing/x-ray-in-dallas') }}"
-                                                        class="bottomm">X-Ray Repair in Dallas ›</a></li>
-                                                <li><a href="{{ url('x-ray-repairing/x-ray-in-houston') }}"
-                                                        class="bottomm">X-Ray Repair in Houston ›</a></li>
-                                                <li><a href="{{ url('x-ray-repairing/x-ray-in-san-antonio') }}"
-                                                        class="bottomm">X-Ray Repair in San-Antonio ›</a></li>
+                                        <ul class="list-unstyled">
+                                            <li><a href="{{ url('repairing-services/texas-medical-equipment') }}"
+                                                    class="bottomm">X-Ray Repair in Texas ›</a></li>
+                                            <li><a href="{{ url('x-ray-repairing/x-ray-in-dallas') }}"
+                                                    class="bottomm">X-Ray Repair in Dallas ›</a></li>
+                                            <li><a href="{{ url('x-ray-repairing/x-ray-in-houston') }}"
+                                                    class="bottomm">X-Ray Repair in Houston ›</a></li>
+                                            <li><a href="{{ url('x-ray-repairing/x-ray-in-san-antonio') }}"
+                                                    class="bottomm">X-Ray Repair in San-Antonio ›</a></li>
 
 
 
-                                            </ul>
-                                      
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 mb-3">
-                                            <a href="{{ url('medical-equipment') }}">
-                                                <h6 class="nav-repair-title">
-                                                    Medical Equipment
-                                                    <i class="fa-solid fa-angle-right"></i>
-                                                </h6>
-                                            </a>
-                                            <h6 class="nav-title">
-                                                Onsite Medical Equipment Management ›
+                                        </ul>
 
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 mb-3">
+                                        <a href="{{ url('medical-equipment') }}">
+                                            <h6 class="nav-repair-title">
+                                                Medical Equipment
+                                                <i class="fa-solid fa-angle-right"></i>
                                             </h6>
+                                        </a>
+                                        <h6 class="nav-title">
+                                            Onsite Medical Equipment Management ›
 
-                                            <ul class="list-unstyled">
-                                                <li><a href="{{ route('rental-services') }}" class="bottomm"> Rental
-                                                        Products ›</a></li>
-                                                <li><a href="{{ url('c-arm-repairing/repairing-in-texas') }}"
-                                                        class="bottomm">C-Arm Repair in Texas ›</a></li>
-                                                <li><a href="{{ url('c-arm-repairing/c-arm-in-dallas') }}"
-                                                        class="bottomm">C-Arm Repair in Dallas ›</a></li>
-                                                <li><a href="{{ url('c-arm-repairing/c-arm-in-houston') }}"
-                                                        class="bottomm">C-Arm Repair in Houston ›</a></li>
-                                                <li><a href="{{ url('c-arm-repairing/c-arm-in-san-antonio') }}"
-                                                        class="bottomm">C-Arm Repair in San-Antonio ›</a></li>
-                                            </ul>
+                                        </h6>
 
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 mb-3">
-                                            {{-- <a href="{{ url('retired-assets-services') }}">
+                                        <ul class="list-unstyled">
+                                            <li><a href="{{ route('rental-services') }}" class="bottomm"> Rental
+                                                    Products ›</a></li>
+                                            <li><a href="{{ url('c-arm-repairing/repairing-in-texas') }}"
+                                                    class="bottomm">C-Arm Repair in Texas ›</a></li>
+                                            <li><a href="{{ url('c-arm-repairing/c-arm-in-dallas') }}"
+                                                    class="bottomm">C-Arm Repair in Dallas ›</a></li>
+                                            <li><a href="{{ url('c-arm-repairing/c-arm-in-houston') }}"
+                                                    class="bottomm">C-Arm Repair in Houston ›</a></li>
+                                            <li><a href="{{ url('c-arm-repairing/c-arm-in-san-antonio') }}"
+                                                    class="bottomm">C-Arm Repair in San-Antonio ›</a></li>
+                                        </ul>
+
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 mb-3">
+                                        {{-- <a href="{{ url('retired-assets-services') }}">
                                                 <h6 class="nav-repair-title">
                                                     Retired assets
                                                     <i class="fa-solid fa-angle-right"></i>
@@ -276,82 +290,25 @@
                                                     <button class="nav-mega-btn">Talk To Expert</button>
                                                 </a>
                                             </div> --}}
-                                            <a href="{{ url('consultancy-services') }}">
-                                                <h6 class="nav-repair-title">
-                                                    
-                                                    Consultancy
-                                                    <i class="fa-solid fa-angle-right"></i>
-                                                </h6>
+                                        <a href="{{ url('consultancy-services') }}">
+                                            <h6 class="nav-repair-title">
+
+                                                Consultancy
+                                                <i class="fa-solid fa-angle-right"></i>
+                                            </h6>
+                                        </a>
+                                        <div class="nav-div">
+                                            <a href="{{ route('contact-us') }}">
+                                                <button class="nav-mega-btn">Talk To Expert</button>
                                             </a>
-                                            <div class="nav-div">
-                                             <a href="{{ route('contact-us') }}">
-                                                    <button class="nav-mega-btn">Talk To Expert</button>
-                                                </a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </li> 
-
-                <li class="nav-item has-mega">
-                    {{-- <a class="nav-link nav-main-link {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
-                        href="{{ route('biomed-services') }}">
-                        Mr Biomed Service
-                    </a> --}}
-                    {{-- <span class="mega-toggle">
-                        <i class="bi bi-chevron-down dropdown-icon"></i>
-                    </span> --}}
-
-                    <div class="mega-menu">
-                        <div class="container">
-                            <div class="row">
-
-                                <div class="col-lg-3 col-md-6 mb-3">
-                                    <a href="{{ route('repair') }}">
-                                        <h6 class="nav-repair-title">
-                                            Repair Services <i class="fa-solid fa-angle-right"></i>
-                                        </h6>
-                                    </a>
-                                    <ul class="list-unstyled">
-                                        <li><a href="{{ url('repairing-services/houston') }}" class="bottomm">Rowlett
-                                                ›</a></li>
-                                        <li><a href="{{ url('repairing-services/dallas') }}" class="bottomm">Sachse
-                                                ›</a></li>
-                                        <li><a href="{{ url('repairing-services/austin') }}" class="bottomm">Mesquite
-                                                ›</a></li>
-                                        <li><a href="{{ url('repairing-services/garland') }}" class="bottomm">Wylie
-                                                ›</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6 mb-3">
-                                    <a href="{{ url('repairing-services/texas-medical-equipment') }}">
-                                        <h6 class="nav-repair-title">
-                                            Surgical Equipment <i class="fa-solid fa-angle-right"></i>
-                                        </h6>
-                                    </a>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6 mb-3">
-                                    <a href="{{ url('medical-equipment') }}">
-                                        <h6 class="nav-repair-title">
-                                            Medical Equipment <i class="fa-solid fa-angle-right"></i>
-                                        </h6>
-                                    </a>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6 mb-3">
-                                    <a href="{{ route('contact-us') }}">
-                                        <button class="nav-mega-btn">Talk To Expert</button>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
                 </li>
+
 
 
                 <li class="nav-item dropdown has-mega">

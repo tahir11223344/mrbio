@@ -1035,7 +1035,7 @@
 
  @media (max-width: 767px) {
      .hero-section {
-         margin-top: 115px !important;
+         margin-top: 100px !important;
          height: 970px !important;
      }
  }
@@ -1778,7 +1778,8 @@
      position: absolute;
      line-height: 100%;
      bottom: 15px;
-     left: 25%;
+     left: 50%;
+     transform: translateX(-50%);
      transition: all 0.4s ease-in-out;
  }
 
@@ -1866,6 +1867,7 @@
      .hero-detail-section {
 
          height: 100% !important;
+         margin-top: 80px !important;
      }
 
      .reviewSwiper::after {
@@ -1911,10 +1913,7 @@
      .offer-prev,
      .offer-next {
 
-         border: none;
-         padding: 4px 7px;
-         width: 28px;
-         height: 28px;
+         display: none;
      }
 
      .choose-title {
