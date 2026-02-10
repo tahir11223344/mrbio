@@ -640,7 +640,7 @@
             </div>
 
             <div class="col-lg-4 ps-5">
-                <h4 class="Field mb-3 pb-2">Field Service Location</h4>
+                <h4 class="Field mb-3 pb-2">Field Service Locations</h4>
                 <div class="row location-list mb-4">
                     @php
                         // Areas ko 2 columns me divide kar rahe hain
