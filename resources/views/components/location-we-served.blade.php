@@ -23,9 +23,9 @@
             <div class="col-lg-9 fade-right">
                 <div class="location-box ">
 
-                    <h3 class="box-title">We Are Regional <span>Service Provider</span> </h3>
+                    <h3 class="box-title">Nationwide <span>Service Coverage</span> </h3>
 
-                    <h4 class="sub-title">Mr Biomed Tech, Primarily Service The Below States:</h4>
+                    <h4 class="sub-title">We provide services across the United States. The following are our primary service location:</h4>
 
                     <!-- 3 COLUMN LIST -->
                      <div class="row mt-3">
@@ -53,16 +53,16 @@
                         </div> --}}
                     </div>
 
-                    <h4 class="sub-title mt-4">
+                    {{-- <h4 class="sub-title mt-4">
                         Mr Biomed Tech, Also Services These Additional States Through Our Sister Companies
                         At The Scientific Safety Alliance.
                     </h4>
 
                     @php
                         $chunks = $serving_areas->chunk(3);
-                    @endphp
+                    @endphp --}}
 
-                    <div class="row mt-3">
+                    {{-- <div class="row mt-3">
                         @foreach ($chunks as $chunk)
                             @foreach ($chunk as $area)
                                 <div class="col-md-4">
@@ -76,7 +76,9 @@
                                 </div>
                             @endforeach
                         @endforeach
-                    </div>
+                    </div> --}}
+
+                    
                     <!-- 3 COLUMN LIST #2 -->
                     {{-- <div class="row mt-3">
                         <div class="col-md-4">

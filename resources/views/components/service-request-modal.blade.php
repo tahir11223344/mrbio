@@ -71,7 +71,7 @@
 
                 <!-- Equipment Category (Full Width) -->
                 <div class="col-12">
-                    <label class="form-label mb-1">What You Looking For ?</label>
+                    <label class="form-label mb-1">How can we assist ?</label>
                     {{-- <div class="checkbox-group d-flex flex-wrap gap-2">
                         @foreach ($all_categories as $category)
                             <label class="form-check form-check-inline m-0">

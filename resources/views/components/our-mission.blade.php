@@ -14,12 +14,12 @@
              <!-- RIGHT COLUMN -->
              <div class="col-lg-8">
                  <p class="mission-text ">
-                     With Mr Biomed Tech, you find a partner who is interested in forging long-lasting relationships
+                     Mr. Biomed Tech Services is a partner committed to forging long-lasting relationships
                      with our manufacturers and clients. Our passion for patient care, coupled with the stringency it
                      takes to ensure the reliability of medical rental equipment​, is what makes us so valuable to our
                      clients. We are ever-growing to align with the latest trends in healthcare. We continue to prove
                      our dedication to precision in offering the best financial solutions in medical equipment rentals,
-                     repairs, and dispositions.
+                     repairs, and dispositions which helps our partners operate efficiently and with peace of mind.
                  </p>
 
                  <a href="{{ route('about-us') }}">
