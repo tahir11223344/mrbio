@@ -414,9 +414,9 @@
 
     {{-- ================= pruduct sectiion ============= --}}
 
-    <div class="latest-products-wrapper">
-        <x-our-latest-products />
-    </div>
+
+    <x-our-latest-products />
+
 
     {{-- ============= reveiw sectiion ================== --}}
     {{-- <x-testimonial-slider /> --}}
