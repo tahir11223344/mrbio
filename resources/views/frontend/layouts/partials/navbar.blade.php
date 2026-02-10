@@ -173,7 +173,7 @@
                         href="{{ route('home') }}">Home</a>
                 </li>
 
-                {{-- <li class="nav-item dropdown  has-mega">
+                 <li class="nav-item dropdown  has-mega">
                         <a class="nav-link mega-toggle {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
                             href="{{ route('biomed-services') }}">
                             Services We Offer
@@ -277,7 +277,6 @@
                                                 </a>
                                             </div> --}}
                                             <a href="{{ url('consultancy-services') }}">
-                                                {{-- <h6 class="nav-repair-title mt-4"> --}}
                                                 <h6 class="nav-repair-title">
                                                     
                                                     Consultancy
@@ -294,16 +293,16 @@
                                 </div>
                             </div>
                         </div>
-                    </li> --}}
+                    </li> 
 
                 <li class="nav-item has-mega">
-                    <a class="nav-link nav-main-link {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
+                    {{-- <a class="nav-link nav-main-link {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
                         href="{{ route('biomed-services') }}">
                         Mr Biomed Service
-                    </a>
-                    <span class="mega-toggle">
+                    </a> --}}
+                    {{-- <span class="mega-toggle">
                         <i class="bi bi-chevron-down dropdown-icon"></i>
-                    </span>
+                    </span> --}}
 
                     <div class="mega-menu">
                         <div class="container">

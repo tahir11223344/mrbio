@@ -14,7 +14,7 @@
 
 <section class="oem-trust-section py-5">
     <div class="container">
-        <h2 class="text-center mb-5 section-title fade-left">Why OEMs Trust <span>Mr Biomed Tech</span></h2>
+        <h2 class="text-center mb-5 section-title fade-left">Why OEMs Trust <span>Mr.Biomed Tech Services</span></h2>
 
         <!-- Desktop / Laptop Grid -->
         <div class="row g-4 justify-content-center d-none d-lg-flex">

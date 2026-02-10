@@ -14,7 +14,7 @@
 
                             <a href="{{ route('contact-us') }}">
                                 <span class="cta-contact-text">
-                                    Get in Touch With Mr Biomed Tech Today
+                                    Get in Touch With Mr.Biomed Tech Services Today
                                 </span>
                             </a>
 

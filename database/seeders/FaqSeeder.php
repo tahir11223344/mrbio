@@ -31,19 +31,19 @@ class FaqSeeder extends Seeder
                 ],
                 [
                     'question' => 'What is the closest medical equipment rental near me?',
-                    'answer'   => 'The closest medical equipment rental services are located in the heart of Texas-- Mr Biomed Tech. They provide a variety of biomed tech makes and models for the Austin, San Antonio, Dallas, and Houston areas.',
+                    'answer'   => 'The closest medical equipment rental services are located in the heart of Texas-- Mr. Biomed Tech Services. They provide a variety of biomed tech makes and models for the Austin, San Antonio, Dallas, and Houston areas.',
                 ],
                 [
-                    'question' => 'Which areas does Mr Biomed Tech serve in Texas?',
-                    'answer'   => 'Mr Biomed Tech offers fast diagnostics and repair for critical care equipment with transparent pricing in the Austin, San Antonio, Dallas, and Houston areas of Texas.',
+                    'question' => 'Which areas does Mr.Biomed Tech Services serve in Texas?',
+                    'answer'   => 'Mr.Biomed Tech Services offers fast diagnostics and repair for critical care equipment with transparent pricing in the Austin, San Antonio, Dallas, and Houston areas of Texas.',
                 ],
                 [
                     'question' => 'How do I know which biomed equipment is right for my hospital?',
-                    'answer'   => 'The BMEs (biomedical engineering) and experts at Mr Biomed Tech can help assess patient needs and long-term scaling plans in order to provide you with the best biomed equipment options for your hospital.',
+                    'answer'   => 'The BMEs (biomedical engineering) and experts at Mr. Biomed Tech Services can help assess patient needs and long-term scaling plans in order to provide you with the best biomed equipment options for your hospital.',
                 ],
                 [
                     'question' => 'What types of imaging devices do biomedical engineers repair?',
-                    'answer'   => 'Biomedical equipment technicians repair a wide array of imaging devices from computer tomography (CT) scans to X-ray machines. Mr Biomed Tech specializes in repairing C-arms in the Austin, Texas area.',
+                    'answer'   => 'Biomedical equipment technicians repair a wide array of imaging devices from computer tomography (CT) scans to X-ray machines. Mr.Biomed Tech Services specializes in repairing C-arms in the Austin, Texas area.',
                 ],
                 [
                     'question' => 'Can you help with the disposition of medical equipment?',
@@ -59,7 +59,7 @@ class FaqSeeder extends Seeder
                 ],
                 [
                     'question' => 'What are the best medical equipment companies in Dallas, TX?',
-                    'answer'   => 'Mr Biomed Tech Services offers the best medical equipment in Dallas, TX, ranging from infusion pumps, ventilators, and imaging systems to large-scale machinery.',
+                    'answer'   => 'Mr. Biomed Tech Services offers the best medical equipment in Dallas, TX, ranging from infusion pumps, ventilators, and imaging systems to large-scale machinery.',
                 ],
             ],
 
@@ -70,43 +70,43 @@ class FaqSeeder extends Seeder
             'service' => [
                 [
                     'question' => 'How does renting medical equipment in Texas benefit my healthcare facility?',
-                    'answer'   => 'Renting surgical and medical equipment with Mr Biomed Tech in Texas gets you in touch with industry-leading manufacturers and biomedical equipment specialists who have experience in handling all kinds of surgical and medical machinery.',
+                    'answer'   => 'Renting surgical and medical equipment with Mr. Biomed Tech Services in Texas gets you in touch with industry-leading manufacturers and biomedical equipment specialists who have experience in handling all kinds of surgical and medical machinery.',
                 ],
                 [
                     'question' => 'Can I test the rental medical equipment in Texas before committing to a purchase?',
-                    'answer'   => 'Mr Biomed Tech’s try-before-you-buy policy gives healthcare facilities a fair shot at seeing what machinery is best suited for their patients’ needs.',
+                    'answer'   => 'Mr. Biomed Tech Services’ try-before-you-buy policy gives healthcare facilities a fair shot at seeing what machinery is best suited for their patients’ needs.',
                 ],
                 [
                     'question' => 'How do I find the best medical equipment rental companies in Texas?',
-                    'answer'   => 'The best biomedical equipment rental company is Mr Biomed Tech who services areas all across Texas, including Garland, San Antonio, Austin, Dallas, and Houston.',
+                    'answer'   => 'The best biomedical equipment rental company is Mr. Biomed Tech Services who services areas all across Texas, including Garland, San Antonio, Austin, Dallas, and Houston.',
                 ],
                 [
                     'question' => 'Do you offer used medical equipment rental near me?',
-                    'answer'   => 'Used biomedical equipment rental is available at Mr Biomed Tech in Texas. We offer a variety of biomed equipment selections from renowned manufacturers. All our products are refurbished for ready-to-use working conditions.',
+                    'answer'   => 'Used biomedical equipment rental is available at Mr. Biomed Tech Services in Texas. We offer a variety of biomed equipment selections from renowned manufacturers. All our products are refurbished for ready-to-use working conditions.',
                 ],
                 [
                     'question' => 'What does a biomedical equipment technician do?',
                     'answer'   => 'A biomedical equipment technician has the interdisciplinary knowledge to calibrate, repair, and maintain a wide variety of surgical and medical technology for hospitals and other healthcare facilities.',
                 ],
                 [
-                    'question' => 'How fast can Mr Biomed Tech repair biomedical equipment?',
-                    'answer'   => 'Mr Biomed Tech offers 24/7 biomedical equipment repair services all over Texas in case of any healthcare emergencies.',
+                    'question' => 'How fast can Mr.Biomed Tech Services repair biomedical equipment?',
+                    'answer'   => 'Mr. Biomed Tech Services offers 24/7 biomedical equipment repair services all over Texas in case of any healthcare emergencies.',
                 ],
                 [
                     'question' => 'Can biomedical technicians train hospital staff?',
-                    'answer'   => 'The biomedical technicians at Mr Biomed Tech Services offer training to hospital staff to prevent misuse of machinery and so clinicians can identify regulatory issues.',
+                    'answer'   => 'The biomedical technicians at Mr.Biomed Tech Services Services offer training to hospital staff to prevent misuse of machinery and so clinicians can identify regulatory issues.',
                 ],
                 [
-                    'question' => 'What types of equipment does Mr Biomed Tech sell?',
-                    'answer'   => 'Mr Biomed Tech sells equipment ranging from hospital beds and stretchers to autoclave machines and other sterilization devices, as well as defibrillators, SCD pumps, X-rays, etc.',
+                    'question' => 'What types of equipment does Mr.Biomed Tech Services sell?',
+                    'answer'   => 'Mr. Biomed Tech Services sells equipment ranging from hospital beds and stretchers to autoclave machines and other sterilization devices, as well as defibrillators, SCD pumps, X-rays, etc.',
                 ],
                 [
                     'question' => 'How do you sterilize surgical equipment properly?',
-                    'answer'   => 'To sterilize surgical equipment requires a methodical decontamination process to avoid pathogenic transfer. You can rent or purchase a sterilization device, such as an autoclave, from Mr Biomed Tech Services in Texas.',
+                    'answer'   => 'To sterilize surgical equipment requires a methodical decontamination process to avoid pathogenic transfer. You can rent or purchase a sterilization device, such as an autoclave, from Mr.Biomed Tech Services Services in Texas.',
                 ],
                 [
                     'question' => 'How does a medical equipment management strategy reduce costs for hospitals?',
-                    'answer'   => 'A medical equipment management strategy is employed by Mr Biomed Tech to assist hospitals in keeping track of preventative maintenance of machinery, spare parts inventory, and staying up to date on device lifecycles. It ultimately ensures the investment in your medical equipment.',
+                    'answer'   => 'A medical equipment management strategy is employed by Mr. Biomed Tech Services to assist hospitals in keeping track of preventative maintenance of machinery, spare parts inventory, and staying up to date on device lifecycles. It ultimately ensures the investment in your medical equipment.',
                 ],
             ],
 
