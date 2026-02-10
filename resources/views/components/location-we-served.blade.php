@@ -25,7 +25,7 @@
 
                     <h3 class="box-title">Nationwide <span>Service Coverage</span> </h3>
 
-                    <h4 class="sub-title">We provide services across the United States. The following are our primary service location:</h4>
+                    <h4 class="sub-title">We provide services across the United States. The following are our primary service locations:</h4>
 
                     <!-- 3 COLUMN LIST -->
                      <div class="row mt-3">
