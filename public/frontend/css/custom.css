@@ -1643,7 +1643,7 @@
      .offer-card {
          max-width: none;
          /* max-width remove kar do */
-         width: 100%;
+         width: 300px;
          /* ya 95% of screen width */
          margin: 0 auto;
      }
@@ -3084,7 +3084,7 @@
      }
 
      .tooltip-box p {
-         font-size: 12px !important;
+         font-size: 10px !important;
      }
  }
 
@@ -3119,8 +3119,8 @@
      left: 50%;
      transform: translateX(-50%);
      width: 894px;
-     /* height: 144px; */
-     height: 100%;
+     height: 144px;
+     /* height: 100%; */
      padding-top: 10px;
      background: #000000AD;
      color: #fff;
