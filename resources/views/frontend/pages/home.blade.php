@@ -332,6 +332,11 @@
                                 <h4 class="equipment-title">Imaging Diagnostic Equipment</h4>
                                 <ul class="equipment-list">
                                     <li>Imaging Diagnostic Equipment</li>
+                                     <li>Ultrasound Machines</li>
+                                    <li>Portable X-ray Systems</li>
+                                    <li>C-arms</li>
+                                    <li>Bone Density Machines</li>
+                                    <li>Radiology Rooms (Rad Room)</li>
                                 </ul>
                             </div>
 
@@ -356,7 +361,7 @@
                                 </ul>
                             </div>
 
-                            <div class="equipment-block mb-3">
+                            {{-- <div class="equipment-block mb-3">
                                 <h4 class="equipment-title">Ultrasound</h4>
                                 <ul class="equipment-list">
                                     <li>Ultrasound Machines</li>
@@ -365,7 +370,7 @@
                                     <li>Bone Density Machines</li>
                                     <li>Radiology Rooms (Rad Room)</li>
                                 </ul>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>

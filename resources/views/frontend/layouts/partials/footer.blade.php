@@ -683,8 +683,8 @@
         <div class="container text-center ">
             <div class="footer-links-wrapper">
                 <div class="footer-links mb-1">
-                    <a href="{{ route('biomed-services') }}" class="text-decoration-none mx-2">Mr Biomed
-                        Service</a><span class="separator">|</span>
+                    <a href="{{ route('biomed-services') }}" class="text-decoration-none mx-2">Mr. Biomed Tech
+                        Services</a><span class="separator">|</span>
                     <a href="{{ route('location') }}" class="text-decoration-none mx-2">Locations</a><span
                         class="separator">|</span>
                     {{-- <a href="#" class="text-decoration-none mx-2">Product Store</a><span
