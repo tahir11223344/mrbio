@@ -467,7 +467,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const faqItems = Array.from(document.querySelectorAll(".faqs-list .faq-item"));
     const seeMoreBtn = document.querySelector(".btn-see-more");
 
-    const visibleCount = 10;
+    const visibleCount = 5;
     const totalFAQs = faqItems.length;
 
     const originalBg = "#0071A8";
@@ -541,116 +541,168 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+const offerSwiper = new Swiper(".offerSwiper", {
+    spaceBetween: 20,
+    loop: true,
 
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+    },
 
-document.querySelectorAll(".offer-slider-wrapper").forEach(wrapper => {
+    navigation: {
+        nextEl: ".offer-next",
+        prevEl: ".offer-prev",
+    },
 
-    const offerTrack = wrapper.querySelector(".offer-slider-track");
-    const offerCards = wrapper.querySelectorAll(".offer-card");
-    const offerPrev = wrapper.querySelector(".offer-prev");
-    const offerNext = wrapper.querySelector(".offer-next");
-    const pagination = wrapper.querySelector(".offer-pagination");
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
 
-    let offerIndex = 0;
-    let offerVisibleCards = 4;
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
 
-    function getCardWidth() {
-        return offerCards[0].offsetWidth + 20;
-    }
-
-    let offerCardWidth = getCardWidth();
-
-    function updateVisibleCards() {
-        if (window.innerWidth < 576) offerVisibleCards = 1;
-        else if (window.innerWidth < 992) offerVisibleCards = 2;
-        else offerVisibleCards = 4;
-
-        offerCardWidth = getCardWidth();
-    }
-
-    updateVisibleCards();
-    window.addEventListener("resize", updateVisibleCards);
-
-    const totalCards = offerCards.length / 2;
-
-    /* ------------------ Pagination Dots Create -------------------- */
-    pagination.innerHTML = "";
-    const dots = [];
-
-    for (let i = 0; i < totalCards; i++) {
-        const dot = document.createElement("div");
-        dot.classList.add("offer-dot");
-        if (i === 0) dot.classList.add("active");
-
-        dot.addEventListener("click", () => {
-            offerIndex = i;
-            slideToIndex();
-            updateDots();
-        });
-
-        pagination.appendChild(dot);
-        dots.push(dot);
-    }
-
-    function updateDots() {
-        dots.forEach((dot, i) => {
-            dot.classList.toggle("active", i === offerIndex);
-        });
-    }
-
-    /* ------------------ Slider Movement -------------------- */
-
-
-    function slideToIndex() {
-        offerTrack.style.transition = "transform 1s linear";
-        offerTrack.style.transform = `translateX(-${offerIndex * offerCardWidth}px)`;
-        updateDots();
-    }
-
-    function autoSlide() {
-        offerIndex++;
-        slideToIndex();
-
-        if (offerIndex >= totalCards) {
-            setTimeout(() => {
-                offerTrack.style.transition = "none";
-                offerIndex = 0;
-                offerTrack.style.transform = `translateX(0)`;
-                updateDots();
-            }, 1000);
-        }
-    }
-
-    offerNext.onclick = autoSlide;
-
-    offerPrev.onclick = () => {
-        offerIndex--;
-        if (offerIndex < 0) {
-            offerTrack.style.transition = "none";
-            offerIndex = totalCards - 1;
-        }
-        slideToIndex();
-    };
-
-    let sliderInterval = setInterval(autoSlide, 3000);
-
-    function pauseSlider() {
-        clearInterval(sliderInterval);
-        sliderInterval = null;
-    }
-
-    function resumeSlider() {
-        if (!sliderInterval) {
-            sliderInterval = setInterval(autoSlide, 3000);
-        }
-    }
-
-    [wrapper, offerPrev, offerNext].forEach(el => {
-        el.addEventListener("mouseenter", pauseSlider);
-        el.addEventListener("mouseleave", resumeSlider);
-    });
-
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        1024: {
+            slidesPerView: 3,
+        },
+        1200: {
+            slidesPerView: 4,
+        },
+    },
 });
+
+
+// document.querySelectorAll(".offer-slider-wrapper").forEach(wrapper => {
+
+//     const offerTrack = wrapper.querySelector(".offer-slider-track");
+//     const offerCards = wrapper.querySelectorAll(".offer-card");
+//     const offerPrev = wrapper.querySelector(".offer-prev");
+//     const offerNext = wrapper.querySelector(".offer-next");
+//     const pagination = wrapper.querySelector(".offer-pagination");
+
+//     let offerIndex = 0;
+//     let offerVisibleCards = 4;
+
+//     function getCardWidth() {
+//         return offerCards[0].offsetWidth + 20;
+//     }
+
+//     let offerCardWidth = getCardWidth();
+
+//   function updateVisibleCards() {
+//     if (window.innerWidth < 576) {
+//         offerVisibleCards = 1;
+//     } 
+//     else if (window.innerWidth < 768) {
+//         offerVisibleCards = 2;
+//     } 
+//     else if (window.innerWidth < 1200) {
+//         offerVisibleCards = 3;   // ✅ 1024px
+//     } 
+//     else {
+//         offerVisibleCards = 4;
+//     }
+
+//     offerCardWidth = getCardWidth();
+
+//     // 🔒 index ko safe range me rakho
+//     const maxIndex = getTotalSlides() - 1;
+//     if (offerIndex > maxIndex) {
+//         offerIndex = maxIndex < 0 ? 0 : maxIndex;
+//     }
+// }
+
+
+//     updateVisibleCards();
+//     window.addEventListener("resize", updateVisibleCards);
+
+//     const totalCards = offerCards.length / 2;
+
+//     /* ------------------ Pagination Dots Create -------------------- */
+//     pagination.innerHTML = "";
+//     const dots = [];
+
+//     for (let i = 0; i < totalCards; i++) {
+//         const dot = document.createElement("div");
+//         dot.classList.add("offer-dot");
+//         if (i === 0) dot.classList.add("active");
+
+//         dot.addEventListener("click", () => {
+//             offerIndex = i;
+//             slideToIndex();
+//             updateDots();
+//         });
+
+//         pagination.appendChild(dot);
+//         dots.push(dot);
+//     }
+
+//     function updateDots() {
+//         dots.forEach((dot, i) => {
+//             dot.classList.toggle("active", i === offerIndex);
+//         });
+//     }
+
+//     /* ------------------ Slider Movement -------------------- */
+
+
+//     function slideToIndex() {
+//         offerTrack.style.transition = "transform 1s linear";
+//         offerTrack.style.transform = `translateX(-${offerIndex * offerCardWidth}px)`;
+//         updateDots();
+//     }
+
+//     function autoSlide() {
+//         offerIndex++;
+//         slideToIndex();
+
+//         if (offerIndex >= totalCards) {
+//             setTimeout(() => {
+//                 offerTrack.style.transition = "none";
+//                 offerIndex = 0;
+//                 offerTrack.style.transform = `translateX(0)`;
+//                 updateDots();
+//             }, 1000);
+//         }
+//     }
+
+//     offerNext.onclick = autoSlide;
+
+//     offerPrev.onclick = () => {
+//         offerIndex--;
+//         if (offerIndex < 0) {
+//             offerTrack.style.transition = "none";
+//             offerIndex = totalCards - 1;
+//         }
+//         slideToIndex();
+//     };
+
+//     let sliderInterval = setInterval(autoSlide, 3000);
+
+//     function pauseSlider() {
+//         clearInterval(sliderInterval);
+//         sliderInterval = null;
+//     }
+
+//     function resumeSlider() {
+//         if (!sliderInterval) {
+//             sliderInterval = setInterval(autoSlide, 3000);
+//         }
+//     }
+
+//     [wrapper, offerPrev, offerNext].forEach(el => {
+//         el.addEventListener("mouseenter", pauseSlider);
+//         el.addEventListener("mouseleave", resumeSlider);
+//     });
+
+// });
 
 // =================repair or location  details pages js ==================
 
@@ -1152,8 +1204,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const menu = item.querySelector('.mega-menu');
         const toggleBtn = item.querySelector('.mega-toggle');
+        const mainLink = item.querySelector('.nav-main-link');
 
-        /* ================= DESKTOP HOVER ================= */
+        // Desktop: hover behavior
         item.addEventListener('mouseenter', () => {
             if (!isDesktop() || item.classList.contains('mega-force-hide')) return;
             forceCloseAll();
@@ -1175,15 +1228,27 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        /* ================= MOBILE CLICK (TOGGLE BUTTON) ================= */
+        // Mobile/Tablet: separate click handlers
         if (toggleBtn) {
             toggleBtn.addEventListener('click', (e) => {
-                if (isDesktop()) return; // desktop clicks not blocked
-                e.preventDefault();       // only prevent default on mobile
+                e.preventDefault();
+                e.stopPropagation();
+
+                if (isDesktop()) return; // Desktop par hover se handle hoga
+
                 const isOpen = item.classList.contains('show');
                 forceCloseAll();
                 allowOpenAgain();
                 if (!isOpen) item.classList.add('show');
+            });
+        }
+
+        // Main link: always navigate (mobile/tablet/desktop)
+        if (mainLink) {
+            mainLink.addEventListener('click', (e) => {
+                // Desktop par hover se dropdown khulega, link navigate karega
+                // Mobile/tablet par bhi link navigate karega
+                // Dropdown toggle icon alag se handle hoga
             });
         }
 
@@ -1207,6 +1272,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+
 
 
 
@@ -1366,3 +1432,84 @@ document.addEventListener('DOMContentLoaded', () => {
     updateVisibleItems();
     updateSlider();
 });
+
+// ======================== latestProductSwiper ===================
+const latestSwiper = new Swiper(".latestProductSwiper", {
+    loop: true,
+    spaceBetween: 15,
+    slidesPerView: 1, // default mobile
+    speed: 1000, // slide transition speed
+    autoplay: {
+        delay: 3000, // 3 sec per slide
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true, // hover par pause
+    },
+    navigation: false,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    breakpoints: {
+        0: { // mobile
+            slidesPerView: 1,
+            spaceBetween: 10,
+        },
+        768: { // tablet / md
+            slidesPerView: 2,
+            spaceBetween: 15,
+        },
+        992: { // large screen → show 3+ if you want
+            slidesPerView: 3,
+            spaceBetween: 20,
+        }
+    },
+});
+
+
+
+// =================== oem js ================
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.innerWidth < 992) {
+        new Swiper(".oemSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            grabCursor: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+            },
+            touchStartPreventDefault: false
+        });
+    }
+});
+
+// document.addEventListener("DOMContentLoaded", function () {
+//     if (window.innerWidth < 992) {
+//         new Swiper(".oemSwiper", {
+//             spaceBetween: 20,
+//             loop: true,
+//             grabCursor: true,
+
+//             autoplay: {
+//                 delay: 3000,
+//                 disableOnInteraction: false,
+//                 pauseOnMouseEnter: true
+//             },
+
+//             touchStartPreventDefault: false,
+
+//             breakpoints: {
+//                 0: {
+//                     slidesPerView: 1,
+//                 },
+//                 768: {
+//                     slidesPerView: 2,
+//                 }
+//             }
+//         });
+//     }
+// });
+
+

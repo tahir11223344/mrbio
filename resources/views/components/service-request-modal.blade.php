@@ -1,7 +1,8 @@
 <div class="service-modal-overlay" id="serviceModal">
     <div class="service-modal-box">
 
-        <span class="service-modal-close">&times;</span>
+        <span class="service-modal-close"> <i class="fa-solid fa-xmark"></i>
+        </span>
 
         <!-- Heading -->
         <h2 class="service-modal-heading">Service Request</h2>
@@ -83,8 +84,7 @@
                     </div>
                     <span class="text-danger error-text categories_error"></span> --}}
 
-                    <input type="text" name="looking_for" class="form-control form-control-sm"
-                        required>
+                    <input type="text" name="looking_for" class="form-control form-control-sm" required>
                     <span class="text-danger error-text looking_for_error"></span>
                 </div>
 

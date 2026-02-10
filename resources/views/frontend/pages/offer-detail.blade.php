@@ -407,7 +407,7 @@
 
 @section('frontend-content')
     <section class="hero-detail-section">
-        <div class="container py-5 text-center text-white">
+        <div class="container py-1 text-center text-white">
 
             <h1 class="hero-title mb-3 fade-right">{!! highlightBracketText($data->title ?? '', ['#000000']) !!}</h1>
             <p class="hero-description mx-auto mb-4 fade-left">{{ $data->short_description ?? '' }}</p>
@@ -588,7 +588,7 @@
     </section>
 
     {{-- ================= CTA Section ================= --}}
-    <x-cta-section />
+    {{-- <x-cta-section /> --}}
 
 
 
@@ -604,11 +604,11 @@
     <x-our-latest-products />
 
     {{-- ============= reveiw sectiion ================== --}}
-    <x-testimonial-slider />
+    {{-- <x-testimonial-slider /> --}}
 
     {{-- ============ Recent News Section ============ --}}
     <!-- Default: 4 blogs -->
-    <x-recent-blogs-section />
+    {{-- <x-recent-blogs-section /> --}}
 
 
 @endsection

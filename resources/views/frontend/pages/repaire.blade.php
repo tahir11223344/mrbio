@@ -12,9 +12,7 @@
             width: 100%;
             height: 583px;
             overflow: hidden;
-            /* display: flex;
-                                                                                                                                                                                                                                align-items: center; */
-            /* padding-left: 60px;  */
+
             color: #fff;
         }
 
@@ -44,7 +42,7 @@
             z-index: 2;
             /* max-width: 800px; */
             /* margin: 0 auto; */
-            margin-top: 80px;
+            margin-top: 40px;
         }
 
         .service-video-section h2 {
@@ -78,7 +76,7 @@
             text-decoration: none;
             font-weight: bold;
             transition: 0.3s;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         .service-btn:hover {
@@ -96,12 +94,21 @@
             .service-video-section {
                 padding: 30px;
                 height: auto;
-                padding-top: 80px;
-                padding-bottom: 80px;
+                padding-top: 30px;
+                padding-bottom: 30px;
             }
 
             .service-video-section h2 {
                 font-size: 24px;
+                line-height: 37px;
+            }
+
+            .service-video-section p {
+                font-size: 14px;
+            }
+
+            .service-video-section .repaire-content {
+                margin-top: 0px;
             }
         }
 
@@ -116,6 +123,19 @@
 
                 font-size: 14px !important;
 
+            }
+
+            .service-video-section h2 {
+                font-size: 20px !important;
+                line-height: 30px !important;
+            }
+
+            .service-video-section p {
+                font-size: 12px !important;
+            }
+
+            .service-video-section .repaire-content {
+                margin-top: 0px;
             }
         }
 
@@ -271,7 +291,7 @@
 
     <section class="hero-detail-section">
 
-        <div class="container py-5 text-center text-white">
+        <div class="container py-1 text-center text-white">
 
             <h1 class="hero-title mb-3 fade-right">{!! highlightBracketText($data->main_heading ?? '', ['#000000']) !!}</span> </h1>
             <p class="hero-description mx-auto mb-4 fade-left">
@@ -386,7 +406,7 @@
     <x-why-choice-biomed />
 
     {{-- ================= CTA Section ================= --}}
-    <x-cta-section />
+    {{-- <x-cta-section /> --}}
 
 
 
@@ -403,11 +423,11 @@
     <x-our-latest-products />
 
     {{-- ============= reveiw sectiion ================== --}}
-    <x-testimonial-slider />
+    {{-- <x-testimonial-slider /> --}}
 
     {{-- ============ Recent News Section ============ --}}
     <!-- Default: 4 blogs -->
-    <x-recent-blogs-section />
+    {{-- <x-recent-blogs-section /> --}}
 
 @endsection
 

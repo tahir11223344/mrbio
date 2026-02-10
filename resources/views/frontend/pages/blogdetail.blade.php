@@ -8,9 +8,9 @@
 @push('frontend-styles')
     <style>
         /* ============================================================
-                                                        BLOG DETAILS PAGE – CSS Styling
-                                                        Includes: Images, Lists, Sidebar, Related Articles, Responsive Fixes
-                                                        =============================================================== */
+                                                                                            BLOG DETAILS PAGE – CSS Styling
+                                                                                            Includes: Images, Lists, Sidebar, Related Articles, Responsive Fixes
+                                                                                            =============================================================== */
 
         .blog-content {
             max-width: 100%;
@@ -132,7 +132,8 @@
 
 
         .related-img {
-            width: 90px;
+            width: 100%;
+            max-width: 90px;
             height: 70px;
             border-radius: 6px;
             object-fit: cover;
@@ -160,6 +161,25 @@
             width: 100%;
             max-width: 308px;
             padding: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .related-title {
+
+                font-size: 14px;
+
+            }
+
+            .categories-list li {
+                font-family: Inter;
+                font-weight: 400;
+                font-size: 13px;
+                line-height: 100%;
+                cursor: pointer;
+                color: #000000;
+                margin-top: 20px;
+                transition: all 0.2s ease-in;
+            }
         }
 
         /* ================= Responsive ================= */
@@ -325,7 +345,7 @@
 @section('frontend-content')
 
     <section class="hero-detail-section">
-        <div class="container py-5 text-center text-white">
+        <div class="container py-1 text-center text-white">
 
             <h1 class="hero-title mb-3">{!! highlightBracketText($blog->title ?? '', ['#000000']) !!}</h1>
 
@@ -351,11 +371,11 @@
 
 
     <!-- ============================================================
-                                                                                                                        BLOG DETAILS SECTION (Responsive)
-                                                                                                                        Created for: Detailed Blog Page Layout
-                                                                                                                        Columns: Left Content (8), Right Sidebar (4)
-                                                                                                                        Includes: Images, Headings, Description, Lists, Categories, Related Articles
-                                                                                                                        =============================================================== -->
+                                                                                                                                                            BLOG DETAILS SECTION (Responsive)
+                                                                                                                                                            Created for: Detailed Blog Page Layout
+                                                                                                                                                            Columns: Left Content (8), Right Sidebar (4)
+                                                                                                                                                            Includes: Images, Headings, Description, Lists, Categories, Related Articles
+                                                                                                                                                            =============================================================== -->
 
     <section class="blog-details-section py-5">
         <div class="container">
@@ -426,11 +446,11 @@
     <!-- BUTTON + ICON GROUP -->
     <x-service-btn />
     <!-- ============================================================
-        LEAVE A COMMENT + COMMENTS SECTION
-        Background: #006A9E1A
-        Left: Comment Form
-        Right: Comments Box
-        =============================================================== -->
+                                            LEAVE A COMMENT + COMMENTS SECTION
+                                            Background: #006A9E1A
+                                            Left: Comment Form
+                                            Right: Comments Box
+                                            =============================================================== -->
 
     <section class="comment-section py-5">
         <div class="container">

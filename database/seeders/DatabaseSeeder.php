@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             RolesPermissionsSeeder::class,
             GeneralSettingsSeeder::class,
             CountriesStatesCitiesTableSeeder::class,
-            ImportBlogsFromApiSeeder::class
+            // ImportBlogsFromApiSeeder::class
         ]);
 
         // \App\Models\User::factory(20)->create();

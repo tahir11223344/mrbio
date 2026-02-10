@@ -354,7 +354,7 @@
 @section('frontend-content')
 
     <section class="hero-detail-section">
-        <div class="container py-5 text-center text-white">
+        <div class="container py-1 text-center text-white">
 
             <h1 class="hero-title mb-3 fade-left">{!! highlightBracketText($data->hero_title ?? '', ['#000000']) !!}</span></h1>
 
@@ -535,7 +535,7 @@
         </section>
     </section>
     {{-- ================= CTA Section ================= --}}
-    <x-cta-section />
+    {{-- <x-cta-section /> --}}
 
 
     {{-- ================= pruduct sectiion ============= --}}

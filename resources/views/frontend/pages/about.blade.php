@@ -292,9 +292,25 @@
             position: absolute;
             border-top-right-radius: 5px;
             border-bottom-right-radius: 5px;
-
+            overflow-y: auto;
+            /* 🔥 vertical scroll */
+            overflow-x: hidden;
 
         }
+
+        .info-card::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .info-card::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .info-card::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+        }
+
 
         .info-card.card-right {
             width: 537px;
@@ -306,9 +322,25 @@
             position: absolute;
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
-
+            overflow-y: auto;
+            /* 🔥 vertical scroll */
+            overflow-x: hidden;
 
         }
+
+        .info-card.card-right::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .info-card.card-right::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .info-card.card-right::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+        }
+
 
         /* Bottom Left Card */
         .card-left {
@@ -355,6 +387,24 @@
         .about-company-img {
             width: 238px;
             height: 416px;
+        }
+
+        @media(max-width:1024px) {
+            .co-card {
+                height: 100%;
+            }
+
+            .info-card.card-right {
+                width: 500px;
+            }
+
+            .info-card {
+                width: 500px;
+            }
+
+            .info-card h2 {
+                font-size: 30px;
+            }
         }
 
         @media(max-width:768px) {
@@ -465,7 +515,7 @@
 
 
     <section class="hero-detail-section">
-        <div class="container py-5 text-center text-white">
+        <div class="container py-1 text-center text-white">
 
             <h1 class="hero-title mb-3 fade-right">{!! highlightBracketText($about->hero_title ?? '', ['#000000']) !!}</h1>
 
@@ -682,30 +732,36 @@
                 <div class="offer-slider-wrapper position-relative">
 
                     <!-- Prev Button -->
-                    <button class="offer-prev"><i class="bi bi-chevron-left"></i></button>
 
                     <!-- Slider Container -->
-                    <div class="offer-slider-container">
-                        <div class="offer-slider-track">
+                    <div class="swiper offerSwiper">
+                        <div class="swiper-wrapper">
                             @foreach ($certificates as $item)
-                                <!-- CARD -->
-                                <div class="offer-card">
-                                    <img src="{{ asset('storage/company-certifications/' . $item->certificate) }}"
-                                        class="img-fluid about-card-img certificate-click"
-                                        alt="{{ $item->certificate_alt ?? '' }}" data-title="{{ $item->title }}"
-                                        data-image="{{ asset('storage/company-certifications/' . $item->certificate) }}">
+                                <div class="swiper-slide">
+                                    <!-- CARD -->
+                                    <div class="offer-card">
+                                        <img src="{{ asset('storage/company-certifications/' . $item->certificate) }}"
+                                            class="img-fluid about-card-img certificate-click"
+                                            alt="{{ $item->certificate_alt ?? '' }}" data-title="{{ $item->title }}"
+                                            data-image="{{ asset('storage/company-certifications/' . $item->certificate) }}">
+                                    </div>
+
                                 </div>
                             @endforeach
                         </div>
+                        <div class="swiper-pagination "></div>
                     </div>
 
-                    <!-- Next Button -->
-                    <button class="offer-next"><i class="bi bi-chevron-right"></i></button>
-                    {{-- pagination dot --}}
-                    <div class="offer-pagination"></div>
 
+                    <!-- Navigation -->
+                    <div class="offer-prev swiper-button-prev"></div>
+                    <div class="offer-next swiper-button-next"></div>
 
                 </div>
+
+
+
+
             </div>
         </section>
     @endif
@@ -732,7 +788,7 @@
 
 
     {{-- ================= CTA Section ================= --}}
-    <x-cta-section />
+    {{-- <x-cta-section /> --}}
 
     {{-- ================faqs section ================ --}}
     <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
@@ -743,11 +799,11 @@
     <x-our-latest-products />
 
     {{-- ============= reveiw sectiion ================== --}}
-    <x-testimonial-slider />
+    {{-- <x-testimonial-slider /> --}}
 
     {{-- ============ Recent News Section ============ --}}
     <!-- Default: 4 blogs -->
-    <x-recent-blogs-section />
+    {{-- <x-recent-blogs-section /> --}}
 
 @endsection
 

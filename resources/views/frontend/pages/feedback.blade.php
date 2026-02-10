@@ -205,8 +205,8 @@
         }
 
         /* ============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           📱 Responsive Breakpoints
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ============================ */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   📱 Responsive Breakpoints
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ============================ */
 
         @media (max-width: 768px) {
             .bio-wrapper {
@@ -368,8 +368,8 @@
         }
 
         /* .review-scroll::-webkit-scrollbar {
-                                                                                                                                                                                                                            width: 8px;
-                                                                                                                                                                                                                        } */
+                                                                                                                                                                                                                                                    width: 8px;
+                                                                                                                                                                                                                                                } */
 
         /* -------- Scrollbar Styling -------- */
         .review-scroll::-webkit-scrollbar {
@@ -475,6 +475,12 @@
             }
         }
 
+        @media (max-width: 767px) {
+            .cust-btn {
+                font-size: 15px !important;
+            }
+        }
+
 
         .rate-box {
             display: flex;
@@ -521,7 +527,7 @@
 
 
     <section class="hero-detail-section">
-        <div class="container py-5 text-center text-white">
+        <div class="container py-1 text-center text-white">
 
             <h1 class="hero-title mb-3 fade-left">{!! highlightBracketText($data->hero_title ?? '', ['#000000']) !!}</h1>
 
@@ -773,11 +779,11 @@
 
 
     {{-- ============= reveiw sectiion ================== --}}
-    <x-testimonial-slider />
+    {{-- <x-testimonial-slider /> --}}
 
     {{-- ============ Recent News Section ============ --}}
     <!-- Default: 4 blogs -->
-    <x-recent-blogs-section />
+    {{-- <x-recent-blogs-section /> --}}
 
 @endsection
 

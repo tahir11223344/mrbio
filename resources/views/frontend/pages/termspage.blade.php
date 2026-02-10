@@ -16,6 +16,7 @@
             padding: 20px;
             border-radius: 30px;
             position: relative;
+            margin: 0 auto;
         }
 
         .custom-card .card-title {
@@ -85,7 +86,7 @@
 @section('frontend-content')
 
     <section class="hero-detail-section">
-        <div class="container py-5 text-center text-white">
+        <div class="container py-1 text-center text-white">
 
             <h1 class="hero-title mb-3"><span>{!! highlightBracketText($data->hero_title ?? '', ['#000000']) !!}</h1>
 
