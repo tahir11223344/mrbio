@@ -41,9 +41,9 @@
 @section('frontend-content')
 
 
-    <section class="hero-section py-5">
+    <section class="hero-section py-4">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center g-3">
 
                 <!-- LEFT COLUMN -->
                 <div class="col-lg-6 text-white">

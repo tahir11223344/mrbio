@@ -16,7 +16,7 @@
 
     /* Swiper spacing for mobile */
     .latestProductSwiper {
-        padding: 30px 0 30px;
+        padding: 20px 0 20px;
     }
 </style>
 

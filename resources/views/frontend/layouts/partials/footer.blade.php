@@ -297,26 +297,25 @@
             font-size: 22px !important;
         }
 
-        .xray-desc {
+        /* .xray-desc {
             font-size: 16px !important;
-        }
+        } */
 
-        .xray-btn {
+        /* .xray-btn {
 
             left: 35% !important;
-        }
+        } */
 
-        .custom-card .card-content-box {
+        /* .custom-card .card-content-box {
 
             height: 184px;
-        }
+        } */
 
-        .custom-card {
+        /* .custom-card {
 
             height: 380px;
-            /* width: 90%; */
             margin-top: 35px;
-        }
+        } */
     }
 
     @media (max-width: 767px) {
@@ -673,7 +672,8 @@
                     </div>
                     <span class="text-white fw-bold fs-5">4.3</span>
                 </div>
-                <a href="https://maps.app.goo.gl/wvVEdynFgvQnhsbg9" target="_blank" class="review-link ">Leave Us a Review On
+                <a href="https://maps.app.goo.gl/wvVEdynFgvQnhsbg9" target="_blank" class="review-link ">Leave Us a
+                    Review On
                     <span>Google</span> </a>
             </div>
         </div>

@@ -535,7 +535,7 @@
         </section>
     </section>
     {{-- ================= CTA Section ================= --}}
-    <x-cta-section />
+    {{-- <x-cta-section /> --}}
 
 
     {{-- ================= pruduct sectiion ============= --}}

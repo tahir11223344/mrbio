@@ -45,25 +45,9 @@
     .site-header.show-header {
         transform: translateY(0);
     }
-    
+
     /* Mobile: Remove fixed when navbar is open */
-    @media (max-width: 991px) {
-        .site-header {
-            position: relative;
-        }
-        
-        body {
-            padding-top: 0;
-        }
-        
-        .navbar-collapse {
-            width: 100%;
-        }
-        
-        .navbar-nav {
-            width: 100%;
-        }
-    }
+
 
 
 
@@ -109,6 +93,18 @@
         }
     }
 
+    .nav-main-link {
+        display: inline-block;
+        /* required for transform */
+        transition: transform 0.4s ease-in-out;
+        will-change: transform;
+    }
+
+    .nav-main-link:hover {
+        transform: scale(1.04);
+    }
+
+
     /* Mobile/Tablet: icon on the right */
     @media (max-width: 991px) {
         .has-mega {
@@ -141,7 +137,6 @@
             margin-top: 5px;
         }
 
-        /* Ensure navbar collapse can show dropdown */
         .navbar-collapse {
             position: relative;
         }
@@ -156,27 +151,29 @@
         <div class="container-fluid d-flex align-items-center p-0 position-relative">
 
             <!-- Logo -->
-            <a class="navbar-brand  " href="#">
+            <a class="navbar-brand  " href="{{ route('home') }}">
                 <img src="{{ asset('storage/' . setting('site_logo', 'frontend/images/logo.png')) }}" height=""
                     alt="{{ setting('site_name') }}" class="img-fluid nav-logo">
             </a>
 
-            <button class="navbar-toggler me-3" type="button" id="customToggler" aria-controls="mainNav"
+            <button class="navbar-toggler me-" type="button" id="customToggler" aria-controls="mainNav"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
 
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul
-                    class="navbar-nav blue-block d-flex flex-lg-row flex-column align-items-lg-center align-items-start  ">
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
-                            href="{{ route('home') }}">Home</a>
-                    </li>
 
-                    {{-- <li class="nav-item dropdown  has-mega">
+        </div>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav blue-block d-flex flex-lg-row flex-column align-items-lg-center align-items-start  ">
+
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
+                        href="{{ route('home') }}">Home</a>
+                </li>
+
+                {{-- <li class="nav-item dropdown  has-mega">
                         <a class="nav-link mega-toggle {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
                             href="{{ route('biomed-services') }}">
                             Mr Biomed Service
@@ -292,105 +289,109 @@
                         </div>
                     </li> --}}
 
-                    <li class="nav-item has-mega">
-                        <a class="nav-link nav-main-link {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
-                            href="{{ route('biomed-services') }}">
-                            Mr Biomed Service
-                        </a>
-                        <span class="mega-toggle">
-                            <i class="bi bi-chevron-down dropdown-icon"></i>
-                        </span>
+                <li class="nav-item has-mega">
+                    <a class="nav-link nav-main-link {{ request()->routeIs('biomed-services*') ? 'active' : '' }}"
+                        href="{{ route('biomed-services') }}">
+                        Mr Biomed Service
+                    </a>
+                    <span class="mega-toggle">
+                        <i class="bi bi-chevron-down dropdown-icon"></i>
+                    </span>
 
-                        <div class="mega-menu">
-                            <div class="container">
-                                <div class="row">
+                    <div class="mega-menu">
+                        <div class="container">
+                            <div class="row">
 
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <a href="{{ route('repair') }}">
-                                            <h6 class="nav-repair-title">
-                                                Repair Services <i class="fa-solid fa-angle-right"></i>
-                                            </h6>
-                                        </a>
-                                        <ul class="list-unstyled">
-                                            <li><a href="{{ url('repairing-services/houston') }}">Rowlett ›</a></li>
-                                            <li><a href="{{ url('repairing-services/dallas') }}">Sachse ›</a></li>
-                                            <li><a href="{{ url('repairing-services/austin') }}">Mesquite ›</a></li>
-                                            <li><a href="{{ url('repairing-services/garland') }}">Wylie ›</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <a href="{{ url('repairing-services/texas-medical-equipment') }}">
-                                            <h6 class="nav-repair-title">
-                                                Surgical Equipment <i class="fa-solid fa-angle-right"></i>
-                                            </h6>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <a href="{{ url('medical-equipment') }}">
-                                            <h6 class="nav-repair-title">
-                                                Medical Equipment <i class="fa-solid fa-angle-right"></i>
-                                            </h6>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-6 mb-3">
-                                        <a href="{{ route('contact-us') }}">
-                                            <button class="nav-mega-btn">Talk To Expert</button>
-                                        </a>
-                                    </div>
-
+                                <div class="col-lg-3 col-md-6 mb-3">
+                                    <a href="{{ route('repair') }}">
+                                        <h6 class="nav-repair-title">
+                                            Repair Services <i class="fa-solid fa-angle-right"></i>
+                                        </h6>
+                                    </a>
+                                    <ul class="list-unstyled">
+                                        <li><a href="{{ url('repairing-services/houston') }}" class="bottomm">Rowlett
+                                                ›</a></li>
+                                        <li><a href="{{ url('repairing-services/dallas') }}" class="bottomm">Sachse
+                                                ›</a></li>
+                                        <li><a href="{{ url('repairing-services/austin') }}" class="bottomm">Mesquite
+                                                ›</a></li>
+                                        <li><a href="{{ url('repairing-services/garland') }}" class="bottomm">Wylie
+                                                ›</a></li>
+                                    </ul>
                                 </div>
+
+                                <div class="col-lg-3 col-md-6 mb-3">
+                                    <a href="{{ url('repairing-services/texas-medical-equipment') }}">
+                                        <h6 class="nav-repair-title">
+                                            Surgical Equipment <i class="fa-solid fa-angle-right"></i>
+                                        </h6>
+                                    </a>
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 mb-3">
+                                    <a href="{{ url('medical-equipment') }}">
+                                        <h6 class="nav-repair-title">
+                                            Medical Equipment <i class="fa-solid fa-angle-right"></i>
+                                        </h6>
+                                    </a>
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 mb-3">
+                                    <a href="{{ route('contact-us') }}">
+                                        <button class="nav-mega-btn">Talk To Expert</button>
+                                    </a>
+                                </div>
+
                             </div>
                         </div>
-                    </li>
+                    </div>
+                </li>
 
 
-                    <li class="nav-item dropdown has-mega">
-                        <a class="nav-link nav-main-link {{ request()->routeIs('location') ? 'active' : '' }}"
-                            href="{{ route('location') }}">Locations</a>
-                        <span class="mega-toggle">
-                            <i class="bi bi-chevron-down dropdown-icon"></i>
-                        </span>
-                        <div class="mega-menu">
-                            <div class="container-fluid">
-                                <div class="city-grid">
-                                    @foreach ($headerCities as $cityKey => $areas)
-                                        <div>
-                                            {{-- <h6 class="city-repair-title">
+                <li class="nav-item dropdown has-mega">
+                    <a class="nav-link nav-main-link {{ request()->routeIs('location') ? 'active' : '' }}"
+                        href="{{ route('location') }}">Locations</a>
+                    <span class="mega-toggle">
+                        <i class="bi bi-chevron-down dropdown-icon"></i>
+                    </span>
+                    <div class="mega-menu">
+                        <div class="container-fluid">
+                            <div class="city-grid">
+                                @foreach ($headerCities as $cityKey => $areas)
+                                    <div>
+                                        {{-- <h6 class="city-repair-title">
                                                 {{ $cityLabels[$cityKey] ?? ucfirst(str_replace('-', ' ', $cityKey)) }}
                                                 <i class="fa-solid fa-angle-right"></i>
                                             </h6> --}}
 
-                                            <h6 class="city-repair-title">
-                                                <a href="{{ route('location') }}">
-                                                    {{ $cityLabels[$cityKey] ?? ucfirst(str_replace('-', ' ', $cityKey)) }}
-                                                </a>
-                                                <i class="fa-solid fa-angle-right"></i>
-                                            </h6>
-
-                                            @foreach ($areas as $area)
-                                                <p>
-                                                    <a href="{{ route('location.detail', $area->slug) }}"
-                                                        class="bottomm">{{ $area->area_name ?? $area->city_name }}</a>
-                                                </p>
-                                            @endforeach
-                                            <p class="mt-3"><a href="#" class="bottomm">Nearby
-                                                    communities</a>
-                                            </p>
-                                            <a href="{{ route('contact-us') }}">
-                                                <button class="nav-mega-btn mt-3">Talk To Expert</button>
+                                        <h6 class="city-repair-title">
+                                            <a href="{{ route('location') }}">
+                                                {{ $cityLabels[$cityKey] ?? ucfirst(str_replace('-', ' ', $cityKey)) }}
                                             </a>
-                                        </div>
-                                    @endforeach
-                                </div>
+                                            <i class="fa-solid fa-angle-right"></i>
+                                        </h6>
+
+                                        @foreach ($areas as $area)
+                                            <p>
+                                                <a href="{{ route('location.detail', $area->slug) }}"
+                                                    class="bottomm">{{ $area->area_name ?? $area->city_name }}</a>
+                                            </p>
+                                        @endforeach
+                                        <p class="mt-3"><a href="#" class="bottomm">Nearby
+                                                communities</a>
+                                        </p>
+                                        <a href="{{ route('contact-us') }}">
+                                            <button class="nav-mega-btn mt-3">Talk To Expert</button>
+                                        </a>
+                                    </div>
+                                @endforeach
                             </div>
-
                         </div>
-                    </li>
 
-                    {{-- <li class="nav-item dropdown has-mega">
+                    </div>
+                </li>
+
+                {{-- <li class="nav-item dropdown has-mega">
                         <a class="nav-link mega-toggle" href="#">Product Store <i
                                 class="bi bi-chevron-down dropdown-icon"></i></a>
                         <div class="mega-menu">
@@ -420,79 +421,78 @@
                     </li> --}}
 
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('rental-services') ? 'active' : '' }}"
-                            href="{{ route('rental-services') }}">
-                            Rental
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('rental-services') ? 'active' : '' }}"
+                        href="{{ route('rental-services') }}">
+                        Rental
+                    </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('repair') ? 'active' : '' }}"
-                            href="{{ route('repair') }}">
-                            Repair
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('repair') ? 'active' : '' }}"
+                        href="{{ route('repair') }}">
+                        Repair
+                    </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('blogs*') ? 'active' : '' }}"
-                            href="{{ route('blogs') }}">
-                            Blog
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('blogs*') ? 'active' : '' }}"
+                        href="{{ route('blogs') }}">
+                        Blog
+                    </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('about-us') ? 'active' : '' }}"
-                            href="{{ route('about-us') }}">
-                            About
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('about-us') ? 'active' : '' }}"
+                        href="{{ route('about-us') }}">
+                        About
+                    </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('faqs') ? 'active' : '' }}"
-                            href="{{ route('faqs') }}">
-                            FAQs
-                        </a>
-                    </li>
-
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('faqs') ? 'active' : '' }}" href="{{ route('faqs') }}">
+                        FAQs
+                    </a>
+                </li>
 
 
-                    <li class="nav-item ms-auto d-flex flex-column align-items-center mt-2 mt-lg-0">
-                        <div class="d-flex align-items-center gap-2 mb-1 contact-icons-wrapper">
 
-                            @if (setting('email'))
-                                <a href="mailto:{{ setting('email') }}" target="_blank">
-                                    <img src="{{ asset('frontend/images/nav-icon-img-1.png') }}" class="icon-image">
-                                </a>
-                            @endif
+                <li class="nav-item ms-auto d-flex flex-column align-items-center mt-2 mt-lg-0">
+                    <div class="d-flex align-items-center gap-2 mb-1 contact-icons-wrapper">
 
-                            @if (setting('email') && (setting('phone') || setting('whatsapp')))
-                                <span class="separator text-white fw-bold">|</span>
-                            @endif
+                        @if (setting('email'))
+                            <a href="mailto:{{ setting('email') }}" target="_blank">
+                                <img src="{{ asset('frontend/images/nav-icon-img-1.png') }}" class="icon-image">
+                            </a>
+                        @endif
 
-                            @if (setting('phone'))
-                                <a href="tel:{{ cleanPhone(setting('phone')) }}">
-                                    <img src="{{ asset('frontend/images/nav-icon-mg-2.png') }}" class="icon-image">
-                                </a>
-                            @endif
+                        @if (setting('email') && (setting('phone') || setting('whatsapp')))
+                            <span class="separator text-white fw-bold">|</span>
+                        @endif
 
-                            @if (setting('phone') && setting('whatsapp'))
-                                <span class="separator text-white fw-bold">|</span>
-                            @endif
+                        @if (setting('phone'))
+                            <a href="tel:{{ cleanPhone(setting('phone')) }}">
+                                <img src="{{ asset('frontend/images/nav-icon-mg-2.png') }}" class="icon-image">
+                            </a>
+                        @endif
 
-                            @if (setting('whatsapp'))
-                                <a href="https://wa.me/{{ cleanPhone(setting('whatsapp')) }}" target="_blank">
-                                    <img src="{{ asset('frontend/images/nav-icon-img-3.png') }}" class="icon-image">
-                                </a>
-                            @endif
-                        </div>
+                        @if (setting('phone') && setting('whatsapp'))
+                            <span class="separator text-white fw-bold">|</span>
+                        @endif
 
-                        <a href="{{ route('contact-us') }}" class="btn contact-btn mt-2 px-3 py-1">
-                            CONTACT
-                        </a>
-                    </li>
+                        @if (setting('whatsapp'))
+                            <a href="https://wa.me/{{ cleanPhone(setting('whatsapp')) }}" target="_blank">
+                                <img src="{{ asset('frontend/images/nav-icon-img-3.png') }}" class="icon-image">
+                            </a>
+                        @endif
+                    </div>
 
-                    {{-- <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                    <a href="{{ route('contact-us') }}" class="btn contact-btn mt-2 px-3 py-1">
+                        CONTACT
+                    </a>
+                </li>
+
+                {{-- <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
                         @guest
                             <a href="{{ route('login') }}" class="btn btn-outline-primary">Login</a>
                         @endguest
@@ -520,9 +520,7 @@
                         @endauth
                     </li> --}}
 
-                </ul>
-            </div>
-
+            </ul>
         </div>
     </nav>
 </header>

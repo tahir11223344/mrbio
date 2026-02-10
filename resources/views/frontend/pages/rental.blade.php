@@ -54,10 +54,10 @@
         }
 
         /*
-                                                                                                                                                                                                                                                                .equip-list {
-                                                                                                                                                                                                                                                                    margin-top: 30px;
+                                                                                                                                                                                                                                                                                        .equip-list {
+                                                                                                                                                                                                                                                                                            margin-top: 30px;
 
-                                                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                                                                        } */
 
         .li {
             /* padding-left: 18px; */
@@ -292,7 +292,7 @@
             background: #0168A4;
             color: #FFFFFF;
             box-shadow: 0px 4px 4px #00000040;
-            font-weight: 700;
+            font-weight: 400;
             font-family: Inter;
             font-size: 20px;
             line-height: 100%;
@@ -366,7 +366,7 @@
             color: #FFFFFF;
             box-shadow: 0px 4px 4px #00000040;
             font-weight: 700;
-            font-family: Inter, sans-serif;
+            font-family: Inter;
             font-size: 20px;
             line-height: 1;
             transition: color 0.8s ease-in-out;
@@ -466,10 +466,10 @@
         /* =============== four-column-section ======================= */
 
         /*
-                                                                                                                                                                                                                                                                                                                                                        * Background Color Calculation:
-                                                                                                                                                                                                                                                                                                                                                        * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
-                                                                                                                                                                                                                                                                                                                                                        * This translates to a light grey color with low opacity.
-                                                                                                                                                                                                                                                                                                                                                        */
+                                                                                                                                                                                                                                                                                                                                                                                * Background Color Calculation:
+                                                                                                                                                                                                                                                                                                                                                                                * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
+                                                                                                                                                                                                                                                                                                                                                                                * This translates to a light grey color with low opacity.
+                                                                                                                                                                                                                                                                                                                                                                                */
         .four-column-section {
             background-color: #D9D9D938;
             padding: 40px 20px;
@@ -512,7 +512,7 @@
             font-weight: 400;
             font-family: Inter, sans-serif;
             text-align: center;
-            margin-top: 20px;
+            margin: 20px auto;
             width: 100%;
             max-width: 263px;
         }
@@ -703,7 +703,7 @@
 
     <section class="four-column-section">
         <div class="container">
-            <div class="row">
+            <div class="row g-4">
                 <h1 class="four-column-desc">Rental <span>Process</span> </h1>
                 <div class="col-lg-3 col-md-6">
                     <div class="icon-wrapper">
@@ -750,7 +750,7 @@
 
 
     {{-- ================= CTA Section ================= --}}
-    <x-cta-section />
+    {{-- <x-cta-section /> --}}
 
 
     {{-- ================= Why Choose Biomed Section ================= --}}
@@ -771,11 +771,11 @@
     <x-our-latest-products />
 
     {{-- ============= reveiw sectiion ================== --}}
-    <x-testimonial-slider />
+    {{-- <x-testimonial-slider /> --}}
 
     {{-- ============ Recent News Section ============ --}}
     <!-- Default: 4 blogs -->
-    <x-recent-blogs-section />
+    {{-- <x-recent-blogs-section /> --}}
 
 @endsection
 

@@ -788,7 +788,7 @@
 
 
     {{-- ================= CTA Section ================= --}}
-    <x-cta-section />
+    {{-- <x-cta-section /> --}}
 
     {{-- ================faqs section ================ --}}
     <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
@@ -799,11 +799,11 @@
     <x-our-latest-products />
 
     {{-- ============= reveiw sectiion ================== --}}
-    <x-testimonial-slider />
+    {{-- <x-testimonial-slider /> --}}
 
     {{-- ============ Recent News Section ============ --}}
     <!-- Default: 4 blogs -->
-    <x-recent-blogs-section />
+    {{-- <x-recent-blogs-section /> --}}
 
 @endsection
 

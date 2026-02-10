@@ -643,7 +643,7 @@
     </section>
 
     {{-- ================= CTA Section ================= --}}
-    <x-cta-section />
+    {{-- <x-cta-section /> --}}
 
 
 
@@ -659,11 +659,11 @@
     <x-our-latest-products />
 
     {{-- ============= reveiw sectiion ================== --}}
-    <x-testimonial-slider />
+    {{-- <x-testimonial-slider /> --}}
 
     {{-- ============ Recent News Section ============ --}}
     <!-- Default: 4 blogs -->
-    <x-recent-blogs-section />
+    {{-- <x-recent-blogs-section /> --}}
 
 
     <!-- BUTTON + ICON GROUP -->

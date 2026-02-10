@@ -45,7 +45,7 @@
 
                 <!-- Swiper -->
                 <div class="swiper offerSwiper">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper py-4">
 
                         @foreach ($offers as $offer)
                             <div class="swiper-slide">

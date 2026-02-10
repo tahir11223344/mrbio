@@ -1433,7 +1433,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSlider();
 });
 
-
+// ======================== latestProductSwiper ===================
 const latestSwiper = new Swiper(".latestProductSwiper", {
     loop: true,
     spaceBetween: 15,
@@ -1467,5 +1467,49 @@ const latestSwiper = new Swiper(".latestProductSwiper", {
 
 
 
-// 
+// =================== oem js ================
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.innerWidth < 992) {
+        new Swiper(".oemSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            grabCursor: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+            },
+            touchStartPreventDefault: false
+        });
+    }
+});
+
+// document.addEventListener("DOMContentLoaded", function () {
+//     if (window.innerWidth < 992) {
+//         new Swiper(".oemSwiper", {
+//             spaceBetween: 20,
+//             loop: true,
+//             grabCursor: true,
+
+//             autoplay: {
+//                 delay: 3000,
+//                 disableOnInteraction: false,
+//                 pauseOnMouseEnter: true
+//             },
+
+//             touchStartPreventDefault: false,
+
+//             breakpoints: {
+//                 0: {
+//                     slidesPerView: 1,
+//                 },
+//                 768: {
+//                     slidesPerView: 2,
+//                 }
+//             }
+//         });
+//     }
+// });
+
 

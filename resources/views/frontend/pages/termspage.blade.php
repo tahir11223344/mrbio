@@ -16,6 +16,7 @@
             padding: 20px;
             border-radius: 30px;
             position: relative;
+            margin: 0 auto;
         }
 
         .custom-card .card-title {

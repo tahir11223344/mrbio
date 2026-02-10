@@ -419,11 +419,11 @@
     </div>
 
     {{-- ============= reveiw sectiion ================== --}}
-    <x-testimonial-slider />
+    {{-- <x-testimonial-slider /> --}}
 
     {{-- ============ Recent News Section ============ --}}
     <!-- Default: 4 blogs -->
-    <x-recent-blogs-section />
+    {{-- <x-recent-blogs-section /> --}}
 @endsection
 
 @push('frontend-scripts')
