@@ -130,9 +130,6 @@
                 width: 100% !important;
             }
 
-            .faqs-section {
-                margin-top: 166% !important;
-            }
 
             .areas-section .areas-title {
                 font-size: 37px !important;
@@ -164,7 +161,7 @@
 
         @media(max-width:767px) {
             .margin-top {
-                margin-top: 850px;
+                margin-top: 1002px;
             }
         }
 

@@ -149,14 +149,7 @@
             border: none;
         }
 
-        @media (max-width: 767px) {
-
-
-
-            .map-section {
-                margin-top: 233% !important;
-            }
-        }
+        @media (max-width: 767px) {}
 
 
         @media(max-width: 767px) {
