@@ -5,7 +5,7 @@
             <!-- Heading -->
             <h2 class="text-center offer-title fade-left">What We <span>Offer</span></h2>
             <p class="text-center offer-desc mb-5 fade-right">
-                Hospitals in the Texas area trust Mr.Biomed Tech Services to provide cost-effective medical equipment rentals so
+                Hospitals in the Texas area trust Mr. Biomed Tech Services to provide cost-effective medical equipment rentals so
                 they can focus on surging patient care. Signing a lease with us means an organized documentation system
                 and the latest in machinery.
             </p>

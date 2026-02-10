@@ -8,7 +8,7 @@
 
                 <p class="contact-desc mb-4">
                     Want to learn more about how you can maximize the potential of your healthcare facility by enlisting
-                    biomedical equipment services from Mr.Biomed Tech Services? We offer support all across Texas. Call, email,
+                    biomedical equipment services from Mr. Biomed Tech Services? We offer support all across Texas. Call, email,
                     or visit us to discuss rentals, repairs, purchasing, or equipment disposition today.
                 </p>
 

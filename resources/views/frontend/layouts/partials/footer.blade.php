@@ -706,7 +706,7 @@
                 </div>
             </div>
             <p class="copyright mb-0 t">
-                Copyright © {{ date('Y') }} | {{ setting('site_name', 'Mr.Biomed Tech Services Services') }} ® | All right
+                Copyright © {{ date('Y') }} | {{ setting('site_name', 'Mr. Biomed Tech Services Services') }} ® | All right
                 reserved
             </p>
         </div>

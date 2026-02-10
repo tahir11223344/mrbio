@@ -550,7 +550,7 @@
     @if ($bioMedicalBlogs->count())
         <section class="featured-section container my-5">
 
-            <h2 class="latest-blog-heading mb-4 text-center">Mr.Biomed Tech Services <span>Medical Blogs</span> </h2>
+            <h2 class="latest-blog-heading mb-4 text-center">Mr. Biomed Tech Services <span>Medical Blogs</span> </h2>
             <div class="container">
                 <div class="row g-4">
                     @foreach ($bioMedicalBlogs as $bioMedicalBlog)
