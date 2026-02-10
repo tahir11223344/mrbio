@@ -343,7 +343,7 @@
                             <div class="equipment-block mb-3">
                                 <h4 class="equipment-title">Surgical Equipment</h4>
                                 <ul class="equipment-list">
-                                    <li>Operation Lights/Surgical Lights</li>
+                                    <li>Surgical Lights</li>
                                     <li>Surgical Tables</li>
                                     <li>Electrosurgical Units (ESU)</li>
                                     <li>Hypothermia Units</li>
