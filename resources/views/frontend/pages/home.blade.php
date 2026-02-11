@@ -265,7 +265,7 @@
     <x-offers-section />
 
     <!-- Example 1: Home Page -->
-    {{-- <x-repair-service-section :types="['x-ray-repairing', 'c-arm-repairing']" />  Code Commented Usman --}}
+    <x-repair-service-section :types="['x-ray-repairing', 'c-arm-repairing']" />
     <!-- Output: X-Ray → C-Arm -->
 
     <section class="medical-section py-5">
@@ -564,12 +564,18 @@
             const slideDuration = 3000;
             let slider;
 
+            // Update dots (guard for missing dots/indices)
             function updateDots() {
+                if (!dots.length) return;
                 dots.forEach(dot => dot.classList.remove("active"));
-                dots[currentImageIndex].classList.add("active");
+                const activeDot = dots[currentImageIndex];
+                if (activeDot) activeDot.classList.add("active");
             }
 
+            // Jump to slide (clamp index to avoid undefined dots)
             function goToSlide(index, withTransition = true) {
+                if (index < 0) index = 0;
+                if (index >= totalSlides) index = totalSlides - 1;
 
                 if (withTransition) {
                     imageTrack.style.transition = "transform 0.8s ease-in-out";
