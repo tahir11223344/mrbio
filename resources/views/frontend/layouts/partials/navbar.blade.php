@@ -276,7 +276,7 @@
 
                                     </div>
                                     <div class="col-lg-3 col-md-6 mb-3">
-                                        {{-- <a href="{{ url('retired-assets-services') }}">
+                                        <a href="{{ url('retired-assets-services') }}">
                                                 <h6 class="nav-repair-title">
                                                     Retired assets
                                                     <i class="fa-solid fa-angle-right"></i>
@@ -289,19 +289,21 @@
                                                 <a href="{{ route('contact-us') }}">
                                                     <button class="nav-mega-btn">Talk To Expert</button>
                                                 </a>
-                                            </div> --}}
-                                        <a href="{{ url('consultancy-services') }}">
-                                            <h6 class="nav-repair-title">
-
-                                                Consultancy
-                                                <i class="fa-solid fa-angle-right"></i>
-                                            </h6>
-                                        </a>
-                                        <div class="nav-div">
+                                            </div>
+                                            <a href="{{ url('consultancy-services') }}">
+                                                <h6 class="nav-repair-title mt-4">
+                                                {{-- <h6 class="nav-repair-title mt-4"> --}}
+                                                <h6 class="nav-repair-title">
+                                                    
+                                                    Consultancy
+                                                    <i class="fa-solid fa-angle-right"></i>
+                                                </h6>
+                                            </a>
+                                        {{-- <div class="nav-div">
                                             <a href="{{ route('contact-us') }}">
                                                 <button class="nav-mega-btn">Talk To Expert</button>
                                             </a>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>

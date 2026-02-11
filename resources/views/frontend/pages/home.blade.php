@@ -265,7 +265,7 @@
     <x-offers-section />
 
     <!-- Example 1: Home Page -->
-    {{-- <x-repair-service-section :types="['x-ray-repairing', 'c-arm-repairing']" />  Code Commented Usman--}}
+    <x-repair-service-section :types="['x-ray-repairing', 'c-arm-repairing']" />
     <!-- Output: X-Ray → C-Arm -->
 
     <section class="medical-section py-5">
