@@ -130,56 +130,94 @@ $(document).ready(function () {
 });
 
 //Servies Modal JS
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
 
     const modal = document.getElementById('serviceModal');
-    if (!modal) return;
-
-    const closeBtn = modal.querySelector('.service-modal-close');
     const form = document.getElementById('serviceRequestForm');
 
-    // Function to clear errors
-    const clearErrors = () => {
+    if (!modal || !form) return;
+
+    const closeBtn = modal.querySelector('.service-modal-close');
+
+    /* =========================
+       FUNCTIONS
+    ==========================*/
+
+    function openModal() {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // prevent background scroll
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        clearErrors();
+        resetForm();
+        document.body.style.overflow = '';
+    }
+
+    function clearErrors() {
         modal.querySelectorAll('.error-text').forEach(span => {
             span.textContent = '';
         });
-    };
+    }
 
-    // Function to reset form fields
-    const resetForm = () => {
+    function resetForm() {
         form.reset();
         if (window.grecaptcha) {
-            grecaptcha.reset(); // reset reCAPTCHA
+            grecaptcha.reset();
         }
-    };
+    }
 
-    // OPEN MODAL
-    document.body.addEventListener('click', function (e) {
-        const btn = e.target.closest('[data-open-service-modal]');
-        if (btn) {
-            modal.classList.add('active');
-        }
+    /* =========================
+       OPEN MODAL
+    ==========================*/
 
-        // CLOSE MODAL (X button)
-        if (e.target === closeBtn) {
-            modal.classList.remove('active');
-            clearErrors();
-            resetForm();
-        }
-
-        // CLOSE MODAL (click outside modal box)
-        if (e.target === modal) {
-            modal.classList.remove('active');
-            clearErrors();
-            resetForm();
+    document.addEventListener('click', function (e) {
+        const openBtn = e.target.closest('[data-open-service-modal]');
+        if (openBtn) {
+            e.preventDefault();
+            openModal();
         }
     });
 
-    // AJAX FORM SUBMISSION
+    /* =========================
+       CLOSE MODAL (X BUTTON)
+    ==========================*/
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+            closeModal();
+        });
+    }
+
+    /* =========================
+       CLOSE MODAL (OUTSIDE CLICK)
+    ==========================*/
+
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    /* =========================
+       ESC KEY CLOSE
+    ==========================*/
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    /* =========================
+       AJAX FORM SUBMIT
+    ==========================*/
+
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        clearErrors(); // remove old errors
+        clearErrors();
 
         const formData = new FormData(form);
         const actionUrl = form.getAttribute('action');
@@ -188,7 +226,9 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST',
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                'X-CSRF-TOKEN': document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute('content')
             },
             body: formData
         })
@@ -196,7 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (!response.ok) {
-                    // Handle validation errors (422)
+
+                    // Validation Errors
                     if (response.status === 422 && data.errors) {
                         Object.keys(data.errors).forEach(key => {
                             const errorSpan = form.querySelector(`.${key}_error`);
@@ -205,15 +246,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         });
                     } else {
-                        // Server error
-                        alert(data.message || 'Something went wrong. Please try again later.');
+                        alert(data.message || 'Something went wrong.');
                     }
-                } else if (data.success) {
-                    // Success
-                    resetForm();
-                    modal.classList.remove('active');
 
-                    // Show toast
+                } else if (data.success) {
+
+                    closeModal();
+
                     if (typeof toastr !== 'undefined') {
                         toastr.success(data.message);
                     } else {
@@ -221,13 +260,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             })
-            .catch(err => {
-                console.error('AJAX error:', err);
-                alert('Something went wrong. Please try again later.');
+            .catch(error => {
+                console.error('AJAX Error:', error);
+                alert('Something went wrong. Please try again.');
             });
     });
 
 });
+
 
 let getQuoteCaptchaWidgetId = null;
 
@@ -412,7 +452,6 @@ function initReviewSlider() {
 
     const sliderEl = document.querySelector(".reviewSwiper");
 
-    // Agar page me slider exist nahi karta → function stop
     if (!sliderEl) return;
 
     var swiper = new Swiper(".reviewSwiper", {
@@ -426,6 +465,7 @@ function initReviewSlider() {
             delay: 10,
             disableOnInteraction: false,
             reverseDirection: true,
+            pauseOnMouseEnter: true   // ✅ HOVER PAUSE
         },
 
         on: {
@@ -443,6 +483,7 @@ function initReviewSlider() {
         }
     });
 }
+
 
 function updateTooltip(swiper) {
     if (!swiper) return;

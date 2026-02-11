@@ -1,4 +1,4 @@
-<style>
+a<style>
     /* Card remains same */
     /* .custom-card {
         background-color: #ffffff;
@@ -57,9 +57,8 @@
                 </span>
             @endif
 
-            <a href="javascript:void(0)" class="btn buy-now-btn btn-sm">
-                Get A Quote
-            </a>
+            <a href="javascript:void(0)" class="btn buy-now-btn btn-sm" data-slug="{{ $product->slug ?? '' }}"
+                data-open-form>Get A Quote</a>
         </div>
     </div>
 

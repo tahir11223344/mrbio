@@ -1,7 +1,8 @@
 <div class="service-modal-overlay" id="serviceModal">
     <div class="service-modal-box">
 
-        <span class="service-modal-close"> <i class="fa-solid fa-xmark"></i>
+        <span class="service-modal-close">
+             <i class="fa-solid fa-xmark"></i>
         </span>
 
         <!-- Heading -->
