@@ -564,14 +564,18 @@
             const slideDuration = 3000;
             let slider;
 
-            // Update dots
+            // Update dots (guard for missing dots/indices)
             function updateDots() {
+                if (!dots.length) return;
                 dots.forEach(dot => dot.classList.remove("active"));
-                dots[currentImageIndex].classList.add("active");
+                const activeDot = dots[currentImageIndex];
+                if (activeDot) activeDot.classList.add("active");
             }
 
-            // Jump to slide
+            // Jump to slide (clamp index to avoid undefined dots)
             function goToSlide(index, withTransition = true) {
+                if (index < 0) index = 0;
+                if (index >= totalSlides) index = totalSlides - 1;
 
                 if (withTransition) {
                     imageTrack.style.transition = "transform 0.8s ease-in-out";

@@ -1,4 +1,5 @@
-a<style>
+<style>
+    /* Fixed stray character before style tag to prevent broken markup rendering */
     /* Card remains same */
     /* .custom-card {
         background-color: #ffffff;

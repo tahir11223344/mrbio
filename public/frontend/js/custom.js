@@ -24,9 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
 let footerCaptchaWidgetId = null;
 
 document.addEventListener('DOMContentLoaded', function () {
-    if (typeof grecaptcha !== 'undefined') {
-        footerCaptchaWidgetId = grecaptcha.render('footerCaptcha', {
-            sitekey: document.getElementById('footerCaptcha').dataset.sitekey
+    // Guard render to avoid missing sitekey errors
+    const footerCaptchaEl = document.getElementById('footerCaptcha');
+    if (footerCaptchaEl && footerCaptchaEl.dataset.sitekey && typeof grecaptcha !== 'undefined') {
+        footerCaptchaWidgetId = grecaptcha.render(footerCaptchaEl, {
+            sitekey: footerCaptchaEl.dataset.sitekey
         });
     }
 });
@@ -41,7 +43,8 @@ let contactFormCaptchaWidgetId = null;
 
 document.addEventListener('DOMContentLoaded', function () {
     const captchaEl = document.getElementById('contactFormCaptcha'); // check element
-    if (captchaEl && typeof grecaptcha !== 'undefined') {
+    // Guard render to avoid missing sitekey errors
+    if (captchaEl && captchaEl.dataset.sitekey && typeof grecaptcha !== 'undefined') {
         contactFormCaptchaWidgetId = grecaptcha.render(captchaEl, {
             sitekey: captchaEl.dataset.sitekey
         });
@@ -272,9 +275,11 @@ document.addEventListener('DOMContentLoaded', function () {
 let getQuoteCaptchaWidgetId = null;
 
 document.addEventListener('DOMContentLoaded', function () {
-    if (typeof grecaptcha !== 'undefined') {
-        getQuoteCaptchaWidgetId = grecaptcha.render('getQuoteCaptcha', {
-            sitekey: document.getElementById('getQuoteCaptcha').dataset.sitekey
+    // Guard render to avoid missing sitekey errors
+    const getQuoteCaptchaEl = document.getElementById('getQuoteCaptcha');
+    if (getQuoteCaptchaEl && getQuoteCaptchaEl.dataset.sitekey && typeof grecaptcha !== 'undefined') {
+        getQuoteCaptchaWidgetId = grecaptcha.render(getQuoteCaptchaEl, {
+            sitekey: getQuoteCaptchaEl.dataset.sitekey
         });
     }
 });
@@ -1322,10 +1327,11 @@ document.addEventListener('DOMContentLoaded', function () {
 // ============= Buy Product moddel open js =====================
 let captchaWidgetId = null;
 document.addEventListener('DOMContentLoaded', function () {
-
-    if (typeof grecaptcha !== 'undefined') {
-        captchaWidgetId = grecaptcha.render('buyCaptcha', {
-            sitekey: document.getElementById('buyCaptcha').dataset.sitekey
+    // Guard render to avoid missing sitekey errors
+    const buyCaptchaEl = document.getElementById('buyCaptcha');
+    if (buyCaptchaEl && buyCaptchaEl.dataset.sitekey && typeof grecaptcha !== 'undefined') {
+        captchaWidgetId = grecaptcha.render(buyCaptchaEl, {
+            sitekey: buyCaptchaEl.dataset.sitekey
         });
     }
 
@@ -1475,35 +1481,43 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ======================== latestProductSwiper ===================
-const latestSwiper = new Swiper(".latestProductSwiper", {
-    loop: true,
-    spaceBetween: 15,
-    slidesPerView: 1, // default mobile
-    speed: 1000, // slide transition speed
-    autoplay: {
-        delay: 3000, // 3 sec per slide
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true, // hover par pause
-    },
-    navigation: false,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-    breakpoints: {
-        0: { // mobile
-            slidesPerView: 1,
-            spaceBetween: 10,
-        },
-        768: { // tablet / md
-            slidesPerView: 2,
+// Only initialize on mobile/tablet to avoid conflicts with desktop grid
+document.addEventListener('DOMContentLoaded', () => {
+    let latestSwiper = null;
+    const latestSwiperEl = document.querySelector(".latestProductSwiper");
+    if (latestSwiperEl && window.innerWidth < 992) {
+        const latestSlides = latestSwiperEl.querySelectorAll(".swiper-slide").length;
+        // Loop only when we have more slides than the current slidesPerView
+        const latestSlidesPerView = window.innerWidth >= 768 ? 2 : 1;
+        const shouldLoop = latestSlides > latestSlidesPerView;
+
+        latestSwiper = new Swiper(".latestProductSwiper", {
+            loop: shouldLoop,
             spaceBetween: 15,
-        },
-        992: { // large screen → show 3+ if you want
-            slidesPerView: 3,
-            spaceBetween: 20,
-        }
-    },
+            slidesPerView: 1, // default mobile
+            speed: 1000, // slide transition speed
+            autoplay: {
+                delay: 3000, // 3 sec per slide
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true, // hover par pause
+            },
+            navigation: false,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                0: { // mobile
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                768: { // tablet / md
+                    slidesPerView: 2,
+                    spaceBetween: 15,
+                }
+            },
+        });
+    }
 });
 
 

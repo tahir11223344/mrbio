@@ -62,6 +62,55 @@
 
         if (!section || !tabsWrapper || !lgContainer || !sliderContainer) return;
 
+        // Helper: rebuild swiper slides from card markup to avoid broken structure
+        const rebuildSwiperSlides = (html) => {
+            const temp = document.createElement('div');
+            temp.innerHTML = html;
+            const cards = temp.querySelectorAll('.custom-card');
+
+            sliderContainer.innerHTML = '';
+            if (!cards.length) {
+                sliderContainer.innerHTML = `<div class="swiper-slide">${html}</div>`;
+                return;
+            }
+
+            cards.forEach(card => {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+                slide.appendChild(card);
+                sliderContainer.appendChild(slide);
+            });
+        };
+
+        const initLatestProductAnimations = () => {
+            const cards = lgContainer.querySelectorAll('.animate-card');
+            if (!cards.length) return;
+
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+
+                    const card = entry.target;
+                    if (card.classList.contains('show')) return;
+
+                    const row = card.closest('.row');
+                    const rowCards = row ? row.querySelectorAll('.animate-card') : cards;
+                    const index = Array.from(rowCards).indexOf(card);
+                    const delay = index * 380;
+
+                    card.style.setProperty('--delay', `${delay}ms`);
+                    card.classList.add('show');
+                    obs.unobserve(card);
+                });
+            }, {
+                threshold: 0.25
+            });
+
+            cards.forEach(card => observer.observe(card));
+        };
+
+        initLatestProductAnimations();
+
         tabsWrapper.addEventListener('click', function(e) {
             const btn = e.target.closest('button.filter-btn');
             if (!btn) return;
@@ -94,36 +143,45 @@
                     // ✅ Update LG Grid
                     lgContainer.innerHTML = data.html;
 
-                    // ✅ Update Swiper Slider
-                    sliderContainer.innerHTML = data.html;
+                    initLatestProductAnimations();
+
+                    // ✅ Update Swiper Slider (keep proper swiper-slide structure)
+                    rebuildSwiperSlides(data.html);
 
                     // Destroy old Swiper instance (if exists)
                     if (window.latestSwiper) {
                         window.latestSwiper.destroy(true, true);
                     }
 
-                    // Re-initialize Swiper
-                    window.latestSwiper = new Swiper(".latestProductSwiper", {
-                        loop: true,
-                        slidesPerView: 1,
-                        spaceBetween: 15,
-                        speed: 1000,
-                        autoplay: {
-                            delay: 3000,
-                            disableOnInteraction: false,
-                            pauseOnMouseEnter: true,
-                        },
-                        breakpoints: {
-                            0: {
-                                slidesPerView: 1,
-                                spaceBetween: 10
+                    // Re-initialize Swiper only on mobile/tablet
+                    if (window.innerWidth < 992) {
+                        const updatedSlides = sliderContainer.querySelectorAll('.swiper-slide').length;
+                        // Loop only when we have more slides than the current slidesPerView
+                        const latestSlidesPerView = window.innerWidth >= 768 ? 2 : 1;
+                        const shouldLoop = updatedSlides > latestSlidesPerView;
+
+                        window.latestSwiper = new Swiper(".latestProductSwiper", {
+                            loop: shouldLoop,
+                            slidesPerView: 1,
+                            spaceBetween: 15,
+                            speed: 1000,
+                            autoplay: {
+                                delay: 3000,
+                                disableOnInteraction: false,
+                                pauseOnMouseEnter: true,
                             },
-                            768: {
-                                slidesPerView: 2,
-                                spaceBetween: 15
+                            breakpoints: {
+                                0: {
+                                    slidesPerView: 1,
+                                    spaceBetween: 10
+                                },
+                                768: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 15
+                                },
                             },
-                        },
-                    });
+                        });
+                    }
 
                 })
                 .catch(() => {
