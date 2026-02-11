@@ -265,7 +265,7 @@
     <x-offers-section />
 
     <!-- Example 1: Home Page -->
-    {{-- <x-repair-service-section :types="['x-ray-repairing', 'c-arm-repairing']" />  Code Commented Usman--}}
+    {{-- <x-repair-service-section :types="['x-ray-repairing', 'c-arm-repairing']" />  Code Commented Usman --}}
     <!-- Output: X-Ray → C-Arm -->
 
     <section class="medical-section py-5">
@@ -332,7 +332,7 @@
                                 <h4 class="equipment-title">Imaging Diagnostic Equipment</h4>
                                 <ul class="equipment-list">
                                     <li>Imaging Diagnostic Equipment</li>
-                                     <li>Ultrasound Machines</li>
+                                    <li>Ultrasound Machines</li>
                                     <li>Portable X-ray Systems</li>
                                     <li>C-arms</li>
                                     <li>Bone Density Machines</li>
@@ -564,19 +564,17 @@
             const slideDuration = 3000;
             let slider;
 
-            // Update dots
             function updateDots() {
                 dots.forEach(dot => dot.classList.remove("active"));
                 dots[currentImageIndex].classList.add("active");
             }
 
-            // Jump to slide
             function goToSlide(index, withTransition = true) {
 
                 if (withTransition) {
                     imageTrack.style.transition = "transform 0.8s ease-in-out";
                 } else {
-                    imageTrack.style.transition = "none"; // no jerk when jumping
+                    imageTrack.style.transition = "none";
                 }
 
                 imageTrack.style.transform = `translateX(-${index * 25}%)`;
@@ -592,7 +590,6 @@
                     if (currentImageIndex < totalSlides) {
                         goToSlide(currentImageIndex, true);
                     } else {
-                        // Last slide se pehle slide pr jump WITHOUT TRANSITION
                         currentImageIndex = 0;
                         goToSlide(currentImageIndex, false);
                     }
@@ -600,7 +597,6 @@
                 }, slideDuration);
             }
 
-            // Click dots
             dots.forEach(dot => {
                 dot.addEventListener("click", function() {
                     clearInterval(slider);
@@ -610,7 +606,6 @@
                 });
             });
 
-            // Initialize
             goToSlide(0, false);
             autoSlide();
         });

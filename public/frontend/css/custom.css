@@ -56,7 +56,7 @@
  /* SERVICE BUTTON */
  .services-wrapper {
      position: fixed;
-     top: 340px;
+     top: 300px;
      right: 0;
      z-index: 9999;
      display: flex;
@@ -80,7 +80,6 @@
      border-bottom-right-radius: 10px;
      cursor: pointer;
 
-     /* 🔥 ROTATE */
      transform: rotate(180deg);
      writing-mode: vertical-rl;
      text-align: center;
@@ -90,7 +89,18 @@
      line-height: 100%;
      color: #0071A8;
 
+     /* 🔥 Add only this part */
+     opacity: 0;
+     visibility: hidden;
+     transition: 0.3s ease;
  }
+
+ /* Jab icon click ho */
+ .services-wrapper.show-btn .services-btn {
+     opacity: 1;
+     visibility: visible;
+ }
+
 
  /* ARROW ICON (BOTTOM RIGHT) */
  .arrow-icon {

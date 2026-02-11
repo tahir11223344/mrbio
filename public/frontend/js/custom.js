@@ -1,25 +1,69 @@
+// document.addEventListener('DOMContentLoaded', () => {
+
+//     const servicesBtn = document.querySelector('.services-btn');
+//     const panel = document.querySelector('.services-panel');
+
+//     servicesBtn.addEventListener('click', (e) => {
+//         e.stopPropagation(); 
+//         panel.classList.toggle('active');
+//     });
+
+//     panel.addEventListener('click', (e) => {
+//         e.stopPropagation();
+//     });
+
+//     document.addEventListener('click', () => {
+//         panel.classList.remove('active');
+//     });
+
+// });
+
 document.addEventListener('DOMContentLoaded', () => {
 
+    const servicesWrapper = document.querySelector('.services-wrapper');
     const servicesBtn = document.querySelector('.services-btn');
+    const arrowIcon = document.querySelector('.arrow-icon');
     const panel = document.querySelector('.services-panel');
 
-    // Button click → toggle panel
+    if (!servicesWrapper || !servicesBtn || !arrowIcon || !panel) return;
+
+    /* ======================
+       STEP 1 → ICON CLICK
+       Show Button
+    =======================*/
+    arrowIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        servicesWrapper.classList.toggle('show-btn');
+        panel.classList.remove('active'); // panel close if open
+    });
+
+    /* ======================
+       STEP 2 → BUTTON CLICK
+       Show Panel
+    =======================*/
     servicesBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // 👈 bahir wale click se roko
+        e.stopPropagation();
         panel.classList.toggle('active');
     });
 
-    // Panel ke andar click → panel close na ho
+    /* ======================
+       Prevent Close When Clicking Inside Panel
+    =======================*/
     panel.addEventListener('click', (e) => {
         e.stopPropagation();
     });
 
-    // Bahir kahin bhi click → panel hide
+    /* ======================
+       OUTSIDE CLICK
+    =======================*/
     document.addEventListener('click', () => {
+        servicesWrapper.classList.remove('show-btn');
         panel.classList.remove('active');
     });
 
 });
+
 
 let footerCaptchaWidgetId = null;
 
