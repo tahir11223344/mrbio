@@ -56,7 +56,7 @@
  /* SERVICE BUTTON */
  .services-wrapper {
      position: fixed;
-     top: 340px;
+     top: 300px;
      right: 0;
      z-index: 9999;
      display: flex;
@@ -80,7 +80,6 @@
      border-bottom-right-radius: 10px;
      cursor: pointer;
 
-     /* 🔥 ROTATE */
      transform: rotate(180deg);
      writing-mode: vertical-rl;
      text-align: center;
@@ -90,7 +89,18 @@
      line-height: 100%;
      color: #0071A8;
 
+     /* 🔥 Add only this part */
+     opacity: 0;
+     visibility: hidden;
+     transition: 0.3s ease;
  }
+
+ /* Jab icon click ho */
+ .services-wrapper.show-btn .services-btn {
+     opacity: 1;
+     visibility: visible;
+ }
+
 
  /* ARROW ICON (BOTTOM RIGHT) */
  .arrow-icon {
@@ -325,7 +335,9 @@
  .navbar-brand {
      display: flex;
      align-items: center;
-     padding-left: 40px;
+     padding-left: 34px;
+     /* justify-content: center;
+     width: 220px; */
  }
 
  .nav-logo {
@@ -333,7 +345,6 @@
      max-width: 200px;
      height: 150px;
      object-fit: contain;
-     /* margin-bottom: 10px; */
  }
 
  .navbar {
@@ -1786,7 +1797,6 @@
  .offer-card .readd-btn:hover {
      background: #0168A4;
      box-shadow: 0px 1px 5px #262727;
-     transform: scale(1.01);
      color: #ffffff;
      border: none;
 
@@ -4617,7 +4627,7 @@
      transition: 0.4s ease;
      overflow: hidden;
      /* 🔥 critical */
-     height: 290px;
+     height: 300px;
  }
 
  .featured-card:hover {
@@ -4710,6 +4720,7 @@
      .featured-title {
          font-size: 18px;
      }
+
  }
 
  @media (max-width: 768px) {
@@ -5151,18 +5162,30 @@
      position: absolute;
      top: 10px;
      right: 15px;
-     font-size: 24px;
-     cursor: pointer;
+
      width: 40px;
      height: 40px;
+
      border-radius: 50%;
      background-color: #ebf2f2;
+
      display: flex;
      align-items: center;
      justify-content: center;
-     color: rgb(250, 6, 6);
+
+     cursor: pointer;
      transition: all 0.4s ease-in-out;
  }
+
+ /* IMPORTANT FIX */
+ .close-form i {
+     font-size: 30px;
+     line-height: 1;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
 
  .close-form:hover {
 

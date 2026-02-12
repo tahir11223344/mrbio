@@ -22,46 +22,6 @@
             background: #006A9E;
             transform: scale(1.2);
         }
-
-        /* WRAPPER */
-
-
-
-        /* SLIDE PANEL */
-
-        /* ===== MOBILE ORDER FIX ===== */
-        @media (max-width: 767px) {
-
-            .info-row {
-                display: grid;
-                grid-template-columns: 1fr;
-            }
-
-            /* make children independent */
-            .info-text {
-                display: contents;
-            }
-
-            /* ORDER SEQUENCE */
-            .info-heading {
-                order: 1;
-            }
-
-            .info-para {
-                order: 3;
-            }
-
-            .info-image {
-                order: 2;
-                margin: 20px 0;
-            }
-
-            /* IMPORTANT: order on <a> not button */
-            .info-text a {
-                order: 4;
-                display: inline-block;
-            }
-        }
     </style>
 @endpush
 
@@ -288,7 +248,7 @@
     <x-offers-section />
 
     <!-- Example 1: Home Page -->
-    {{-- <x-repair-service-section :types="['x-ray-repairing', 'c-arm-repairing']" />  Code Commented Usman --}}
+    <x-repair-service-section :types="['x-ray-repairing', 'c-arm-repairing']" />
     <!-- Output: X-Ray → C-Arm -->
 
     <section class="medical-section py-5">
@@ -587,19 +547,23 @@
             const slideDuration = 3000;
             let slider;
 
-            // Update dots
+            // Update dots (guard for missing dots/indices)
             function updateDots() {
+                if (!dots.length) return;
                 dots.forEach(dot => dot.classList.remove("active"));
-                dots[currentImageIndex].classList.add("active");
+                const activeDot = dots[currentImageIndex];
+                if (activeDot) activeDot.classList.add("active");
             }
 
-            // Jump to slide
+            // Jump to slide (clamp index to avoid undefined dots)
             function goToSlide(index, withTransition = true) {
+                if (index < 0) index = 0;
+                if (index >= totalSlides) index = totalSlides - 1;
 
                 if (withTransition) {
                     imageTrack.style.transition = "transform 0.8s ease-in-out";
                 } else {
-                    imageTrack.style.transition = "none"; // no jerk when jumping
+                    imageTrack.style.transition = "none";
                 }
 
                 imageTrack.style.transform = `translateX(-${index * 25}%)`;
@@ -615,7 +579,6 @@
                     if (currentImageIndex < totalSlides) {
                         goToSlide(currentImageIndex, true);
                     } else {
-                        // Last slide se pehle slide pr jump WITHOUT TRANSITION
                         currentImageIndex = 0;
                         goToSlide(currentImageIndex, false);
                     }
@@ -623,7 +586,6 @@
                 }, slideDuration);
             }
 
-            // Click dots
             dots.forEach(dot => {
                 dot.addEventListener("click", function() {
                     clearInterval(slider);
@@ -633,7 +595,6 @@
                 });
             });
 
-            // Initialize
             goToSlide(0, false);
             autoSlide();
         });
