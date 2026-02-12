@@ -22,12 +22,6 @@
             background: #006A9E;
             transform: scale(1.2);
         }
-
-        /* WRAPPER */
-
-
-
-        /* SLIDE PANEL */
     </style>
 @endpush
 
