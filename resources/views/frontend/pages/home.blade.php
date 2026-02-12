@@ -145,7 +145,7 @@
 
     <section class="info-section py-5">
         <div class="container">
-            <div class="row align-items-stretch info-row">
+            <div class="row align-items-stretch info-row g-4">
 
                 <!-- TEXT COLUMN -->
                 <div class="col-lg-6 col-md-6 info-text">
