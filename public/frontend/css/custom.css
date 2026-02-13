@@ -1654,7 +1654,7 @@
      .offer-card {
          max-width: none;
          /* max-width remove kar do */
-         width: 100%;
+         width: 300px;
          /* ya 95% of screen width */
          margin: 0 auto;
      }
@@ -3529,7 +3529,9 @@
      transition: transform 0.3s ease, box-shadow 0.3s ease;
      height: 412px;
      transition: all 0.4s ease;
+     width: 300px;
      position: relative;
+     margin: 0 auto;
  }
 
  .news-card:hover {

@@ -52,7 +52,7 @@
                                             <i class="fab fa-facebook-f"></i>
                                         @endif
                                         @if (setting('twitter'))
-                                            <i class="fab fa-twitter"></i>
+                                            <i class="fa-brands fa-yelp"></i>
                                         @endif
                                         @if (setting('linkedin'))
                                             <i class="fab fa-linkedin-in"></i>
