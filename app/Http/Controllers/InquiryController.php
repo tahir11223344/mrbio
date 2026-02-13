@@ -39,6 +39,7 @@ class InquiryController extends Controller
     }
     public function contactUsForm(Request $request)
     {
+        
         try {
             // ---------------- VALIDATION ----------------
             $validated = $request->validate([
