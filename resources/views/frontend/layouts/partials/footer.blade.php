@@ -165,6 +165,9 @@
         overflow: hidden;
         z-index: 1;
         transition: color 0.7s ease-in-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .request-submit-button::before {
@@ -229,6 +232,11 @@
 
     }
 
+    .social-icons img {
+        width: 22px;
+        height: 22px;
+    }
+
     .social-icons i:hover {
         transform: scale(1.3) !important;
     }
@@ -258,7 +266,15 @@
 
     .location-link {
         color: #FFFFFF;
+        display: inline-block;
+        /* 👈 important for transform */
+        transition: all 0.4s ease-in-out;
     }
+
+    .location-link:hover {
+        transform: scale(1.05);
+    }
+
 
     /* Responsive adjustments for the overlapping container */
     @media (max-width: 768px) {
@@ -419,7 +435,15 @@
         font-weight: 700;
         color: #ffffff;
         text-decoration: none;
+        display: inline-block;
+        /* 🔥 important */
+        transition: all 0.4s ease-in-out;
     }
+
+    .review-link:hover {
+        transform: scale(1.05);
+    }
+
 
     .review-link span {
         font-size: 20px;
@@ -539,9 +563,10 @@
 
                     @if (setting('twitter'))
                         <a href="{{ setting('twitter') }}" target="_blank">
-                            <i class="fab fa-twitter fa-lg"></i>
+                            <i class="fa-brands fa-yelp"></i>
                         </a>
                     @endif
+
 
                 </div>
 
@@ -706,7 +731,8 @@
                 </div>
             </div>
             <p class="copyright mb-0 t">
-                Copyright © {{ date('Y') }} | {{ setting('site_name', 'Mr. Biomed Tech Services Services') }} ® | All right
+                Copyright © {{ date('Y') }} | {{ setting('site_name', 'Mr. Biomed Tech Services Services') }} ® |
+                All right
                 reserved
             </p>
         </div>

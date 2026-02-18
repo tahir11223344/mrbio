@@ -145,10 +145,14 @@
 
     <section class="info-section py-5">
         <div class="container">
-            <div class="row align-items-stretch">
-                <!-- LEFT COLUMN -->
-                <div class="col-lg-6 col-md-6 animate-card">
-                    <h2 class="info-heading fade-left">{!! highlightBracketText($data?->content_heading ?? '') !!} </h2>
+            <div class="row align-items-stretch info-row g-4">
+
+                <!-- TEXT COLUMN -->
+                <div class="col-lg-6 col-md-6 info-text">
+
+                    <h2 class="info-heading fade-left">
+                        {!! highlightBracketText($data?->content_heading ?? '') !!}
+                    </h2>
 
                     <div class="info-para fade-right">
                         {!! $data->content_description ?? '' !!}
@@ -157,49 +161,34 @@
                     <a href="{{ route('about-us') }}">
                         <button class="read-btn mt-3">Read More</button>
                     </a>
+
                 </div>
 
-                <!-- RIGHT COLUMN (Image) -->
-                <div class="col-lg-6 col-md-6 mt-4 mt-lg-0 text-center fade-right">
+                <!-- IMAGE COLUMN -->
+                <div class="col-lg-6 col-md-6 info-image text-center fade-right">
 
                     <div class="image-slider-wrapper">
                         <div class="image-slide-track">
-
-                            @if (!empty($data->content_slider_images))
-                                @foreach ($data->content_slider_images as $img)
-                                    <div class="image-slide-item">
-                                        <img src="{{ asset('storage/landing-page/content-slider/' . $img) }}"
-                                            alt="{{ $data->content_image_alt }}" class="info-img img-fluid">
-                                    </div>
-                                @endforeach
-                            @endif
-
-                            {{-- <div class="image-slide-item">
-                                <img src="{{ asset('frontend/images/medical-img.jpg') }}" class="info-img img-fluid">
-                            </div>
-
-                            <div class="image-slide-item">
-                                <img src="{{ asset('frontend/images/medical-img.jpg') }}" class="info-img img-fluid">
-                            </div>
-
-                            <div class="image-slide-item">
-                                <img src="{{ asset('frontend/images/medical-img.jpg') }}" class="info-img img-fluid">
-                            </div> --}}
-
+                            @foreach ($data->content_slider_images as $img)
+                                <div class="image-slide-item">
+                                    <img src="{{ asset('storage/landing-page/content-slider/' . $img) }}"
+                                        class="info-img img-fluid">
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
-                    <!-- Dots -->
                     <div class="image-dots text-center mt-3">
-                        <span class="dot active" data-index="0"></span>
-                        <span class="dot" data-index="1"></span>
-                        <span class="dot" data-index="2"></span>
-                        <span class="dot" data-index="3"></span>
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
                     </div>
 
                 </div>
 
             </div>
+
+
         </div>
     </section>
     <section class="features-section py-5">
