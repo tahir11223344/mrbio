@@ -10,6 +10,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-site-verification" content="b_1lErGsOLNRCP-sLn_eJj9m9WUTxXOO0PTIKbRA9iE" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="" />
