@@ -3,6 +3,16 @@
 <!--begin::Head-->
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1HSV26QCJ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z1HSV26QCJ');
+    </script>
+
     <base href="" />
     <title>@yield('meta_title', config('app.name'))</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -20,15 +30,7 @@
 
     <meta name="author" content="" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9DR6LGQC2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-F9DR6LGQC2');
-    </script>
+  
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('storage/' . setting('favicon')) }}">
