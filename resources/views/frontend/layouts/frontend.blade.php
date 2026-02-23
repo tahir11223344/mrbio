@@ -20,6 +20,16 @@
 
     <meta name="author" content="" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9DR6LGQC2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-F9DR6LGQC2');
+    </script>
+
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('storage/' . setting('favicon')) }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('storage/' . setting('favicon')) }}">
