@@ -75,6 +75,13 @@
 
                         </div>
 
+                        <div class="mb-3">
+                            <input type="text" name="phone" class="form-control formm-input"
+                                placeholder="Enter Phone" value="{{ old('phone') }}">
+                            <span class="text-danger error-text phone_error"></span>
+
+                        </div>
+
                         <!-- State & City -->
                         <div class="d-flex gap-3 mb-2">
                             <div class="mb-3">
@@ -111,13 +118,13 @@
 
                         </div>
 
-                        <div class="form-group mb-3">
+                        {{-- <div class="form-group mb-3">
                             <script src="https://www.google.com/recaptcha/api.js" async defer></script>
                             <div class="g-recaptcha w-100" id="contactFormCaptcha"
                                 data-sitekey="{{ config('services.recaptcha.sitekey') }}">
                             </div>
                             <span class="text-danger error-text g-recaptcha-response_error"></span>
-                        </div>
+                        </div> --}}
 
                         <button type="submit" class="btn submit-btn">
                             Request Submit

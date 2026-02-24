@@ -594,6 +594,12 @@
                         <span class="text-danger error-text email_error"></span>
                     </div>
 
+                    <div class="mb-2">
+                        <input type="text" name="phone" class="form-control footer-input" placeholder="Phone"
+                            value="{{ old('phone') }}">
+                        <span class="text-danger error-text phone_error"></span>
+                    </div>
+
                     <div class="d-flex gap-1 mb-2">
                         <div>
                             <select name="state" id="footer_state" class="form-select footer-select">
