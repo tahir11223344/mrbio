@@ -3,6 +3,24 @@
 <!--begin::Head-->
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1HSV26QCJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-Z1HSV26QCJ');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M68N96GZ');</script>
+    <!-- End Google Tag Manager -->
+
+
     <base href="" />
     <title>@yield('meta_title', config('app.name'))</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -10,6 +28,7 @@
     <meta name="description" content="@yield('meta_description', '')" />
     <meta name="keywords" content="@yield('meta_keywords', '')" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-site-verification" content="b_1lErGsOLNRCP-sLn_eJj9m9WUTxXOO0PTIKbRA9iE" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="@yield('meta_title', config('app.name'))" />
@@ -18,6 +37,16 @@
     <meta name="api-base" content="{{ env('STORE_URL') }}">
 
     <meta name="author" content="" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1HSV26QCJ"></script>
+    <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-Z1HSV26QCJ');
+    </script>
+
+  
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('storage/' . setting('favicon')) }}">
@@ -69,6 +98,10 @@
 
 <body {!! printHtmlClasses('body') !!} {!! printHtmlAttributes('body') !!}>
 
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M68N96GZ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     @include('partials/theme-mode/_init')
 
     @include('frontend.layouts.partials.header')

@@ -438,7 +438,7 @@ class BlogController extends Controller
 
             return view('frontend.pages.blogdetail', compact('blog', 'relatedBlogs', 'categories', 'comments'));
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            abort(404);
+            return redirect()->route('blogs', [], 301);
         } catch (\Throwable $e) {
             Log::error('Blog Detail Error', [
                 'slug' => $slug,
