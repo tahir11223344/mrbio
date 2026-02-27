@@ -327,43 +327,36 @@
 
 
  /*============= Navbar css============== */
- /* .navbar {
-     height: 180px;
-     position: relative;
-     padding: 0;
- } */
+
+
  .navbar-brand {
      display: flex;
      align-items: center;
-     padding-left: 34px;
-     /* justify-content: center;
-     width: 220px; */
+     justify-content: center;
+     padding-left: 0;
+     width: 15%;
+     margin-top: -10px;
  }
 
  .nav-logo {
      width: 100%;
      max-width: 200px;
-     height: 150px;
+     height: 110px;
      object-fit: contain;
  }
 
  .navbar {
-     height: 150px;
+     height: 110px;
  }
 
- /* .nav-logo {
-     height: 100%;
-     width: 200px;
-     max-height: 137px;
-     object-fit: contain;
- } */
+
 
  .blue-block {
      position: absolute;
      top: 0;
      right: 0;
      background: #0071A8;
-     height: 127px;
+     height: 100px;
      display: flex;
      align-items: center;
      padding-right: 20px;
@@ -373,7 +366,7 @@
  }
 
  .blue-block li {
-     margin-left: 17px;
+     margin-left: 15px;
      gap: 15px;
  }
 
@@ -382,7 +375,7 @@
  .nav-link {
      font-weight: 600;
      color: white !important;
-     font-size: 20px;
+     font-size: 14px;
      display: flex;
      align-items: center;
      gap: 5px;
@@ -440,7 +433,7 @@
 
  .mega-menu {
      position: fixed;
-     top: 130px;
+     top: 102px;
      left: 58%;
      transform: translateX(-50%);
      width: 83vw;
@@ -624,48 +617,61 @@
 
 
  .nav-title {
+     margin-top: 10px;
+     transition: all 0.4s ease-in-out;
+ }
+
+ .nav-title a:hover {
+     color: #E9A426;
+ }
+
+ /* anchor ko inline-block rakho */
+ .nav-title a {
+     position: relative;
+     display: inline-block;
+
+     text-decoration: none;
      font-family: Saira;
      font-weight: 700;
      font-size: 14px;
      line-height: 137%;
      color: #FFFFFF;
-     margin-top: 10px;
-
-     position: relative;
-     display: inline-block;
      cursor: pointer;
-     max-width: 176px;
  }
 
- /* underline (hidden by default) */
- .nav-title::after {
+ /* underline */
+ .nav-title a::after {
      content: "";
      position: absolute;
      left: 50%;
      bottom: -4px;
 
-     width: 0;
+     width: 100%;
      height: 2px;
      background-color: #E9A426;
 
      transform: translateX(-50%);
-     transition: width 0.35s ease;
  }
 
- .nav-title::after {
-     width: calc(100% - 0px);
+ .nav-title a::after {
+     width: 0;
+     transition: width 0.3s ease;
  }
 
- .nav-div {
+ .nav-title a:hover::after {
+     width: 100%;
+
+ }
+
+ /* .nav-div {
 
 
      position: relative;
-     /* display: inline-block;
-        cursor: pointer; */
+ 
      max-width: 176px;
  }
 
- /* underline (hidden by default) */
+
  .nav-div::after {
      content: "";
      position: absolute;
@@ -682,15 +688,15 @@
 
  .nav-div::after {
      width: calc(100% - 0px);
- }
+ } */
 
  .nav-div p {
      font-family: Saira;
      font-weight: 700;
-     font-size: 10px;
+     font-size: 14px;
      line-height: 137%;
      width: 100%;
-     max-width: 166px;
+     /* max-width: 166px; */
  }
 
  .nav-mega-btn {
@@ -822,6 +828,11 @@
      }
  }
 
+ .contact-icons-wrapper {
+     position: absolute;
+     top: 10px;
+     right: 20px;
+ }
 
  .contact-icons-wrapper .icon-image {
      width: 29px;
@@ -1033,8 +1044,8 @@
  /*============== HERO SECTION css ===============================css */
  .hero-section {
      background: #0071A8;
-     margin-top: 150px;
-
+     margin-top: 110px;
+     position: relative;
  }
 
  @media (max-width: 991px) {
@@ -3610,7 +3621,7 @@
      padding-top: 70px;
      /* padding-bottom: 80px; */
      height: 100%;
-     margin-top: 140px;
+     margin-top: 110px;
  }
 
  .hero-detail-section>.container {

@@ -105,6 +105,7 @@
                 <!-- RIGHT COLUMN -->
                 @if (!empty($data->hero_slider_images) && count($data->hero_slider_images) > 0)
                     <div class="col-lg-6   fade-right">
+
                         <div class="slider-container">
                             <div class="slider-track">
 
@@ -140,6 +141,34 @@
                 @endif
 
             </div>
+        </div>
+        <div class="d-flex align-items-center gap-2 mb-1 contact-icons-wrapper">
+
+            @if (setting('email'))
+                <a href="mailto:{{ setting('email') }}" target="_blank">
+                    <img src="{{ asset('frontend/images/nav-icon-img-1.png') }}" class="icon-image">
+                </a>
+            @endif
+
+            @if (setting('email') && (setting('phone') || setting('whatsapp')))
+                <span class="separator text-white fw-bold">|</span>
+            @endif
+
+            @if (setting('phone'))
+                <a href="tel:{{ cleanPhone(setting('phone')) }}">
+                    <img src="{{ asset('frontend/images/nav-icon-mg-2.png') }}" class="icon-image">
+                </a>
+            @endif
+
+            @if (setting('phone') && setting('whatsapp'))
+                <span class="separator text-white fw-bold">|</span>
+            @endif
+
+            @if (setting('whatsapp'))
+                <a href="https://wa.me/{{ cleanPhone(setting('whatsapp')) }}" target="_blank">
+                    <img src="{{ asset('frontend/images/nav-icon-img-3.png') }}" class="icon-image">
+                </a>
+            @endif
         </div>
     </section>
 
