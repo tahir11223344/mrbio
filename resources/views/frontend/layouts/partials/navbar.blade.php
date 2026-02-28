@@ -157,9 +157,9 @@
 
     /* Logo */
     .nav-gif-icon {
-        width: 100px;
+        width: 90px;
 
-        height: 100px;
+        height: 90px;
     }
 
     /* Common button style */

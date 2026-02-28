@@ -22,43 +22,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const servicesWrapper = document.querySelector('.services-wrapper');
     const servicesBtn = document.querySelector('.services-btn');
-    const arrowIcon = document.querySelector('.arrow-icon');
     const panel = document.querySelector('.services-panel');
 
-    if (!servicesWrapper || !servicesBtn || !arrowIcon || !panel) return;
+    if (!servicesWrapper || !servicesBtn || !panel) return;
 
     /* ======================
-       STEP 1 → ICON CLICK
+       HOVER ON WRAPPER
        Show Button
     =======================*/
-    arrowIcon.addEventListener('click', (e) => {
-        e.stopPropagation();
+    servicesWrapper.addEventListener('mouseenter', () => {
+        servicesWrapper.classList.add('show-btn');
+    });
 
-        servicesWrapper.classList.toggle('show-btn');
-        panel.classList.remove('active'); // panel close if open
+    servicesWrapper.addEventListener('mouseleave', () => {
+        servicesWrapper.classList.remove('show-btn');
+        panel.classList.remove('active');
     });
 
     /* ======================
-       STEP 2 → BUTTON CLICK
+       HOVER ON BUTTON
        Show Panel
     =======================*/
-    servicesBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        panel.classList.toggle('active');
+    servicesBtn.addEventListener('mouseenter', () => {
+        panel.classList.add('active');
     });
 
-    /* ======================
-       Prevent Close When Clicking Inside Panel
-    =======================*/
-    panel.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-
-    /* ======================
-       OUTSIDE CLICK
-    =======================*/
-    document.addEventListener('click', () => {
-        servicesWrapper.classList.remove('show-btn');
+    panel.addEventListener('mouseleave', () => {
         panel.classList.remove('active');
     });
 
