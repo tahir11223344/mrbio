@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    const servicesWrapper = document.querySelector('.services-wrapper')
     const servicesBtn = document.querySelector('.services-btn');
     const panel = document.querySelector('.services-panel');
 

@@ -85,7 +85,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 
-    <link rel="stylesheet" href="{{ asset('frontend/css') }}/custom.css" />
+    <link rel="stylesheet" href={{ asset('frontend/css/custom.css') }}?v={{ filemtime(public_path('frontend/css/custom.css')) }} />
     <!--end::Custom Stylesheets-->
 
     @stack('frontend-styles')
@@ -146,7 +146,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    <script src="{{ asset('frontend/js') }}/custom.js"></script>
+    <script src="{{ asset('frontend/js/custom.js') }}?v={{ filemtime(public_path('frontend/js/custom.js')) }}"></script>
     <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
 
     @stack('frontend-scripts')

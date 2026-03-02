@@ -61,6 +61,9 @@ mix.sass(`${dir}/sass/style.scss`, `public/assets/css/style.bundle.css`, {sassOp
     mix.scripts(file, output);
 });
 
+// Custom app scripts
+mix.scripts('resources/js/custom/blog-editor.js', 'public/assets/js/custom/blog-editor.js');
+
 // Build media
 mix.copyDirectory(`${dir}/media`, `public/assets/media`);
 

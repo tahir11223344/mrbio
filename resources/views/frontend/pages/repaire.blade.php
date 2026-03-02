@@ -355,8 +355,7 @@
     </section>
 
     {{-- ============ x ray section ===================== --}}
-    <x-repair-service-section :types="['repair-service']" />
-    {{-- , 'x-ray-repairing', 'c-arm-repairing' --}}
+    <x-repair-service-section :types="['repair-service', 'x-ray-repairing', 'c-arm-repairing']" :merge="true" />
     <!-- Output: X-Ray → C-Arm -->
 
     {{-- ======================== special section ===================== --}}
