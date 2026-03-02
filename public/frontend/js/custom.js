@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // CLOSE MODAL (X button)
-        if (e.target === closeBtn) {
+        if (e.target.closest('.service-modal-close')) {
             modal.classList.remove('active');
             clearErrors();
             resetForm();
