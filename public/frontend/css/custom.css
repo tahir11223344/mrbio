@@ -616,6 +616,8 @@
  }
 
  /* anchor ko inline-block rakho */
+
+ /* anchor */
  .nav-title a {
      position: relative;
      display: inline-block;
@@ -627,9 +629,11 @@
      line-height: 137%;
      color: #FFFFFF;
      cursor: pointer;
+
+     transition: transform 0.3s ease, color 0.3s ease;
  }
 
- /* underline */
+ /* underline — ALWAYS visible */
  .nav-title a::after {
      content: "";
      position: absolute;
@@ -643,14 +647,11 @@
      transform: translateX(-50%);
  }
 
- .nav-title a::after {
-     width: 0;
-     transition: width 0.3s ease;
- }
-
- .nav-title a:hover::after {
-     width: 100%;
-
+ /* hover effects */
+ .nav-title a:hover {
+     color: #E9A426;
+     transform: scale(1.02);
+     /* TEXT ZOOM */
  }
 
  /* .nav-div {
@@ -1024,6 +1025,7 @@
      .nav-logo {
          height: 90px !important;
          width: 90px;
+         margin-left: 20px;
      }
 
      .xray-desc {
@@ -1904,7 +1906,7 @@
      } */
 
      .navbar {
-         height: 100px !important;
+         height: 78px !important;
 
      }
 
@@ -4108,6 +4110,7 @@
 
 
      line-height: 160%;
+     text-align: left;
 
 
 
