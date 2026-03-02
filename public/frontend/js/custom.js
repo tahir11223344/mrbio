@@ -1,78 +1,32 @@
-// document.addEventListener('DOMContentLoaded', () => {
-
-//     const servicesBtn = document.querySelector('.services-btn');
-//     const panel = document.querySelector('.services-panel');
-
-//     servicesBtn.addEventListener('click', (e) => {
-//         e.stopPropagation(); 
-//         panel.classList.toggle('active');
-//     });
-
-//     panel.addEventListener('click', (e) => {
-//         e.stopPropagation();
-//     });
-
-//     document.addEventListener('click', () => {
-//         panel.classList.remove('active');
-//     });
-
-// });
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    const servicesWrapper = document.querySelector('.services-wrapper');
     const servicesBtn = document.querySelector('.services-btn');
-    const arrowIcon = document.querySelector('.arrow-icon');
     const panel = document.querySelector('.services-panel');
 
-    if (!servicesWrapper || !servicesBtn || !arrowIcon || !panel) return;
-
-    /* ======================
-       STEP 1 → ICON CLICK
-       Show Button
-    =======================*/
-    arrowIcon.addEventListener('click', (e) => {
-        e.stopPropagation();
-
-        servicesWrapper.classList.toggle('show-btn');
-        panel.classList.remove('active'); // panel close if open
-    });
-
-    /* ======================
-       STEP 2 → BUTTON CLICK
-       Show Panel
-    =======================*/
+    // Button click → toggle panel
     servicesBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
+        e.stopPropagation(); // 👈 bahir wale click se roko
         panel.classList.toggle('active');
     });
 
-    /* ======================
-       Prevent Close When Clicking Inside Panel
-    =======================*/
+    // Panel ke andar click → panel close na ho
     panel.addEventListener('click', (e) => {
         e.stopPropagation();
     });
 
-    /* ======================
-       OUTSIDE CLICK
-    =======================*/
+    // Bahir kahin bhi click → panel hide
     document.addEventListener('click', () => {
-        servicesWrapper.classList.remove('show-btn');
         panel.classList.remove('active');
     });
 
 });
 
-
 let footerCaptchaWidgetId = null;
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Guard render to avoid missing sitekey errors
-    const footerCaptchaEl = document.getElementById('footerCaptcha');
-    if (footerCaptchaEl && footerCaptchaEl.dataset.sitekey && typeof grecaptcha !== 'undefined') {
-        footerCaptchaWidgetId = grecaptcha.render(footerCaptchaEl, {
-            sitekey: footerCaptchaEl.dataset.sitekey
+    if (typeof grecaptcha !== 'undefined') {
+        footerCaptchaWidgetId = grecaptcha.render('footerCaptcha', {
+            sitekey: document.getElementById('footerCaptcha').dataset.sitekey
         });
     }
 });
@@ -87,8 +41,7 @@ let contactFormCaptchaWidgetId = null;
 
 document.addEventListener('DOMContentLoaded', function () {
     const captchaEl = document.getElementById('contactFormCaptcha'); // check element
-    // Guard render to avoid missing sitekey errors
-    if (captchaEl && captchaEl.dataset.sitekey && typeof grecaptcha !== 'undefined') {
+    if (captchaEl && typeof grecaptcha !== 'undefined') {
         contactFormCaptchaWidgetId = grecaptcha.render(captchaEl, {
             sitekey: captchaEl.dataset.sitekey
         });
@@ -177,94 +130,56 @@ $(document).ready(function () {
 });
 
 //Servies Modal JS
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
 
     const modal = document.getElementById('serviceModal');
-    const form = document.getElementById('serviceRequestForm');
-
-    if (!modal || !form) return;
+    if (!modal) return;
 
     const closeBtn = modal.querySelector('.service-modal-close');
+    const form = document.getElementById('serviceRequestForm');
 
-    /* =========================
-       FUNCTIONS
-    ==========================*/
-
-    function openModal() {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // prevent background scroll
-    }
-
-    function closeModal() {
-        modal.classList.remove('active');
-        clearErrors();
-        resetForm();
-        document.body.style.overflow = '';
-    }
-
-    function clearErrors() {
+    // Function to clear errors
+    const clearErrors = () => {
         modal.querySelectorAll('.error-text').forEach(span => {
             span.textContent = '';
         });
-    }
+    };
 
-    function resetForm() {
+    // Function to reset form fields
+    const resetForm = () => {
         form.reset();
         if (window.grecaptcha) {
-            grecaptcha.reset();
+            grecaptcha.reset(); // reset reCAPTCHA
         }
-    }
+    };
 
-    /* =========================
-       OPEN MODAL
-    ==========================*/
-
-    document.addEventListener('click', function (e) {
-        const openBtn = e.target.closest('[data-open-service-modal]');
-        if (openBtn) {
-            e.preventDefault();
-            openModal();
+    // OPEN MODAL
+    document.body.addEventListener('click', function (e) {
+        const btn = e.target.closest('[data-open-service-modal]');
+        if (btn) {
+            modal.classList.add('active');
         }
-    });
 
-    /* =========================
-       CLOSE MODAL (X BUTTON)
-    ==========================*/
+        // CLOSE MODAL (X button)
+        if (e.target.closest('.service-modal-close')) {
+            modal.classList.remove('active');
+            clearErrors();
+            resetForm();
+        }
 
-    if (closeBtn) {
-        closeBtn.addEventListener('click', function () {
-            closeModal();
-        });
-    }
-
-    /* =========================
-       CLOSE MODAL (OUTSIDE CLICK)
-    ==========================*/
-
-    modal.addEventListener('click', function (e) {
+        // CLOSE MODAL (click outside modal box)
         if (e.target === modal) {
-            closeModal();
+            modal.classList.remove('active');
+            clearErrors();
+            resetForm();
         }
     });
 
-    /* =========================
-       ESC KEY CLOSE
-    ==========================*/
-
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeModal();
-        }
-    });
-
-    /* =========================
-       AJAX FORM SUBMIT
-    ==========================*/
-
+    // AJAX FORM SUBMISSION
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        clearErrors();
+        clearErrors(); // remove old errors
 
         const formData = new FormData(form);
         const actionUrl = form.getAttribute('action');
@@ -273,9 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': document
-                    .querySelector('meta[name="csrf-token"]')
-                    .getAttribute('content')
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
             body: formData
         })
@@ -283,8 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const data = await response.json();
 
                 if (!response.ok) {
-
-                    // Validation Errors
+                    // Handle validation errors (422)
                     if (response.status === 422 && data.errors) {
                         Object.keys(data.errors).forEach(key => {
                             const errorSpan = form.querySelector(`.${key}_error`);
@@ -293,13 +205,15 @@ document.addEventListener('DOMContentLoaded', function () {
                             }
                         });
                     } else {
-                        alert(data.message || 'Something went wrong.');
+                        // Server error
+                        alert(data.message || 'Something went wrong. Please try again later.');
                     }
-
                 } else if (data.success) {
+                    // Success
+                    resetForm();
+                    modal.classList.remove('active');
 
-                    closeModal();
-
+                    // Show toast
                     if (typeof toastr !== 'undefined') {
                         toastr.success(data.message);
                     } else {
@@ -307,23 +221,20 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 }
             })
-            .catch(error => {
-                console.error('AJAX Error:', error);
-                alert('Something went wrong. Please try again.');
+            .catch(err => {
+                console.error('AJAX error:', err);
+                alert('Something went wrong. Please try again later.');
             });
     });
 
 });
 
-
 let getQuoteCaptchaWidgetId = null;
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Guard render to avoid missing sitekey errors
-    const getQuoteCaptchaEl = document.getElementById('getQuoteCaptcha');
-    if (getQuoteCaptchaEl && getQuoteCaptchaEl.dataset.sitekey && typeof grecaptcha !== 'undefined') {
-        getQuoteCaptchaWidgetId = grecaptcha.render(getQuoteCaptchaEl, {
-            sitekey: getQuoteCaptchaEl.dataset.sitekey
+    if (typeof grecaptcha !== 'undefined') {
+        getQuoteCaptchaWidgetId = grecaptcha.render('getQuoteCaptcha', {
+            sitekey: document.getElementById('getQuoteCaptcha').dataset.sitekey
         });
     }
 });
@@ -501,6 +412,7 @@ function initReviewSlider() {
 
     const sliderEl = document.querySelector(".reviewSwiper");
 
+    // Agar page me slider exist nahi karta → function stop
     if (!sliderEl) return;
 
     var swiper = new Swiper(".reviewSwiper", {
@@ -514,7 +426,6 @@ function initReviewSlider() {
             delay: 10,
             disableOnInteraction: false,
             reverseDirection: true,
-            pauseOnMouseEnter: true   // ✅ HOVER PAUSE
         },
 
         on: {
@@ -532,7 +443,6 @@ function initReviewSlider() {
         }
     });
 }
-
 
 function updateTooltip(swiper) {
     if (!swiper) return;
@@ -1371,11 +1281,10 @@ document.addEventListener('DOMContentLoaded', function () {
 // ============= Buy Product moddel open js =====================
 let captchaWidgetId = null;
 document.addEventListener('DOMContentLoaded', function () {
-    // Guard render to avoid missing sitekey errors
-    const buyCaptchaEl = document.getElementById('buyCaptcha');
-    if (buyCaptchaEl && buyCaptchaEl.dataset.sitekey && typeof grecaptcha !== 'undefined') {
-        captchaWidgetId = grecaptcha.render(buyCaptchaEl, {
-            sitekey: buyCaptchaEl.dataset.sitekey
+
+    if (typeof grecaptcha !== 'undefined') {
+        captchaWidgetId = grecaptcha.render('buyCaptcha', {
+            sitekey: document.getElementById('buyCaptcha').dataset.sitekey
         });
     }
 
@@ -1525,43 +1434,35 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ======================== latestProductSwiper ===================
-// Only initialize on mobile/tablet to avoid conflicts with desktop grid
-document.addEventListener('DOMContentLoaded', () => {
-    let latestSwiper = null;
-    const latestSwiperEl = document.querySelector(".latestProductSwiper");
-    if (latestSwiperEl && window.innerWidth < 992) {
-        const latestSlides = latestSwiperEl.querySelectorAll(".swiper-slide").length;
-        // Loop only when we have more slides than the current slidesPerView
-        const latestSlidesPerView = window.innerWidth >= 768 ? 2 : 1;
-        const shouldLoop = latestSlides > latestSlidesPerView;
-
-        latestSwiper = new Swiper(".latestProductSwiper", {
-            loop: shouldLoop,
+const latestSwiper = new Swiper(".latestProductSwiper", {
+    loop: true,
+    spaceBetween: 15,
+    slidesPerView: 1, // default mobile
+    speed: 1000, // slide transition speed
+    autoplay: {
+        delay: 3000, // 3 sec per slide
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true, // hover par pause
+    },
+    navigation: false,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    breakpoints: {
+        0: { // mobile
+            slidesPerView: 1,
+            spaceBetween: 10,
+        },
+        768: { // tablet / md
+            slidesPerView: 2,
             spaceBetween: 15,
-            slidesPerView: 1, // default mobile
-            speed: 1000, // slide transition speed
-            autoplay: {
-                delay: 3000, // 3 sec per slide
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true, // hover par pause
-            },
-            navigation: false,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            breakpoints: {
-                0: { // mobile
-                    slidesPerView: 1,
-                    spaceBetween: 10,
-                },
-                768: { // tablet / md
-                    slidesPerView: 2,
-                    spaceBetween: 15,
-                }
-            },
-        });
-    }
+        },
+        992: { // large screen → show 3+ if you want
+            slidesPerView: 3,
+            spaceBetween: 20,
+        }
+    },
 });
 
 
