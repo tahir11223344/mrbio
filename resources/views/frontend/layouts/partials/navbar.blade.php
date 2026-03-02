@@ -279,7 +279,7 @@
                                                 <a href="{{ route('offer.detail', 'medical-equipment') }}">New & Pre-Owned Medical Equipment Sales ›</a>
                                             </h6>
                                             <h6 class="nav-title">
-                                                <a href="#">Laser & Surgical Technology Services Across Texas
+                                                <a href="{{ route('offer.detail', 'laser-and-surgical-technology-services') }}">Laser & Surgical Technology Services Across Texas
                                                     ›</a>
                                             </h6>
                                         </div>
@@ -378,7 +378,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
-                        href="{{ route('home') }}">
+                        href="https://mrbedmed.com/" target="_blank">
                         Home Health
                     </a>
                 </li>
@@ -618,7 +618,7 @@
 
                                     </h6>
                                     <h6 class="nav-title">
-                                        <a href="{{ route('about-us') }}">ADDRESS & LOCATION ›</a>
+                                        <a href="{{ route('about-us') }}">About Us ›</a>
 
                                     </h6>
                                 </div>

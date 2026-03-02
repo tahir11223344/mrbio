@@ -29,28 +29,47 @@
 
                     <!-- 3 COLUMN LIST -->
                      <div class="row mt-3">
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <ul class="primary-list">
-                                <li> <a href="/locations/san-antonio-tx">San Antonio</a> </li>
-                                <li><a href="/locations/austin-tx">Austin</a></li>
-                                <li><a href="/locations/houston-tx">Houston</a></li>
+                                <li>Garland</li>
+                                <li>San Antonio</li>
+                                <li>Austin</li>
+                                <li>Houston</li>
                             </ul>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <ul class="primary-list">
-                                <li><a href="/locations/dallas-tx">Dallas</a></li>
-                                <li><a href="/locations/garland-tx">Garland</a></li>
+                                <li>Dallas</li>
+                                <li>Plano</li>
+                                <li>Big Spring</li>
+                                <li>Fort Worth</li>
                             </ul>
                         </div>
 
-                        {{-- <div class="col-md-4">
+                         <div class="col-md-2">
                             <ul class="primary-list">
-                                <li>Louisiana</li>
-                                <li>Mississippi</li>
-                                <li>Oklahoma</li>
+                                <li>Tyler</li>
+                                <li>Laredo</li>
+                                <li>Richardson</li>
+                                <li>Mesquite</li>
                             </ul>
-                        </div> --}}
+                        </div> 
+                        <div class="col-md-2">
+                            <ul class="primary-list">
+                                <li>Midland</li>
+                                <li>Clovis</li>
+                                <li>Amarillo</li>
+                                <li>Hobbs</li>
+                            </ul>
+                        </div> 
+                        <div class="col-md-2">
+                            <ul class="primary-list">
+                                <li>Waco</li>
+                                <li>Grand Prairie</li>
+                                <li>Lubbock</li>
+                            </ul>
+                        </div> 
                     </div>
 
                     {{-- <h4 class="sub-title mt-4">
