@@ -217,8 +217,8 @@
             <ul class="navbar-nav blue-block d-flex flex-lg-row flex-column align-items-lg-center align-items-start  ">
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('home-health') ? 'active' : '' }}"
-                        href="{{ route('home-health') }}">Home</a>
+                    <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
+                        href="{{ route('home') }}">Home</a>
                 </li>
 
                 <li class="nav-item dropdown  has-mega">
@@ -377,7 +377,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('home-health') ? 'active' : '' }}"
                         href="https://mrbedmed.com/" target="_blank">
                         Home Health
                     </a>
