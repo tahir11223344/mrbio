@@ -37,7 +37,7 @@
 
     <section class="hero-section py-4">
         <div class="container">
-            <div class="row align-items-center g-3">
+            <div class="row align-items-cente g-3">
 
                 <!-- LEFT COLUMN -->
                 <div class="col-lg-6 text-white">
@@ -277,7 +277,7 @@
     <x-offers-section />
 
     <!-- Example 1: Home Page -->
-    <x-repair-service-section :types="['x-ray-repairing', 'c-arm-repairing']" />
+    {{-- <x-repair-service-section :types="['x-ray-repairing', 'c-arm-repairing']" /> --}}
     <!-- Output: X-Ray → C-Arm -->
 
     <section class="medical-section py-5">

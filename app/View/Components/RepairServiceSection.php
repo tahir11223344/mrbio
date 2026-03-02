@@ -12,6 +12,7 @@ use Illuminate\View\Component;
 class RepairServiceSection extends Component
 {
     public Collection $sections;
+    public bool $merge = false;
 
     /**
      * Central config:
@@ -38,11 +39,13 @@ class RepairServiceSection extends Component
     ];
 
     /**
-     * @param  string|array  $types  e.g. 'x-ray-repairing' or ['x-ray-repairing', 'c-arm-repairing', 'repairing']
+     * @param  string|array  $types  e.g. 'x-ray-repairing' or ['repair-service', 'x-ray-repairing', 'c-arm-repairing']
      * @param  array  $types  Order will be preserved exactly as passed
+     * @param  bool  $merge  When true, render a single section with items from all types.
      */
-    public function __construct(string|array $types = ['x-ray-repairing', 'c-arm-repairing'])
+    public function __construct(string|array $types = ['x-ray-repairing', 'c-arm-repairing'], bool $merge = false)
     {
+        $this->merge = $merge;
         $typeList = is_string($types) ? [$types] : ($types ?? ['x-ray-repairing', 'c-arm-repairing']);
 
         // Sab relevant columns select kar lo ek baar
@@ -56,6 +59,46 @@ class RepairServiceSection extends Component
         ])->first();
 
         $this->sections = collect();
+
+        if ($this->merge) {
+            $primaryType = $typeList[0] ?? 'repair-service';
+            $primaryType = trim(strtolower($primaryType));
+            $primaryConfig = $this->typeConfig[$primaryType] ?? $this->typeConfig['repair-service'];
+
+            $headingField = $primaryConfig['fieldPrefix'].'_heading';
+            $descField = $primaryConfig['fieldPrefix'].'_short_description';
+
+            $heading = $repairService?->{$headingField} ?? '';
+            $description = $repairService?->{$descField} ?? '';
+
+            $items = collect();
+            foreach ($typeList as $type) {
+                $type = trim(strtolower($type));
+                if (! isset($this->typeConfig[$type])) {
+                    continue;
+                }
+
+                $config = $this->typeConfig[$type];
+                $items = $items->merge(
+                    RepairServiceSubPage::where('page_category', $config['page_category'])
+                        ->where('is_active', true)
+                        ->select(['title', 'slug', 'short_description', 'page_category'])
+                        ->get()
+                );
+            }
+
+            if ($items->isNotEmpty() || filled($heading) || filled($description)) {
+                $this->sections->push([
+                    'type' => $primaryType,
+                    'urlSegment' => $primaryConfig['url'],
+                    'headingData' => split_heading($heading),
+                    'shortDescription' => $description,
+                    'items' => $items,
+                ]);
+            }
+
+            return;
+        }
 
         foreach ($typeList as $type) {
 
@@ -97,6 +140,9 @@ class RepairServiceSection extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.repair-service-section');
+        return view('components.repair-service-section', [
+            'sections' => $this->sections,
+            'merge' => $this->merge,
+        ]);
     }
 }

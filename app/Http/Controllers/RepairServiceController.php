@@ -503,6 +503,7 @@ class RepairServiceController extends Controller
             'repairing-services' => 'repair-service',
             'x-ray-repairing' => 'x-ray-repairing',
             'c-arm-repairing' => 'c-arm-repairing',
+            'laser-and-surgical-technology-services' => 'laser-and-surgical-technology-services',
         ];
 
         // Get the actual DB category from URL segment
