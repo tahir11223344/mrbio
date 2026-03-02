@@ -217,8 +217,8 @@
             <ul class="navbar-nav blue-block d-flex flex-lg-row flex-column align-items-lg-center align-items-start  ">
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
-                        href="{{ route('home') }}">Home</a>
+                    <a class="nav-link {{ request()->routeIs('home-health') ? 'active' : '' }}"
+                        href="{{ route('home-health') }}">Home</a>
                 </li>
 
                 <li class="nav-item dropdown  has-mega">
@@ -455,15 +455,20 @@
                                         <a href="{{ route('contact-us') }}">
                                             <button class="nav-mega-btn mt-3">Talk To Expert</button>
                                         </a> --}}
-
                                     <h6 class="nav-title">
+                                        <a href="{{ url('/hospital-management-support-for-cardiac-clinics') }}">CARDIAC CLINICS ›</a>
+
+                                    </h6>    
+                                     <h6 class="nav-title">
+                                        <a href="{{ url('/hospital-management-support-for-pain-management-centers') }}">PAIN MANAGEMENT ›</a>
+
+                                    </h6>
+                                    {{-- <h6 class="nav-title">
                                         <a href="">Complete Hospital Management ›</a>
 
-                                    </h6>
-                                    <h6 class="nav-title">
-                                        <a href="">HOME HEALTH ›</a>
-
-                                    </h6>
+                                    </h6> --}}
+                                  
+                                   
                                 </div>
                                 {{-- @endforeach --}}
 
@@ -471,47 +476,48 @@
 
 
 
-
-                                    <h6 class="nav-title">
-                                        <a href="">CARDIAC CLINICS ›</a>
-
-                                    </h6>
-                                    <h6 class="nav-title">
-                                        <a href="">PODIATRY ›</a>
+                                <h6 class="nav-title">
+                                <a href="{{ url('/hospital-management-support-for-podiatry-centers') }}">PODIATRY ›</a>
 
                                     </h6>
+                                    <h6 class="nav-title">
+                                         <a href="{{ url('/hospital-management-support-for-dental-hospitals') }}">DENTAL HOSPITALS ›</a>
+
+                                    </h6>
+                                   
                                 </div>
 
                                 <div class="d-flex flex-column">
 
-
-
-
                                     <h6 class="nav-title">
-                                        <a href="">DENTAL HOSPITALS ›</a>
+                                            <a href="{{ url('/hospital-management-support-for-free-standing-ers') }}">FREE STANDING ERS ›</a>
 
                                     </h6>
-                                    <h6 class="nav-title">
-                                        <a href="">PAIN MANAGEMENT ›</a>
+
+
+                                  
+                                     <h6 class="nav-title">
+                                         <a href="{{ url('/hospital-management-support-for-primary-healthcare-centers') }}">PRIMARY HEALTHCARE ›</a>
 
                                     </h6>
                                 </div>
                                 <div class="d-flex flex-column">
 
 
-
-
                                     <h6 class="nav-title">
-                                        <a href="">FREE STANDING ERS ›</a>
+                                        <a href="{{ url('/hospital-management-support-for-home-healthcare') }}">HOME HEALTH ›</a>
 
                                     </h6>
+
+                                   
+                                  
                                     <h6 class="nav-title">
-                                        <a href="">PRIMARY HEALTHCARE ›</a>
+                                         <a href="{{ url('/hospital-management-support-for-surgery-centers') }}">SURGERY CENTERS ›</a>
 
                                     </h6>
                                 </div>
 
-                                <div class="d-flex flex-column">
+                                {{-- <div class="d-flex flex-column">
 
 
 
@@ -520,11 +526,8 @@
                                         <a href="">Hospital Management SUPPORT ›</a>
 
                                     </h6>
-                                    <h6 class="nav-title">
-                                        <a href="">SURGERY CENTERS ›</a>
-
-                                    </h6>
-                                </div>
+                                    
+                                </div> --}}
                             </div>
                         </div>
 
