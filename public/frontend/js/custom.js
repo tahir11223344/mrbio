@@ -3,19 +3,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const servicesBtn = document.querySelector('.services-btn');
     const panel = document.querySelector('.services-panel');
 
-    // Button click → toggle panel
-    servicesBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // 👈 bahir wale click se roko
-        panel.classList.toggle('active');
+    if (!servicesWrapper || !servicesBtn || !panel) return;
+
+    /* ======================
+       HOVER ON WRAPPER
+       Show Button
+    =======================*/
+    servicesWrapper.addEventListener('mouseenter', () => {
+        servicesWrapper.classList.add('show-btn');
     });
 
-    // Panel ke andar click → panel close na ho
-    panel.addEventListener('click', (e) => {
-        e.stopPropagation();
+    servicesWrapper.addEventListener('mouseleave', () => {
+        servicesWrapper.classList.remove('show-btn');
+        panel.classList.remove('active');
     });
 
-    // Bahir kahin bhi click → panel hide
-    document.addEventListener('click', () => {
+    /* ======================
+       HOVER ON BUTTON
+       Show Panel
+    =======================*/
+    servicesBtn.addEventListener('mouseenter', () => {
+        panel.classList.add('active');
+    });
+
+    panel.addEventListener('mouseleave', () => {
         panel.classList.remove('active');
     });
 

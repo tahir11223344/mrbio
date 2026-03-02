@@ -31,14 +31,14 @@
         }
 
         .rental-main-desc {
-            font-size: 20px;
+            font-size: 16px;
             color: #000000;
             line-height: 160%;
             font-weight: 400;
             font-family: Arial;
             margin-bottom: 25px;
             width: 100%;
-            max-width: 408px;
+            max-width: 610px;
             /* height: 79px; */
             margin-bottom: 20px;
         }
@@ -53,18 +53,14 @@
             font-family: Inter, sans-serif;
         }
 
-        /*
-                                                                                                                                                                                                                                                                                        .equip-list {
-                                                                                                                                                                                                                                                                                            margin-top: 30px;
 
-                                                                                                                                                                                                                                                                                        } */
 
         .li {
             /* padding-left: 18px; */
             color: #000000;
             font-family: Arial;
             font-weight: 400;
-            font-size: 20px;
+            font-size: 16px;
             line-height: 160%;
             /* margin-top: 20px; */
             margin-bottom: 15px;
@@ -466,10 +462,10 @@
         /* =============== four-column-section ======================= */
 
         /*
-                                                                                                                                                                                                                                                                                                                                                                                * Background Color Calculation:
-                                                                                                                                                                                                                                                                                                                                                                                * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
-                                                                                                                                                                                                                                                                                                                                                                                * This translates to a light grey color with low opacity.
-                                                                                                                                                                                                                                                                                                                                                                                */
+                                                                                                                                                                                                                                                                                                                                                                                                * Background Color Calculation:
+                                                                                                                                                                                                                                                                                                                                                                                                * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
+                                                                                                                                                                                                                                                                                                                                                                                                * This translates to a light grey color with low opacity.
+                                                                                                                                                                                                                                                                                                                                                                                                */
         .four-column-section {
             background-color: #D9D9D938;
             padding: 40px 20px;
