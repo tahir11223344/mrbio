@@ -422,6 +422,35 @@
 @endsection
 
 @push('frontend-scripts')
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.mrbiomedtechservices.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Locations",
+                    "item": "https://www.mrbiomedtechservices.com/locations"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "{{ trim($data->city_name ?? $data->name ?? $data->content_title ?? 'Location') }}",
+                    "item": "{{ url()->current() }}"
+                }
+            ]
+        }
+    </script>
+@endpush
+
+@push('frontend-scripts')
     <script>
         $(document).ready(function() {
 
