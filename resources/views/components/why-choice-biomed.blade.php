@@ -14,11 +14,11 @@
 
                          <!-- <div class="choose-icon">
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </div> -->
-                         <h4 class="choose-heading">Since 2012</h4>
+                         <h4 class="choose-heading">Satisfaction</h4>
                      </div>
-                     <p class="choose-desc">
-                         Industry-gold BMEs with years of hands-on experience with manufacturers and healthcare
-                         providers.</p>
+                     <p class="choose-desc">We take pride in delivering exceptional customer satisfaction through
+                         dependable biomedical services and rapid response times.
+                     </p>
                  </div>
              </div>
 
@@ -28,10 +28,11 @@
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
 
-                         <h4 class="choose-heading">100% Availability</h4>
+                         <h4 class="choose-heading">New and Used Equipment Sales</h4>
                      </div>
                      <p class="choose-desc">
-                         Operational flexibility with on-demand rent and repair solutions.
+                         We provide reliable new and refurbished medical equipment with a smooth, transparent, and
+                         customer-focused buying experience.
                      </p>
                  </div>
              </div>
@@ -42,25 +43,26 @@
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
 
-                         <h4 class="choose-heading">Regular Checks</h4>
+                         <h4 class="choose-heading">Short-Term Equipment Rentals</h4>
                      </div>
                      <p class="choose-desc">
-                         Routine checks allow us to identify minor issues before they lead to expensive downtime.
+                         We offer reliable, short-term medical equipment rentals with flexible availability and
+                         responsive support to meet your temporary healthcare needs.
                      </p>
                  </div>
              </div>
 
-             
+
              <!-- CARD 5 -->
              <div class="col-md-6 col-lg-4 animate-card">
                  <div class="choose-card">
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
 
-                         <h4 class="choose-heading">Annual Inspection</h4>
+                         <h4 class="choose-heading">Support Within Hours</h4>
                      </div>
                      <p class="choose-desc">
-                         Inspections are backed by data-driven equipment management strategies.
+                         With a response time of under 8 hours, we ensure fast, efficient support when you need it most.
                      </p>
                  </div>
              </div>
@@ -71,10 +73,38 @@
                      <div class="choose-top">
                          <i class="bi bi-check choose-icon"></i>
 
-                         <h4 class="choose-heading">Up-to-date Catalogue</h4>
+                         <h4 class="choose-heading">Guaranteed Fast Response</h4>
                      </div>
                      <p class="choose-desc">
-                         Listings are always patient-ready and suitable for around-the-clock support.
+                         We guarantee a response time of under 8 business hours, ensuring prompt and reliable support
+                         whenever you need it.
+                     </p>
+                 </div>
+             </div>
+
+             <div class="col-md-6 col-lg-4 animate-card">
+                 <div class="choose-card">
+                     <div class="choose-top">
+                         <i class="bi bi-check choose-icon"></i>
+
+                         <h4 class="choose-heading">Manufacturer-Compliant Inspections</h4>
+                     </div>
+                     <p class="choose-desc">
+                         All equipment inspections are conducted according to JAKO manufacturer standards, ensuring
+                         safety, reliability, and compliance.
+                     </p>
+                 </div>
+             </div>
+             <div class="col-md-6 col-lg-4 animate-card">
+                 <div class="choose-card">
+                     <div class="choose-top">
+                         <i class="bi bi-check choose-icon"></i>
+
+                         <h4 class="choose-heading">Certified Reconditioned Equipment</h4>
+                     </div>
+                     <p class="choose-desc">
+                         All used equipment undergoes a thorough reconditioning process and comes with a standard 90-day
+                         warranty, ensuring quality and reliability.
                      </p>
                  </div>
              </div>
