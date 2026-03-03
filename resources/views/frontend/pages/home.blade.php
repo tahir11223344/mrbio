@@ -22,6 +22,44 @@
             background: #006A9E;
             transform: scale(1.2);
         }
+
+        .hero-subheadingg {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: Arial;
+
+        }
+
+        .detail-btn {
+            display: inline-flex;
+            /* IMPORTANT */
+            align-items: center;
+            justify-content: center;
+
+            width: 150px;
+            height: 25px;
+
+            background-color: #E9A426;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0px 4px 4px #00000040;
+
+            color: #FFFFFF;
+            font-family: Saira;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 137%;
+            text-decoration: none;
+            /* underline remove */
+
+            transition: all 0.5s ease-in-out;
+        }
+
+        .detail-btn:hover {
+            color: #FFFFFF;
+            transform: translateY(-3px);
+            box-shadow: 0px 6px 8px #00000060;
+        }
     </style>
 @endpush
 
@@ -44,11 +82,13 @@
 
                     <!-- Heading -->
                     <h1 class="hero-heading fade-left">{!! highlightBracketText($data?->hero_heading ?? '', ['#000000']) !!}</h1>
+                    <h2 class="hero-subheadingg fade-left">Comprehensive Biomedical Equipment Solutions <span>Trusted By
+                            Clinics All Across Texas & Nationwide!</span></h2>
 
                     <!-- Paragraph -->
-                    <p class="hero-para mt-3 fade-right">
+                    <h3 class="hero-para mt-3 fade-right">
                         {{ $data->hero_sd ?? '' }}
-                    </p>
+                    </h3>
 
                     <!-- Images + Customer Count -->
                     <div class="d-flex align-items-center mt- fade-left">
@@ -230,7 +270,8 @@
                     <i class="bi bi-truck feature-icon"></i>
                     <div class="ms-3">
                         <h5 class="fw-bol mt-2">Free Shipping</h5>
-                        <p class="small mb-0">Order over $600</p>
+                        {{-- <p class="small mb-0">Order over $600</p> --}}
+                        <a href="tel:+923001234567" class="detail-btn">Call For Details</a>
                     </div>
                 </div>
 
@@ -366,10 +407,8 @@
                             <div class="equipment-block mb-3">
                                 <h4 class="equipment-title">Sterilizers</h4>
                                 <ul class="equipment-list">
-                                    <li>Tabletop Autoclaves (Including Tuttnauer Autoclave, Midmark Autoclave and M11
-                                        Autoclave)</li>
-                                    <li>Free-standing autoclaves (Including Tuttnauer, Midmark, Steris, Getinge and Belimed
-                                        Autoclave)</li>
+                                    <li>Tabletop Autoclaves (Including Tuttnauer & Midmark )</li>
+                                    <li>Free-standing autoclaves (Including Belimed)</li>
                                 </ul>
                             </div>
 

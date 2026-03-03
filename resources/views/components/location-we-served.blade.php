@@ -5,7 +5,8 @@
         <h2 class="section-title text-center mt-5 fade-left">Everything’s Bigger In <span>Texas </span>-- Including Our
             Reach </h2>
         <p class="section-desc text-center fade-right">
-            Texas-based hospitals and healthcare providers trust Mr. Biomed Tech Services Services for our precise and targeted
+            Texas-based hospitals and healthcare providers trust Mr. Biomed Tech Services Services for our precise and
+            targeted
             biomedical equipment solutions. We cover it all and at a cost-effective rate: Biomed/Clinical Engineering
             Repair Services, Medical and Surgical Equipment Rental Services, New/Refurbished Medical and Surgical
             Equipment Sales, Disposition Services, and Consultancy Services.
@@ -25,51 +26,44 @@
 
                     <h3 class="box-title">Nationwide <span>Service Coverage</span> </h3>
 
-                    <h4 class="sub-title">We provide services across the United States. The following are our primary service locations:</h4>
+                    <h4 class="sub-title">Our primary service area covers a 300-mile radius from Dallas, allowing us to
+                        deliver fast, efficient, and responsive support to hospitals and medical facilities across the
+                        region.
+                    </h4>
 
                     <!-- 3 COLUMN LIST -->
-                     <div class="row mt-3">
+                    <div class="row mt-3">
+                        <div class="col-md-2">
+                            <ul class="primary-list">
+                                <li>Fort Worth</li>
+
+                            </ul>
+                        </div>
+
+                        <div class="col-md-2">
+                            <ul class="primary-list">
+                                <li>Arlington</li>
+
+                            </ul>
+                        </div>
+
+                        <div class="col-md-2">
+                            <ul class="primary-list">
+                                <li>Plano</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2">
+                            <ul class="primary-list">
+                                <li>Irving</li>
+
+                            </ul>
+                        </div>
                         <div class="col-md-2">
                             <ul class="primary-list">
                                 <li>Garland</li>
-                                <li>San Antonio</li>
-                                <li>Austin</li>
-                                <li>Houston</li>
+
                             </ul>
                         </div>
-
-                        <div class="col-md-2">
-                            <ul class="primary-list">
-                                <li>Dallas</li>
-                                <li>Plano</li>
-                                <li>Big Spring</li>
-                                <li>Fort Worth</li>
-                            </ul>
-                        </div>
-
-                         <div class="col-md-2">
-                            <ul class="primary-list">
-                                <li>Tyler</li>
-                                <li>Laredo</li>
-                                <li>Richardson</li>
-                                <li>Mesquite</li>
-                            </ul>
-                        </div> 
-                        <div class="col-md-2">
-                            <ul class="primary-list">
-                                <li>Midland</li>
-                                <li>Clovis</li>
-                                <li>Amarillo</li>
-                                <li>Hobbs</li>
-                            </ul>
-                        </div> 
-                        <div class="col-md-2">
-                            <ul class="primary-list">
-                                <li>Waco</li>
-                                <li>Grand Prairie</li>
-                                <li>Lubbock</li>
-                            </ul>
-                        </div> 
                     </div>
 
                     {{-- <h4 class="sub-title mt-4">
@@ -97,7 +91,7 @@
                         @endforeach
                     </div> --}}
 
-                    
+
                     <!-- 3 COLUMN LIST #2 -->
                     {{-- <div class="row mt-3">
                         <div class="col-md-4">

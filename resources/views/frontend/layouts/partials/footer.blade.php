@@ -671,7 +671,10 @@
             </div>
 
             <div class="col-lg-4 ps-5">
-                <h4 class="Field mb-3 pb-2">Field Service Locations</h4>
+                <h4 class="Field ">Field Service Locations</h4>
+                <p class="footer-p">Serving a 300-mile radius from Dallas, we provide fast and reliable support to
+                    hospitals and medical facilities.
+                </p>
                 <div class="row location-list mb-4">
                     @php
                         // Areas ko 2 columns me divide kar rahe hain
@@ -701,7 +704,7 @@
                         <i class="fas fa-star text-warning"></i>
                         <i class="fas fa-star-half-alt text-warning"></i>
                     </div>
-                    <span class="text-white fw-bold fs-5">4.3</span>
+                    <span class="text-white fw-bold fs-5">4.6</span>
                 </div>
                 <a href="https://maps.app.goo.gl/wvVEdynFgvQnhsbg9" target="_blank" class="review-link ">Leave Us a
                     Review On
