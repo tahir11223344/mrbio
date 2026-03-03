@@ -808,6 +808,29 @@
 @endsection
 
 @push('frontend-scripts')
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.mrbiomedtechservices.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "About Us",
+                    "item": "https://www.mrbiomedtechservices.com/about-us"
+                }
+            ]
+        }
+    </script>
+@endpush
+
+@push('frontend-scripts')
     {{-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> --}}
 
     <script>

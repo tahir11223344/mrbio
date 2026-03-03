@@ -355,7 +355,7 @@
     </section>
 
     {{-- ============ x ray section ===================== --}}
-    <x-repair-service-section :types="['repair-service', 'x-ray-repairing', 'c-arm-repairing']" />
+    <x-repair-service-section :types="['repair-service', 'x-ray-repairing', 'c-arm-repairing']" :merge="true" />
     <!-- Output: X-Ray → C-Arm -->
 
     {{-- ======================== special section ===================== --}}
@@ -436,4 +436,24 @@
 
 
 @push('frontend-scripts')
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.mrbiomedtechservices.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Medical Equipment Repair",
+                    "item": "https://www.mrbiomedtechservices.com/medical-equipment-repair"
+                }
+            ]
+        }
+    </script>
 @endpush

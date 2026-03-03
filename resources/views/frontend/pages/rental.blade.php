@@ -776,6 +776,29 @@
 @endsection
 
 @push('frontend-scripts')
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.mrbiomedtechservices.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Rental Services",
+                    "item": "https://www.mrbiomedtechservices.com/rental-services"
+                }
+            ]
+        }
+    </script>
+@endpush
+
+@push('frontend-scripts')
     <script>
         document.querySelectorAll(".product-section").forEach(section => {
 

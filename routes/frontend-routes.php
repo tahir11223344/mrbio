@@ -141,6 +141,7 @@ Route::get('/locations', [LocationPageController::class, 'landingPage'])->name('
 Route::get('/repairing-services/{slug}', [RepairServiceController::class, 'repairServiceDetail'])->defaults('category', 'repairing-services')->name('repair.service.repairing');
 Route::get('/c-arm-repairing/{slug}', [RepairServiceController::class, 'repairServiceDetail'])->defaults('category', 'c-arm-repairing')->name('repair.service.carm');
 Route::get('/x-ray-repairing/{slug}', [RepairServiceController::class, 'repairServiceDetail'])->defaults('category', 'x-ray-repairing')->name('repair.service.xray');
+Route::get('/laser-and-surgical-technology-services/{slug}', [RepairServiceController::class, 'repairServiceDetail'])->defaults('category', 'laser-and-surgical-technology-services')->name('repair.service.laser');
 
 // Location detail route (after repair services to avoid conflicts)
 Route::get('/locations/{slug}', [LocationPageController::class, 'locationDetail'])->name('location.detail');

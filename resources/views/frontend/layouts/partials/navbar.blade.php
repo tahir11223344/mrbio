@@ -248,10 +248,10 @@
                                         </a> --}}
                                         <div class="d-flex flex-column gap-2 ">
                                             <h6 class="nav-title">
-                                                <a href=""> Inspection, Calibration, & Repair ›</a>
+                                                <a href="{{ route('repair') }}"> Inspection, Calibration, & Repair ›</a>
                                             </h6>
                                             <h6 class="nav-title">
-                                                <a href="">Dis-positioning Service ›</a>
+                                                <a href="{{ route('offer.detail', 'retired-assets-services') }}">Dis-positioning Service ›</a>
                                             </h6>
                                         </div>
 
@@ -264,9 +264,6 @@
                                                     class="bottomm">Mesquite ›</a></li>
                                             <li><a href="{{ url('repairing-services/garland') }}" class="bottomm">Wylie
                                                     ›</a></li>
-
-
-
                                         </ul> --}}
 
                                     </div>
@@ -279,10 +276,10 @@
                                         </a> --}}
                                         <div class="d-flex flex-column gap-2 ">
                                             <h6 class="nav-title">
-                                                <a href="">New & Pre-Owned Medical Equipment Sales ›</a>
+                                                <a href="{{ route('offer.detail', 'medical-equipment') }}">New & Pre-Owned Medical Equipment Sales ›</a>
                                             </h6>
                                             <h6 class="nav-title">
-                                                <a href="">CLaser & Surgical Technology Services Across Texas
+                                                <a href="{{ route('offer.detail', 'laser-and-surgical-technology-services') }}">Laser & Surgical Technology Services Across Texas
                                                     ›</a>
                                             </h6>
                                         </div>
@@ -296,9 +293,6 @@
                                                     class="bottomm">X-Ray Repair in Houston ›</a></li>
                                             <li><a href="{{ url('x-ray-repairing/x-ray-in-san-antonio') }}"
                                                     class="bottomm">X-Ray Repair in San-Antonio ›</a></li>
-
-
-
                                         </ul> --}}
 
                                     </div>
@@ -311,12 +305,12 @@
                                         </a> --}}
                                         <div class="d-flex flex-column gap-2 ">
                                             <h6 class="nav-title">
-                                                <a href="">Medical Equipment Rental ›</a>
+                                                <a href="{{ route('rental-services') }}">Medical Equipment Rental ›</a>
 
                                             </h6>
 
                                             <h6 class="nav-title">
-                                                <a href="">Consultancy Services ›</a>
+                                                <a href="{{ route('offer.detail', 'consultancy-services') }}">Consultancy Services ›</a>
 
                                             </h6>
                                         </div>
@@ -362,8 +356,8 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('rental-services') ? 'active' : '' }}"
-                        href="{{ route('rental-services') }}">
+                    <a class="nav-link {{ request()->is('medical-equipment') ? 'active' : '' }}"
+                        href="{{ route('offer.detail', 'medical-equipment') }}">
                         Sales
                     </a>
                 </li>
@@ -376,22 +370,22 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('rental-services') ? 'active' : '' }}"
-                        href="{{ route('rental-services') }}">
+                    <a class="nav-link {{ request()->is('retired-assets-services') ? 'active' : '' }}"
+                        href="{{ route('offer.detail', 'retired-assets-services') }}">
                         Dispositioning
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('rental-services') ? 'active' : '' }}"
-                        href="{{ route('rental-services') }}">
+                    <a class="nav-link {{ request()->routeIs('home-health') ? 'active' : '' }}"
+                        href="https://mrbedmed.com/" target="_blank">
                         Home Health
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('rental-services') ? 'active' : '' }}"
-                        href="{{ route('rental-services') }}">
+                    <a class="nav-link {{ request()->is('consultancy-services') ? 'active' : '' }}"
+                        href="{{ route('offer.detail', 'consultancy-services') }}">
                         Consultancy
                     </a>
                 </li>
@@ -461,15 +455,20 @@
                                         <a href="{{ route('contact-us') }}">
                                             <button class="nav-mega-btn mt-3">Talk To Expert</button>
                                         </a> --}}
-
                                     <h6 class="nav-title">
+                                        <a href="{{ url('/hospital-management-support-for-cardiac-clinics') }}">CARDIAC CLINICS ›</a>
+
+                                    </h6>    
+                                     <h6 class="nav-title">
+                                        <a href="{{ url('/hospital-management-support-for-pain-management-centers') }}">PAIN MANAGEMENT ›</a>
+
+                                    </h6>
+                                    {{-- <h6 class="nav-title">
                                         <a href="">Complete Hospital Management ›</a>
 
-                                    </h6>
-                                    <h6 class="nav-title">
-                                        <a href="">HOME HEALTH ›</a>
-
-                                    </h6>
+                                    </h6> --}}
+                                  
+                                   
                                 </div>
                                 {{-- @endforeach --}}
 
@@ -477,47 +476,48 @@
 
 
 
-
-                                    <h6 class="nav-title">
-                                        <a href="">CARDIAC CLINICS ›</a>
-
-                                    </h6>
-                                    <h6 class="nav-title">
-                                        <a href="">PODIATRY ›</a>
+                                <h6 class="nav-title">
+                                <a href="{{ url('/hospital-management-support-for-podiatry-centers') }}">PODIATRY ›</a>
 
                                     </h6>
+                                    <h6 class="nav-title">
+                                         <a href="{{ url('/hospital-management-support-for-dental-hospitals') }}">DENTAL HOSPITALS ›</a>
+
+                                    </h6>
+                                   
                                 </div>
 
                                 <div class="d-flex flex-column">
 
-
-
-
                                     <h6 class="nav-title">
-                                        <a href="">DENTAL HOSPITALS ›</a>
+                                            <a href="{{ url('/hospital-management-support-for-free-standing-ers') }}">FREE STANDING ERS ›</a>
 
                                     </h6>
-                                    <h6 class="nav-title">
-                                        <a href="">PAIN MANAGEMENT ›</a>
+
+
+                                  
+                                     <h6 class="nav-title">
+                                         <a href="{{ url('/hospital-management-support-for-primary-healthcare-centers') }}">PRIMARY HEALTHCARE ›</a>
 
                                     </h6>
                                 </div>
                                 <div class="d-flex flex-column">
 
 
-
-
                                     <h6 class="nav-title">
-                                        <a href="">FREE STANDING ERS ›</a>
+                                        <a href="{{ url('/hospital-management-support-for-home-healthcare') }}">HOME HEALTH ›</a>
 
                                     </h6>
+
+                                   
+                                  
                                     <h6 class="nav-title">
-                                        <a href="">PRIMARY HEALTHCARE ›</a>
+                                         <a href="{{ url('/hospital-management-support-for-surgery-centers') }}">SURGERY CENTERS ›</a>
 
                                     </h6>
                                 </div>
 
-                                <div class="d-flex flex-column">
+                                {{-- <div class="d-flex flex-column">
 
 
 
@@ -526,11 +526,8 @@
                                         <a href="">Hospital Management SUPPORT ›</a>
 
                                     </h6>
-                                    <h6 class="nav-title">
-                                        <a href="">SURGERY CENTERS ›</a>
-
-                                    </h6>
-                                </div>
+                                    
+                                </div> --}}
                             </div>
                         </div>
 
@@ -539,8 +536,8 @@
 
 
                 <li class="nav-item dropdown has-mega">
-                    <a class="nav-link nav-main-link {{ request()->routeIs('location') ? 'active' : '' }}"
-                        href="{{ route('location') }}">About</a>
+                    <a class="nav-link nav-main-link {{ request()->routeIs('about-us') ? 'active' : '' }}"
+                        href="{{ route('about-us') }}">About</a>
                     <span class="mega-toggle">
                         <i class="bi bi-chevron-down dropdown-icon"></i>
                     </span>
@@ -575,11 +572,11 @@
                                         </a> --}}
 
                                     <h6 class="nav-title">
-                                        <a href="">LOCATIONS ›</a>
+                                        <a href="{{ route('location') }}">LOCATIONS ›</a>
 
                                     </h6>
                                     <h6 class="nav-title">
-                                        <a href="">TERMS & CONDITIONS ›</a>
+                                        <a href="{{ route('terms') }}">TERMS & CONDITIONS ›</a>
 
                                     </h6>
                                 </div>
@@ -591,40 +588,11 @@
 
 
                                     <h6 class="nav-title">
-                                        <a href="">BLOGS ›</a>
+                                        <a href="{{ route('blogs') }}">BLOGS ›</a>
 
                                     </h6>
                                     <h6 class="nav-title">
-                                        <a href="">PRIVACY POLICY ›</a>
-
-                                    </h6>
-                                </div>
-
-                                <div class="d-flex flex-column">
-
-
-
-
-                                    <h6 class="nav-title">
-                                        <a href="">FAQS ›</a>
-
-                                    </h6>
-                                    <h6 class="nav-title">
-                                        <a href="">DISCLAIMER ›</a>
-
-                                    </h6>
-                                </div>
-                                <div class="d-flex flex-column">
-
-
-
-
-                                    <h6 class="nav-title">
-                                        <a href="">FEEDBACK ›</a>
-
-                                    </h6>
-                                    <h6 class="nav-title">
-                                        <a href="">ADDRESS & LOCATION ›</a>
+                                        <a href="{{ route('privacy') }}">PRIVACY POLICY ›</a>
 
                                     </h6>
                                 </div>
@@ -635,7 +603,36 @@
 
 
                                     <h6 class="nav-title">
-                                        <a href="">CONTACT US ›</a>
+                                        <a href="{{ route('faqs') }}">FAQS ›</a>
+
+                                    </h6>
+                                    <h6 class="nav-title">
+                                        <a href="{{ route('disclaimer') }}">DISCLAIMER ›</a>
+
+                                    </h6>
+                                </div>
+                                <div class="d-flex flex-column">
+
+
+
+
+                                    <h6 class="nav-title">
+                                        <a href="{{ route('feedback') }}">FEEDBACK ›</a>
+
+                                    </h6>
+                                    <h6 class="nav-title">
+                                        <a href="{{ route('about-us') }}">About Us ›</a>
+
+                                    </h6>
+                                </div>
+
+                                <div class="d-flex flex-column">
+
+
+
+
+                                    <h6 class="nav-title">
+                                        <a href="{{ route('contact-us') }}">CONTACT US ›</a>
 
                                     </h6>
                                     {{-- <h6 class="nav-title">
@@ -662,9 +659,9 @@
                         </a>
 
                         <!-- Request a Services -->
-                        <a href="{{ route('contact-us') }}" class="btn request-btn">
+                        <button data-open-service-modal class="btn request-btn">
                             Request a Services
-                        </a>
+                        </button>
                     </div>
 
                 </li>
@@ -765,3 +762,8 @@
         });
     });
 </script>
+
+
+
+
+

@@ -628,4 +628,45 @@
             autoSlide();
         });
     </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "MedicalBusiness",
+            "@id": "https://www.mrbiomedtechservices.com/#localbusiness",
+            "name": "Mr. Biomed Tech Services",
+            "image": "https://www.mrbiomedtechservices.com/storage/uploads/settings/1769617213_mr%20biomed%20tech%20servics.png",
+            "url": "https://www.mrbiomedtechservices.com/",
+            "telephone": "+1-469-767-8853",
+            "email": "service@mbmts.com",
+            "priceRange": "$$$",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "555 N. 5th St, Suite 109 B",
+                "addressLocality": "Garland",
+                "addressRegion": "TX",
+                "postalCode": "75040",
+                "addressCountry": "US"
+            },
+            "sameAs": [
+                "https://www.facebook.com/Mr.BioMed/",
+                "https://www.instagram.com/mr.biomedtechservices/",
+                "https://www.linkedin.com/company/mr-biomed-tech-pt-medical",
+                "https://www.yelp.com/biz/mr-biomed-tech-services-garland"
+            ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.mrbiomedtechservices.com/"
+                }
+            ]
+        }
+    </script>
 @endpush
