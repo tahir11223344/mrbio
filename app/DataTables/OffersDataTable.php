@@ -23,6 +23,7 @@ class OffersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addIndexColumn()
             ->addColumn('created_by', fn($offer) => optional($offer->createdBy)->name ?? '-')
             ->addColumn('updated_by', fn($offer) => optional($offer->updatedBy)->name ?? '-')
 
@@ -75,7 +76,7 @@ class OffersDataTable extends DataTable
             ->minifiedAjax()
             ->processing(true)
             ->serverSide(true)
-            ->orderBy(4, 'desc')
+            ->orderBy(5, 'desc')
             ->addTableClass('table table-striped table-row-bordered gy-5 gs-7 border rounded text-gray-700 fw-semibold')
             ->setTableHeadClass('text-start text-muted fw-bold fs-7 text-uppercase gs-0')
             ->drawCallback(
@@ -93,6 +94,13 @@ class OffersDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('DT_RowIndex')
+                ->title('#')
+                ->searchable(false)
+                ->orderable(false)
+                ->width(50)
+                ->addClass('text-center'),
+
             // Column::make('id')->title('ID')->addClass('text-center')->width(60),
 
             Column::make('title')->title('Title'),

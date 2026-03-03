@@ -421,7 +421,7 @@
 
 
                 <li class="nav-item dropdown has-mega">
-                    <a class="nav-link nav-main-link {{ request()->routeIs('location') ? 'active' : '' }}"
+                    <a class="nav-link nav-main-link {{ request()->routeIs('facility') ? 'active' : '' }}"
                         href="{{ route('location') }}">Facilities</a>
                     <span class="mega-toggle">
                         <i class="bi bi-chevron-down dropdown-icon"></i>

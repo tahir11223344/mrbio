@@ -23,6 +23,7 @@ class CategoryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addIndexColumn() // Add row numbers
             ->addColumn('created_by', fn($c) => optional($c->createdBy)->name ?? '-')
             ->addColumn('updated_by', fn($c) => optional($c->updatedBy)->name ?? '-')
 
@@ -92,6 +93,13 @@ class CategoryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('DT_RowIndex')
+                ->title('#')
+                ->searchable(false)
+                ->orderable(false)
+                ->width(50)
+                ->addClass('text-center'),
+
             Column::make('name')
                 ->title(__('Name'))
                 ->name('categories.name'),

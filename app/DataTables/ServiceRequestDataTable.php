@@ -24,6 +24,7 @@ class ServiceRequestDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addIndexColumn()
             ->editColumn('categories', function ($sr) {
                 if (empty($sr->categories)) return '-';
 
@@ -68,7 +69,7 @@ class ServiceRequestDataTable extends DataTable
             ->minifiedAjax()
             ->processing(true)
             ->serverSide(true)
-            ->orderBy(8, 'desc')
+            ->orderBy(9, 'desc')
             ->addTableClass('table table-striped table-row-bordered gy-5 gs-7 border rounded text-gray-700 fw-semibold')
             ->setTableHeadClass('text-start text-muted fw-bold fs-7 text-uppercase gs-0')
             ->drawCallback(
@@ -86,6 +87,13 @@ class ServiceRequestDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('DT_RowIndex')
+                ->title('#')
+                ->searchable(false)
+                ->orderable(false)
+                ->width(50)
+                ->addClass('text-center'),
+
             Column::make('name')->title('Name'),
             Column::make('email')->title('Email'),
             Column::make('phone')->title('Phone'),

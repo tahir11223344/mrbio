@@ -19,6 +19,7 @@ class PermissionsDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addIndexColumn()
             ->editColumn('name', function (Permission $permission) {
                 return ucwords($permission->name);
             })
@@ -65,6 +66,13 @@ class PermissionsDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('DT_RowIndex')
+                ->title('#')
+                ->searchable(false)
+                ->orderable(false)
+                ->width(50)
+                ->addClass('text-center'),
+
             Column::make('name'),
             Column::make('assigned_to'),
             Column::make('created_at')->addClass('text-nowrap'),

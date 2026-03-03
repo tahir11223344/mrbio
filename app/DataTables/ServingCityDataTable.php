@@ -23,6 +23,7 @@ class ServingCityDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addIndexColumn()
 
             ->editColumn('city_name', function ($c) {
                 return city_label($c->city_name);
@@ -87,7 +88,7 @@ class ServingCityDataTable extends DataTable
             ->minifiedAjax()
             ->processing(true)
             ->serverSide(true)
-            ->orderBy(6, 'desc')
+            ->orderBy(8, 'desc')
             ->addTableClass('table table-striped table-row-bordered gy-5 gs-7 border rounded text-gray-700 fw-semibold')
             ->setTableHeadClass('text-start text-muted fw-bold fs-7 text-uppercase gs-0')
             ->drawCallback(
@@ -105,6 +106,13 @@ class ServingCityDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('DT_RowIndex')
+                ->title('#')
+                ->searchable(false)
+                ->orderable(false)
+                ->width(50)
+                ->addClass('text-center'),
+
             Column::make('city_name')->title('City Name'),
             Column::make('area_name')->title('Area Name'),
             // Column::make('hero_title')->title('Hero Title'),

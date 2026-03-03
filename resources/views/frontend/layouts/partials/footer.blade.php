@@ -701,7 +701,7 @@
                         <i class="fas fa-star text-warning"></i>
                         <i class="fas fa-star-half-alt text-warning"></i>
                     </div>
-                    <span class="text-white fw-bold fs-5">4.3</span>
+                    <span class="text-white fw-bold fs-5">4.6</span>
                 </div>
                 <a href="https://maps.app.goo.gl/wvVEdynFgvQnhsbg9" target="_blank" class="review-link ">Leave Us a
                     Review On
