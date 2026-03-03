@@ -323,12 +323,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('getAQuoteFormOverlay');
     if (!modal) return;
 
-    const closeBtn = modal.querySelector('.close-form');
     const form = modal.querySelector('#getAQuoteForm');
 
     /* ================= HELPERS ================= */
 
-    // Clear validation errors
     const clearErrors = () => {
         modal.querySelectorAll('.error-text').forEach(el => {
             el.textContent = '';
@@ -340,21 +338,21 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const resetCaptcha = () => {
-        if (typeof grecaptcha !== 'undefined' && getQuoteCaptchaWidgetId !== null) {
-            grecaptcha.reset(getQuoteCaptchaWidgetId);
+        if (typeof grecaptcha !== 'undefined') { grecaptcha.reset();
         }
     };
 
-    // Reset form fields
     const resetForm = () => {
         if (form) form.reset();
-
-        if (window.grecaptcha) {
-            grecaptcha.reset();
-        }
+        resetCaptcha();
     };
 
-    // Show field errors under inputs
+    const closeModal = () => {
+        modal.classList.remove('active');
+        clearErrors();
+        resetForm();
+    };
+
     const showErrors = (errors) => {
         Object.keys(errors).forEach(key => {
 
@@ -388,19 +386,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // CLOSE MODAL (X button)
-        if (e.target === closeBtn) {
-            modal.classList.remove('active');
-            clearErrors();
-            resetForm();
+        // CLOSE MODAL (X button - fixed)
+        if (e.target.closest('.close-form')) {
+            closeModal();
             return;
         }
 
         // CLOSE MODAL (outside click)
         if (e.target === modal) {
-            modal.classList.remove('active');
-            clearErrors();
-            resetForm();
+            closeModal();
         }
     });
 
@@ -422,7 +416,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
             .then(async response => {
 
-                // Validation error
                 if (response.status === 422) {
                     const data = await response.json();
                     showErrors(data.errors);
@@ -434,7 +427,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                // Server error
                 if (!response.ok) {
                     throw new Error('Server error');
                 }
@@ -446,8 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (data.success) {
 
-                    resetForm();
-                    modal.classList.remove('active');
+                    closeModal();
 
                     if (window.toastr) {
                         toastr.success(data.message);
@@ -458,6 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(() => {
                 resetCaptcha();
+
                 if (window.toastr) {
                     toastr.error('Something went wrong. Please try again later.');
                 } else {
