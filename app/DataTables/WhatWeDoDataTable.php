@@ -23,6 +23,7 @@ class WhatWeDoDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addIndexColumn()
 
             ->addColumn('section_top_title', function ($w) {
                 $content = json_decode($w->content, true);
@@ -79,7 +80,7 @@ class WhatWeDoDataTable extends DataTable
             ->minifiedAjax()
             ->processing(true)
             ->serverSide(true)
-            ->orderBy(3, 'desc')
+            ->orderBy(4, 'desc')
             ->addTableClass('table table-striped table-row-bordered gy-5 gs-7 border rounded text-gray-700 fw-semibold')
             ->setTableHeadClass('text-start text-muted fw-bold fs-7 text-uppercase gs-0')
             ->drawCallback(
@@ -97,6 +98,13 @@ class WhatWeDoDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('DT_RowIndex')
+                ->title('#')
+                ->searchable(false)
+                ->orderable(false)
+                ->width(50)
+                ->addClass('text-center'),
+
             Column::computed('section_top_title')->title('Title'),
             Column::computed('section_top_slug')->title('Slug'),
 

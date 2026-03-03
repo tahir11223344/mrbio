@@ -405,7 +405,7 @@
 
     <div class="margin-top">
         <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""
-            image="frontend/images/hero-main-img.png" :visible="4" />
+            image="frontend/images/faq-image.png" :visible="4" />
     </div>
 
 

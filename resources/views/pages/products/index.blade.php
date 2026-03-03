@@ -14,8 +14,11 @@
                 <div class="d-flex align-items-center position-relative my-1">
                     {!! getIcon('magnifier', 'fs-3 position-absolute ms-5') !!}
                     <input type="text" data-kt-user-table-filter="search"
-                        class="form-control form-control-solid w-250px ps-13" placeholder="{{ __('Search Product') }}"
+                        class="form-control form-control-solid w-250px ps-13 pe-10" placeholder="{{ __('Search Product') }}"
                         id="productSearchInput" />
+                    <button type="button" class="btn btn-sm btn-icon position-absolute end-0 me-2" id="productResetBtn" title="Reset Search" style="display: none;">
+                        {!! getIcon('cross', 'fs-3') !!}
+                    </button>
                 </div>
                 <!--end::Search-->
             </div>
@@ -54,9 +57,18 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Search Filter
-                document.getElementById('productSearchInput').addEventListener('keyup', function() {
+                const searchInput = document.getElementById('productSearchInput');
+                const resetBtn = document.getElementById('productResetBtn');
+
+                searchInput.addEventListener('keyup', function() {
                     window.LaravelDataTables['product-table'].search(this.value).draw();
+                    resetBtn.style.display = this.value ? 'block' : 'none';
+                });
+
+                resetBtn.addEventListener('click', function() {
+                    searchInput.value = '';
+                    window.LaravelDataTables['product-table'].search('').draw();
+                    resetBtn.style.display = 'none';
                 });
             });
         </script>

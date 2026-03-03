@@ -61,7 +61,15 @@
         <!--end::Input group--->
         <div class="fv-row mb-8">
             <!--begin::Repeat Password-->
-            <input placeholder="Repeat Password" name="password_confirmation" type="password" autocomplete="off" class="form-control bg-transparent"/>
+            <div class="position-relative">
+                <input placeholder="Repeat Password" name="password_confirmation" type="password" autocomplete="off" 
+                    class="form-control bg-transparent"/>
+                <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" 
+                    data-kt-password-toggle="true">
+                    <i class="bi bi-eye-slash fs-2"></i>
+                    <i class="bi bi-eye fs-2 d-none"></i>
+                </span>
+            </div>
             <!--end::Repeat Password-->
         </div>
         <!--end::Input group--->
@@ -91,5 +99,9 @@
         <!--end::Actions-->
     </form>
     <!--end::Form-->
+
+    @push('scripts')
+    <script src="{{ asset('assets/js/custom/password-toggle.js') }}"></script>
+    @endpush
 
 </x-auth-layout>

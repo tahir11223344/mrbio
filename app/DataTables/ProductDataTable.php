@@ -23,6 +23,7 @@ class ProductDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addIndexColumn()
 
             ->editColumn('type', function ($product) {
                 if ($product->type == 'for_store') {
@@ -118,6 +119,13 @@ class ProductDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('DT_RowIndex')
+                ->title('#')
+                ->searchable(false)
+                ->orderable(false)
+                ->width(50)
+                ->addClass('text-center'),
+
             Column::make('name')
                 ->title(__('Name'))
                 ->name('products.name'),

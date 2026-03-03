@@ -3,7 +3,7 @@
     'heading' => 'Frequently Asked Questions',
     'subheading' => 'About Our Profile?',
     'subtext' => 'We provide sales, rental, and repair services for medical equipment with ISO certified',
-    'image' => 'frontend/images/hero-main-img.png',
+    'image' => 'frontend/images/faq-image.png',
     'visible' => 4, // default: first 4 show
     'btnMore' => 'See More',
     'btnLess' => 'Show Less',
