@@ -235,24 +235,18 @@
 
                 <!-- IMAGE COLUMN -->
                 <div class="col-lg-6 col-md-6 info-image text-center fade-right">
-
-                    <div class="image-slider-wrapper">
-                        <div class="image-slide-track">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper pb-3">
                             @foreach ($data->content_slider_images as $img)
-                                <div class="image-slide-item">
+                                <div class="swiper-slide">
                                     <img src="{{ asset('storage/landing-page/content-slider/' . $img) }}"
                                         class="info-img img-fluid">
                                 </div>
                             @endforeach
                         </div>
+                        <!-- Pagination -->
+                        <div class="swiper-pagination"></div>
                     </div>
-
-                    <div class="image-dots text-center mt-3">
-                        <span class="dot active"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-
                 </div>
 
             </div>
@@ -604,67 +598,24 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            let currentImageIndex = 0;
-
-            const imageTrack = document.querySelector(".image-slide-track");
-            const slides = document.querySelectorAll(".image-slide-item");
-            const totalSlides = slides.length;
-
-            const dots = document.querySelectorAll(".image-dots .dot");
-
-            const slideDuration = 3000;
-            let slider;
-
-            // Update dots (guard for missing dots/indices)
-            function updateDots() {
-                if (!dots.length) return;
-                dots.forEach(dot => dot.classList.remove("active"));
-                const activeDot = dots[currentImageIndex];
-                if (activeDot) activeDot.classList.add("active");
-            }
-
-            // Jump to slide (clamp index to avoid undefined dots)
-            function goToSlide(index, withTransition = true) {
-                if (index < 0) index = 0;
-                if (index >= totalSlides) index = totalSlides - 1;
-
-                if (withTransition) {
-                    imageTrack.style.transition = "transform 0.8s ease-in-out";
-                } else {
-                    imageTrack.style.transition = "none";
-                }
-
-                imageTrack.style.transform = `translateX(-${index * 25}%)`;
-                updateDots();
-            }
-
-            // Auto slide
-            function autoSlide() {
-                slider = setInterval(() => {
-
-                    currentImageIndex++;
-
-                    if (currentImageIndex < totalSlides) {
-                        goToSlide(currentImageIndex, true);
-                    } else {
-                        currentImageIndex = 0;
-                        goToSlide(currentImageIndex, false);
-                    }
-
-                }, slideDuration);
-            }
-
-            dots.forEach(dot => {
-                dot.addEventListener("click", function() {
-                    clearInterval(slider);
-                    currentImageIndex = parseInt(this.dataset.index);
-                    goToSlide(currentImageIndex, true);
-                    autoSlide();
-                });
+            const swiper = new Swiper(".mySwiper", {
+                loop: true, // Infinite loop
+                autoplay: {
+                    delay: 3000, // Auto-slide every 3 seconds
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true, // Make dots clickable
+                },
+                slidesPerView: 1, // Show 1 image per slide
+                grabCursor: true, // Cursor becomes a grab hand on hover (desktop)
+                simulateTouch: true, // Enable touch dragging
+                touchRatio: 1, // Drag sensitivity (1 = default)
+                touchAngle: 45, // Max angle for swipe to trigger slide change
+                shortSwipes: true, // Allow short swipe to change slide
+                longSwipes: true, // Allow long swipe to change slide
             });
-
-            goToSlide(0, false);
-            autoSlide();
         });
     </script>
     <script type="application/ld+json">

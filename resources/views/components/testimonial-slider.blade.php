@@ -1,11 +1,26 @@
 <style>
-    .main-wrapper {
+    /* .main-wrapper {
         margin-bottom: 60px;
-    }
+    } */
 
     .review-hr {
-        width: 100%;
+        width: 90%;
         margin: 20px auto;
+        height: 3px;
+        background-color: #056EA0 !important;
+        border: none !important;
+        opacity: 1 !important;
+    }
+
+    @media (max-width: 991px) {
+        .review-hr {
+            width: 100%;
+        }
+
+        .promo-desc {
+            font-size: 14px;
+            text-align: center
+        }
     }
 </style>
 <section>
@@ -36,15 +51,18 @@
 
 
             </div>
-            <div class="d-flex gap-5 mx-auto justify-content-center mt-4">
-                <p>Share your feedback with us and receive a promotional code worth 50,000 as our token of appreciation.
-                </p>
-                <button class="nav-mega-btn btn btn-warning" data-bs-toggle="modal" data-bs-target="#talkToExpertModal">
-                    Leave a Review
-                </button>
-            </div>
-            <hr class="review-hr">
+
+
         </div>
+        <div class="d-flex gap-2 mx-auto flex-wrap justify-content-center mb-2">
+            <p class="promo-desc">Share your feedback with us and receive a promotional code worth 50,000 as our token
+                of appreciation.
+            </p>
+            <button class="nav-mega-btn btn btn-warning" data-bs-toggle="modal" data-bs-target="#talkToExpertModal">
+                Leave a Review
+            </button>
+        </div>
+        <hr class="review-hr">
     </div>
     <!-- Modal -->
     <div class="modal fade" id="talkToExpertModal" tabindex="-1">
