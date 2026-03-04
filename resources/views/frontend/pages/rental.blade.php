@@ -462,10 +462,10 @@
         /* =============== four-column-section ======================= */
 
         /*
-                                                                                                                                                                                                                                                                                                                                                                                                * Background Color Calculation:
-                                                                                                                                                                                                                                                                                                                                                                                                * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
-                                                                                                                                                                                                                                                                                                                                                                                                * This translates to a light grey color with low opacity.
-                                                                                                                                                                                                                                                                                                                                                                                                */
+                                                                                                                                                                                                                                                                                                                                                                                                                                        * Background Color Calculation:
+                                                                                                                                                                                                                                                                                                                                                                                                                                        * #D9D9D938 is an RGBA value. The '38' is the alpha (opacity) channel in hex.
+                                                                                                                                                                                                                                                                                                                                                                                                                                        * This translates to a light grey color with low opacity.
+                                                                                                                                                                                                                                                                                                                                                                                                                                        */
         .four-column-section {
             background-color: #D9D9D938;
             padding: 40px 20px;
@@ -550,6 +550,32 @@
         .img-dots .dot.active {
             background: #046DA0;
             transform: scale(1.2);
+        }
+
+        @media (max-width: 767.98px) {
+
+            /* Stack product items vertically on mobile */
+            .col-12.row.g-4.align-items-start {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .product-heading {
+                order: 1;
+                /* Heading first */
+                margin-bottom: 1rem;
+            }
+
+            .product-image {
+                order: 2;
+                /* Image second */
+                margin-bottom: 1rem;
+            }
+
+            .product-text {
+                order: 3;
+                /* Description + buttons last */
+            }
         }
     </style>
 @endpush
@@ -652,38 +678,94 @@
             </div>
         </section>
 
-
-
         <section class="rental-products-section py-5">
             <div class="container">
                 <h2 class="main-title text-center mb-5 fade-left">RENTAL <span>PRODUCTS</span></h2>
 
                 <div id="product-list">
-                    <div class="row justify-content-center g-5">
+                    <div class="row g-4 justify-content-center">
 
                         @foreach ($products as $product)
-                            @include('components.product-item', ['product' => $product])
+                            @php
+                                // Prepare gallery images
+                                $gallery = [];
+                                if (is_string($product->gallery_images)) {
+                                    $decoded = json_decode($product->gallery_images, true);
+                                    $gallery = is_array($decoded) ? $decoded : [];
+                                } elseif (is_array($product->gallery_images)) {
+                                    $gallery = $product->gallery_images;
+                                }
+
+                                // Build full image list = thumbnail + gallery
+                                $allImages = [];
+                                if ($product->thumbnail) {
+                                    $allImages[] = 'products/thumbnails/' . $product->thumbnail;
+                                }
+                                foreach ($gallery as $img) {
+                                    $allImages[] = 'products/gallery/' . $img;
+                                }
+                            @endphp
+
+                            <!-- PRODUCT ITEM -->
+                            <div class="col-12 row g-4 align-items-start">
+
+                                <!-- HEADING (mobile first) -->
+                                <div class="col-12 product-heading">
+                                    <h3 class="product-name">{!! highlightBracketText($product->name ?? '') !!}</h3>
+                                </div>
+
+                                <!-- IMAGE -->
+                                <div class="col-lg-6 col-md-6 product-image order-2 order-md-2">
+                                    <div class="product-section">
+                                        <div class="img-wrapper position-relative">
+                                            <img src="{{ asset('storage/products/thumbnails/' . $product->thumbnail) }}"
+                                                class="img-fluid rental-img mainProductImg active-img"
+                                                alt="{{ $product->image_alt ?? '' }}">
+                                            <button class="btn-overlay">Get For Rent</button>
+                                        </div>
+
+                                        {{-- DOTS --}}
+                                        <div class="img-dots mt-3 text-center">
+                                            @foreach ($allImages as $index => $imgPath)
+                                                <span class="dot {{ $index == 0 ? 'active' : '' }}"
+                                                    data-img="{{ asset('storage/' . $imgPath) }}"></span>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- DESCRIPTION + BUTTONS -->
+                                <div class="col-lg-6 col-md-6 product-text order-3 order-md-1">
+                                    <p class="product-desc">
+                                        {!! $product->description !!}
+                                    </p>
+
+                                    <div class="d-flex gap-3 btn-wrraper">
+                                        <button class="btn-service" data-open-form>
+                                            <i class="bi bi-gear"></i>
+                                            <span class="btn-label" data-slug="{{ $product->slug ?? '' }}">Get
+                                                Service</span>
+                                        </button>
+
+                                        <a href="tel:{{ cleanPhone(setting('phone')) }}">
+                                            <button class="btn-call">
+                                                <i class="bi bi-telephone"></i>
+                                                <span class="btn-label">Call Us</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
                         @endforeach
 
+                        {{-- PAGINATION --}}
                         @if ($products->count() > 0)
                             <div class="mt-4">
-                                {{-- {{ $products->links() }} --}}
                                 {{ $products->links('vendor.pagination.simple-default') }}
                             </div>
                         @endif
 
-
-                        {{-- <div class="pagination">
-                            <a href="#" class="page-link">&laquo;</a>
-                            <a href="#" class="page-link">1</a>
-                            <a href="#" class="page-link active">2</a>
-                            <a href="#" class="page-link">3</a>
-
-                            <span class="ellipsis">---</span>
-
-                            <a href="#" class="page-link">15</a>
-                            <a href="#" class="page-link">&raquo;</a>
-                        </div> --}}
                     </div>
                 </div>
             </div>

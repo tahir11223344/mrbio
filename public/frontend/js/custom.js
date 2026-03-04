@@ -1,38 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const servicesWrapper = document.querySelector('.services-wrapper')
+    const servicesWrapper = document.querySelector('.services-wrapper');
     const servicesBtn = document.querySelector('.services-btn');
     const panel = document.querySelector('.services-panel');
+    const arrowIcon = document.querySelector('.arrow-icon');
 
-    if (!servicesWrapper || !servicesBtn || !panel) return;
+    if (!servicesWrapper || !servicesBtn || !panel || !arrowIcon) return;
 
-    /* ======================
-       HOVER ON WRAPPER
-       Show Button
-    =======================*/
-    servicesWrapper.addEventListener('mouseenter', () => {
+    // Hover on ICON → show button
+    arrowIcon.addEventListener('mouseenter', () => {
         servicesWrapper.classList.add('show-btn');
     });
 
+    // Hover on BUTTON → show panel
+    servicesBtn.addEventListener('mouseenter', () => {
+        panel.classList.add('active');
+    });
+
+    // Leave whole area → hide everything
     servicesWrapper.addEventListener('mouseleave', () => {
         servicesWrapper.classList.remove('show-btn');
         panel.classList.remove('active');
     });
 
-    /* ======================
-       HOVER ON BUTTON
-       Show Panel
-    =======================*/
-    servicesBtn.addEventListener('mouseenter', () => {
-        panel.classList.add('active');
-    });
-
-    panel.addEventListener('mouseleave', () => {
-        panel.classList.remove('active');
-    });
-
 });
-
 let footerCaptchaWidgetId = null;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -272,7 +263,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const resetCaptcha = () => {
-        if (typeof grecaptcha !== 'undefined') { grecaptcha.reset();
+        if (typeof grecaptcha !== 'undefined') {
+            grecaptcha.reset();
         }
     };
 
@@ -446,6 +438,7 @@ function initReviewSlider() {
             }
         }
     });
+    // swiper.autoplay.stop();
 }
 
 function updateTooltip(swiper) {
@@ -565,10 +558,16 @@ const offerSwiper = new Swiper(".offerSwiper", {
         clickable: true,
     },
 
+    grabCursor: true,
+    simulateTouch: true,
+    touchRatio: 1,
+    touchAngle: 45,
+    shortSwipes: true,
+    longSwipes: true,
+
     breakpoints: {
         0: {
             slidesPerView: 1,
-
         },
         768: {
             slidesPerView: 2,
@@ -581,7 +580,6 @@ const offerSwiper = new Swiper(".offerSwiper", {
         },
     },
 });
-
 
 // document.querySelectorAll(".offer-slider-wrapper").forEach(wrapper => {
 

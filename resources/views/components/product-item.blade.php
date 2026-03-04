@@ -1,4 +1,4 @@
-<div class="col-lg-6 col-md-6 mb-4">
+<div class="col-lg-6 col-md-6 mb-4 product-text">
 
     <h3 class="product-name">{!! highlightBracketText($product->name ?? '') !!}</h3>
 
@@ -13,7 +13,7 @@
             <span class="btn-label" data-slug="{{ $product->slug ?? '' }}">Get Service</span>
             {{-- <button class="buy-btn" data-slug="{{ $product->slug ?? '' }}" data-open-form>Get A Quote</button> --}}
         </button>
-    
+
         <a href="tel:{{ cleanPhone(setting('phone')) }}">
             <button class="btn-call">
                 <i class="bi bi-telephone"></i>
@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="col-lg-6 col-md-6">
+<div class="col-lg-6 col-md-6 product-image">
     <div class="product-section">
 
         {{-- MAIN THUMBNAIL IMAGE --}}
