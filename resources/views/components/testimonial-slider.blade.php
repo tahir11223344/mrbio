@@ -5,7 +5,11 @@
 
     .review-hr {
         width: 100%;
-        margin: 20px auto;
+        margin: 0 auto;
+        height: 3px;
+        background-color: #056EA0 !important;
+        border: none !important;
+        opacity: 1 !important;
     }
 </style>
 <section>

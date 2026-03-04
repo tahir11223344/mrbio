@@ -251,7 +251,8 @@
                                                 <a href="{{ route('repair') }}"> Inspection, Calibration, & Repair ›</a>
                                             </h6>
                                             <h6 class="nav-title">
-                                                <a href="{{ route('offer.detail', 'retired-assets-services') }}">Dis-positioning Service ›</a>
+                                                <a href="{{ route('offer.detail', 'retired-assets-services') }}">Dis-positioning
+                                                    Service ›</a>
                                             </h6>
                                         </div>
 
@@ -276,10 +277,13 @@
                                         </a> --}}
                                         <div class="d-flex flex-column gap-2 ">
                                             <h6 class="nav-title">
-                                                <a href="{{ route('offer.detail', 'medical-equipment') }}">New & Pre-Owned Medical Equipment Sales ›</a>
+                                                <a href="{{ route('offer.detail', 'medical-equipment') }}">New &
+                                                    Pre-Owned Medical Equipment Sales ›</a>
                                             </h6>
                                             <h6 class="nav-title">
-                                                <a href="{{ route('offer.detail', 'laser-and-surgical-technology-services') }}">Laser & Surgical Technology Services Across Texas
+                                                <a
+                                                    href="{{ route('offer.detail', 'laser-and-surgical-technology-services') }}">Laser
+                                                    & Surgical Technology Services Across Texas
                                                     ›</a>
                                             </h6>
                                         </div>
@@ -310,7 +314,8 @@
                                             </h6>
 
                                             <h6 class="nav-title">
-                                                <a href="{{ route('offer.detail', 'consultancy-services') }}">Consultancy Services ›</a>
+                                                <a href="{{ route('offer.detail', 'consultancy-services') }}">Consultancy
+                                                    Services ›</a>
 
                                             </h6>
                                         </div>
@@ -423,38 +428,15 @@
                 <li class="nav-item dropdown has-mega">
                     <a class="nav-link nav-main-link {{ request()->routeIs('location') ? 'active' : '' }}"
                         href="{{ route('location') }}">Facilities</a>
-                    <span class="mega-toggle">
+                    {{-- <span class="mega-toggle">
                         <i class="bi bi-chevron-down dropdown-icon"></i>
-                    </span>
-                    <div class="mega-menu">
+                    </span> --}}
+                    {{-- <div class="mega-menu">
                         <div class="container-fluid">
                             <div class="city-grid">
-                                {{-- @foreach ($headerCities as $cityKey => $areas) --}}
+                              
                                 <div class="d-flex flex-column">
-                                    {{-- <h6 class="city-repair-title">
-                                                {{ $cityLabels[$cityKey] ?? ucfirst(str_replace('-', ' ', $cityKey)) }}
-                                                <i class="fa-solid fa-angle-right"></i>
-                                            </h6> --}}
-
-                                    {{-- <h6 class="city-repair-title">
-                                            <a href="{{ route('location') }}">
-                                                {{ $cityLabels[$cityKey] ?? ucfirst(str_replace('-', ' ', $cityKey)) }}
-                                            </a>
-                                            <i class="fa-solid fa-angle-right"></i>
-                                        </h6> --}}
-
-                                    {{-- @foreach ($areas as $area)
-                                            <p>
-                                                <a href="{{ route('location.detail', $area->slug) }}"
-                                                    class="bottomm">{{ $area->area_name ?? $area->city_name }}</a>
-                                            </p>
-                                        @endforeach --}}
-                                    {{-- <p class="mt-3"><a href="#" class="bottomm">Nearby
-                                                communities</a>
-                                        </p>
-                                        <a href="{{ route('contact-us') }}">
-                                            <button class="nav-mega-btn mt-3">Talk To Expert</button>
-                                        </a> --}}
+                                  
                                     <h6 class="nav-title">
                                         <a href="{{ url('/hospital-management-support-for-cardiac-clinics') }}">CARDIAC CLINICS ›</a>
 
@@ -463,14 +445,11 @@
                                         <a href="{{ url('/hospital-management-support-for-pain-management-centers') }}">PAIN MANAGEMENT ›</a>
 
                                     </h6>
-                                    {{-- <h6 class="nav-title">
-                                        <a href="">Complete Hospital Management ›</a>
-
-                                    </h6> --}}
+                                
                                   
                                    
                                 </div>
-                                {{-- @endforeach --}}
+                          
 
                                 <div class="d-flex flex-column">
 
@@ -517,21 +496,11 @@
                                     </h6>
                                 </div>
 
-                                {{-- <div class="d-flex flex-column">
-
-
-
-
-                                    <h6 class="nav-title">
-                                        <a href="">Hospital Management SUPPORT ›</a>
-
-                                    </h6>
-                                    
-                                </div> --}}
+                               
                             </div>
                         </div>
 
-                    </div>
+                    </div> --}}
                 </li>
 
 
@@ -762,8 +731,3 @@
         });
     });
 </script>
-
-
-
-
-

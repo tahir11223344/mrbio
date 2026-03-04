@@ -3054,11 +3054,11 @@
  }
 
  .reviewSwiper {
-     width: 700px;
+     width: 650px;
      max-width: 100%;
      /* 👈 responsive */
      margin: 0 auto;
-     padding: 200px 0 80px;
+     padding: 200px 0 20px;
      direction: rtl;
      overflow: visible;
      position: relative;
