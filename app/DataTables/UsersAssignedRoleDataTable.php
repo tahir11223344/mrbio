@@ -21,6 +21,7 @@ class UsersAssignedRoleDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addIndexColumn()
             ->rawColumns(['user'])
             ->editColumn('user', function (User $user) {
                 return view('pages/apps.user-management.roles.columns._user', compact('user'));
@@ -66,6 +67,13 @@ class UsersAssignedRoleDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('DT_RowIndex')
+                ->title('#')
+                ->searchable(false)
+                ->orderable(false)
+                ->width(50)
+                ->addClass('text-center'),
+
             Column::make('id'),
             Column::make('user')->addClass('d-flex align-items-center')->name('name'),
             Column::make('name'),

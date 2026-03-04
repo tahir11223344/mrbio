@@ -23,6 +23,7 @@ class CompanyCertificationDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addIndexColumn()
             ->addColumn('created_by', fn($c) => optional($c->createdBy)->name ?? '-')
             ->addColumn('updated_by', fn($c) => optional($c->updatedBy)->name ?? '-')
 
@@ -68,7 +69,7 @@ class CompanyCertificationDataTable extends DataTable
             ->minifiedAjax()
             ->processing(true)
             ->serverSide(true)
-            ->orderBy(2, 'desc')
+            ->orderBy(3, 'desc')
             ->addTableClass('table table-striped table-row-bordered gy-5 gs-7 border rounded text-gray-700 fw-semibold')
             ->setTableHeadClass('text-start text-muted fw-bold fs-7 text-uppercase gs-0')
             ->drawCallback(
@@ -86,6 +87,13 @@ class CompanyCertificationDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('DT_RowIndex')
+                ->title('#')
+                ->searchable(false)
+                ->orderable(false)
+                ->width(50)
+                ->addClass('text-center'),
+
             Column::make('title')->title('Title'),
 
             Column::make('created_by')->title('Created By'),

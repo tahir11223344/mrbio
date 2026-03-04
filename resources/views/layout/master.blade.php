@@ -85,13 +85,29 @@
     <!--end::Javascript-->
     @if (session('success'))
         <script>
-            toastr.success("{{ session('success') }}");
+            Swal.fire({
+                text: "{{ session('success') }}",
+                icon: "success",
+                buttonsStyling: false,
+                confirmButtonText: "Ok, got it!",
+                customClass: {
+                    confirmButton: "btn btn-primary"
+                }
+            });
         </script>
     @endif
 
     @if (session('error'))
         <script>
-            toastr.error("{{ session('error') }}");
+            Swal.fire({
+                text: "{{ session('error') }}",
+                icon: "error",
+                buttonsStyling: false,
+                confirmButtonText: "Ok, got it!",
+                customClass: {
+                    confirmButton: "btn btn-primary"
+                }
+            });
         </script>
     @endif
 

@@ -244,7 +244,7 @@ class ReviewsController extends Controller
     {
         /**
          * ---------------------------------------------
-         * STEP 1: Validation (including reCAPTCHA)
+         * STEP 1: Validation
          * ---------------------------------------------
          */
         $validated = $request->validate([
@@ -253,36 +253,11 @@ class ReviewsController extends Controller
             'category' => 'required|exists:categories,slug',
             'message' => 'required|string',
             'rating'  => 'required|integer|min:1|max:5',
-            'g-recaptcha-response' => 'required',
-        ], [
-            'g-recaptcha-response.required' => 'Please confirm you are not a robot.',
         ]);
 
         /**
          * ---------------------------------------------
-         * STEP 2: Verify reCAPTCHA with Google
-         * ---------------------------------------------
-         */
-        $captchaResponse = Http::asForm()->post(
-            'https://www.google.com/recaptcha/api/siteverify',
-            [
-                'secret'   => config('services.recaptcha.secret'),
-                'response' => $request->input('g-recaptcha-response'),
-                'remoteip' => $request->ip(),
-            ]
-        );
-
-        $captchaBody = $captchaResponse->json();
-
-        if (!($captchaBody['success'] ?? false)) {
-            throw ValidationException::withMessages([
-                'g-recaptcha-response' => ['reCAPTCHA verification failed. Please try again.'],
-            ]);
-        }
-
-        /**
-         * ---------------------------------------------
-         * STEP 3: DB Transaction
+         * STEP 2: DB Transaction
          * ---------------------------------------------
          */
         DB::beginTransaction();

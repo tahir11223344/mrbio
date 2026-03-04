@@ -23,6 +23,7 @@ class ConsultancyFormDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
+            ->addIndexColumn()
             ->editColumn('created_at', fn($consultancy) => Carbon::parse($consultancy->created_at)->format('d-M-Y'))
             ->editColumn('updated_at', fn($consultancy) => $consultancy->updated_at ? Carbon::parse($consultancy->updated_at)->format('d-M-Y') : '-')
 
@@ -54,7 +55,7 @@ class ConsultancyFormDataTable extends DataTable
             ->minifiedAjax()
             ->processing(true)
             ->serverSide(true)
-            ->orderBy(6, 'desc')
+            ->orderBy(7, 'desc')
             ->addTableClass('table table-striped table-row-bordered gy-5 gs-7 border rounded text-gray-700 fw-semibold')
             ->setTableHeadClass('text-start text-muted fw-bold fs-7 text-uppercase gs-0')
             ->drawCallback(
@@ -72,6 +73,13 @@ class ConsultancyFormDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('DT_RowIndex')
+                ->title('#')
+                ->searchable(false)
+                ->orderable(false)
+                ->width(50)
+                ->addClass('text-center'),
+
             Column::make('name')->title('Name'),
             Column::make('email')->title('Email'),
             Column::make('organization')->title('Organization'),

@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
      *
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
     public function store(LoginRequest $request)
     {
@@ -41,6 +41,15 @@ class AuthenticatedSessionController extends Controller
         // Email verified check
         if (! $user->hasVerifiedEmail()) {
             Auth::logout();
+            
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Please verify your email address.',
+                    'redirect' => route('verification.notice')
+                ], 403);
+            }
+            
             return redirect()->route('verification.notice');
         }
 
@@ -49,15 +58,22 @@ class AuthenticatedSessionController extends Controller
             'last_login_ip' => $request->getClientIp()
         ]);
 
-        // Role based redirect
-        if ($user->hasRole('administrator')) {
-            // Admins go to dashboard
-            return redirect()->intended(route('dashboard'));
+        // Determine redirect URL based on role
+        $redirectUrl = $user->hasRole('administrator') 
+            ? route('dashboard') 
+            : route('home');
+
+        // Return JSON response for AJAX requests
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'You have successfully logged in!',
+                'redirect' => $redirectUrl
+            ]);
         }
 
-        // Normal users go to home page
-        return redirect()->intended(route('home'));
-        // return redirect()->intended(RouteServiceProvider::HOME);
+        // Regular redirect with success message
+        return redirect()->intended($redirectUrl)->with('success', 'You have successfully logged in!');
     }
 
     /**

@@ -13,8 +13,11 @@
                 <div class="d-flex align-items-center position-relative my-1">
                     {!! getIcon('magnifier', 'fs-3 position-absolute ms-5') !!}
                     <input type="text" data-kt-user-table-filter="search"
-                        class="form-control form-control-solid w-250px ps-13" placeholder="{{ __('Search') }}"
+                        class="form-control form-control-solid w-250px ps-13 pe-10" placeholder="{{ __('Search') }}"
                         id="oemsSearchInput" />
+                    <button type="button" class="btn btn-sm btn-icon position-absolute end-0 me-2" id="oemsResetBtn" title="Reset Search" style="display: none;">
+                        {!! getIcon('cross', 'fs-3') !!}
+                    </button>
                 </div>
                 <!--end::Search-->
             </div>
@@ -53,9 +56,21 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+                const searchInput = document.getElementById('oemsSearchInput');
+                const resetBtn = document.getElementById('oemsResetBtn');
+
                 // Search Filter
-                document.getElementById('oemsSearchInput').addEventListener('keyup', function() {
+                searchInput.addEventListener('keyup', function() {
                     window.LaravelDataTables['oems-table'].search(this.value).draw();
+                    // Show/hide reset button based on input value
+                    resetBtn.style.display = this.value ? 'block' : 'none';
+                });
+
+                // Reset Search Button
+                resetBtn.addEventListener('click', function() {
+                    searchInput.value = '';
+                    window.LaravelDataTables['oems-table'].search('').draw();
+                    resetBtn.style.display = 'none';
                 });
             });
         </script>
