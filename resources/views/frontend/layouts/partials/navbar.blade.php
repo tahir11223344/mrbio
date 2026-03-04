@@ -356,8 +356,9 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('medical-equipment') ? 'active' : '' }}"
-                        href="{{ route('offer.detail', 'medical-equipment') }}">
+                    {{-- <a class="nav-link {{ request()->is('medical-equipment') ? 'active' : '' }}"
+                        href="{{ route('offer.detail', 'medical-equipment') }}"> --}}
+                        <a class="nav-link" href="{{ env('BIOMEDSTORE_URL') }}">
                         Sales
                     </a>
                 </li>
