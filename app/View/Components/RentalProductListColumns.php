@@ -2,35 +2,38 @@
 
 namespace App\View\Components;
 
-use App\Models\Product;
+use App\Models\EquipmentCategory;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class RentalProductListColumns extends Component
 {
-    /**
-     * Create a new component instance.
-     */
     public $productColumns;
+    public $type;
 
-    public function __construct()
+    public function __construct($type = 'rental')
     {
-        $products = Product::where('is_active', true)
-            ->whereIn('type', ['for_rent', 'both'])
-            ->select('name', 'slug')
-            ->orderBy('name')
+        $this->type = $type;
+        
+        // Determine which show_on values to include
+        $showOnValues = match($type) {
+            'rental' => ['rental', 'both'],
+            'service' => ['service', 'both'],
+            default => ['both']
+        };
+
+        $equipmentCategories = EquipmentCategory::whereIn('show_on', $showOnValues)
+            ->orderBy('sort_number', 'asc')
+            ->orderBy('name', 'asc')
             ->get();
 
-        $this->productColumns = $products->chunk(ceil($products->count() / 3));
+        $this->productColumns = $equipmentCategories->chunk(ceil($equipmentCategories->count() / 3));
     }
 
-
-    /**
-     * Get the view / contents that represent the component.
-     */
     public function render(): View|Closure|string
     {
         return view('components.rental-product-list-columns');
     }
 }
+
