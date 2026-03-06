@@ -168,7 +168,7 @@
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
-                    <span class="menu-title">{{ __('Importent Links') }}</span>
+                    <span class="menu-title">{{ __('Important Links') }}</span>
                 </a>
             </div>
         </div>
