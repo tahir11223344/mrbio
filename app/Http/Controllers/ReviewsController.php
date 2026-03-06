@@ -53,13 +53,13 @@ class ReviewsController extends Controller
             // Main content
             'main_heading' => 'nullable|string|max:255',
             'main_description' => 'nullable|string',
-            'main_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'main_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
             'main_image_alt' => 'nullable|string|max:255',
 
             // CTA
             'cta_title' => 'nullable|string|max:255',
             'cta_description' => 'nullable|string',
-            'cta_logo' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'cta_logo' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
             'cta_logo_alt' => 'nullable|string|max:255',
 
             // Testimonials

@@ -50,8 +50,8 @@ class ProductController extends Controller
             'in_stock'          => 'required|boolean',
             'is_active'         => 'required|boolean',
             'show_on_header'    => 'required|boolean',
-            'thumbnail'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'gallery_images.*'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'thumbnail'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
+            'gallery_images.*'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
             'image_alt'         => 'nullable|string',
             'meta_title'        => 'nullable|string|max:255',
             'meta_keywords'     => 'nullable|string|max:255',
@@ -164,8 +164,8 @@ class ProductController extends Controller
             'in_stock'          => 'required|boolean',
             'is_active'         => 'required|boolean',
             'show_on_header'    => 'required|boolean',
-            'thumbnail'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048', // 300 KB
-            'gallery_images.*'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048', // 300 KB
+            'thumbnail'         => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000', // 300 KB
+            'gallery_images.*'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000', // 300 KB
             'image_alt'         => 'nullable|string',
             'meta_title'        => 'nullable|string|max:255',
             'meta_keywords'     => 'nullable|string|max:255',

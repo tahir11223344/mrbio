@@ -50,8 +50,13 @@ Route::permanentRedirect('/locations/sanantonio-tx', '/locations/san-antonio-tx'
 Route::permanentRedirect('/medical-equipment-repair-in-dallas', '/repairing-services/dallas');
 Route::permanentRedirect('/medical-equipment-repair-in-houston', '/repairing-services/houston');
 Route::permanentRedirect('/medical-equipment-repair-in-Austin', '/repairing-services/austin');
-// Route::permanentRedirect('/medical-equipment-repair-in-San-Antonio', '/repairing-services/san-antonio');
-// Route::permanentRedirect('/c-arm-san-antonio', '/c-arm-repairing/c-arm-in-san-antonio');
+
+Route::permanentRedirect('/medical-equipment-repair-in-San-Antonio', '/repairing-services/san-antonio');
+Route::permanentRedirect('/c-arm-san-antonio', '/c-arm-repairing/c-arm-in-san-antonio');
+
+Route::get('/faqs/{any}', function () {
+    return redirect('/faqs', 301);
+})->where('any', '.*');
 
 Route::get('/c-arm', function () {
     return redirect()->route('repair.service.detail', [
