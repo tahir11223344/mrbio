@@ -14,6 +14,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\CompanyCertificationController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\EquipmentCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DisclaimerController;
@@ -78,6 +79,16 @@ Route::middleware(['admin_or_redirect'])->group(function () {
         Route::post('/store', 'store')->name('store');
         Route::put('/{category}', 'update')->name('update');
         Route::delete('/{category}', 'destroy')->name('destroy');
+    });
+
+    // ===========================
+    // Equipment Categories
+    // ===========================
+    Route::controller(EquipmentCategoryController::class)->prefix('admin/equipment-categories')->as('equipment-categories.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/store', 'store')->name('store');
+        Route::put('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
     });
 
     // ===========================
