@@ -3,7 +3,7 @@
 
         <!-- Heading – Hamesha DB se aayega -->
         <div class="row">
-            <div class="col-8 mx-auto">
+            <div class="col-12 mx-auto">
                 <h2 class="equipment-heading text-center mb-">
                     {!! highlightBracketText(\App\Models\BiomedServices::first()?->product_heading ?? 'Our Rental Equipment') !!}
                 </h2>

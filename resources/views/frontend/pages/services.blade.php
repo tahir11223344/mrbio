@@ -237,7 +237,7 @@
         /* ==== biomed-section ==============*/
         .biomed-section {
             /* padding: 80px 0;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        font-family: Arial, sans-serif; */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-family: Arial, sans-serif; */
         }
 
         .service-main-heading {
@@ -245,8 +245,8 @@
             font-weight: 700;
             font-family: Arial, Helvetica, sans-serif;
 
-            max-width: 750px;
-            margin: 0 auto;
+            /* max-width: 750px;
+                            margin: 0 auto; */
             /* 👈 THIS IS THE KEY */
             text-align: center;
         }
@@ -258,8 +258,8 @@
 
         .main-desc {
             text-align: center;
-            max-width: 843px;
-            margin: 0 auto;
+            /* max-width: 843px; */
+            /* margin: 0 auto; */
             font-size: 20px;
             line-height: 160%;
             font-family: Arial;
@@ -447,10 +447,10 @@
         }
 
         /* .top-bg {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    width: 100%;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    height: 60px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    background: #ACD5D5;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        width: 100%;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        height: 60px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        background: #ACD5D5;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } */
         .top-bg {
             width: 100%;
             height: 10px;
@@ -498,7 +498,7 @@
         .contact-content {
             max-width: 600px;
             /* display: flex;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        flex-direction: column; */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            flex-direction: column; */
             gap: 20px;
             margin-top: 70px;
             margin-left: 0px !important;
@@ -721,7 +721,7 @@
 
             <!-- MAIN HEADING -->
             <div class="row">
-                <div class="row mx-auto">
+                <div class="col-12 mx-auto">
                     <h2 class="service-main-heading fade-left">
                         {!! highlightBracketText($data->service_heading ?? '') !!}
                     </h2>
