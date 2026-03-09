@@ -66,6 +66,18 @@
             </div>
         @endcan
 
+        <div class="menu-sub menu-sub-accordion">
+            <div class="menu-item">
+                <a class="menu-link {{ request()->routeIs('equipment-categories.*') ? 'active' : '' }}"
+                    href="{{ route('equipment-categories.index') }}">
+                    <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">{{ __('Equipment Categories') }}</span>
+                </a>
+            </div>
+        </div>
+
         @can('read product')
             <div class="menu-sub menu-sub-accordion">
                 <!--begin:View All-->
@@ -156,7 +168,7 @@
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
-                    <span class="menu-title">{{ __('Importent Links') }}</span>
+                    <span class="menu-title">{{ __('Important Links') }}</span>
                 </a>
             </div>
         </div>

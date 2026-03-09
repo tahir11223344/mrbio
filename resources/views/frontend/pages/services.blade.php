@@ -683,7 +683,7 @@
             </div>
         </div>
 
-        <x-rental-product-list-columns />
+        <x-rental-product-list-columns type="service" />
 
     </section>
 

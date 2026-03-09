@@ -16,12 +16,12 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <ul class="equipment-list">
                         @foreach ($column as $item)
-                            <a href="{{ route('rental-services') }}">
+                            {{-- <a href="{{ $item->url ?: route('rental-services') }}"> --}}
                                 <li>
                                     <i class="bi bi-check yes-icon"></i>
                                     <span>{!! plainBracketText($item->name ?? '') !!}</span>
                                 </li>
-                            </a>
+                            {{-- </a> --}}
                         @endforeach
                     </ul>
                 </div>
@@ -30,20 +30,10 @@
 
         @if ($productColumns->isEmpty())
             <div class="text-center py-5 text-muted">
-                No rental products available at the moment.
+                No equipment available at the moment.
             </div>
         @endif
 
     </div>
 </section>
 
-
-<section class="medical-equipment-section py-5">
-    <div class="container">
-
-        <!-- Heading -->
-
-
-
-    </div>
-</section>

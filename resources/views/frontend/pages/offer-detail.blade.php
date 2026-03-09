@@ -933,9 +933,6 @@
     {{-- ================= CTA Section ================= --}}
     {{-- <x-cta-section /> --}}
 
-
-
-
     {{-- ================faqs section ================ --}}
 
     <x-faq-section :faqs="$faqs" heading="Frequently Asked Questions" subheading="" subtext=""

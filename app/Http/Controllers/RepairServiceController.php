@@ -182,11 +182,11 @@ class RepairServiceController extends Controller
             'benefits_heading' => 'nullable|string',
             'benefits_description' => 'nullable|string',
 
-            'challenges_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'challenges_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
             'challenges_image_alt' => 'nullable|string|max:255',
             'challenges_description' => 'nullable|string',
 
-            'cta_thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'cta_thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
             'cta_image_alt' => 'nullable|string|max:255',
             'cta_description' => 'nullable|string',
 
@@ -358,20 +358,20 @@ class RepairServiceController extends Controller
             'is_active' => 'required|boolean',
             'short_description' => 'nullable|string',
             'content_title' => 'required|string|max:255',
-            'content_thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'content_thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
             'content_image_alt' => 'nullable|string|max:255',
-            'gallery_images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'gallery_images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
             'content_description' => 'nullable|string',
             'serve_heading' => 'nullable|string',
             'serve_description' => 'nullable|string',
             'benefits_heading' => 'nullable|string',
             'benefits_description' => 'nullable|string',
 
-            'challenges_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'challenges_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
             'challenges_image_alt' => 'nullable|string|max:255',
             'challenges_description' => 'nullable|string',
 
-            'cta_thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'cta_thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
             'cta_image_alt' => 'nullable|string|max:255',
             'cta_description' => 'nullable|string',
             // SEO
