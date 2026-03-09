@@ -7,17 +7,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!servicesWrapper || !servicesBtn || !panel || !arrowIcon) return;
 
-    // Hover on ICON → show button
+    // Hover on ICON → show button + panel
     arrowIcon.addEventListener('mouseenter', () => {
         servicesWrapper.classList.add('show-btn');
-    });
-
-    // Hover on BUTTON → show panel
-    servicesBtn.addEventListener('mouseenter', () => {
         panel.classList.add('active');
     });
 
-    // Leave whole area → hide everything
+    // Hover on BUTTON → keep panel open
+    servicesBtn.addEventListener('mouseenter', () => {
+        servicesWrapper.classList.add('show-btn');
+        panel.classList.add('active');
+    });
+
+    // Leave whole wrapper → hide everything
     servicesWrapper.addEventListener('mouseleave', () => {
         servicesWrapper.classList.remove('show-btn');
         panel.classList.remove('active');

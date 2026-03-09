@@ -383,7 +383,8 @@
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('home-health') ? 'active' : '' }}"
-                        href="https://mrbedmed.com/" target="_blank">
+                        href="https://www.mrbiomedtechservices.com/repairing-services/home-health-services"
+                        target="_blank">
                         Home Health
                     </a>
                 </li>
@@ -427,7 +428,7 @@
 
                 <li class="nav-item dropdown has-mega">
                     <a class="nav-link nav-main-link {{ request()->routeIs('facility') ? 'active' : '' }}"
-                        href="{{ route('location') }}">Facilities</a>
+                        href="https://www.mrbiomedtechservices.com/repairing-services/healthcare-facilities">Facilities</a>
                     {{-- <span class="mega-toggle">
                         <i class="bi bi-chevron-down dropdown-icon"></i>
                     </span> --}}
