@@ -55,7 +55,7 @@ class RentalServiceController extends Controller
                 'hero_subtitle' => 'nullable|string',
                 'main_heading' => 'nullable|string|max:255',
                 'main_description' => 'nullable|string',
-                'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // 5MB
+                'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:10000', // 5MB
                 'main_image_alt' => 'nullable|string|max:255',
                 'equipment_heading' => 'nullable|string|max:255',
                 'equipment_list' => 'nullable|string',
