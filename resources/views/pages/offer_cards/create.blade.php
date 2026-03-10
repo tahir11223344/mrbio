@@ -89,7 +89,9 @@
                             <div class="col-lg-12 mb-4" id="feature-texts-wrapper">
                                 <label class="form-label fw-semibold">{{ __('Feature Texts') }}</label>
                                 @php
-                                    $featureTexts = old('feature_texts', $data->feature_texts ?? ($data->feature_text ? [$data->feature_text] : ['']));
+                                    $featureTexts = old('feature_texts', isset($data)
+                                        ? ($data->feature_texts ?? ($data->feature_text ? [$data->feature_text] : ['']))
+                                        : ['']);
                                 @endphp
                                 <div class="feature-texts-list">
                                     @foreach ($featureTexts as $index => $text)
