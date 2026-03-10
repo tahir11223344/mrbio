@@ -689,15 +689,13 @@ if (!function_exists('getServicesList')) {
     function getServicesList(): array
     {
         $services = [
-            'Biomedical Equipment Inspection',
-            'Calibration Services',
-            'Disposition & Asset Management',
-            'Medical Equipment Repair & Maintenance',
-            'Medical Equipment Rental',
-            'New & Pre-Owned Medical Equipment Sales',
-            'Preventive Maintenance (PM Services)',
-            'Refurbishing Services',
-            'Service Contracts (AMC / CMC)',
+            'Biomed Services',
+            'New & Pre-owned equipment sales',
+            'Rental Services',
+            'Inspection',
+            'Dis-Positioning',
+            'Consultancy',
+            'Home Health',
         ];
 
         sort($services); // Sort alphabetically ascending

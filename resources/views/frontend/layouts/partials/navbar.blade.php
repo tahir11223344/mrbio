@@ -383,7 +383,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('home-health') ? 'active' : '' }}"
-                        href="https://mrbedmed.com/" target="_blank">
+                        href="{{ route('repair.service.repairing', 'home-health-services') }}">
                         Home Health
                     </a>
                 </li>

@@ -1,3 +1,14 @@
+@php
+$serviceLinks = [
+                url('/services'),
+                url('/consultancy-services'),
+                url('/retired-assets-services'),
+                url('/repairing-services/home-health-services'),
+                url('/biomedical-equipment-inspection'),
+                url('/medical-equipment'),
+                url('/rental-services'),
+        ];
+@endphp
 <style>
     /* .services-btn {
         opacity: 0;
@@ -32,11 +43,11 @@
 
     <!-- SLIDE PANEL -->
     <div class="services-panel">
-        <h4>Choose Your Rental Services</h4>
+        <h4>Choose Your Services</h4>
 
         @foreach (getServicesList() as $service)
             <p class="mb-1">
-                <a href="{{ route('biomed-services') }}" class="text-decoration-none">
+                <a href="{{ $serviceLinks[$loop->index] }}" class="text-decoration-none">
                     {{ $service }}
                 </a>
             </p>

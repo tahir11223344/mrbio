@@ -485,8 +485,13 @@
                     <div class="service-list">
                         {!! $data->content_description ?? '' !!}
                     </div>
-
+                    @if($data->slug == 'home-health-services')
+                    <a href="https://medbed.com" target="_blank">
+                                <button class="quote-btn">Request A Quote</button>
+                    </a>
+                    @else
                     <button class="quote-btn" data-open-service-modal>Request A Quote</button>
+                    @endif
                 </div>
 
             </div>
