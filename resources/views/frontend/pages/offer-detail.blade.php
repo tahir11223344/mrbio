@@ -596,256 +596,83 @@
     </section>
 
 
-    <section class="billing-services py-5">
-        <div class="container">
+    @php
+        $billingCards = $offerCards['billing-services'] ?? collect();
+        $servicesCards = $offerCards['services'] ?? collect();
+        $billingHeading = optional($billingCards->firstWhere('section_heading'))->section_heading ?? 'Medical Billing Services';
+        $servicesHeading = optional($servicesCards->firstWhere('section_heading'))->section_heading ?? 'Our Healthcare Solutions';
+    @endphp
 
-            <h2 class="text-center mb-5">Medical Billing Services</h2>
+    @if ($billingCards->isNotEmpty())
+        <section class="billing-services py-5">
+            <div class="container">
 
-            <div class="swiper billingSwiper">
-                <div class="swiper-wrapper">
+                <h2 class="text-center mb-5">{{ $billingHeading }}</h2>
 
-                    <!-- CARD 1 -->
-                    <div class="swiper-slide">
-                        <div class="service-card">
-                            <img src="frontend/images/product-img-1.jpg" class="img-fluid">
+                <div class="swiper billingSwiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($billingCards as $card)
+                            <div class="swiper-slide">
+                                <div class="service-card">
+                                    @if ($card->image)
+                                        <img src="{{ asset('storage/offers/cards/' . $card->image) }}" class="img-fluid"
+                                            alt="{{ $card->image_alt ?? $card->title }}">
+                                    @endif
 
-                            <h4>Medical Billing Services</h4>
+                                    <h4>{{ $card->title }}</h4>
 
-                            <p>
-                                We provide accurate and efficient medical billing services
-                                to maximize your revenue.
-                            </p>
+                                    <p>
+                                        {{ $card->description }}
+                                    </p>
 
-                            <div class="service-feature">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span>Insurance Claim Processing</span>
+                                    @if ($card->feature_text)
+                                        <div class="service-feature">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            <span>{{ $card->feature_text }}</span>
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
-
-                        </div>
+                        @endforeach
                     </div>
-
-                    <!-- CARD 2 -->
-                    <div class="swiper-slide">
-                        <div class="service-card">
-                            <img src="frontend/images/product-img-1.jpg" class="img-fluid">
-                            <h4>Medical Billing Services</h4>
-
-                            <p>
-                                Our team ensures quick claim submission and reduced
-                                denials for healthcare providers.
-                            </p>
-
-                            <div class="service-feature">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span>Revenue Cycle Management</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- CARD 3 -->
-                    <div class="swiper-slide">
-                        <div class="service-card">
-                            <img src="frontend/images/product-img-1.jpg" class="img-fluid">
-                            <h4>Medical Billing Services</h4>
-
-                            <p>
-                                Professional billing support to increase collections
-                                and reduce administrative workload.
-                            </p>
-
-                            <div class="service-feature">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span>Eligibility Verification</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- CARD 4 -->
-                    <div class="swiper-slide">
-                        <div class="service-card">
-                            <img src="frontend/images/product-img-1.jpg" class="img-fluid">
-                            <h4>Medical Billing Services</h4>
-
-                            <p>
-                                We manage patient billing and insurance communication
-                                with high accuracy.
-                            </p>
-
-                            <div class="service-feature">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span>Denial Management</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- CARD 5 -->
-                    <div class="swiper-slide">
-                        <div class="service-card">
-                            <img src="frontend/images/product-img-1.jpg" class="img-fluid">
-                            <h4>Medical Billing Services</h4>
-
-                            <p>
-                                Helping healthcare providers focus on patients while
-                                we manage the billing process.
-                            </p>
-
-                            <div class="service-feature">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span>Payment Posting</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- CARD 6 -->
-                    <div class="swiper-slide">
-                        <div class="service-card">
-                            <img src="frontend/images/product-img-1.jpg" class="img-fluid">
-                            <h4>Medical Billing Services</h4>
-
-                            <p>
-                                Complete billing solutions to improve financial
-                                performance.
-                            </p>
-
-                            <div class="service-feature">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span>AR Follow Up</span>
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
+
             </div>
+        </section>
+    @endif
 
-        </div>
-    </section>
+    @if ($servicesCards->isNotEmpty())
+        <section class="services-section py-5">
+            <div class="container">
 
-    <section class="services-section py-5">
-        <div class="container">
+                <h2 class="text-center mb-5">{{ $servicesHeading }}</h2>
 
-            <h2 class="text-center mb-5">Our Healthcare Solutions</h2>
+                <div class="swiper serviceSlider2">
+                    <div class="swiper-wrapper">
+                        @foreach ($servicesCards as $card)
+                            <div class="swiper-slide">
+                                <div class="custom-carddd">
+                                    @if ($card->image)
+                                        <img src="{{ asset('storage/offers/cards/' . $card->image) }}" class="card-img-top"
+                                            alt="{{ $card->image_alt ?? $card->title }}">
+                                    @endif
 
-            <div class="swiper serviceSlider2">
-                <div class="swiper-wrapper">
+                                    <div class="card-body">
+                                        <h4>{{ $card->title }}</h4>
 
-                    <!-- CARD 1 -->
-                    <div class="swiper-slide">
-                        <div class="custom-carddd">
-
-                            <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
-
-                            <div class="card-body">
-                                <h4>Medical Coding</h4>
-
-                                <p>
-                                    Accurate medical coding services to ensure proper
-                                    documentation and maximum reimbursement.
-                                </p>
+                                        <p>
+                                            {{ $card->description }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-
-                        </div>
+                        @endforeach
                     </div>
-
-                    <!-- CARD 2 -->
-                    <div class="swiper-slide">
-                        <div class="custom-carddd">
-
-                            <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
-
-                            <div class="card-body">
-                                <h4>Credentialing Services</h4>
-
-                                <p>
-                                    We handle complete provider credentialing to help
-                                    healthcare professionals get approved quickly.
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- CARD 3 -->
-                    <div class="swiper-slide">
-                        <div class="custom-carddd">
-
-                            <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
-
-                            <div class="card-body">
-                                <h4>Practice Management</h4>
-
-                                <p>
-                                    Optimize healthcare practice performance with
-                                    our professional management services.
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- CARD 4 -->
-                    <div class="swiper-slide">
-                        <div class="custom-carddd">
-
-                            <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
-
-                            <div class="card-body">
-                                <h4>Denial Management</h4>
-
-                                <p>
-                                    Reduce claim denials and improve revenue
-                                    with our expert denial management solutions.
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- CARD 5 -->
-                    <div class="swiper-slide">
-                        <div class="custom-carddd">
-
-                            <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
-
-                            <div class="card-body">
-                                <h4>Eligibility Verification</h4>
-
-                                <p>
-                                    Verify patient eligibility and insurance coverage
-                                    quickly with our verification services.
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- CARD 6 -->
-                    <div class="swiper-slide">
-                        <div class="custom-carddd">
-
-                            <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
-
-                            <div class="card-body">
-                                <h4>Accounts Receivable</h4>
-
-                                <p>
-                                    Our AR team follows up claims to ensure
-                                    timely payments and improved cash flow.
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
-            </div>
 
-        </div>
-    </section>
+            </div>
+        </section>
+    @endif
 
     <section class="austin mt-5">
         <div class="container-fluid">

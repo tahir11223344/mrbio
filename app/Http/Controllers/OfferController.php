@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\OffersDataTable;
 use App\Models\Offer;
+use App\Models\OfferCard;
 use App\Traits\UploadImageTrait;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -392,7 +393,12 @@ class OfferController extends Controller
         );
 
         $faqs = getFaqs('offer');
+        $offerCards = OfferCard::where('offer_id', $data->id)
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get()
+            ->groupBy('section');
 
-        return view('frontend.pages.offer-detail', compact('data', 'faqs'));
+        return view('frontend.pages.offer-detail', compact('data', 'faqs', 'offerCards'));
     }
 }

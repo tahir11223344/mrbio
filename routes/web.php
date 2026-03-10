@@ -26,6 +26,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\LocationPageController;
 use App\Http\Controllers\OemContentController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\OfferCardController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\RentalServiceController;
 use App\Http\Controllers\RepairServiceController;
@@ -115,6 +116,15 @@ Route::middleware(['admin_or_redirect'])->group(function () {
         Route::put('/{offer}/update', 'update')->name('update');
         Route::delete('/{offer}/delete', 'destroy')->name('destroy');
         Route::post('/remove-gallery-image', 'removeGalleryImage')->name('remove-gallery-image');
+    });
+
+    Route::controller(OfferCardController::class)->prefix('admin/offers/{offer}/cards')->as('admin-offer-cards.')->group(function () {
+        Route::get('/', 'index')->name('list');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{card}/edit', 'edit')->name('edit');
+        Route::put('/{card}/update', 'update')->name('update');
+        Route::delete('/{card}/delete', 'destroy')->name('destroy');
     });
 
     // ===========================

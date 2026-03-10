@@ -78,4 +78,9 @@ class Offer extends Model
     {
         return $this->belongsTo(User::class, 'deleted_by');
     }
+
+    public function cards()
+    {
+        return $this->hasMany(OfferCard::class, 'offer_id');
+    }
 }
