@@ -55,7 +55,7 @@ class GeneralSettingController extends Controller
         $request->validate([
             'site_name' => 'required|string|max:255',
             'site_logo' => 'nullable|image|mimes:jpg,png,jpeg,webp,svg|max:10000',
-            'favicon'   => 'nullable|image|mimes:ico,png,jpg|max:512',
+            'favicon'   => 'nullable|image|mimes:ico,png,jpg|max:10000',
             'phone'     => 'nullable|string',
             'email'     => 'nullable|email',
             'smtp_host' => 'nullable|string',

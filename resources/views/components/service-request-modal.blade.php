@@ -71,6 +71,21 @@
                     <span class="text-danger error-text preferred_contact_error"></span>
                 </div>
 
+                <div class="col-md-6 col-6">
+                    <label class="form-label mb-1">Request Type</label>
+                    <div class="d-flex gap-3">
+                        <label class="form-check form-check-inline m-0">
+                            <input class="form-check-input" type="checkbox" name="request_type[]" value="sale">
+                            <span>For Sale</span>
+                        </label>
+                        <label class="form-check form-check-inline m-0">
+                            <input class="form-check-input" type="checkbox" name="request_type[]" value="rental">
+                            <span>For Rental</span>
+                        </label>
+                    </div>
+                    <span class="text-danger error-text request_type_error"></span>
+                </div>
+
                 <!-- Equipment Category (Full Width) -->
                 <div class="col-12">
                     <label class="form-label mb-1">How can we assist ?</label>
@@ -97,10 +112,10 @@
 
 
                 <!-- Recaptcha -->
-                <div class="col-12">
+                {{-- <div class="col-12">
                     <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>
                     <span class="text-danger error-text g-recaptcha-response_error"></span>
-                </div>
+                </div> --}}
 
                 <!-- Submit -->
                 <div class="col-12">

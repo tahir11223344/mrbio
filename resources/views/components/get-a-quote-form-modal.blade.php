@@ -44,6 +44,21 @@
                 <span class="text-danger error-text message_error"></span>
             </div>
 
+            <div>
+                <label class="form-label mb-1">Request Type</label>
+                <div class="d-flex gap-3">
+                    <label class="form-check form-check-inline m-0">
+                        <input class="form-check-input" type="checkbox" name="request_type[]" value="sale">
+                        <span>For Sale</span>
+                    </label>
+                    <label class="form-check form-check-inline m-0">
+                        <input class="form-check-input" type="checkbox" name="request_type[]" value="rental">
+                        <span>For Rental</span>
+                    </label>
+                </div>
+                <span class="text-danger error-text request_type_error"></span>
+            </div>
+
             <div class="col-12">
                 <div class="g-recaptcha" id="getQuoteCaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}">
                 </div>

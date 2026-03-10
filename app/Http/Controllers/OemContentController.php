@@ -36,7 +36,7 @@ class OemContentController extends Controller
                 'title'             => 'required|string|max:255',
                 'slug'              => 'required|string|max:255|unique:oem_contents,slug',
                 'order'             => 'nullable|integer',
-                'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:307', // 307 KB ~ 300KB
+                'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:10000', // 307 KB ~ 300KB
                 'image_alt'         => 'nullable|string|max:255',
                 'meta_title'        => 'nullable|string|max:255',
                 'meta_keywords'     => 'nullable|string|max:255',
@@ -98,7 +98,7 @@ class OemContentController extends Controller
                 'title'             => 'required|string|max:255',
                 'slug'              => 'required|string|max:255|unique:oem_contents,slug,' . $oem->id,
                 'order'             => 'nullable|integer',
-                'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:307', // ~300KB
+                'image'             => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:10000', // ~300KB
                 'image_alt'         => 'nullable|string|max:255',
                 'meta_title'        => 'nullable|string|max:255',
                 'meta_keywords'     => 'nullable|string|max:255',

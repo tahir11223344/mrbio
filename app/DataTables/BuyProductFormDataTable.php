@@ -40,6 +40,15 @@ class BuyProductFormDataTable extends DataTable
                 $p->city?->name ?? '-'
             )
 
+            ->editColumn('request_type', function ($p) {
+                if (empty($p->request_type)) {
+                    return '-';
+                }
+                return collect($p->request_type)
+                    ->map(fn($type) => $type === 'sale' ? 'For Sale' : 'For Rental')
+                    ->implode(', ') ?: '-';
+            })
+
             ->editColumn('created_at', fn($p) => Carbon::parse($p->created_at)->format('d-M-Y'))
             ->editColumn('updated_at', fn($p) => $p->updated_at ? Carbon::parse($p->updated_at)->format('d-M-Y') : '-')
 
@@ -72,7 +81,7 @@ class BuyProductFormDataTable extends DataTable
             ->minifiedAjax()
             ->processing(true)
             ->serverSide(true)
-            ->orderBy(7, 'desc')
+            ->orderBy(8, 'desc')
             ->addTableClass('table table-striped table-row-bordered gy-5 gs-7 border rounded text-gray-700 fw-semibold')
             ->setTableHeadClass('text-start text-muted fw-bold fs-7 text-uppercase gs-0')
             ->drawCallback(
@@ -102,6 +111,7 @@ class BuyProductFormDataTable extends DataTable
             Column::make('email')->title('Email'),
             Column::make('state')->title('State'),
             Column::make('city')->title('City'),
+            Column::make('request_type')->title('Request Type'),
             Column::make('message')->title('Message'),
 
             Column::make('created_at')->title('Created At'),

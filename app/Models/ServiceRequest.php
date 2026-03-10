@@ -16,9 +16,11 @@ class ServiceRequest extends Model
         'message',
         'looking_for',
         'preferred_contact',
+        'request_type',
     ];
 
     protected $casts = [
         'categories' => 'array', // automatically cast JSON to array
+        'request_type' => 'array',
     ];
 }
