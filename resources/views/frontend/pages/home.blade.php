@@ -82,8 +82,9 @@
 
                     <!-- Heading -->
                     <h1 class="hero-heading fade-left">{!! highlightBracketText($data?->hero_heading ?? '', ['#000000']) !!}</h1>
-                    <h2 class="hero-subheadingg fade-left">Comprehensive Biomedical Equipment Solutions <span>Trusted By
-                            Clinics All Across Texas & Nationwide!</span></h2>
+                    <h2 class="hero-subheadingg fade-left">Trusted Biomedical Equipment Solutions Across Texas & Nationwide
+                        <span>
+                        </span></h2>
 
                     <!-- Paragraph -->
                     <h3 class="hero-para mt-3 fade-right">

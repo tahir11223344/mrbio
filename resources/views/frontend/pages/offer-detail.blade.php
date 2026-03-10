@@ -410,9 +410,9 @@
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             text-align: left;
-            height: 420px;
+            min-height: 450px;
             width: 100%;
-            max-width: 370px;
+            max-width: 400px;
             transition: 0.3s;
         }
 
@@ -423,7 +423,7 @@
 
         .service-card img {
             width: 100%;
-            height: 170px;
+            height: 180px;
             border-radius: 8px;
             margin-bottom: 15px;
         }
@@ -439,30 +439,70 @@
             color: #666;
         }
 
+        .service-card span {
+            font-size: 14px;
+            color: #666;
+        }
+
+
+
         .service-feature {
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-top: 10px;
-            font-weight: 500;
+            margin-top: 5px;
+            font-weight: 400;
         }
 
         .service-feature i {
             color: #0d6efd;
-            font-size: 18px;
+            font-size: 14px;
         }
 
         .custom-carddd {
             border-radius: 10px;
             overflow: hidden;
-
             background: linear-gradient(135deg, #014c7a, #0168A4, #18adf2);
             transition: 0.3s;
             width: 100%;
-            max-width: 350px;
-            height: 400px;
-
+            max-width: 420px;
+            min-height: 410px;
             color: #ffffff;
+        }
+
+        .custom-carddd h4 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .custom-carddd.expanded .card-desc {
+            -webkit-line-clamp: unset;
+        }
+
+        .see-more-btn {
+            text-align: center;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .see-more-btn i {
+            transition: 0.3s;
+        }
+
+        .custom-carddd.expanded .see-more-btn i {
+            transform: rotate(180deg);
         }
 
         .custom-carddd:hover {
@@ -599,8 +639,10 @@
     @php
         $billingCards = $offerCards['billing-services'] ?? collect();
         $servicesCards = $offerCards['services'] ?? collect();
-        $billingHeading = optional($billingCards->firstWhere('section_heading'))->section_heading ?? 'Medical Billing Services';
-        $servicesHeading = optional($servicesCards->firstWhere('section_heading'))->section_heading ?? 'Our Healthcare Solutions';
+        $billingHeading =
+            optional($billingCards->firstWhere('section_heading'))->section_heading ?? 'Medical Billing Services';
+        $servicesHeading =
+            optional($servicesCards->firstWhere('section_heading'))->section_heading ?? 'Our Healthcare Solutions';
     @endphp
 
     @if ($billingCards->isNotEmpty())
@@ -626,7 +668,8 @@
                                     </p>
 
                                     @php
-                                        $featureTexts = $card->feature_texts ?? ($card->feature_text ? [$card->feature_text] : []);
+                                        $featureTexts =
+                                            $card->feature_texts ?? ($card->feature_text ? [$card->feature_text] : []);
                                     @endphp
                                     @foreach ($featureTexts as $featureText)
                                         @if (!empty($featureText))
@@ -657,6 +700,7 @@
                         @foreach ($servicesCards as $card)
                             <div class="swiper-slide">
                                 <div class="custom-carddd">
+
                                     @if ($card->image)
                                         <img src="{{ asset('storage/offers/cards/' . $card->image) }}" class="card-img-top"
                                             alt="{{ $card->image_alt ?? $card->title }}">
@@ -665,10 +709,16 @@
                                     <div class="card-body">
                                         <h4>{{ $card->title }}</h4>
 
-                                        <p>
+                                        <p class="card-desc">
                                             {{ $card->description }}
                                         </p>
+
+                                        <div class="see-more-btn">
+                                            <i class="bi bi-chevron-down"></i>
+                                        </div>
+
                                     </div>
+
                                 </div>
                             </div>
                         @endforeach
@@ -787,14 +837,21 @@
 @push('frontend-scripts')
     <script>
         var swiper = new Swiper(".billingSwiper", {
-            slidesPerView: 4,
+
+            slidesPerView: 3,
             spaceBetween: 20,
             loop: true,
 
             autoplay: {
                 delay: 2500,
-                disableOnInteraction: false
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true // Hover par pause
             },
+
+            grabCursor: true, // Mouse drag feel
+            simulateTouch: true, // Desktop par bhi swipe
+            touchRatio: 1,
+            touchAngle: 45,
 
             breakpoints: {
 
@@ -811,7 +868,7 @@
                 },
 
                 992: {
-                    slidesPerView: 4
+                    slidesPerView: 3
                 }
 
             }
@@ -821,15 +878,19 @@
     <script>
         var swiper2 = new Swiper(".serviceSlider2", {
 
-            slidesPerView: 4,
+            slidesPerView: 3,
             spaceBetween: 20,
             loop: true,
 
             autoplay: {
                 delay: 2500,
-                disableOnInteraction: false
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true // Hover par pause
             },
-
+            grabCursor: true, // Mouse drag feel
+            simulateTouch: true, // Desktop par bhi swipe
+            touchRatio: 1,
+            touchAngle: 45,
             breakpoints: {
 
                 0: {
@@ -845,10 +906,23 @@
                 },
 
                 992: {
-                    slidesPerView: 4
+                    slidesPerView: 3
                 }
 
             }
+
+        });
+    </script>
+    <script>
+        document.querySelectorAll('.see-more-btn').forEach(btn => {
+
+            btn.addEventListener('click', function() {
+
+                const card = this.closest('.custom-carddd');
+
+                card.classList.toggle('expanded');
+
+            });
 
         });
     </script>
