@@ -17,6 +17,11 @@ class ContactUsFormInquiry extends Model
         'city_id',
         'service',
         'message',
+        'request_type',
+    ];
+
+    protected $casts = [
+        'request_type' => 'array',
     ];
 
     public function state()

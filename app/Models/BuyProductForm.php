@@ -13,8 +13,13 @@ class BuyProductForm extends Model
         'state_id',
         'city_id',
         'message',
+        'request_type',
         'ip_address',
         'user_agent',
+    ];
+
+    protected $casts = [
+        'request_type' => 'array',
     ];
 
     public function product()

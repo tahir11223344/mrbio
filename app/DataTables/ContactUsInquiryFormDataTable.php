@@ -38,6 +38,15 @@ class ContactUsInquiryFormDataTable extends DataTable
                 $contactForm->city?->name ?? '-'
             )
 
+            ->editColumn('request_type', function ($contactForm) {
+                if (empty($contactForm->request_type)) {
+                    return '-';
+                }
+                return collect($contactForm->request_type)
+                    ->map(fn($type) => $type === 'sale' ? 'For Sale' : 'For Rental')
+                    ->implode(', ') ?: '-';
+            })
+
             ->editColumn('created_at', fn($contactForm) => Carbon::parse($contactForm->created_at)->format('d-M-Y'))
             ->editColumn('updated_at', fn($contactForm) => $contactForm->updated_at ? Carbon::parse($contactForm->updated_at)->format('d-M-Y') : '-')
 
@@ -69,7 +78,7 @@ class ContactUsInquiryFormDataTable extends DataTable
             ->minifiedAjax()
             ->processing(true)
             ->serverSide(true)
-            ->orderBy(8, 'desc')
+            ->orderBy(9, 'desc')
             ->addTableClass('table table-striped table-row-bordered gy-5 gs-7 border rounded text-gray-700 fw-semibold')
             ->setTableHeadClass('text-start text-muted fw-bold fs-7 text-uppercase gs-0')
             ->drawCallback(
@@ -100,6 +109,7 @@ class ContactUsInquiryFormDataTable extends DataTable
             Column::make('state')->title('State'),
             Column::make('city')->title('City'),
             Column::make('service')->title('Service'),
+            Column::make('request_type')->title('Request Type'),
             Column::make('message')->title('Message'),
 
             Column::make('created_at')->title('Created At'),
