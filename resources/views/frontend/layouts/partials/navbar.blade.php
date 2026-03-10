@@ -427,7 +427,7 @@
 
                 <li class="nav-item dropdown has-mega">
                     <a class="nav-link nav-main-link {{ request()->routeIs('facility') ? 'active' : '' }}"
-                        href="{{ route('location') }}">Facilities</a>
+                        href="https://www.mrbiomedtechservices.com/repairing-services/healthcare-facilities">Facilities</a>
                     {{-- <span class="mega-toggle">
                         <i class="bi bi-chevron-down dropdown-icon"></i>
                     </span> --}}

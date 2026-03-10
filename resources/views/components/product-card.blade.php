@@ -1,21 +1,5 @@
 <style>
-    /* Fixed stray character before style tag to prevent broken markup rendering */
-    /* Card remains same */
-    /* .custom-card {
-        background-color: #ffffff;
-        border-radius: 12px;
-        height: 380px;
-        width: 100%;
-        max-width: 260px;
-        margin: 0 auto;
-        transition: all 0.6s ease-in-out;
-    }
 
-    .custom-card:hover {
-        transform: scale(1.08);
-    } */
-
-    /* Swiper spacing for mobile */
     .latestProductSwiper {
         padding: 20px 0 20px;
     }

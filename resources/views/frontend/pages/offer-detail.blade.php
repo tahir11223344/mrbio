@@ -402,6 +402,96 @@
 
             }
         }
+
+
+        .service-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            height: 420px;
+            width: 100%;
+            max-width: 370px;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 170px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h4 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .service-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        .service-feature i {
+            color: #0d6efd;
+            font-size: 18px;
+        }
+
+        .custom-carddd {
+            border-radius: 10px;
+            overflow: hidden;
+
+            background: linear-gradient(135deg, #014c7a, #0168A4, #18adf2);
+            transition: 0.3s;
+            width: 100%;
+            max-width: 350px;
+            height: 400px;
+
+            color: #ffffff;
+        }
+
+        .custom-carddd:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .custom-carddd img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .custom-carddd .card-body {
+            padding: 20px;
+        }
+
+        .custom-carddd h4 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .custom-carddd p {
+            font-size: 14px;
+            color: #ffffff;
+
+        }
     </style>
 @endpush
 
@@ -504,6 +594,259 @@
             </div>
         </div>
     </section>
+
+
+    <section class="billing-services py-5">
+        <div class="container">
+
+            <h2 class="text-center mb-5">Medical Billing Services</h2>
+
+            <div class="swiper billingSwiper">
+                <div class="swiper-wrapper">
+
+                    <!-- CARD 1 -->
+                    <div class="swiper-slide">
+                        <div class="service-card">
+                            <img src="frontend/images/product-img-1.jpg" class="img-fluid">
+
+                            <h4>Medical Billing Services</h4>
+
+                            <p>
+                                We provide accurate and efficient medical billing services
+                                to maximize your revenue.
+                            </p>
+
+                            <div class="service-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Insurance Claim Processing</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div class="swiper-slide">
+                        <div class="service-card">
+                            <img src="frontend/images/product-img-1.jpg" class="img-fluid">
+                            <h4>Medical Billing Services</h4>
+
+                            <p>
+                                Our team ensures quick claim submission and reduced
+                                denials for healthcare providers.
+                            </p>
+
+                            <div class="service-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Revenue Cycle Management</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div class="swiper-slide">
+                        <div class="service-card">
+                            <img src="frontend/images/product-img-1.jpg" class="img-fluid">
+                            <h4>Medical Billing Services</h4>
+
+                            <p>
+                                Professional billing support to increase collections
+                                and reduce administrative workload.
+                            </p>
+
+                            <div class="service-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Eligibility Verification</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- CARD 4 -->
+                    <div class="swiper-slide">
+                        <div class="service-card">
+                            <img src="frontend/images/product-img-1.jpg" class="img-fluid">
+                            <h4>Medical Billing Services</h4>
+
+                            <p>
+                                We manage patient billing and insurance communication
+                                with high accuracy.
+                            </p>
+
+                            <div class="service-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Denial Management</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- CARD 5 -->
+                    <div class="swiper-slide">
+                        <div class="service-card">
+                            <img src="frontend/images/product-img-1.jpg" class="img-fluid">
+                            <h4>Medical Billing Services</h4>
+
+                            <p>
+                                Helping healthcare providers focus on patients while
+                                we manage the billing process.
+                            </p>
+
+                            <div class="service-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Payment Posting</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- CARD 6 -->
+                    <div class="swiper-slide">
+                        <div class="service-card">
+                            <img src="frontend/images/product-img-1.jpg" class="img-fluid">
+                            <h4>Medical Billing Services</h4>
+
+                            <p>
+                                Complete billing solutions to improve financial
+                                performance.
+                            </p>
+
+                            <div class="service-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>AR Follow Up</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="services-section py-5">
+        <div class="container">
+
+            <h2 class="text-center mb-5">Our Healthcare Solutions</h2>
+
+            <div class="swiper serviceSlider2">
+                <div class="swiper-wrapper">
+
+                    <!-- CARD 1 -->
+                    <div class="swiper-slide">
+                        <div class="custom-carddd">
+
+                            <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
+
+                            <div class="card-body">
+                                <h4>Medical Coding</h4>
+
+                                <p>
+                                    Accurate medical coding services to ensure proper
+                                    documentation and maximum reimbursement.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div class="swiper-slide">
+                        <div class="custom-carddd">
+
+                            <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
+
+                            <div class="card-body">
+                                <h4>Credentialing Services</h4>
+
+                                <p>
+                                    We handle complete provider credentialing to help
+                                    healthcare professionals get approved quickly.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div class="swiper-slide">
+                        <div class="custom-carddd">
+
+                            <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
+
+                            <div class="card-body">
+                                <h4>Practice Management</h4>
+
+                                <p>
+                                    Optimize healthcare practice performance with
+                                    our professional management services.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- CARD 4 -->
+                    <div class="swiper-slide">
+                        <div class="custom-carddd">
+
+                            <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
+
+                            <div class="card-body">
+                                <h4>Denial Management</h4>
+
+                                <p>
+                                    Reduce claim denials and improve revenue
+                                    with our expert denial management solutions.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- CARD 5 -->
+                    <div class="swiper-slide">
+                        <div class="custom-carddd">
+
+                            <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
+
+                            <div class="card-body">
+                                <h4>Eligibility Verification</h4>
+
+                                <p>
+                                    Verify patient eligibility and insurance coverage
+                                    quickly with our verification services.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- CARD 6 -->
+                    <div class="swiper-slide">
+                        <div class="custom-carddd">
+
+                            <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
+
+                            <div class="card-body">
+                                <h4>Accounts Receivable</h4>
+
+                                <p>
+                                    Our AR team follows up claims to ensure
+                                    timely payments and improved cash flow.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <section class="austin mt-5">
         <div class="container-fluid">
 
@@ -610,4 +953,71 @@
 
 @endsection
 @push('frontend-scripts')
+    <script>
+        var swiper = new Swiper(".billingSwiper", {
+            slidesPerView: 4,
+            spaceBetween: 20,
+            loop: true,
+
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false
+            },
+
+            breakpoints: {
+
+                0: {
+                    slidesPerView: 1
+                },
+
+                576: {
+                    slidesPerView: 1
+                },
+
+                768: {
+                    slidesPerView: 2
+                },
+
+                992: {
+                    slidesPerView: 4
+                }
+
+            }
+
+        });
+    </script>
+    <script>
+        var swiper2 = new Swiper(".serviceSlider2", {
+
+            slidesPerView: 4,
+            spaceBetween: 20,
+            loop: true,
+
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false
+            },
+
+            breakpoints: {
+
+                0: {
+                    slidesPerView: 1
+                },
+
+                576: {
+                    slidesPerView: 1
+                },
+
+                768: {
+                    slidesPerView: 2
+                },
+
+                992: {
+                    slidesPerView: 4
+                }
+
+            }
+
+        });
+    </script>
 @endpush
