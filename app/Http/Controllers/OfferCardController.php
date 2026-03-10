@@ -38,6 +38,8 @@ class OfferCardController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'feature_text' => 'nullable|string|max:255',
+            'feature_texts' => 'nullable|array',
+            'feature_texts.*' => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
             'image_alt' => 'nullable|string|max:255',
@@ -58,6 +60,7 @@ class OfferCardController extends Controller
                 'title' => $validated['title'],
                 'description' => $validated['description'] ?? null,
                 'feature_text' => $validated['feature_text'] ?? null,
+                'feature_texts' => $validated['feature_texts'] ?? [],
                 'sort_order' => $validated['sort_order'] ?? 0,
                 'image' => $image,
                 'image_alt' => $validated['image_alt'] ?? null,
@@ -110,6 +113,8 @@ class OfferCardController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'feature_text' => 'nullable|string|max:255',
+            'feature_texts' => 'nullable|array',
+            'feature_texts.*' => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
             'image_alt' => 'nullable|string|max:255',
@@ -124,6 +129,7 @@ class OfferCardController extends Controller
             $card->title = $validated['title'];
             $card->description = $validated['description'] ?? null;
             $card->feature_text = $validated['feature_text'] ?? null;
+            $card->feature_texts = $validated['feature_texts'] ?? [];
             $card->sort_order = $validated['sort_order'] ?? 0;
             $card->image_alt = $validated['image_alt'] ?? null;
             $card->save();

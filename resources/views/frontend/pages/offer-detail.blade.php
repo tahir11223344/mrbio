@@ -625,12 +625,17 @@
                                         {{ $card->description }}
                                     </p>
 
-                                    @if ($card->feature_text)
-                                        <div class="service-feature">
-                                            <i class="bi bi-check-circle-fill"></i>
-                                            <span>{{ $card->feature_text }}</span>
-                                        </div>
-                                    @endif
+                                    @php
+                                        $featureTexts = $card->feature_texts ?? ($card->feature_text ? [$card->feature_text] : []);
+                                    @endphp
+                                    @foreach ($featureTexts as $featureText)
+                                        @if (!empty($featureText))
+                                            <div class="service-feature">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                                <span>{{ $featureText }}</span>
+                                            </div>
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
                         @endforeach

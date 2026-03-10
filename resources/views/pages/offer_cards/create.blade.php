@@ -35,11 +35,11 @@
                                     <option value="">{{ __('Select Section') }}</option>
                                     <option value="billing-services"
                                         {{ old('section', $data->section ?? '') == 'billing-services' ? 'selected' : '' }}>
-                                        {{ __('Billing Services') }}
+                                        {{ __('IT & Billing Services') }}
                                     </option>
                                     <option value="services"
                                         {{ old('section', $data->section ?? '') == 'services' ? 'selected' : '' }}>
-                                        {{ __('Services') }}
+                                        {{ __('Product Portfolios') }}
                                     </option>
                                 </select>
                                 @error('section')
@@ -86,12 +86,30 @@
                                 @enderror
                             </div>
 
-                            <div class="col-lg-6 mb-4">
-                                <label for="feature_text" class="form-label fw-semibold">{{ __('Feature Text') }}</label>
-                                <input type="text" id="feature_text" name="feature_text"
-                                    class="form-control form-control-lg @error('feature_text') is-invalid @enderror"
-                                    value="{{ old('feature_text', $data->feature_text ?? '') }}">
-                                @error('feature_text')
+                            <div class="col-lg-12 mb-4" id="feature-texts-wrapper">
+                                <label class="form-label fw-semibold">{{ __('Feature Texts') }}</label>
+                                @php
+                                    $featureTexts = old('feature_texts', $data->feature_texts ?? ($data->feature_text ? [$data->feature_text] : ['']));
+                                @endphp
+                                <div class="feature-texts-list">
+                                    @foreach ($featureTexts as $index => $text)
+                                        <div class="d-flex gap-3 align-items-center mb-2 feature-text-row">
+                                            <input type="text" name="feature_texts[]"
+                                                class="form-control form-control-lg"
+                                                value="{{ $text }}">
+                                            <button type="button" class="btn btn-light btn-sm remove-feature-text" {{ $index === 0 ? 'disabled' : '' }}>
+                                                {{ __('Remove') }}
+                                            </button>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <button type="button" class="btn btn-sm btn-primary" id="add-feature-text">
+                                    {{ __('Add Feature') }}
+                                </button>
+                                @error('feature_texts')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                                @error('feature_texts.*')
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -132,4 +150,55 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const sectionSelect = document.getElementById('section');
+                const featureWrapper = document.getElementById('feature-texts-wrapper');
+                const list = featureWrapper?.querySelector('.feature-texts-list');
+                const addButton = document.getElementById('add-feature-text');
+
+                function toggleFeatureTexts() {
+                    if (!sectionSelect || !featureWrapper) return;
+                    featureWrapper.style.display = sectionSelect.value === 'billing-services' ? '' : 'none';
+                }
+
+                function addFeatureRow(value = '') {
+                    if (!list) return;
+                    const row = document.createElement('div');
+                    row.className = 'd-flex gap-3 align-items-center mb-2 feature-text-row';
+                    row.innerHTML = `
+                        <input type="text" name="feature_texts[]" class="form-control form-control-lg" value="${value}">
+                        <button type="button" class="btn btn-light btn-sm remove-feature-text">{{ __('Remove') }}</button>
+                    `;
+                    list.appendChild(row);
+                }
+
+                if (addButton) {
+                    addButton.addEventListener('click', function() {
+                        addFeatureRow();
+                    });
+                }
+
+                if (list) {
+                    list.addEventListener('click', function(event) {
+                        const target = event.target;
+                        if (target.classList.contains('remove-feature-text')) {
+                            const row = target.closest('.feature-text-row');
+                            if (row && list.children.length > 1) {
+                                row.remove();
+                            }
+                        }
+                    });
+                }
+
+                if (sectionSelect) {
+                    sectionSelect.addEventListener('change', toggleFeatureTexts);
+                }
+
+                toggleFeatureTexts();
+            });
+        </script>
+    @endpush
 </x-default-layout>

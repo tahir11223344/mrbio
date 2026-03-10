@@ -17,7 +17,11 @@ class OfferCardDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            ->editColumn('section', fn($card) => ucwords(str_replace('-', ' ', $card->section)))
+            ->editColumn('section', function ($card) {
+                return $card->section === 'billing-services'
+                    ? 'IT & Billing Services'
+                    : 'Product Portfolios';
+            })
             ->editColumn('image', function ($card) {
                 if (!$card->image) {
                     return '-';

@@ -70,12 +70,12 @@
                 <div class="d-flex align-items-center gap-4">
 
                     <label class="custom-check">
-                        <input type="checkbox" name="request_type[]" value="sale">
+                        <input type="checkbox" name="request_type[]" value="sale" required>
                         <span>For Sale</span>
                     </label>
 
                     <label class="custom-check">
-                        <input type="checkbox" name="request_type[]" value="rental">
+                        <input type="checkbox" name="request_type[]" value="rental" required>
                         <span>For Rental</span>
                     </label>
 

@@ -15,7 +15,12 @@ class OfferCard extends Model
         'image',
         'image_alt',
         'feature_text',
+        'feature_texts',
         'sort_order',
+    ];
+
+    protected $casts = [
+        'feature_texts' => 'array',
     ];
 
     public function offer()

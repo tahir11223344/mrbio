@@ -176,31 +176,32 @@ class InquiryController extends Controller
             'service'           => 'required|string|max:255',
             'categories'        => 'nullable|array',
             'categories.*'      => 'string|max:255',
-            'request_type'      => 'nullable|array',
+            'request_type'      => 'required|array|min:1',
             'request_type.*'    => 'in:sale,rental',
             'looking_for'       => 'nullable|string',
             'message'           => 'required|string|max:2000',
             'preferred_contact' => 'required|in:email,phone',
-            // 'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required',
         ], [
             'service.required' => 'Please select a service.',
-            // 'g-recaptcha-response.required' => 'Please confirm you are not a robot.',
+            'request_type.required' => 'Please select at least one request type.',
+            'g-recaptcha-response.required' => 'Please confirm you are not a robot.',
         ]);
 
         // Verify Google reCAPTCHA
-        // $recaptcha = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-        //     'secret' => config('services.recaptcha.secret'),
-        //     'response' => $request->input('g-recaptcha-response'),
-        //     'remoteip' => $request->ip(),
-        // ])->json();
+        $recaptcha = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => config('services.recaptcha.secret'),
+            'response' => $request->input('g-recaptcha-response'),
+            'remoteip' => $request->ip(),
+        ])->json();
 
-        // if (!($recaptcha['success'] ?? false)) {
-        //     return response()->json([
-        //         'success' => false,
-        //         'errors'  => ['g-recaptcha-response' => ['Captcha verification failed.']],
-        //     ], 422);
-        // }
-        // dd($request->all());
+        if (!($recaptcha['success'] ?? false)) {
+            return response()->json([
+                'success' => false,
+                'errors'  => ['g-recaptcha-response' => ['Captcha verification failed.']],
+            ], 422);
+        }
+        
         DB::beginTransaction();
 
         try {
@@ -410,10 +411,11 @@ class InquiryController extends Controller
                 'state'        => 'required|exists:states,id',
                 'city'         => 'nullable|exists:cities,id',
                 'message'      => 'required|string',
-                'request_type' => 'nullable|array',
+                'request_type' => 'required|array|min:1',
                 'request_type.*' => 'in:sale,rental',
                 'g-recaptcha-response' => 'required',
             ], [
+                'request_type.required' => 'Please select at least one request type.',
                 'g-recaptcha-response.required' => 'Please confirm you are not a robot.',
             ]);
 
@@ -551,11 +553,12 @@ class InquiryController extends Controller
                 'city'    => 'nullable|string|max:255',
                 'phone'   => 'required|string|max:255',
                 'message' => 'required|string|max:1000',
-                'request_type' => 'nullable|array',
+                'request_type' => 'required|array|min:1',
                 'request_type.*' => 'in:sale,rental',
                 'g-recaptcha-response' => 'required',
             ], [
                 'service.required' => 'Please select at least one service.',
+                'request_type.required' => 'Please select at least one request type.',
                 'g-recaptcha-response.required' => 'Please confirm you are not a robot.',
             ]);
 
