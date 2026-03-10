@@ -35,7 +35,7 @@
                                     <option value="">{{ __('Select Section') }}</option>
                                     <option value="billing-services"
                                         {{ old('section', $data->section ?? '') == 'billing-services' ? 'selected' : '' }}>
-                                        {{ __('IT & Billing Services') }}
+                                        {{ __('IT & Medical Billing Services') }}
                                     </option>
                                     <option value="services"
                                         {{ old('section', $data->section ?? '') == 'services' ? 'selected' : '' }}>

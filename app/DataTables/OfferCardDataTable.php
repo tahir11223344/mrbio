@@ -19,7 +19,7 @@ class OfferCardDataTable extends DataTable
             ->addIndexColumn()
             ->editColumn('section', function ($card) {
                 return $card->section === 'billing-services'
-                    ? 'IT & Billing Services'
+                    ? 'IT & Medical Billing Services'
                     : 'Product Portfolios';
             })
             ->editColumn('image', function ($card) {
