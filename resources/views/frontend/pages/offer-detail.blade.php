@@ -452,7 +452,7 @@
             font-size: 18px;
         }
 
-        .custom-card {
+        .custom-carddd {
             border-radius: 10px;
             overflow: hidden;
 
@@ -465,29 +465,29 @@
             color: #ffffff;
         }
 
-        .custom-card:hover {
+        .custom-carddd:hover {
             transform: translateY(-6px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .custom-card img {
+        .custom-carddd img {
             width: 100%;
             height: 220px;
             object-fit: cover;
         }
 
-        .custom-card .card-body {
+        .custom-carddd .card-body {
             padding: 20px;
         }
 
-        .custom-card h4 {
+        .custom-carddd h4 {
             font-size: 20px;
             font-weight: 600;
             margin-bottom: 10px;
             color: #ffffff;
         }
 
-        .custom-card p {
+        .custom-carddd p {
             font-size: 14px;
             color: #ffffff;
 
@@ -735,7 +735,7 @@
 
                     <!-- CARD 1 -->
                     <div class="swiper-slide">
-                        <div class="custom-card">
+                        <div class="custom-carddd">
 
                             <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
 
@@ -753,7 +753,7 @@
 
                     <!-- CARD 2 -->
                     <div class="swiper-slide">
-                        <div class="custom-card">
+                        <div class="custom-carddd">
 
                             <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
 
@@ -771,7 +771,7 @@
 
                     <!-- CARD 3 -->
                     <div class="swiper-slide">
-                        <div class="custom-card">
+                        <div class="custom-carddd">
 
                             <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
 
@@ -789,7 +789,7 @@
 
                     <!-- CARD 4 -->
                     <div class="swiper-slide">
-                        <div class="custom-card">
+                        <div class="custom-carddd">
 
                             <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
 
@@ -807,7 +807,7 @@
 
                     <!-- CARD 5 -->
                     <div class="swiper-slide">
-                        <div class="custom-card">
+                        <div class="custom-carddd">
 
                             <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
 
@@ -825,7 +825,7 @@
 
                     <!-- CARD 6 -->
                     <div class="swiper-slide">
-                        <div class="custom-card">
+                        <div class="custom-carddd">
 
                             <img src="frontend/images/rental/rental-img.jpg" class="card-img-top">
 

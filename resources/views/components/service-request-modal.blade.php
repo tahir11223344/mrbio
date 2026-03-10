@@ -1,8 +1,28 @@
+<style>
+    .custom-check {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .custom-check input {
+        width: 14px;
+        height: 14px;
+        margin: 0;
+        vertical-align: middle;
+    }
+
+    .custom-check span {
+        line-height: 1;
+    }
+</style>
 <div class="service-modal-overlay" id="serviceModal">
     <div class="service-modal-box">
 
         <span class="service-modal-close">
-             <i class="fa-solid fa-xmark"></i>
+            <i class="fa-solid fa-xmark"></i>
         </span>
 
         <!-- Heading -->
@@ -72,23 +92,28 @@
                 </div>
 
                 <div class="col-md-6 col-6">
-                    <label class="form-label mb-1">Request Type</label>
-                    <div class="d-flex gap-3">
-                        <label class="form-check form-check-inline m-0">
-                            <input class="form-check-input" type="checkbox" name="request_type[]" value="sale">
+                    <label class="form-label mb-2">Request Type</label>
+
+                    <div class="d-flex align-items-center gap-4">
+
+                        <label class="custom-check">
+                            <input type="checkbox" name="request_type[]" value="sale">
                             <span>For Sale</span>
                         </label>
-                        <label class="form-check form-check-inline m-0">
-                            <input class="form-check-input" type="checkbox" name="request_type[]" value="rental">
+
+                        <label class="custom-check">
+                            <input type="checkbox" name="request_type[]" value="rental">
                             <span>For Rental</span>
                         </label>
+
                     </div>
+
                     <span class="text-danger error-text request_type_error"></span>
                 </div>
 
                 <!-- Equipment Category (Full Width) -->
                 <div class="col-12">
-                    <label class="form-label mb-1">How can we assist ?</label>
+                    <label class="form-label mt-1">How can we assist ?</label>
                     {{-- <div class="checkbox-group d-flex flex-wrap gap-2">
                         @foreach ($all_categories as $category)
                             <label class="form-check form-check-inline m-0">

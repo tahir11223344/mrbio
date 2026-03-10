@@ -1,3 +1,23 @@
+<style>
+    .custom-check {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .custom-check input {
+        width: 14px;
+        height: 14px;
+        margin: 0;
+        vertical-align: middle;
+    }
+
+    .custom-check span {
+        line-height: 1;
+    }
+</style>
 <div class="buy-form-overlay" id="getAQuoteFormOverlay">
     <div class="buy-form-box">
         {{-- <span class="close-form">&times;</span> --}}
@@ -44,22 +64,27 @@
                 <span class="text-danger error-text message_error"></span>
             </div>
 
-            <div>
-                <label class="form-label mb-1">Request Type</label>
-                <div class="d-flex gap-3">
-                    <label class="form-check form-check-inline m-0">
-                        <input class="form-check-input" type="checkbox" name="request_type[]" value="sale">
+            <div class="col-md-6 col-6">
+                <label class="form-label mb-2">Request Type</label>
+
+                <div class="d-flex align-items-center gap-4">
+
+                    <label class="custom-check">
+                        <input type="checkbox" name="request_type[]" value="sale">
                         <span>For Sale</span>
                     </label>
-                    <label class="form-check form-check-inline m-0">
-                        <input class="form-check-input" type="checkbox" name="request_type[]" value="rental">
+
+                    <label class="custom-check">
+                        <input type="checkbox" name="request_type[]" value="rental">
                         <span>For Rental</span>
                     </label>
+
                 </div>
+
                 <span class="text-danger error-text request_type_error"></span>
             </div>
 
-            <div class="col-12">
+            <div class="col-12 mt-2">
                 <div class="g-recaptcha" id="getQuoteCaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}">
                 </div>
                 <span class="text-danger error-text g-recaptcha-response_error"></span>
