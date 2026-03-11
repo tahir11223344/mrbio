@@ -164,6 +164,7 @@
                                 <label for="description" class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea id="blog_description" name="description"
                                     data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=blog/ckeditor"
+                                    data-ckeditor="true"
                                     class="ckeditor form-control form-control-lg @error('description') is-invalid @enderror" rows="5">{{ old('description', $data->description ?? '') }}</textarea>
                                 @error('description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
