@@ -710,9 +710,9 @@
                                     <div class="card-body">
                                         <h4>{{ $card->title }}</h4>
 
-                                        <p class="card-desc">
+                                        <div class="card-desc">
                                             {!! $card->description !!}
-                                        </p>
+                                        </div>
 
 
 
