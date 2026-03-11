@@ -80,6 +80,8 @@
                             <div class="col-lg-12 mb-4">
                                 <label for="description" class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea id="description" name="description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=offers/cards/ckeditor"
+                                    data-ckeditor="true"
                                     class="form-control form-control-lg @error('description') is-invalid @enderror" rows="4">{{ old('description', $data->description ?? '') }}</textarea>
                                 @error('description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -121,8 +123,14 @@
                                 <input type="file" id="image" name="image"
                                     class="form-control form-control-lg @error('image') is-invalid @enderror">
                                 @if (isset($data->image) && $data->image)
-                                    <img src="{{ asset('storage/offers/cards/' . $data->image) }}" alt="Card"
-                                        class="img-thumbnail mt-2" width="100">
+                                    <div class="mt-2" id="offer-card-image-block">
+                                        <img src="{{ asset('storage/offers/cards/' . $data->image) }}" alt="Card"
+                                            class="img-thumbnail" width="100">
+                                        <button type="button" class="btn btn-sm btn-light-danger ms-2"
+                                            id="remove-offer-card-image">
+                                            {{ __('Remove') }}
+                                        </button>
+                                    </div>
                                 @endif
                                 @error('image')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -154,6 +162,7 @@
     </div>
 
     @push('scripts')
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}?v={{ filemtime(public_path('assets/js/custom/blog-editor.js')) }}"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const sectionSelect = document.getElementById('section');
@@ -202,5 +211,40 @@
                 toggleFeatureTexts();
             });
         </script>
+        @if (isset($data->id) && !empty($data->image))
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const removeBtn = document.getElementById('remove-offer-card-image');
+                    if (!removeBtn) return;
+
+                    removeBtn.addEventListener('click', function() {
+                        if (!confirm('Remove this image?')) {
+                            return;
+                        }
+
+                        fetch("{{ route('admin-offer-cards.remove-image', $offer->id) }}", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                            },
+                            body: JSON.stringify({
+                                card_id: "{{ $data->id }}",
+                            })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    const block = document.getElementById('offer-card-image-block');
+                                    if (block) {
+                                        block.remove();
+                                    }
+                                }
+                            })
+                            .catch(error => console.error(error));
+                    });
+                });
+            </script>
+        @endif
     @endpush
 </x-default-layout>
