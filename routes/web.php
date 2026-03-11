@@ -125,6 +125,7 @@ Route::middleware(['admin_or_redirect'])->group(function () {
         Route::get('/{card}/edit', 'edit')->name('edit');
         Route::put('/{card}/update', 'update')->name('update');
         Route::delete('/{card}/delete', 'destroy')->name('destroy');
+        Route::post('/remove-image', 'removeImage')->name('remove-image');
     });
 
     // ===========================

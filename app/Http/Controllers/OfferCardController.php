@@ -9,6 +9,7 @@ use App\Traits\UploadImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class OfferCardController extends Controller
 {
@@ -82,6 +83,35 @@ class OfferCardController extends Controller
             return back()->withInput()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
+    public function removeImage(Request $request, Offer $offer)
+    {
+        $this->authorize('write offer');
+
+        $validated = $request->validate([
+            'card_id' => 'required|exists:offer_cards,id',
+        ]);
+
+        $card = OfferCard::where('offer_id', $offer->id)
+            ->where('id', $validated['card_id'])
+            ->firstOrFail();
+
+        if ($card->image) {
+            $path = 'offers/cards/' . $card->image;
+            if (Storage::disk('public')->exists($path)) {
+                Storage::disk('public')->delete($path);
+            }
+        }
+
+        $card->image = null;
+        $card->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Image removed successfully.',
+        ]);
+    }
+    
 
     public function edit(Offer $offer, OfferCard $card)
     {

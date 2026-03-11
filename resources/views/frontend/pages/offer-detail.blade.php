@@ -715,7 +715,7 @@
                                     <h4>{{ $card->title }}</h4>
 
                                     <p>
-                                        {{ $card->description }}
+                                        {!! $card->description !!}
                                     </p>
 
                                     @php
@@ -801,10 +801,10 @@
 
                                     <div class="card-body">
                                         <h4>{{ $card->title }}</h4>
- 
-                                        <p class="card-desc">
-                                            {{ $card->description }}
-                                        </p>
+
+                                        <div class="card-desc">
+                                            {!! $card->description !!}
+                                        </div>
 
 
 
