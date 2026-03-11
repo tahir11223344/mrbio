@@ -486,7 +486,7 @@
                         {!! $data->content_description ?? '' !!}
                     </div>
                     @if ($data->slug == 'home-health-services')
-                        <a href="https://medbed.com" target="_blank">
+                        <a href="https://mrbedmed.com" target="_blank">
                             <button class="quote-btn">Request A Quote</button>
                         </a>
                     @else
