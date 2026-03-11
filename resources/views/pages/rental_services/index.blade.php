@@ -104,6 +104,8 @@
                                 <label for="equipment_list"
                                     class="form-label fw-semibold">{{ __('Equipment List') }}</label>
                                 <textarea name="equipment_list" id="equipment_list" rows="4"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=rental_services/ckeditor"
+                                    data-ckeditor="true"
                                     class="form-control form-control-lg @error('equipment_list') is-invalid @enderror">{{ old('equipment_list', $data->equipment_list ?? '') }}</textarea>
                                 @error('equipment_list')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -127,6 +129,8 @@
                                 <label for="why_rent_list"
                                     class="form-label fw-semibold">{{ __('Why Rent List') }}</label>
                                 <textarea name="why_rent_list" id="why_rent_list" rows="4"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=rental_services/ckeditor"
+                                    data-ckeditor="true"
                                     class="form-control form-control-lg @error('why_rent_list') is-invalid @enderror">{{ old('why_rent_list', $data->why_rent_list ?? '') }}</textarea>
                                 @error('why_rent_list')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -211,37 +215,7 @@
             });
         </script>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const editors = [{
-                        id: 'equipment_list',
-                        uploadDir: 'rental_services/ckeditor'
-                    },
-                    {
-                        id: 'why_rent_list',
-                        uploadDir: 'rental_services/ckeditor'
-                    },
-
-                ];
-
-                editors.forEach(editorConfig => {
-                    const el = document.querySelector(`#${editorConfig.id}`);
-                    if (el) {
-                        ClassicEditor
-                            .create(el, {
-                                ckfinder: {
-                                    uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=" +
-                                        editorConfig.uploadDir
-                                }
-                            })
-                            .then(editorInstance => {
-                                console.log(`CKEditor initialized for #${editorConfig.id}`);
-                            })
-                            .catch(error => console.error(`CKEditor error for #${editorConfig.id}:`, error));
-                    }
-                });
-            });
-        </script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}?v={{ filemtime(public_path('assets/js/custom/blog-editor.js')) }}"></script>
     @endpush
 
 </x-default-layout>

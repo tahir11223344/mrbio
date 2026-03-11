@@ -100,6 +100,8 @@
                             <div class="col-lg-12">
                                 <label class="form-label fw-semibold">Serve Description</label>
                                 <textarea name="serve_description" id="serve_description" rows="4"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=how_we_serve/ckeditor"
+                                    data-ckeditor="true"
                                     class="form-control form-control-lg @error('serve_description') is-invalid @enderror">{{ old('serve_description', $data->serve_description ?? '') }}</textarea>
                                 @error('serve_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -167,31 +169,7 @@
     </div>
 
     @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const editors = [{
-                    id: 'serve_description',
-                    uploadDir: 'how_we_serve/ckeditor'
-                }];
-
-                editors.forEach(editorConfig => {
-                    const el = document.querySelector(`#${editorConfig.id}`);
-                    if (el) {
-                        ClassicEditor
-                            .create(el, {
-                                ckfinder: {
-                                    uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=" +
-                                        editorConfig.uploadDir
-                                }
-                            })
-                            .then(editorInstance => {
-                                console.log(`CKEditor initialized for #${editorConfig.id}`);
-                            })
-                            .catch(error => console.error(`CKEditor error for #${editorConfig.id}:`, error));
-                    }
-                });
-            });
-        </script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}?v={{ filemtime(public_path('assets/js/custom/blog-editor.js')) }}"></script>
     @endpush
 
 </x-default-layout>

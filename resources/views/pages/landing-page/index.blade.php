@@ -102,6 +102,8 @@
                                 <label for="content_description"
                                     class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea name="content_description" id="content_description" rows="3"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=landing-page/ckeditor"
+                                    data-ckeditor="true"
                                     class="form-control form-control-lg @error('content_description') is-invalid @enderror">{{ old('content_description', $data->content_description ?? '') }}</textarea>
                                 @error('content_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -248,19 +250,9 @@
                     });
                 }
 
-                ClassicEditor
-                    .create(document.querySelector('#content_description'), {
-                        ckfinder: {
-                            uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=landing-page/ckeditor"
-                        }
-                    })
-                    .then(editor => {
-                        console.log(`CKEditor initialized for #content_description`);
-                    })
-                    .catch(error => console.error(error));
-
             });
         </script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}?v={{ filemtime(public_path('assets/js/custom/blog-editor.js')) }}"></script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {

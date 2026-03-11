@@ -682,91 +682,8 @@
             <div class="container">
                 <h2 class="main-title text-center mb-5 fade-left">RENTAL <span>PRODUCTS</span></h2>
 
-                <div id="product-list">
-                    <div class="row g-4 justify-content-center">
-
-                        @foreach ($products as $product)
-                            @php
-                                // Prepare gallery images
-                                $gallery = [];
-                                if (is_string($product->gallery_images)) {
-                                    $decoded = json_decode($product->gallery_images, true);
-                                    $gallery = is_array($decoded) ? $decoded : [];
-                                } elseif (is_array($product->gallery_images)) {
-                                    $gallery = $product->gallery_images;
-                                }
-
-                                // Build full image list = thumbnail + gallery
-                                $allImages = [];
-                                if ($product->thumbnail) {
-                                    $allImages[] = 'products/thumbnails/' . $product->thumbnail;
-                                }
-                                foreach ($gallery as $img) {
-                                    $allImages[] = 'products/gallery/' . $img;
-                                }
-                            @endphp
-
-                            <!-- PRODUCT ITEM -->
-                            <div class="col-12 row g-4 align-items-start">
-
-                                <!-- HEADING (mobile first) -->
-                                <div class="col-12 product-heading">
-                                    <h3 class="product-name">{!! highlightBracketText($product->name ?? '') !!}</h3>
-                                </div>
-
-                                <!-- IMAGE -->
-                                <div class="col-lg-6 col-md-6 product-image order-2 order-md-2">
-                                    <div class="product-section">
-                                        <div class="img-wrapper position-relative">
-                                            <img src="{{ asset('storage/products/thumbnails/' . $product->thumbnail) }}"
-                                                class="img-fluid rental-img mainProductImg active-img"
-                                                alt="{{ $product->image_alt ?? '' }}">
-                                            <button class="btn-overlay">Get For Rent</button>
-                                        </div>
-
-                                        {{-- DOTS --}}
-                                        <div class="img-dots mt-3 text-center">
-                                            @foreach ($allImages as $index => $imgPath)
-                                                <span class="dot {{ $index == 0 ? 'active' : '' }}"
-                                                    data-img="{{ asset('storage/' . $imgPath) }}"></span>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- DESCRIPTION + BUTTONS -->
-                                <div class="col-lg-6 col-md-6 product-text order-3 order-md-1">
-                                    <p class="product-desc">
-                                        {!! $product->description !!}
-                                    </p>
-
-                                    <div class="d-flex gap-3 btn-wrraper">
-                                        <button class="btn-service" data-open-form>
-                                            <i class="bi bi-gear"></i>
-                                            <span class="btn-label" data-slug="{{ $product->slug ?? '' }}">Get
-                                                Service</span>
-                                        </button>
-
-                                        <a href="tel:{{ cleanPhone(setting('phone')) }}">
-                                            <button class="btn-call">
-                                                <i class="bi bi-telephone"></i>
-                                                <span class="btn-label">Call Us</span>
-                                            </button>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        @endforeach
-
-                        {{-- PAGINATION --}}
-                        @if ($products->count() > 0)
-                            <div class="mt-4">
-                                {{ $products->links('vendor.pagination.simple-default') }}
-                            </div>
-                        @endif
-
-                    </div>
+                <div id="rental-products-wrapper">
+                    @include('frontend.partials.rental-products-list', ['products' => $products])
                 </div>
             </div>
         </section>
@@ -882,23 +799,58 @@
 
 @push('frontend-scripts')
     <script>
-        document.querySelectorAll(".product-section").forEach(section => {
+        function initRentalProductDots() {
+            document.querySelectorAll(".product-section").forEach(section => {
+                const mainImg = section.querySelector(".mainProductImg");
+                const dots = section.querySelectorAll(".dot");
 
-            const mainImg = section.querySelector(".mainProductImg");
-            const dots = section.querySelectorAll(".dot");
-
-            dots.forEach(dot => {
-                dot.addEventListener("click", () => {
-
-                    // Update image
-                    mainImg.src = dot.dataset.img;
-
-                    // Active dot switch
-                    dots.forEach(d => d.classList.remove("active"));
-                    dot.classList.add("active");
+                dots.forEach(dot => {
+                    dot.addEventListener("click", () => {
+                        mainImg.src = dot.dataset.img;
+                        dots.forEach(d => d.classList.remove("active"));
+                        dot.classList.add("active");
+                    });
                 });
             });
+        }
 
+        function bindRentalPagination() {
+            const wrapper = document.getElementById('rental-products-wrapper');
+            if (!wrapper) return;
+
+            wrapper.querySelectorAll('.pagination a.page-link').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const url = this.getAttribute('href');
+                    if (!url) return;
+
+                    fetch(url, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.html) {
+                                wrapper.innerHTML = data.html;
+                                initRentalProductDots();
+                                bindRentalPagination();
+
+                                const section = document.querySelector('.rental-products-section');
+                                if (section) {
+                                    const top = section.getBoundingClientRect().top + window.scrollY - 20;
+                                    window.scrollTo({ top, behavior: 'smooth' });
+                                }
+                            }
+                        })
+                        .catch(error => console.error(error));
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initRentalProductDots();
+            bindRentalPagination();
         });
     </script>
 @endpush

@@ -193,6 +193,8 @@
                                 <label for="content_description"
                                     class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea id="content_description" name="content_description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=repair-pages/ckeditor"
+                                    data-ckeditor="true"
                                     class="ckeditor form-control form-control-lg @error('content_description') is-invalid @enderror" rows="5">{{ old('content_description', $data->content_description ?? '') }}</textarea>
                                 @error('content_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -219,6 +221,8 @@
                                 <label for="serve_description"
                                     class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea id="serve_description" name="serve_description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=repair-pages/ckeditor"
+                                    data-ckeditor="true"
                                     class="ckeditor form-control form-control-lg @error('serve_description') is-invalid @enderror" rows="5">{{ old('serve_description', $data->serve_description ?? '') }}</textarea>
                                 @error('serve_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -245,6 +249,8 @@
                                 <label for="benefits_description"
                                     class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea id="benefits_description" name="benefits_description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=repair-pages/ckeditor"
+                                    data-ckeditor="true"
                                     class="ckeditor form-control form-control-lg @error('benefits_description') is-invalid @enderror" rows="5">{{ old('benefits_description', $data->benefits_description ?? '') }}</textarea>
                                 @error('benefits_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -285,6 +291,8 @@
                                 <label for="challenges_description"
                                     class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea id="challenges_description" name="challenges_description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=repair-pages/ckeditor"
+                                    data-ckeditor="true"
                                     class="ckeditor form-control form-control-lg @error('challenges_description') is-invalid @enderror"
                                     rows="5">{{ old('challenges_description', $data->challenges_description ?? '') }}</textarea>
                                 @error('challenges_description')
@@ -327,6 +335,8 @@
                                 <label for="cta_description"
                                     class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea id="cta_description" name="cta_description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=repair-pages/ckeditor"
+                                    data-ckeditor="true"
                                     class="ckeditor form-control form-control-lg @error('cta_description') is-invalid @enderror" rows="5">{{ old('cta_description', $data->cta_description ?? '') }}</textarea>
                                 @error('cta_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -444,49 +454,7 @@
                 });
             });
         </script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const editors = [{
-                        id: 'content_description',
-                        uploadDir: 'repair-pages/ckeditor'
-                    },
-                    {
-                        id: 'serve_description',
-                        uploadDir: 'repair-pages/ckeditor'
-                    },
-                    {
-                        id: 'benefits_description',
-                        uploadDir: 'repair-pages/ckeditor'
-                    },
-                    {
-                        id: 'challenges_description',
-                        uploadDir: 'repair-pages/ckeditor'
-                    },
-                    {
-                        id: 'cta_description',
-                        uploadDir: 'repair-pages/ckeditor'
-                    },
-                    // Add more editors here if needed
-                ];
-
-                editors.forEach(editorConfig => {
-                    const el = document.querySelector(`#${editorConfig.id}`);
-                    if (el) {
-                        ClassicEditor
-                            .create(el, {
-                                ckfinder: {
-                                    uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=" +
-                                        editorConfig.uploadDir
-                                }
-                            })
-                            .then(editorInstance => {
-                                console.log(`CKEditor initialized for #${editorConfig.id}`);
-                            })
-                            .catch(error => console.error(`CKEditor error for #${editorConfig.id}:`, error));
-                    }
-                });
-            });
-        </script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}?v={{ filemtime(public_path('assets/js/custom/blog-editor.js')) }}"></script>
     @endpush
 
 </x-default-layout>

@@ -487,7 +487,7 @@
     <x-service-btn />
 
     {{-- =============== feature section ===================== --}}
-    <x-featured-blogs-section :limit="4" />
+    <x-featured-blogs-section :limit="4" :showHeading="true" />
 
     {{-- @if ($featuredBlogs->count())
         <section class="featured-section container my-2">

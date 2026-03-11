@@ -228,6 +228,8 @@
                             <div class="col-lg-12 mb-4">
                                 <label class="form-label fw-semibold">Content Description</label>
                                 <textarea name="content_description" id="content_description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=city/ckeditor"
+                                    data-ckeditor="true"
                                     class="form-control ckeditor @error('content_description') is-invalid @enderror" rows="5">{{ old('content_description', $data->content_description ?? '') }}</textarea>
                                 @error('content_description')
                                     <div class="text-danger">{{ $message }}</div>
@@ -250,6 +252,8 @@
                             <div class="col-lg-12 mb-4">
                                 <label class="form-label fw-semibold">Serve Description</label>
                                 <textarea name="serve_description" id="serve_description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=how_we_serve/ckeditor"
+                                    data-ckeditor="true"
                                     class="form-control ckeditor @error('serve_description') is-invalid @enderror" rows="5">{{ old('serve_description', $data->serve_description ?? '') }}</textarea>
                                 @error('serve_description')
                                     <div class="text-danger">{{ $message }}</div>
@@ -372,36 +376,7 @@
                 });
             });
         </script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const editors = [{
-                        id: 'content_description',
-                        uploadDir: 'city/ckeditor'
-                    },
-                    {
-                        id: 'serve_description',
-                        uploadDir: 'how_we_serve/ckeditor'
-                    }
-                ];
-
-                editors.forEach(editorConfig => {
-                    const el = document.querySelector(`#${editorConfig.id}`);
-                    if (el) {
-                        ClassicEditor
-                            .create(el, {
-                                ckfinder: {
-                                    uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=" +
-                                        editorConfig.uploadDir
-                                }
-                            })
-                            .then(editorInstance => {
-                                console.log(`CKEditor initialized for #${editorConfig.id}`);
-                            })
-                            .catch(error => console.error(`CKEditor error for #${editorConfig.id}:`, error));
-                    }
-                });
-            });
-        </script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}?v={{ filemtime(public_path('assets/js/custom/blog-editor.js')) }}"></script>
     @endpush
 
 </x-default-layout>

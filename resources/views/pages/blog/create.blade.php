@@ -153,6 +153,8 @@
                                 <label for="description"
                                     class="form-label fw-semibold">{{ __('Short Description') }}</label>
                                 <textarea id="short_description" name="short_description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=blog/ckeditor"
+                                    data-ckeditor="true"
                                     class="ckeditor form-control form-control-lg @error('short_description') is-invalid @enderror" rows="5">{{ old('short_description', $data->short_description ?? '') }}</textarea>
                                 @error('short_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -164,6 +166,7 @@
                                 <label for="description" class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea id="blog_description" name="description"
                                     data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=blog/ckeditor"
+                                    data-ckeditor="true"
                                     class="ckeditor form-control form-control-lg @error('description') is-invalid @enderror" rows="5">{{ old('description', $data->description ?? '') }}</textarea>
                                 @error('description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -253,7 +256,7 @@
             });
 
         </script>
-        <script src="{{ asset('assets/js/custom/blog-editor.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}?v={{ filemtime(public_path('assets/js/custom/blog-editor.js')) }}"></script>
     @endpush
 
 </x-default-layout>

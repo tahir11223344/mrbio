@@ -137,6 +137,12 @@ class RentalServiceController extends Controller
             // Fetch FAQs
             $faqs = getFaqs('rental');
 
+            if (request()->ajax()) {
+                return response()->json([
+                    'html' => view('frontend.partials.rental-products-list', compact('products'))->render(),
+                ]);
+            }
+
             
         } catch (\Exception $e) {
 

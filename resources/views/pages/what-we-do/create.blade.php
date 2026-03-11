@@ -56,6 +56,8 @@
                                             <div class="col-12 mb-4">
                                                 <label class="form-label fw-semibold">Description</label>
                                                 <textarea id="description_{{ $i }}" name="sections[{{ $i }}][description]" rows="5"
+                                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=what-we-do/ckeditor"
+                                                    data-ckeditor="true"
                                                     class="form-control form-control-lg">{{ old('sections.' . $i . '.description', $data->sections[$i]['description'] ?? '') }}</textarea>
                                             </div>
                                         </div>
@@ -152,36 +154,7 @@
             });
         </script>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const editors = [{
-                        id: 'description_1',
-                        uploadDir: 'what-we-do/ckeditor'
-                    },
-                    {
-                        id: 'description_2',
-                        uploadDir: 'what-we-do/ckeditor'
-                    }
-                ];
-
-                editors.forEach(editorConfig => {
-                    const el = document.querySelector(`#${editorConfig.id}`);
-                    if (el) {
-                        ClassicEditor
-                            .create(el, {
-                                ckfinder: {
-                                    uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=" +
-                                        editorConfig.uploadDir
-                                }
-                            })
-                            .then(editorInstance => {
-                                console.log(`CKEditor initialized for #${editorConfig.id}`);
-                            })
-                            .catch(error => console.error(`CKEditor error for #${editorConfig.id}:`, error));
-                    }
-                });
-            });
-        </script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}?v={{ filemtime(public_path('assets/js/custom/blog-editor.js')) }}"></script>
     @endpush
 
 </x-default-layout>

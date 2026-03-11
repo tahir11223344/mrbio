@@ -2,10 +2,11 @@
 
 @if ($featuredBlogs->count())
     <section class="featured-section container my-5">
+        @if($showHeading)
         <h2 class="latest-blog-heading mb-4 text-center">
             Featured <span>Updates</span>
         </h2>
-
+        @endif
         <div class="row g-4 mt-4">
             @foreach ($featuredBlogs as $featuredBlog)
                 <div class="col-lg-6">
