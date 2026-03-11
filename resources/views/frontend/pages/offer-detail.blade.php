@@ -533,6 +533,56 @@
             color: #ffffff;
 
         }
+
+
+
+        .category-list {
+            width: 300px;
+        }
+
+        .category-item {
+            border-bottom: 1px solid #eee;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            cursor: pointer;
+        }
+
+        .category-header span {
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .category-header i {
+            transition: 0.3s;
+        }
+
+        /* Subcategory hidden */
+        .subcategory {
+            max-height: 0;
+            overflow: hidden;
+            transition: 1s ease;
+            padding-left: 15px;
+
+        }
+
+        /* Hover par open */
+        .category-item:hover .subcategory {
+            max-height: 200px;
+        }
+
+        /* icon rotate */
+        .category-item:hover .category-header i {
+            transform: rotate(180deg);
+        }
+
+        .subcategory p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
     </style>
 @endpush
 
@@ -672,14 +722,56 @@
                                         $featureTexts =
                                             $card->feature_texts ?? ($card->feature_text ? [$card->feature_text] : []);
                                     @endphp
-                                    @foreach ($featureTexts as $featureText)
+                                    {{-- @foreach ($featureTexts as $featureText)
                                         @if (!empty($featureText))
                                             <div class="service-feature">
                                                 <i class="bi bi-check-circle-fill"></i>
                                                 <span>{{ $featureText }}</span>
                                             </div>
                                         @endif
-                                    @endforeach
+                                    @endforeach --}}
+                                    <div class="category-list">
+
+                                        <div class="category-item">
+                                            <div class="category-header">
+                                                <span>Medical Equipment</span>
+                                                <i class="bi bi-chevron-down"></i>
+                                            </div>
+
+                                            <div class="subcategory">
+                                                <p>ECG Machine</p>
+                                                <p>Patient Monitor</p>
+                                                <p>Ventilator</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-item">
+                                            <div class="category-header">
+                                                <span>Surgical Instruments</span>
+                                                <i class="bi bi-chevron-down"></i>
+                                            </div>
+
+                                            <div class="subcategory">
+                                                <p>Forceps</p>
+                                                <p>Scissors</p>
+                                                <p>Scalpels</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="category-item">
+                                            <div class="category-header">
+                                                <span>Hospital Furniture</span>
+                                                <i class="bi bi-chevron-down"></i>
+                                            </div>
+
+                                            <div class="subcategory">
+                                                <p>Hospital Bed</p>
+                                                <p>Bedside Locker</p>
+                                                <p>IV Stand</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
@@ -709,7 +801,7 @@
 
                                     <div class="card-body">
                                         <h4>{{ $card->title }}</h4>
-
+ 
                                         <p class="card-desc">
                                             {{ $card->description }}
                                         </p>
@@ -845,34 +937,42 @@
 
             autoplay: {
                 delay: 2500,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true // Hover par pause
+                disableOnInteraction: false
             },
 
-            grabCursor: true, // Mouse drag feel
-            simulateTouch: true, // Desktop par bhi swipe
-            touchRatio: 1,
-            touchAngle: 45,
+            grabCursor: true,
+            simulateTouch: true,
 
             breakpoints: {
 
                 0: {
                     slidesPerView: 1
                 },
-
                 576: {
                     slidesPerView: 1
                 },
-
                 768: {
                     slidesPerView: 2
                 },
-
                 992: {
                     slidesPerView: 3
                 }
 
             }
+
+        });
+
+
+        // ✅ Hover on full card pause slider
+        document.querySelectorAll(".service-card").forEach(card => {
+
+            card.addEventListener("mouseenter", () => {
+                swiper.autoplay.stop();
+            });
+
+            card.addEventListener("mouseleave", () => {
+                swiper.autoplay.start();
+            });
 
         });
     </script>
