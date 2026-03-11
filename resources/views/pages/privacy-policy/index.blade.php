@@ -41,6 +41,8 @@
                             <div class="col-lg-12">
                                 <label for="content" class="form-label fw-semibold">{{ __('Content') }}</label>
                                 <textarea name="content" id="privacy_policy_content" rows="3"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=privacy-policy/ckeditor"
+                                    data-ckeditor="true"
                                     class="form-control form-control-lg @error('content') is-invalid @enderror">{{ old('content', $data->content ?? '') }}</textarea>
                                 @error('content')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -105,31 +107,7 @@
     </div>
 
     @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const editors = [{
-                    id: 'privacy_policy_content',
-                    uploadDir: 'privacy-policy/ckeditor'
-                }];
-
-                editors.forEach(editorConfig => {
-                    const el = document.querySelector(`#${editorConfig.id}`);
-                    if (el) {
-                        ClassicEditor
-                            .create(el, {
-                                ckfinder: {
-                                    uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=" +
-                                        editorConfig.uploadDir
-                                }
-                            })
-                            .then(editorInstance => {
-                                console.log(`CKEditor initialized for #${editorConfig.id}`);
-                            })
-                            .catch(error => console.error(`CKEditor error for #${editorConfig.id}:`, error));
-                    }
-                });
-            });
-        </script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}"></script>
     @endpush
 
 </x-default-layout>

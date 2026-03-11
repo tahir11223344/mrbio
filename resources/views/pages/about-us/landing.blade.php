@@ -57,6 +57,8 @@
                                 <label for="main_description"
                                     class="form-label fw-semibold">{{ __('Main Description') }}</label>
                                 <textarea name="main_description" id="main_description" rows="5"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=about_us/ckeditor"
+                                    data-ckeditor="true"
                                     class="form-control form-control-lg @error('main_description') is-invalid @enderror">{{ old('main_description', $data->main_description ?? '') }}</textarea>
                                 @error('main_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -152,6 +154,8 @@
                                 <label for="value_section_description"
                                     class="form-label fw-semibold">{{ __('Value Section Description') }}</label>
                                 <textarea name="value_section_description" id="value_section_description" rows="4"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=about_us/ckeditor"
+                                    data-ckeditor="true"
                                     class="form-control form-control-lg @error('value_section_description') is-invalid @enderror">{{ old('value_section_description', $data->value_section_description ?? '') }}</textarea>
                                 @error('value_section_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -256,37 +260,7 @@
             });
         </script>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const editors = [{
-                        id: 'main_description',
-                        uploadDir: 'about_us/ckeditor'
-                    },
-                    {
-                        id: 'value_section_description',
-                        uploadDir: 'about_us/ckeditor'
-                    },
-
-                ];
-
-                editors.forEach(editorConfig => {
-                    const el = document.querySelector(`#${editorConfig.id}`);
-                    if (el) {
-                        ClassicEditor
-                            .create(el, {
-                                ckfinder: {
-                                    uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=" +
-                                        editorConfig.uploadDir
-                                }
-                            })
-                            .then(editorInstance => {
-                                console.log(`CKEditor initialized for #${editorConfig.id}`);
-                            })
-                            .catch(error => console.error(`CKEditor error for #${editorConfig.id}:`, error));
-                    }
-                });
-            });
-        </script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}"></script>
     @endpush
 
 </x-default-layout>

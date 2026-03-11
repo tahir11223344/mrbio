@@ -63,6 +63,8 @@
                                 <label for="intro_text"
                                     class="form-label fw-semibold">{{ __('Intro Description') }}</label>
                                 <textarea name="intro_text" id="intro_text" rows="3"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=biomed_services/ckeditor"
+                                    data-ckeditor="true"
                                     class="form-control form-control-lg @error('intro_text') is-invalid @enderror">{{ old('intro_text', $data->intro_text ?? '') }}</textarea>
                                 @error('intro_text')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -472,33 +474,7 @@
             });
         </script>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const editors = [{
-                        id: 'intro_text',
-                        uploadDir: 'biomed_services/ckeditor'
-                    },
-
-                ];
-
-                editors.forEach(editorConfig => {
-                    const el = document.querySelector(`#${editorConfig.id}`);
-                    if (el) {
-                        ClassicEditor
-                            .create(el, {
-                                ckfinder: {
-                                    uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=" +
-                                        editorConfig.uploadDir
-                                }
-                            })
-                            .then(editorInstance => {
-                                console.log(`CKEditor initialized for #${editorConfig.id}`);
-                            })
-                            .catch(error => console.error(`CKEditor error for #${editorConfig.id}:`, error));
-                    }
-                });
-            });
-        </script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}"></script>
     @endpush
 
 </x-default-layout>

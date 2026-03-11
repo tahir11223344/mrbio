@@ -58,6 +58,8 @@
                             <div class="col-lg-12">
                                 <label class="form-label fw-semibold">Main Description</label>
                                 <textarea name="main_description" id="main_description" rows="5"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=reviews/ckeditor"
+                                    data-ckeditor="true"
                                     class="form-control form-control-lg @error('main_description') is-invalid @enderror">{{ old('main_description', $data->main_description ?? '') }}</textarea>
                                 @error('main_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -225,31 +227,7 @@
     </div>
 
     @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const editors = [{
-                    id: 'main_description',
-                    uploadDir: 'reviews/ckeditor'
-                }];
-
-                editors.forEach(editorConfig => {
-                    const el = document.querySelector(`#${editorConfig.id}`);
-                    if (el) {
-                        ClassicEditor
-                            .create(el, {
-                                ckfinder: {
-                                    uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=" +
-                                        editorConfig.uploadDir
-                                }
-                            })
-                            .then(editorInstance => {
-                                console.log(`CKEditor initialized for #${editorConfig.id}`);
-                            })
-                            .catch(error => console.error(`CKEditor error for #${editorConfig.id}:`, error));
-                    }
-                });
-            });
-        </script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}"></script>
     @endpush
 
 

@@ -78,6 +78,8 @@
                             <div class="col-lg-12 mb-4">
                                 <label for="description" class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea id="offer_description" name="description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=offers/ckeditor"
+                                    data-ckeditor="true"
                                     class="ckeditor form-control form-control-lg @error('description') is-invalid @enderror" rows="5">{{ old('description', $data->description ?? '') }}</textarea>
                                 @error('description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -183,6 +185,8 @@
                                 <label for="serve_description"
                                     class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea id="serve_description" name="serve_description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=offers/ckeditor"
+                                    data-ckeditor="true"
                                     class="ckeditor form-control form-control-lg @error('serve_description') is-invalid @enderror" rows="5">{{ old('serve_description', $data->serve_description ?? '') }}</textarea>
                                 @error('serve_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -209,6 +213,8 @@
                                 <label for="benefits_description"
                                     class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea id="benefits_description" name="benefits_description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=offers/ckeditor"
+                                    data-ckeditor="true"
                                     class="ckeditor form-control form-control-lg @error('benefits_description') is-invalid @enderror" rows="5">{{ old('benefits_description', $data->benefits_description ?? '') }}</textarea>
                                 @error('benefits_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -249,6 +255,8 @@
                                 <label for="challenges_description"
                                     class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea id="challenges_description" name="challenges_description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=offers/ckeditor"
+                                    data-ckeditor="true"
                                     class="ckeditor form-control form-control-lg @error('challenges_description') is-invalid @enderror"
                                     rows="5">{{ old('challenges_description', $data->challenges_description ?? '') }}</textarea>
                                 @error('challenges_description')
@@ -291,6 +299,8 @@
                                 <label for="cta_description"
                                     class="form-label fw-semibold">{{ __('Description') }}</label>
                                 <textarea id="cta_description" name="cta_description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=offers/ckeditor"
+                                    data-ckeditor="true"
                                     class="ckeditor form-control form-control-lg @error('cta_description') is-invalid @enderror" rows="5">{{ old('cta_description', $data->cta_description ?? '') }}</textarea>
                                 @error('cta_description')
                                     <div class="text-danger mt-1">{{ $message }}</div>
@@ -407,48 +417,7 @@
             });
         </script>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const editors = [{
-                        id: 'offer_description',
-                        uploadDir: 'offers/ckeditor'
-                    },
-                    {
-                        id: 'serve_description',
-                        uploadDir: 'offers/ckeditor'
-                    },
-                    {
-                        id: 'benefits_description',
-                        uploadDir: 'offers/ckeditor'
-                    },
-                    {
-                        id: 'challenges_description',
-                        uploadDir: 'offers/ckeditor'
-                    },
-                    {
-                        id: 'cta_description',
-                        uploadDir: 'offers/ckeditor'
-                    }
-                ];
-
-                editors.forEach(editorConfig => {
-                    const el = document.querySelector(`#${editorConfig.id}`);
-                    if (el) {
-                        ClassicEditor
-                            .create(el, {
-                                ckfinder: {
-                                    uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=" +
-                                        editorConfig.uploadDir
-                                }
-                            })
-                            .then(editorInstance => {
-                                console.log(`CKEditor initialized for #${editorConfig.id}`);
-                            })
-                            .catch(error => console.error(`CKEditor error for #${editorConfig.id}:`, error));
-                    }
-                });
-            });
-        </script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}"></script>
     @endpush
 
 </x-default-layout>

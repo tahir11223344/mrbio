@@ -103,7 +103,10 @@
 
                             <div class="col-12 mb-3">
                                 <label>Description</label>
-                                <textarea name="description" id="oems_description" class="form-control">{{ old('description', $data->description ?? '') }}</textarea>
+                                <textarea name="description" id="oems_description"
+                                    data-upload-url="{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=oem_contents/ckeditor"
+                                    data-ckeditor="true"
+                                    class="form-control">{{ old('description', $data->description ?? '') }}</textarea>
                                 @error('description')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -161,20 +164,7 @@
             });
         </script>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                ClassicEditor
-                    .create(document.querySelector('#oems_description'), {
-                        ckfinder: {
-                            uploadUrl: "{{ route('ckeditor.upload') }}?_token={{ csrf_token() }}&dir=oem_contents/ckeditor"
-                        }
-                    })
-                    .then(editor => {
-                        console.log(`CKEditor initialized for #oems_description`);
-                    })
-                    .catch(error => console.error(error));
-            });
-        </script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}"></script>
     @endpush
 
 </x-default-layout>
