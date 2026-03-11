@@ -518,7 +518,7 @@
     </section>
 
     {{-- =============== feature section ===================== --}}
-    <x-featured-blogs-section :limit="4" />
+    <x-featured-blogs-section :limit="4" :showHeading="false" />
 
 @endsection
 

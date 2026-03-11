@@ -10,17 +10,19 @@ use Illuminate\View\Component;
 class FeaturedBlogsSection extends Component
 {
     public $featuredBlogs;
+    public bool $showHeading;
 
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(int $limit = 6, bool $showHeading = true)
     {
+        $this->showHeading = $showHeading;
         $this->featuredBlogs = Blog::with(['category:id,name'])
             ->where('type', 'featured')
             ->where('is_active', 1)
             ->latest()
-            ->take(6)
+            ->take($limit)
             ->select(
                 'id',
                 'title',
