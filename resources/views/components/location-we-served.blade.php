@@ -35,8 +35,8 @@
                     <div class="row mt-3">
                         <div class="col-md-2">
                             <ul class="primary-list">
-                                <li>LAKE
-                                    
+                                <li>
+                                    Fort Worth
                                 </li>
 
                             </ul>
@@ -44,25 +44,25 @@
 
                         <div class="col-md-2">
                             <ul class="primary-list">
-                                <li>Arlington</li>
+                                <li>Waco</li>
 
                             </ul>
                         </div>
 
                         <div class="col-md-2">
                             <ul class="primary-list">
-                                <li>Plano</li>
+                                <li>Houston</li>
                             </ul>
                         </div>
                         <div class="col-md-2">
                             <ul class="primary-list">
-                                <li>Irving</li>
+                                <li>Oklahoma</li>
 
                             </ul>
                         </div>
                         <div class="col-md-2">
                             <ul class="primary-list">
-                                <li>Garland</li>
+                                <li>Louisiana</li>
 
                             </ul>
                         </div>
