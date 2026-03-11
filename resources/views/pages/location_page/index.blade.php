@@ -169,7 +169,7 @@
     </div>
 
     @push('scripts')
-        <script src="{{ asset('assets/js/custom/blog-editor.js') }}"></script>
+        <script src="{{ asset('assets/js/custom/blog-editor.js') }}?v={{ filemtime(public_path('assets/js/custom/blog-editor.js')) }}"></script>
     @endpush
 
 </x-default-layout>
