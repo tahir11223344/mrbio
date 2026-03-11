@@ -498,9 +498,10 @@
         }
 
         .see-more-btn i {
-            transition: 0.3s;
+            transition: transform 0.3s ease;
         }
 
+        /* rotate icon */
         .custom-carddd.expanded .see-more-btn i {
             transform: rotate(180deg);
         }
@@ -713,12 +714,12 @@
                                             {{ $card->description }}
                                         </p>
 
-                                        <div class="see-more-btn">
-                                            <i class="bi bi-chevron-down"></i>
-                                        </div>
+
 
                                     </div>
-
+                                    <div class="see-more-btn">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
@@ -914,15 +915,23 @@
         });
     </script>
     <script>
-        document.querySelectorAll('.see-more-btn').forEach(btn => {
+        document.addEventListener("click", function(e) {
 
-            btn.addEventListener('click', function() {
+            const btn = e.target.closest(".see-more-btn");
+            if (!btn) return;
 
-                const card = this.closest('.custom-carddd');
+            const card = btn.closest(".custom-carddd");
+            const icon = btn.querySelector("i");
 
-                card.classList.toggle('expanded');
+            card.classList.toggle("expanded");
 
-            });
+            if (card.classList.contains("expanded")) {
+                icon.classList.remove("bi-chevron-down");
+                icon.classList.add("bi-chevron-up");
+            } else {
+                icon.classList.remove("bi-chevron-up");
+                icon.classList.add("bi-chevron-down");
+            }
 
         });
     </script>

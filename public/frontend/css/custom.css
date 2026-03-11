@@ -4096,7 +4096,7 @@
  .austin-heading {
      font-family: Arial;
      font-weight: 700;
-     font-size: 48px;
+     font-size: 40px;
      line-height: 100%;
      letter-spacing: 0;
      text-transform: capitalize;
@@ -4109,13 +4109,8 @@
 
  .austin-desc {
      font-family: Arial;
-
      font-weight: 400;
-
-
-     font-size: 20px;
-
-
+     font-size: 16px;
      line-height: 160%;
      text-align: left;
 
@@ -4254,13 +4249,13 @@
 
  .detail-heading span {
      color: #0A70A2;
-     display: block;
+     /* display: block; */
  }
 
  .service-list li {
      font-family: Arial;
      font-weight: 400;
-     font-size: 20px;
+     font-size: 16px;
      line-height: 160%;
      letter-spacing: 0;
      margin-bottom: 12px;

@@ -27,7 +27,7 @@
             <div class="container-fluid xray-box p-4 mt-5">
                 <div class="container text-center mb-5">
                     <div class="row">
-                        <div class="col-md-8 mx-auto">
+                        <div class="col-12 mx-aut">
                             <h2 class="main-heading fade-left">
                                 {{ $section['headingData']['first_text'] ?? '' }}
                                 <span>{{ $section['headingData']['second_text'] ?? '' }}</span>

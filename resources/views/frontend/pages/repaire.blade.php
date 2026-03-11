@@ -339,7 +339,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-6 mx-auto ">
+                <div class="col-12 mx-auto ">
 
                     <div class="repaire-content text-center">
                         <h2 class="fade-left">{!! highlightBracketText($data->banner_heading ?? '') !!}</h2>
@@ -362,7 +362,8 @@
 
     <section class="special-section">
         <div class="container">
-            <h2 class="special-section-title">Specialized Services <span>All Over Texas From Mr. Biomed Tech Services</span> </h2>
+            <h2 class="special-section-title">Specialized Services <span>All Over Texas From Mr. Biomed Tech Services</span>
+            </h2>
 
             <div class="card-wrapper">
                 <div class="service-card ">
@@ -382,8 +383,9 @@
                 </div>
             </div>
             <div class="row text-center mt-4">
-                <div class="col-md-7 mx-auto">
-                    <p class="desc">Mr. Biomed Tech Services is a CBET accredited and HIPAA compliant Texas-based team of biomedical
+                <div class="col-12 mx-auto">
+                    <p class="desc">Mr. Biomed Tech Services is a CBET accredited and HIPAA compliant Texas-based team of
+                        biomedical
                         engineers dedicated to serving and upholding the American public healthcare system. We’ve introduced
                         specialized services at cost-effective rates to demonstrate our deep knowledge and years of hands-on
                         experience.</p>
