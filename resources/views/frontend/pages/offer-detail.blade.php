@@ -484,6 +484,7 @@
             text-align: left;
             font-size: 14px;
             font-weight: 400;
+            color: #ffffff;
         }
 
         .custom-carddd.expanded .card-desc {
@@ -1032,6 +1033,10 @@
                 icon.classList.remove("bi-chevron-up");
                 icon.classList.add("bi-chevron-down");
             }
+
+            // 🔹 Important
+            swiper2.updateAutoHeight();
+            swiper2.update();
 
         });
     </script>
