@@ -275,6 +275,17 @@ document.addEventListener('DOMContentLoaded', () => {
         resetCaptcha();
     };
 
+    // Clear error when checkbox is clicked
+    const checkboxes = form.querySelectorAll('.quote-request-type-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const errorSpan = form.querySelector('.request_type_error');
+            if (errorSpan) {
+                errorSpan.textContent = '';
+            }
+        });
+    });
+
     const closeModal = () => {
         modal.classList.remove('active');
         clearErrors();
@@ -332,6 +343,18 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         clearErrors();
+
+        // Validate at least one checkbox is selected
+        const checkboxes = form.querySelectorAll('.quote-request-type-checkbox');
+        const isChecked = Array.from(checkboxes).some(cb => cb.checked);
+
+        if (!isChecked) {
+            const errorSpan = form.querySelector('.request_type_error');
+            if (errorSpan) {
+                errorSpan.textContent = 'Please select at least one request type.';
+            }
+            return;
+        }
 
         const formData = new FormData(form);
 
@@ -1337,14 +1360,37 @@ document.addEventListener('DOMContentLoaded', function () {
         overlay.querySelectorAll('.error-text').forEach(el => el.innerText = '');
     }
 
+    // Clear error when checkbox is clicked
+    const checkboxes = form.querySelectorAll('.buy-request-type-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const errorSpan = form.querySelector('.request_type_error');
+            if (errorSpan) {
+                errorSpan.textContent = '';
+            }
+        });
+    });
+
     // ================= FORM SUBMIT AJAX =================
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        let formData = new FormData(form);
-
         // clear previous errors
         overlay.querySelectorAll('.error-text').forEach(el => el.innerText = '');
+
+        // Validate at least one checkbox is selected
+        const checkboxes = form.querySelectorAll('.buy-request-type-checkbox');
+        const isChecked = Array.from(checkboxes).some(cb => cb.checked);
+
+        if (!isChecked) {
+            const errorSpan = form.querySelector('.request_type_error');
+            if (errorSpan) {
+                errorSpan.innerText = 'Please select at least one request type.';
+            }
+            return;
+        }
+
+        let formData = new FormData(form);
 
         fetch(form.action, {
             method: 'POST',

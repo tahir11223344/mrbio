@@ -189,7 +189,9 @@ class InquiryController extends Controller
         ]);
 
         // Verify Google reCAPTCHA
-        $recaptcha = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+        $recaptcha = Http::withOptions([
+            'verify' => false, // Disable SSL verification for local development
+        ])->asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
             'secret' => config('services.recaptcha.secret'),
             'response' => $request->input('g-recaptcha-response'),
             'remoteip' => $request->ip(),
