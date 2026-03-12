@@ -77,19 +77,18 @@
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 20px;
-            line-height: 63px;
+            line-height: 42px;
             margin-bottom: 12px;
         }
 
         .detail-heading span {
             color: #0A70A2;
-            display: block;
         }
 
         .service-list {
             font-family: Arial;
             font-weight: 400;
-            font-size: 20px;
+            font-size: 16px;
             line-height: 160%;
             letter-spacing: 0;
             margin-bottom: 12px;
@@ -254,7 +253,7 @@
         .section-text {
             font-family: Arial;
             font-weight: 400;
-            font-size: 20px;
+            font-size: 16px;
             line-height: 160%;
             letter-spacing: 0;
             margin-top: 12px;
@@ -262,8 +261,8 @@
 
         /* Right Image */
         .right-img {
-            height: 543px;
-            width: 407px;
+            height: 450px;
+            width: 350px;
             object-fit: cover;
             border-radius: 12px;
             transition: all 0.4s ease-in-out;
