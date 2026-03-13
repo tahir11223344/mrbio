@@ -22,10 +22,11 @@ Allow: /repairing-services/
 Allow: /c-arm-repairing/
 Allow: /x-ray-repairing/
 Allow: /feedback
-Allow: /rentals/filter
 Allow: /sitemap.xml
 
 # Disallow admin and private routes
+Disallow: /index.php/
+Disallow: /rentals/filter
 Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /login
@@ -34,6 +35,13 @@ Disallow: /password/
 Disallow: /api/
 Disallow: /storage/
 Disallow: /vendor/
+Disallow: /ajax/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*page=
 
 # Disallow query parameters (except for public filters)
 Disallow: /*?*
