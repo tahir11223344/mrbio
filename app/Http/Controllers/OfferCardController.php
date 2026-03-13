@@ -41,6 +41,10 @@ class OfferCardController extends Controller
             'feature_text' => 'nullable|string|max:255',
             'feature_texts' => 'nullable|array',
             'feature_texts.*' => 'nullable|string|max:255',
+            'feature_groups' => 'nullable|array',
+            'feature_groups.*.title' => 'nullable|string|max:255',
+            'feature_groups.*.items' => 'nullable|array',
+            'feature_groups.*.items.*' => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
             'image_alt' => 'nullable|string|max:255',
@@ -62,6 +66,7 @@ class OfferCardController extends Controller
                 'description' => $validated['description'] ?? null,
                 'feature_text' => $validated['feature_text'] ?? null,
                 'feature_texts' => $validated['feature_texts'] ?? [],
+                'feature_groups' => $validated['feature_groups'] ?? [],
                 'sort_order' => $validated['sort_order'] ?? 0,
                 'image' => $image,
                 'image_alt' => $validated['image_alt'] ?? null,
@@ -145,6 +150,10 @@ class OfferCardController extends Controller
             'feature_text' => 'nullable|string|max:255',
             'feature_texts' => 'nullable|array',
             'feature_texts.*' => 'nullable|string|max:255',
+            'feature_groups' => 'nullable|array',
+            'feature_groups.*.title' => 'nullable|string|max:255',
+            'feature_groups.*.items' => 'nullable|array',
+            'feature_groups.*.items.*' => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10000',
             'image_alt' => 'nullable|string|max:255',
@@ -160,6 +169,7 @@ class OfferCardController extends Controller
             $card->description = $validated['description'] ?? null;
             $card->feature_text = $validated['feature_text'] ?? null;
             $card->feature_texts = $validated['feature_texts'] ?? [];
+            $card->feature_groups = $validated['feature_groups'] ?? [];
             $card->sort_order = $validated['sort_order'] ?? 0;
             $card->image_alt = $validated['image_alt'] ?? null;
             $card->save();

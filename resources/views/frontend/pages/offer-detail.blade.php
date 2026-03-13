@@ -652,7 +652,6 @@
                     </div>
 
                 </div>
-
                 <!-- Right Column -->
                 <div class="col-lg-6">
                     <h2 class="detail-heading">{!! highlightBracketText($data->content_title ?? '') !!}</h2>
@@ -719,60 +718,48 @@
                                     </p>
 
                                     @php
-                                        $featureTexts =
-                                            $card->feature_texts ?? ($card->feature_text ? [$card->feature_text] : []);
+                                        $featureGroups = $card->feature_groups ?? [];
+                                        $featureTexts = $card->feature_texts ?? ($card->feature_text ? [$card->feature_text] : []);
                                     @endphp
-                                    {{-- @foreach ($featureTexts as $featureText)
-                                        @if (!empty($featureText))
-                                            <div class="service-feature">
-                                                <i class="bi bi-check-circle-fill"></i>
-                                                <span>{{ $featureText }}</span>
-                                            </div>
-                                        @endif
-                                    @endforeach --}}
-                                    <div class="category-list">
+                                    @if (!empty($featureGroups) || !empty($featureTexts))
+                                        <div class="category-list">
+                                            @foreach ($featureGroups as $group)
+                                                @php
+                                                    $title = $group['title'] ?? '';
+                                                    $items = $group['items'] ?? [];
+                                                @endphp
+                                                @if (!empty($title))
+                                                    <div class="category-item">
+                                                        <div class="category-header">
+                                                            <span>{{ $title }}</span>
+                                                            @if (!empty($items))
+                                                                <i class="bi bi-chevron-down"></i>
+                                                            @endif
+                                                        </div>
+                                                        @if (!empty($items))
+                                                            <div class="subcategory">
+                                                                @foreach ($items as $item)
+                                                                    @if (!empty($item))
+                                                                        <p>{{ $item }}</p>
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                @endif
+                                            @endforeach
 
-                                        <div class="category-item">
-                                            <div class="category-header">
-                                                <span>Medical Equipment</span>
-                                                <i class="bi bi-chevron-down"></i>
-                                            </div>
-
-                                            <div class="subcategory">
-                                                
-                                                <p>ECG Machine</p>
-                                                <p>Patient Monitor</p>
-                                                <p>Ventilator</p>
-                                            </div>
+                                            @foreach ($featureTexts as $featureText)
+                                                @if (!empty($featureText))
+                                                    <div class="category-item">
+                                                        <div class="category-header">
+                                                            <span>{{ $featureText }}</span>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
                                         </div>
-
-                                        <div class="category-item">
-                                            <div class="category-header">
-                                                <span>Surgical Instruments</span>
-                                                <i class="bi bi-chevron-down"></i>
-                                            </div>
-
-                                            <div class="subcategory">
-                                                <p>Forceps</p>
-                                                <p>Scissors</p>
-                                                <p>Scalpels</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="category-item">
-                                            <div class="category-header">
-                                                <span>Hospital Furniture</span>
-                                                <i class="bi bi-chevron-down"></i>
-                                            </div>
-
-                                            <div class="subcategory">
-                                                <p>Hospital Bed</p>
-                                                <p>Bedside Locker</p>
-                                                <p>IV Stand</p>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         @endforeach

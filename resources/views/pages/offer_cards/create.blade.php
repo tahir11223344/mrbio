@@ -88,32 +88,57 @@
                                 @enderror
                             </div>
 
-                            <div class="col-lg-12 mb-4" id="feature-texts-wrapper">
-                                <label class="form-label fw-semibold">{{ __('Feature Texts') }}</label>
+                            <div class="col-lg-12 mb-4" id="feature-groups-wrapper">
+                                <label class="form-label fw-semibold">{{ __('Feature Groups') }}</label>
                                 @php
-                                    $featureTexts = old('feature_texts', isset($data)
-                                        ? ($data->feature_texts ?? ($data->feature_text ? [$data->feature_text] : ['']))
-                                        : ['']);
+                                    $featureGroups = old('feature_groups', $data->feature_groups ?? []);
                                 @endphp
-                                <div class="feature-texts-list">
-                                    @foreach ($featureTexts as $index => $text)
-                                        <div class="d-flex gap-3 align-items-center mb-2 feature-text-row">
-                                            <input type="text" name="feature_texts[]"
-                                                class="form-control form-control-lg"
-                                                value="{{ $text }}">
-                                            <button type="button" class="btn btn-light btn-sm remove-feature-text" {{ $index === 0 ? 'disabled' : '' }}>
-                                                {{ __('Remove') }}
+                                <div class="feature-groups-list">
+                                    @forelse ($featureGroups as $groupIndex => $group)
+                                        <div class="border rounded-3 p-3 mb-3 feature-group-item" data-index="{{ $groupIndex }}">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <strong>{{ __('Feature') }}</strong>
+                                                <button type="button" class="btn btn-light btn-sm remove-feature-group">
+                                                    {{ __('Remove') }}
+                                                </button>
+                                            </div>
+                                            <input type="text"
+                                                name="feature_groups[{{ $groupIndex }}][title]"
+                                                class="form-control form-control-lg mb-3"
+                                                value="{{ $group['title'] ?? '' }}"
+                                                placeholder="{{ __('Feature Title') }}">
+                                            <div class="feature-items-list">
+                                                @php $items = $group['items'] ?? ['']; @endphp
+                                                @foreach ($items as $itemIndex => $item)
+                                                    <div class="d-flex gap-3 align-items-center mb-2 feature-item-row">
+                                                        <input type="text"
+                                                            name="feature_groups[{{ $groupIndex }}][items][]"
+                                                            class="form-control form-control-lg"
+                                                            value="{{ $item }}"
+                                                            placeholder="{{ __('Subfeature') }}">
+                                                        <button type="button" class="btn btn-light btn-sm remove-feature-item" {{ $itemIndex === 0 ? 'disabled' : '' }}>
+                                                            {{ __('Remove') }}
+                                                        </button>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <button type="button" class="btn btn-sm btn-primary add-feature-item">
+                                                {{ __('Add Subfeature') }}
                                             </button>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                    @endforelse
                                 </div>
-                                <button type="button" class="btn btn-sm btn-primary" id="add-feature-text">
+                                <button type="button" class="btn btn-sm btn-primary" id="add-feature-group">
                                     {{ __('Add Feature') }}
                                 </button>
-                                @error('feature_texts')
+                                @error('feature_groups')
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
-                                @error('feature_texts.*')
+                                @error('feature_groups.*.title')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
+                                @error('feature_groups.*.items.*')
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -166,38 +191,73 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const sectionSelect = document.getElementById('section');
-                const featureWrapper = document.getElementById('feature-texts-wrapper');
-                const list = featureWrapper?.querySelector('.feature-texts-list');
-                const addButton = document.getElementById('add-feature-text');
+                const featureWrapper = document.getElementById('feature-groups-wrapper');
+                const list = featureWrapper?.querySelector('.feature-groups-list');
+                const addButton = document.getElementById('add-feature-group');
 
                 function toggleFeatureTexts() {
                     if (!sectionSelect || !featureWrapper) return;
                     featureWrapper.style.display = sectionSelect.value === 'billing-services' ? '' : 'none';
                 }
 
-                function addFeatureRow(value = '') {
+                function addFeatureGroup() {
                     if (!list) return;
-                    const row = document.createElement('div');
-                    row.className = 'd-flex gap-3 align-items-center mb-2 feature-text-row';
-                    row.innerHTML = `
-                        <input type="text" name="feature_texts[]" class="form-control form-control-lg" value="${value}">
-                        <button type="button" class="btn btn-light btn-sm remove-feature-text">{{ __('Remove') }}</button>
+                    const index = list.children.length;
+                    const group = document.createElement('div');
+                    group.className = 'border rounded-3 p-3 mb-3 feature-group-item';
+                    group.dataset.index = index;
+                    group.innerHTML = `
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <strong>{{ __('Feature') }}</strong>
+                            <button type="button" class="btn btn-light btn-sm remove-feature-group">{{ __('Remove') }}</button>
+                        </div>
+                        <input type="text" name="feature_groups[${index}][title]" class="form-control form-control-lg mb-3" placeholder="{{ __('Feature Title') }}">
+                        <div class="feature-items-list">
+                            <div class="d-flex gap-3 align-items-center mb-2 feature-item-row">
+                                <input type="text" name="feature_groups[${index}][items][]" class="form-control form-control-lg" placeholder="{{ __('Subfeature') }}">
+                                <button type="button" class="btn btn-light btn-sm remove-feature-item" disabled>{{ __('Remove') }}</button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-primary add-feature-item">{{ __('Add Subfeature') }}</button>
                     `;
-                    list.appendChild(row);
+                    list.appendChild(group);
                 }
 
                 if (addButton) {
                     addButton.addEventListener('click', function() {
-                        addFeatureRow();
+                        addFeatureGroup();
                     });
                 }
 
                 if (list) {
                     list.addEventListener('click', function(event) {
                         const target = event.target;
-                        if (target.classList.contains('remove-feature-text')) {
-                            const row = target.closest('.feature-text-row');
-                            if (row && list.children.length > 1) {
+                        if (target.classList.contains('remove-feature-group')) {
+                            const group = target.closest('.feature-group-item');
+                            if (group) {
+                                group.remove();
+                            }
+                        }
+
+                        if (target.classList.contains('add-feature-item')) {
+                            const group = target.closest('.feature-group-item');
+                            const itemsList = group?.querySelector('.feature-items-list');
+                            if (!itemsList) return;
+
+                            const groupIndex = group.dataset.index;
+                            const row = document.createElement('div');
+                            row.className = 'd-flex gap-3 align-items-center mb-2 feature-item-row';
+                            row.innerHTML = `
+                                <input type="text" name="feature_groups[${groupIndex}][items][]" class="form-control form-control-lg" placeholder="{{ __('Subfeature') }}">
+                                <button type="button" class="btn btn-light btn-sm remove-feature-item">{{ __('Remove') }}</button>
+                            `;
+                            itemsList.appendChild(row);
+                        }
+
+                        if (target.classList.contains('remove-feature-item')) {
+                            const row = target.closest('.feature-item-row');
+                            const itemsList = target.closest('.feature-items-list');
+                            if (row && itemsList && itemsList.children.length > 1) {
                                 row.remove();
                             }
                         }
@@ -206,6 +266,10 @@
 
                 if (sectionSelect) {
                     sectionSelect.addEventListener('change', toggleFeatureTexts);
+                }
+
+                if (list && !list.children.length) {
+                    addFeatureGroup();
                 }
 
                 toggleFeatureTexts();

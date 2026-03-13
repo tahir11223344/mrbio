@@ -487,7 +487,7 @@
                     </div>
                     @if ($data->slug == 'home-health-services')
                         <a href="https://mrbedmed.com" target="_blank">
-                            <button class="quote-btn">Request A Quote</button>
+                            <button class="quote-btn">Learn More</button>
                         </a>
                     @else
                         <button class="quote-btn" data-open-service-modal>Request A Quote</button>
