@@ -917,16 +917,20 @@
 @endsection
 @push('frontend-scripts')
     <script>
+        const billingSlides = {{ $billingCards->count() }};
+        const enableBillingLoop = billingSlides > 2;
+
         var swiper = new Swiper(".billingSwiper", {
 
             slidesPerView: 3,
             spaceBetween: 20,
-            loop: true,
+            loop: enableBillingLoop,
+            watchOverflow: true,
 
-            autoplay: {
+            autoplay: enableBillingLoop ? {
                 delay: 2500,
                 disableOnInteraction: false
-            },
+            } : false,
 
             grabCursor: true,
             simulateTouch: true,
@@ -955,27 +959,36 @@
         document.querySelectorAll(".service-card").forEach(card => {
 
             card.addEventListener("mouseenter", () => {
-                swiper.autoplay.stop();
+                if (swiper.autoplay) {
+                    swiper.autoplay.stop();
+                }
             });
 
             card.addEventListener("mouseleave", () => {
-                swiper.autoplay.start();
+                if (swiper.autoplay) {
+                    swiper.autoplay.start();
+                }
             });
 
         });
     </script>
     <script>
+        const serviceSlides = {{ $servicesCards->count() }};
+        const enableServiceLoop = serviceSlides > 2;
+
         var swiper2 = new Swiper(".serviceSlider2", {
 
             slidesPerView: 3,
             spaceBetween: 20,
-            loop: true,
+            loop: enableServiceLoop,
+            watchOverflow: true,
+            autoHeight: true,
 
-            autoplay: {
+            autoplay: enableServiceLoop ? {
                 delay: 2500,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true // Hover par pause
-            },
+            } : false,
             grabCursor: true, // Mouse drag feel
             simulateTouch: true, // Desktop par bhi swipe
             touchRatio: 1,
@@ -1022,7 +1035,7 @@
             }
 
             // 🔹 Important
-            swiper2.updateAutoHeight();
+            swiper2.updateAutoHeight(300);
             swiper2.update();
 
         });
